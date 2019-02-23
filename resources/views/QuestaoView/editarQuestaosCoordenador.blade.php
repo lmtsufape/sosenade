@@ -6,110 +6,181 @@
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
 		<input type="hidden" name="id" value="{{$questao->id}}">
 
-		<h1 class="text-center"> Editar questao </h1><br><br>	
+		<h1 class="text-center"> Editar Questão </h1><br>
 
-	   <script src="{{ asset( '/tinymce/js/tinymce/tinymce.min.js') }}"></script>
-		 <script>
-		  tinymce.init({
-		    selector: '#mytextarea'
-		  });
-  		</script>
+	   <div class="col-xs-12 col-sm-12 col-md-12">
+			<div class="form-group">
+				<strong>Enunciado:</strong>
+				<textarea class="form-control summernote" name="enunciado" id="enunciado">{{$questao->enunciado}}</textarea>
+			</div>
+		</div>
 
-	  	<div class="form-row ">
-		    <div class="form-group col-md-6">
-		      	<label for="enunciado">enunciado</label>
+		<table class="table form-group" id="dynamic_field" >
+			<th style="text-align: center;">#</th>
+			<th>Resposta</th>
+			<th style="text-align: center;">Resposta correta</th>
+			<th>&nbsp</th>
+			<tr>
+				<td style="border: 0px; width: 1%; vertical-align:middle;">1.</td>
+				<td style="border: 0px">
+					<input type="alternativa1" id="alternativa1" name="alternativa[]" placeholder="Escreva aqui a alternativa" style="width:100%" value="{{$questao->alternativa_a}}" required autofocus>
+				</td>  
+				<td style="border: 0px;text-align: center; width: 1%">
+					<input type="radio" name="alternativa_correta" id="alternativa_correta" value="0" required {{ ($questao->alternativa_correta == "0") ? 'checked': ''}}>
+				</td>  
+			</tr>
+			<tr>  
+				<td style="border: 0px; width: 1%; vertical-align:middle;">2.</td>
+				<td style="border: 0px">
+					<input type="alternativa2" id="alternativa2" name="alternativa[]" placeholder="Escreva aqui a alternativa" style="width:100%" value="{{$questao->alternativa_b}}" required autofocus>
+				</td>
+				<td style="border: 0px;text-align: center; width: 1%">
+					<input type="radio" name="alternativa_correta" id="alternativa_correta" value="1" {{ ($questao->alternativa_correta == "1") ? 'checked': ''}}>
+				</td>
+			</tr>
 
-	    		<textarea id="mytextarea" name="enunciado">{{$questao->enunciado}}</textarea>
-		    </div>
-    	</div>	
-	    
-	    <div class="form-group col-md-6">
-	      <label for="alternativa_a">alternativa_a</label>
-	      <input type="alternativa_a" id="alternativa_a" name="alternativa_a" placeholder="alternativa_a" class="form-control{{ $errors->has('alternativa_a') ? ' is-invalid' : '' }}" value="{{$questao->alternativa_a}}" required autofocus>
-	      @if ($errors->has('alternativa_a'))
-	    	<span class = "invalid-feedback" role="alert">
-	    		{{$errors->first('alternativa_a')}}
-	    	</span>
-	    	@endif
-	    </div>
+			<script>var x = 2; // numero de alternativas</script>
 
-	  <div class="form-group">
-	    <label for="alternativa_b">alternativa_b</label>
-	    <input type="text" id="alternativa_b" name="alternativa_b" placeholder="alternativa_b" class="form-control{{ $errors->has('alternativa_b') ? ' is-invalid' : '' }}" value="{{$questao->alternativa_b}}" required autofocus>
-	  	@if ($errors->has('alternativa_b'))
-	    	<span class = "invalid-feedback" role="alert">
-	    		{{$errors->first('alternativa_b')}}
-	    	</span>
-	    @endif
-	  </div>
-		
-	  <div class="form-group col-md-6">
-	      <label for="alternativa_c">alternativa_c</label>
-	      <input type="text" name="alternativa_c" id="alternativa_c" placeholder="alternativa_c" class="form-control{{ $errors->has('alternativa_c') ? ' is-invalid' : '' }}" value="{{$questao->alternativa_c}}" required autofocus>
-	      @if ($errors->has('alternativa_c'))
-	        <span class = "invalid-feedback" role="alert">
-	          {{$errors->first('alternativa_c')}}
-	        </span>
-	      @endif
-	    </div>
+			@if ($questao->alternativa_c != '')
+				<tr id="row2">  
+					<td style="border: 0px; width: 1%; vertical-align:middle;">3.</td>
+					<td style="border: 0px">
+						<input type="alternativa3" id="alternativa3" name="alternativa[]" placeholder="Escreva aqui a alternativa" style="width:100%" value="{{$questao->alternativa_c}}" required autofocus>
+					</td>
+					<td style="border: 0px;text-align: center; width: 1%">
+						<input type="radio" name="alternativa_correta" id="alternativa_correta" value="2" {{ ($questao->alternativa_correta == "2") ? 'checked': ''}}>
+					</td>
+					<td style="border: 0px; width: 1%">
+						<a href="#" name="remove" id="2" class="remove_field">Remover</a>
+					</td>
+				</tr>
+				<script>var x = 3;</script>
 
-		<div class="form-group col-md-6">
-	      <label for="alternativa_d">alternativa_d</label>
-	      <input type="text" name="alternativa_d" id="alternativa_d" placeholder="alternativa_d" class="form-control{{ $errors->has('alternativa_d') ? ' is-invalid' : '' }}" value="{{$questao->alternativa_d}}" required autofocus>
-	      @if ($errors->has('alternativa_d'))
-	        <span class = "invalid-feedback" role="alert">
-	          {{$errors->first('alternativa_d')}}
-	        </span>
-	      @endif
-	    </div>
+ 				@if ($questao->alternativa_d != '')
+					<tr id="row3">  
+						<td style="border: 0px; width: 1%; vertical-align:middle;">4.</td>
+						<td style="border: 0px">
+							<input type="alternativa4" id="alternativa4" name="alternativa[]" placeholder="Escreva aqui a alternativa" style="width:100%" value="{{$questao->alternativa_d}}" required autofocus>
+						</td>
+						<td style="border: 0px;text-align: center; width: 1%">
+							<input type="radio" name="alternativa_correta" id="alternativa_correta" value="3" {{ ($questao->alternativa_correta == "3") ? 'checked': ''}} >
+						</td>
+						<td style="border: 0px; width: 1%">
+							<a href="#" name="remove" id="3" class="remove_field">Remover</a>
+						</td>
+					</tr>
+					<script>var x = 4;</script>
 
-		<div class="form-group col-md-6">
-	      <label for="alternativa_e">alternativa_e</label>
-	      <input type="text"  name="alternativa_e" id="alternativa_e" placeholder="alternativa_e" class="form-control{{ $errors->has('alternativa_e') ? ' is-invalid' : '' }}" value="{{$questao->alternativa_e}}" required autofocus>
-	      @if ($errors->has('alternativa_e'))
-	        <span class = "invalid-feedback" role="alert">
-	          {{$errors->first('alternativa_e')}}
-	        </span>
-	      @endif
-	    </div>
+	 				@if ($questao->alternativa_e != '')
+						<tr id="row4">  
+							<td style="border: 0px; width: 1%; vertical-align:middle;">5.</td>
+							<td style="border: 0px">
+								<input type="alternativa5" id="alternativa5" name="alternativa[]" placeholder="Escreva aqui a alternativa" style="width:100%" value="{{$questao->alternativa_e}}" required autofocus>
+							</td>
+							<td style="border: 0px;text-align: center; width: 1%">
+								<input type="radio" name="alternativa_correta" id="alternativa_correta" value="4" {{ ($questao->alternativa_correta == "4") ? 'checked': ''}}>
+							</td>
+							<td style="border: 0px; width: 1%">
+								<a href="#" name="remove" id="4" class="remove_field">Remover</a>
+							</td>
+						</tr>
+						<script>var x = 5;</script>
+					@endif
 
-		<div class="form-group col-md-6">
-	      <label for="alternativa_correta">alternativa_correta</label>
-	      <input type="text" name="alternativa_correta" id="alternativa_correta" placeholder="alternativa_correta" class="form-control{{ $errors->has('alternativa_correta') ? ' is-invalid' : '' }}" value="{{$questao->alternativa_correta}}" required autofocus>
-	      @if ($errors->has('alternativa_correta'))
-	        <span class = "invalid-feedback" role="alert">
-	          {{$errors->first('alternativa_correta')}}
-	        </span>
-	      @endif
-	    </div>
+				@endif
 
-		<div class="form-group col-md-6">
-	      <label for="dificuldade">dificuldade</label>
-	      <input type="text"  name="dificuldade" id="dificuldade" placeholder="dificuldade" class="form-control{{ $errors->has('dificuldade') ? ' is-invalid' : '' }}" value="{{$questao->dificuldade}}" required autofocus>
-	      @if ($errors->has('dificuldade'))
-	        <span class = "invalid-feedback" role="alert">
-	          {{$errors->first('dificuldade')}}
-	        </span>
-	      @endif
-	    </div>
+			@endif
+		</table>
 
-		<div class="form-group col-md-4">
-	      	<label for="disciplina_id">Diciplina</label>
-	      	<select name="disciplina_id" class="form-control{{ $errors->has('disciplina_id') ? ' is-invalid' : '' }}" required autofocus>	
-				@foreach ($disciplinas as $disciplina)
-				<option value="{{$disciplina->id}}" {{$questao->disciplina_id == $disciplina->id ? 'selected' : '' }}   >{{$disciplina->nome}} </option>
-				@endforeach
-			</select>
-			@if ($errors->has('disciplina_id'))
-	    		<span class = "invalid-feedback" role="alert">
-	    			{{$errors->first('disciplina_id')}}
-	    		</span>
-	    	@endif
+		<div id="btt_wrap">
+			<button class="btn btn-primary add_field_button form-group center-block">Adicionar alternativa</button>
+		</div>
 
-	    </div>
-	  </div>
-	  
-	  <button type="submit" name="editar" class="btn btn-primary float-right">Editar</button><br><br>
+		<br>
+
+		<div class="grid">
+			<div class="row center-block">
+				
+				<div class="form-group col-md-4">
+					<label for="dificuldade">Dificuldade:</label>
+					<input type="text" id="rangeValue" value="{{$questao->dificuldade}}" disabled size="1" style="border: none; border-color: transparent; background: none">
+					<input class="h-50" id="dificuldade" name="dificuldade" type="range" min="1" max="5" step="1" onclick="updaterangeValue(this.value);" value="{{$questao->dificuldade}}" />
+				</div>
+
+				<div class="form-group col-md-4">
+					<label for="disciplina_id">Disciplina</label>
+					<select name="disciplina_id" class="h-50 form-control{{ $errors->has('disciplina_id') ? ' is-invalid' : '' }}" required autofocus>	
+						@foreach ($disciplinas as $disciplina)
+							<option value="{{$disciplina->id}}" {{old('disciplina') == $disciplina->id ? 'selected' : '' }}	>{{$disciplina->nome}} </option>
+						@endforeach
+					</select>
+					@if ($errors->has('disciplina_id'))
+						<span class = "invalid-feedback" role="alert">
+							{{$errors->first('disciplina_id')}}
+						</span>
+					@endif
+				</div>
+				
+			</div>
+
+			<br>
+
+			<div class="row">
+				<button type="submit" name="cadastrar" class="btn btn-primary center-block col-md-1">Cadastrar</button>
+			</div>
+		</div>
 
 	</form>
+
+	<script type="text/javascript">
+
+		function updaterangeValue(val) {
+        	document.getElementById('rangeValue').value=val; 
+        }
+
+		$(document).ready(function() {
+			var max_fields      = 5; //maximum input boxes allowed
+			var fields_table	= $("#dynamic_field"); //Fields wrapper
+			var add_button      = $(".add_field_button"); //Add button ID
+			var button_hidden	= false;
+			
+			//var x = 2; //initlal text box count
+			$(add_button).click(function(e){ //on add input button click
+				e.preventDefault();
+				if(x < max_fields){ //max input box allowed
+					x++; //text box increment
+					$('#dynamic_field').append('<tr id="row'+x+'"><td style="border: 0px; width: 1%; vertical-align:middle;">'+x+'.</td><td style="border: 0px"><input type="alternativa'+x+'" id="alternativa'+x+'" name="alternativa[]" placeholder="Escreva aqui a alternativa" style="width:100%" required autofocus></td><td style="border: 0px;text-align: center;"><input type="radio" name="alternativa_correta" id="alternativa_correta" value="'+(x-1)+'"></td><td style="border: 0px; width: 1%"><a href="#" name="remove" id="'+x+'" class="remove_field">Remover</a></td></tr>');
+				}
+				
+				if (x == max_fields){
+					add_button.remove();
+					button_hidden = true;
+				}
+			});
+
+			$(fields_table).on("click",".remove_field", function(e){ //user click on remove text
+				e.preventDefault();
+				var button_id = $(this).attr("id");   
+				$('#row'+button_id+'').remove();
+				x--;
+				if(button_hidden){
+					$(btt_wrap).append('<button class="btn btn-primary add_field_button center-block">Adicionar alternativa</button>');
+					add_button      = $(".add_field_button");
+					button_hidden 	= false;
+					$(add_button).click(function(e){ //on add input button click
+						e.preventDefault();
+						if(x < max_fields){ //max input box allowed
+							x++; //text box increment
+							$('#dynamic_field').append('<tr id="row'+x+'"><td style="border: 0px; width: 1%; vertical-align:middle;">'+x+'.</td><td style="border: 0px"><input type="alternativa'+x+'" id="alternativa'+x+'" name="alternativa[]" placeholder="Escreva aqui a alternativa" style="width:100%" required autofocus></td><td style="border: 0px;text-align: center;"><input type="radio" name="alternativa_correta" id="alternativa_correta" value="'+(x-1)+'"></td><td style="border: 0px; width: 1%"><a href="#" name="remove" id="'+x+'" class="remove_field">Remover</a></td></tr>');
+						}
+						
+						if (x == max_fields){
+							add_button.remove();
+							button_hidden = true;
+						}
+					});
+				}
+			})
+		});
+	</script>
 @stop

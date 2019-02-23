@@ -15,17 +15,15 @@
 			</tr>
 		</thead>
 		<tbody>
+			<p type="hidden" value="{{ $x = 1 }}"></p>
 			@foreach($questaos as $questao)
-			<tr>
-				<td>{{$questao->id}}</td>
-				<td>{{preg_replace('/<[^>]*>|[&;]/', '', $questao->enunciado) }}</td>
-				<td>{{$questao->dificuldade}}</td>
-				<td>{{$questao->disciplina_id}}</td>
-
-	
-
-				<td> <a href='/editar/questaoCoordenador/{{$questao->id}}'>Editar</a> - <a href='/remover/questaoCoordenador/{{$questao->id}}'>Remover</a></td>
-			</tr>
+				<tr>
+					<td>{{$x++}}</td>
+					<td>{{preg_replace('/<[^>]*>|[&;]/', '', $questao->enunciado) }}</td>
+					<td>{{$questao->dificuldade}}</td>
+					<td>{{$questao->disciplina_id}}</td>
+					<td> <a href='/editar/questaoCoordenador/{{$questao->id}}'>Editar</a> - <a href='/remover/questaoCoordenador/{{$questao->id}}'>Remover</a></td>
+				</tr>
 			@endforeach
 		</tbody>
 	</table>
