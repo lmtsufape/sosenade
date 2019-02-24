@@ -12,6 +12,8 @@
 		<link rel="stylesheet" type="text/css" href="{{ asset('sn_editor/summernote.css') }}">
 		<script src="{{ asset('sn_editor/summernote.js') }}"></script>
 
+		<script type="text/javascript" src="{{ asset('js/cadastrar_editar_qts.js') }}"></script>
+
 	    <title></title>
 	</head>
 

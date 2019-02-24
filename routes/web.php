@@ -58,23 +58,18 @@ Route::middleware('auth')->group(function(){
 		Route::get('/montar/simulado/{id}', 'SimuladoController@montar');
 		Route::post('/cadastrarQuestao/simulado', 'SimuladoController@cadastrarQuestao');
 
-		Route::get('/listar/questaoCoordenador', 'QuestaoController@listar');
-		Route::get('/cadastrar/questaoCoordenador', 'QuestaoController@cadastrar');
-		Route::post('/adicionar/questaoCoordenador', 'QuestaoController@adicionar');
-		Route::get('/editar/questaoCoordenador/{id}', 'QuestaoController@editar');
-		Route::post('/atualizar/questaoCoordenador', 'QuestaoController@atualizar');
-		Route::get('/remover/questaoCoordenador/{id}', 'QuestaoController@remover');
-
 	});
-	
-	Route::middleware('professor.auth')->group(function(){
 
+	Route::group(['middleware' => ['professor.auth' OR 'coordenador.auth']], function() {
 		Route::get('/listar/questao', 'QuestaoController@listar');
 		Route::get('/cadastrar/questao', 'QuestaoController@cadastrar');
 		Route::post('/adicionar/questao', 'QuestaoController@adicionar');
 		Route::get('/editar/questao/{id}', 'QuestaoController@editar');
 		Route::post('/atualizar/questao', 'QuestaoController@atualizar');
 		Route::get('/remover/questao/{id}', 'QuestaoController@remover');
+	});
+
+	Route::middleware('professor.auth')->group(function(){
 
 		Route::get('/cadastrar/questaosimulado','QuestaoSimuladoController@cadastrar');
 		Route::post('/adicionar/questaosimulado','QuestaoSimuladoController@adicionar');

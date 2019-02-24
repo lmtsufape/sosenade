@@ -57,34 +57,41 @@ class QuestaoController extends Controller
 
             $questao->save();
 
-            $user =  \Auth::user();
-            if($user->tipousuario_id == 3){
-                return redirect("listar/questao");
-            } elseif($user->tipousuario_id == 2){
-                return redirect("listar/questaoCoordenador");
-            }
+            return redirect("listar/questao");
+
+
+            // $user =  \Auth::user();
+            // if($user->tipousuario_id == 3){
+            //     return redirect("listar/questao");
+            // } elseif($user->tipousuario_id == 2){
+            //     return redirect("listar/questaoCoordenador");
+            // }
 
         } catch(ValidationException $ex){
-            $user =  \Auth::user();
-            if($user->tipousuario_id == 3){
-                return redirect("cadastrar/questao")->withErrors($ex->getValidator())->withInput();
-            } elseif($user->tipousuario_id == 2){
-                dd($ex->getValidator());
-                return redirect("cadastrar/questaoCoordenador")->withErrors($ex->getValidator())->withInput();
-            }
+            return redirect("cadastrar/questao")->withErrors($ex->getValidator())->withInput();
+
+            // $user =  \Auth::user();
+            // if($user->tipousuario_id == 3){
+            //     return redirect("cadastrar/questao")->withErrors($ex->getValidator())->withInput();
+            // } elseif($user->tipousuario_id == 2){
+            //     dd($ex->getValidator());
+            //     return redirect("cadastrar/questaoCoordenador")->withErrors($ex->getValidator())->withInput();
+            // }
         }
     }
 
     public function cadastrar(){
     	$disciplinas = \SimuladoENADE\Disciplina::all(); 
-        $user =  \Auth::user();
-        if($user->tipousuario_id == 3){
-            return view('/QuestaoView/cadastrarQuestao', ['disciplinas' => $disciplinas]);    
-        } 
-        elseif ($user->tipousuario_id == 2) {
+        return view('/QuestaoView/cadastrarQuestao', ['disciplinas' => $disciplinas]);    
 
-             return view('/QuestaoView/cadastrarQuestaoCoordenador', ['disciplinas' => $disciplinas]);
-         } 
+        // $user =  \Auth::user();
+        // if($user->tipousuario_id == 3){
+        //     return view('/QuestaoView/cadastrarQuestao', ['disciplinas' => $disciplinas]);    
+        // } 
+        // elseif ($user->tipousuario_id == 2) {
+
+        //      return view('/QuestaoView/cadastrarQuestaoCoordenador', ['disciplinas' => $disciplinas]);
+        //  } 
     }
     
     public function listar(){
@@ -99,11 +106,14 @@ class QuestaoController extends Controller
             })->get();
 
 
-        if($user->tipousuario_id == 3){
-            return view('/QuestaoView/listaQuestao', ['questaos' => $questao]);   
-        } elseif ($user->tipousuario_id == 2) {
-            return view('/QuestaoView/listaQuestaoCoordenador', ['questaos' => $questao]);   
-        } 
+        return view('/QuestaoView/listaQuestao', ['questaos' => $questao]);   
+
+
+        // if($user->tipousuario_id == 3){
+        //     return view('/QuestaoView/listaQuestao', ['questaos' => $questao]);   
+        // } elseif ($user->tipousuario_id == 2) {
+        //     return view('/QuestaoView/listaQuestaoCoordenador', ['questaos' => $questao]);   
+        // } 
 
         /* $questaos = \DB::table('questao_simulados')
        ->whereNotIn('questao_id', function($query) use ($usuario, $simulado){
@@ -120,13 +130,15 @@ class QuestaoController extends Controller
     public function editar(Request $request){
         $questao = \SimuladoENADE\Questao::find($request->id);
         $disciplinas = \SimuladoENADE\Disciplina::all();
-        $user =  \Auth::user();
-        if($user->tipousuario_id == 3){
-                return view('/QuestaoView/editarQuestaos', ['questao' => $questao], ['disciplinas'=>$disciplinas]);  
-        }
-        elseif ($user->tipousuario_id == 2) {
-                return view('/QuestaoView/editarQuestaosCoordenador', ['questao' => $questao], ['disciplinas'=>$disciplinas]);
-        }
+        return view('/QuestaoView/editarQuestaos', ['questao' => $questao], ['disciplinas'=>$disciplinas]);  
+
+        // $user =  \Auth::user();
+        // if($user->tipousuario_id == 3){
+        //         return view('/QuestaoView/editarQuestaos', ['questao' => $questao], ['disciplinas'=>$disciplinas]);  
+        // }
+        // elseif ($user->tipousuario_id == 2) {
+        //         return view('/QuestaoView/editarQuestaosCoordenador', ['questao' => $questao], ['disciplinas'=>$disciplinas]);
+        // }
     }
 
     public function atualizar(Request $request){
@@ -148,23 +160,26 @@ class QuestaoController extends Controller
             $questao->alternativa_d = $alternativas[3] ?? "";
             $questao->alternativa_e = $alternativas[4] ?? "";
 
-            $questao->save();
+            $questao->update();
 
-            $user =  \Auth::user();
-            if($user->tipousuario_id == 3){
-                return redirect("listar/questao");
-            } elseif($user->tipousuario_id == 2){
-                return redirect("listar/questaoCoordenador");
-            }
+            return redirect("listar/questao");
+
+            // $user =  \Auth::user();
+            // if($user->tipousuario_id == 3){
+            //     return redirect("listar/questao");
+            // } elseif($user->tipousuario_id == 2){
+            //     return redirect("listar/questaoCoordenador");
+            // }
 
         } catch(ValidationException $ex){
-            $user =  \Auth::user();
-            if($user->tipousuario_id == 3){
-                return redirect("editar/questao")->withErrors($ex->getValidator())->withInput();
-            } elseif($user->tipousuario_id == 2){
-                dd($ex->getValidator());
-                return redirect("editar/questaoCoordenador")->withErrors($ex->getValidator())->withInput();
-            }
+            return redirect("editar/questao")->withErrors($ex->getValidator())->withInput();
+            // $user =  \Auth::user();
+            // if($user->tipousuario_id == 3){
+            //     return redirect("editar/questao")->withErrors($ex->getValidator())->withInput();
+            // } elseif($user->tipousuario_id == 2){
+            //     dd($ex->getValidator());
+            //     return redirect("editar/questaoCoordenador")->withErrors($ex->getValidator())->withInput();
+            // }
         }
 
     }
@@ -174,12 +189,13 @@ class QuestaoController extends Controller
         $questao = \SimuladoENADE\Questao::find($request->id);
         $questao->delete();
         $user =  \Auth::user();
-        if($user->tipousuario_id == 3){
-            return redirect('\listar\questao');
-        }
-        elseif($user->tipousuario_id == 2){
-            return redirect('\listar\questaoCoordenador');
-        }
+        return redirect('\listar\questao');
+        // if($user->tipousuario_id == 3){
+        //     return redirect('\listar\questao');
+        // }
+        // elseif($user->tipousuario_id == 2){
+        //     return redirect('\listar\questaoCoordenador');
+        // }
     }
     
     public function filtro_disciplina_dificuldade(Request $request){

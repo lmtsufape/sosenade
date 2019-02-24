@@ -99,8 +99,8 @@
         </a>
 
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/cadastrar/questaoCoordenador">Cadastrar</a>
-          <a class="dropdown-item" href="/listar/questaoCoordenador">Listar</a>
+          <a class="dropdown-item" href="/cadastrar/questao">Cadastrar</a>
+          <a class="dropdown-item" href="/listar/questao">Listar</a>
 
         </div>
       </li>
