@@ -60,7 +60,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-	'aluno.auth' => \SimuladoENADE\Http\Middleware\AlunoMiddleware::class,
+        'aluno.auth' => \SimuladoENADE\Http\Middleware\AlunoMiddleware::class,
         'coordenador.auth'=>\SimuladoENADE\Http\Middleware\CoordenadorMiddleware::class,
         'professor.auth'=>\SimuladoENADE\Http\Middleware\ProfessorMiddleware::class,
         'adm.auth'=>\SimuladoENADE\Http\Middleware\AdministradorMiddleware::class,
