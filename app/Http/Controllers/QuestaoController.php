@@ -38,6 +38,7 @@ class QuestaoController extends Controller
         // $enunciado = $dom->saveHTML();
 
         try{
+            dd($request->all());
             QuestaoValidator::Validate($request->all()); 
             
             $alternativas = $request->input('alternativa');
