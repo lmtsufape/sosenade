@@ -15,135 +15,156 @@ use SimuladoENADE\Validator\ValidationException;
 
 class Usuariocontroller extends Controller
 {
-    public function adicionar(Request $request){
+	public function adicionar(Request $request){
 
-    	try{
-            $curso_id = \Auth::user()->curso_id;
+		try{
+				
+			$user =  \Auth::user()->tipousuario_id;
 
-            UsuarioValidator::Validate($request->all());
+			if($user == 4){ // adm
 
-            $usuario = new \SimuladoENADE\Usuario();
-            $usuario->fill($request->all());
-            $usuario->password = Hash::make($request->password);
-            $usuario->curso_id = $curso_id;
-            $usuario->save();
-            $user =  \Auth::user()->tipousuario_id;
-          
-            if(true){
-                $usuario = $request->email;
-                Mail::to($usuario)->send(new emailConfirmacao());
+				$inf_array = $request->all();
 
-        
-            }
-            if($user == 4){
-                return redirect("/listar/usuario");
-            }
-            elseif($user == 2){
-                return redirect("/listar/professor");
-            }
-        }
-        catch(ValidationException $ex){
-            $user =  \Auth::user()->tipousuario_id;
-            if($user == 4){
-                return redirect("/cadastrar/usuario")->withErrors($ex->getValidator())->withInput();
-            }
-            elseif($user == 2){
-                return redirect("/cadastrar/professor")->withErrors($ex->getValidator())->withInput();
-            }
-            
-        }
-    }
+				UsuarioValidator::Validate($inf_array);
 
-    public function cadastrar(){
+				$new_user = new \SimuladoENADE\Usuario();
+				$new_user->fill($inf_array);
+				$new_user->password = Hash::make($request->password);
+				$new_user->save();
+		  
+				if(false){
+					Mail::to($request->email)->send(new emailConfirmacao());
+				}
 
-//        $this->authorize('adcionar', \SimuladoENADE\Usuario::class); 
-        $user = \Auth::user()->tipousuario_id;       
-        $cursos = \SimuladoENADE\Curso::all();
-        $tipos_usuario = \SimuladoENADE\Tipousuario::all();
+				return redirect("/listar/usuario");
+			
+			} elseif($user == 2){ // coord
 
-        if($user == 4){
-		  return view('/UsuarioView/cadastrarUsuario',['cursos' => $cursos, 'tipos_usuario' => $tipos_usuario]);
-          }
-        elseif($user == 2){
-            return view('/UsuarioView/cadastrarProfessor',['cursos' => $cursos, 'tipos_usuario' => $tipos_usuario]);
-          }
-        }
+				$inf_array = $request->all();
+				$inf_array["curso_id"] = \Auth::user()->curso_id; // Pega o curso do usuario que está cadastrando.
+				$inf_array["tipousuario_id"] = 3; // Coordenador só pode cadastrar professor aqui!
 
-    
-    
+				UsuarioValidator::Validate($inf_array);
 
+				$new_user = new \SimuladoENADE\Usuario();
+				$new_user->fill($inf_array);
+				$new_user->password = Hash::make($request->password);
+				$new_user->save();
+		  
+				if(false){
+					Mail::to($request->email)->send(new emailConfirmacao());
+				}
 
+				return redirect("/listar/professor");
+			}
+		} catch(ValidationException $ex){
+			$user =  \Auth::user()->tipousuario_id;
+			if($user == 4){
+				return redirect("/cadastrar/usuario")->withErrors($ex->getValidator())->withInput();
+			} elseif($user == 2){
+				return redirect("/cadastrar/professor")->withErrors($ex->getValidator())->withInput();
+			}	
+		}
+	}
 
+	public function cadastrar(){
+		// $this->authorize('adcionar', \SimuladoENADE\Usuario::class); 
+		$user = \Auth::user()->tipousuario_id;       
+		$cursos = \SimuladoENADE\Curso::all();
+		$tipos_usuario = \SimuladoENADE\Tipousuario::all();
 
+		if($user == 4){
+			return view('/UsuarioView/cadastrarUsuario',['cursos' => $cursos, 'tipos_usuario' => $tipos_usuario]);
+		} elseif($user == 2){
+			return view('/UsuarioView/cadastrarProfessor',['cursos' => $cursos, 'tipos_usuario' => $tipos_usuario]);
+		}
+	}
 
+	public function listar (Request $request) {
+		/**
+		Lista de forma distintas de acordo com seu usuario
+		criar uma lista diferente para professor
+		**/
 
+		$tipo = \Auth::user()->curso_id;
+		$tipo_usuario = \Auth::user()->tipousuario_id;
 
+		if($tipo_usuario == 4){
 
+			$usuarios =\SimuladoENADE\Usuario::select('*', \DB::raw('usuarios.id as userid'))
+				->join('tipousuarios', 'usuarios.tipousuario_id', '=', 'tipousuarios.id')
+				->get();
 
-    public function listar (Request $request) {
-        /**
-        Lista de forma distintas de acordo com seu usuario
-        criar uma lista diferente para professor
-        **/
+			return view('/UsuarioView/ListaUsuario',['usuarios' => $usuarios]); 
 
-        $tipo = \Auth::user()->curso_id;
-        $tipos_usuario = \Auth::user()->tipousuario_id;
-        #dd($tipos_usuario);
-		$usuarios = \SimuladoENADE\Usuario::where('curso_id', '=', $tipo)->get();#->join('tipousuario_id', '=', $tipos_usuario)->get();
-        if($tipos_usuario == 4){
-		  return view('/UsuarioView/ListaUsuario',['usuarios' => $usuarios]); 
-        }
-        elseif($tipos_usuario == 2){
-            return view('/UsuarioView/ListaProfessor',['usuarios' => $usuarios]); 
-        }
-    }
-    
+		} elseif($tipo_usuario == 2){
 
+			// Apenas usuarios do tipo 3 (professores) e do mesmo curso do coord
+			$usuarios = \SimuladoENADE\Usuario::where('curso_id', '=', $tipo)->where('tipousuario_id','=',3)->get();
+			return view('/UsuarioView/ListaProfessor',['usuarios' => $usuarios]); 
+			
+		}
+	}
 
-
-
-
-
-
-
-    public function editar(Request $request) {
-        $cursos = \SimuladoENADE\Curso::all();
-        $tipos_usuario = \SimuladoENADE\Tipousuario::all();
+	public function editar(Request $request) {
+		$cursos = \SimuladoENADE\Curso::all();
+		$tipos_usuario = \SimuladoENADE\Tipousuario::all();
 		$usuario = \SimuladoENADE\Usuario::find($request->id);
-        $user = \Auth::user()->tipousuario_id;
+		$user = \Auth::user()->tipousuario_id;
 
-        if($user == 4){
-		  return view('/UsuarioView/editarUsuario', ['usuario'=> $usuario, 'cursos' => $cursos, 'tipos_usuario' => $tipos_usuario]);
-          }
+		if($user == 4){
+			return view('/UsuarioView/editarUsuario', ['usuario'=> $usuario, 'cursos' => $cursos, 'tipos_usuario' => $tipos_usuario]);
+		} elseif($user == 2){
+			return view('/UsuarioView/editarProfessor', ['usuario'=> $usuario, 'cursos' => $cursos, 'tipos_usuario' => $tipos_usuario]);
+		}    
+	}
+	
+	public function atualizar(Request $request){
+		try{
+			$user =  \Auth::user()->tipousuario_id;
+			
+			if($user == 4){
 
-        elseif($user == 2){
-            return view('/UsuarioView/editarProfessor', ['usuario'=> $usuario, 'cursos' => $cursos, 'tipos_usuario' => $tipos_usuario]);
-        }    
-    }
-    
-    public function atualizar(Request $request){
-        try{
-            UsuarioValidator::Validate($request->all());
+				$inf_array = $request->all();
 
-            $usuario = \SimuladoENADE\Usuario::find($request->id);    
-            $usuario->fill($request->all());
-            $usuario->update();
-            return redirect("listar/usuario");
-        }
-        catch(ValidationException $ex){
-            #$usuario = \SimuladoENADE\Usuario::find($request->id); 
-            return redirect("editar/usuario".$usuario->id)->withErrors($ex->getValidator())->withInput();
-        }
-    }
-    
-    public function remover (Request $request) {
-    	$usuario = \SimuladoENADE\Usuario::find($request->id);
-    	$usuario->delete();
-    	return redirect("/listar/usuario");
-    }
+				$usuario = \SimuladoENADE\Usuario::find($request->id);
+				$inf_array["password"] = $usuario->password;
+				$inf_array["password_confirmation"] = $usuario->password;
+				
+				UsuarioValidator::Validate($inf_array);
 
+				$usuario->fill($inf_array);
+				$usuario->update();
+				return redirect("/listar/usuario");
+
+			} elseif($user == 2){
+
+				$inf_array = $request->all();
+				$inf_array["curso_id"] = \Auth::user()->curso_id;
+
+				$usuario = \SimuladoENADE\Usuario::find($request->id);
+				$inf_array["password"] = $usuario->password;
+				$inf_array["password_confirmation"] = $usuario->password;
+				$inf_array["tipousuario_id"] = $usuario->tipousuario_id;  
+				
+				UsuarioValidator::Validate($inf_array);
+
+				$usuario->fill($inf_array);
+				$usuario->update();
+				return redirect("/listar/professor");
+
+			}
+		}
+		catch(ValidationException $ex){
+			dd($ex->getValidator());
+			$usuario = \SimuladoENADE\Usuario::find($request->id); 
+			return redirect("editar/usuario/".$usuario->id)->withErrors($ex->getValidator())->withInput();
+		}
+	}
+	
+	public function remover (Request $request) {
+		$usuario = \SimuladoENADE\Usuario::find($request->id);
+		$usuario->delete();
+		return redirect("/listar/usuario");
+	}
 }
-
-
-
-
