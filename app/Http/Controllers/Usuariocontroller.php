@@ -86,21 +86,32 @@ class Usuariocontroller extends Controller
 		criar uma lista diferente para professor
 		**/
 
-		$tipo = \Auth::user()->curso_id;
+		$curso_id = \Auth::user()->curso_id;
 		$tipo_usuario = \Auth::user()->tipousuario_id;
 
 		if($tipo_usuario == 4){
 
+			// Para exibir o tipo de usuário na lista do Adm
 			$usuarios =\SimuladoENADE\Usuario::select('*', \DB::raw('usuarios.id as userid'))
 				->join('tipousuarios', 'usuarios.tipousuario_id', '=', 'tipousuarios.id')
+				->join('cursos', 'usuarios.curso_id', '=', 'cursos.id') // para exibir o nome do curso
+				->orderBy('nome')
 				->get();
 
 			return view('/UsuarioView/ListaUsuario',['usuarios' => $usuarios]); 
 
 		} elseif($tipo_usuario == 2){
 
+			$usuarios = \SimuladoENADE\Usuario::where('curso_id', '=', $curso_id)->where('tipousuario_id','=',3)->get();
+
 			// Apenas usuarios do tipo 3 (professores) e do mesmo curso do coord
-			$usuarios = \SimuladoENADE\Usuario::where('curso_id', '=', $tipo)->where('tipousuario_id','=',3)->get();
+			$usuarios =\SimuladoENADE\Usuario::select('*', \DB::raw('usuarios.id as userid'))
+				->join('cursos', 'usuarios.curso_id', '=', 'cursos.id') // para exibir o nome do curso
+				->where('curso_id', '=', $curso_id) // para limitar a exibição aos usuarios do mesmo curso que o consultante
+				->where('tipousuario_id','=',3) // apenas professores
+				->orderBy('nome') // ordena
+				->get();
+
 			return view('/UsuarioView/ListaProfessor',['usuarios' => $usuarios]); 
 			
 		}

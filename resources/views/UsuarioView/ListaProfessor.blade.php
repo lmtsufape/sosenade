@@ -18,13 +18,14 @@
 			<tbody>
 				@foreach($usuarios as $usuario)
 					<tr>
-						<td>{{$usuario->id}}</td>
+						<td>{{$usuario->userid}}</td>
 						<td>{{$usuario->nome}}</td>
 						<td>{{$usuario->cpf}}</td>
 						<td>{{$usuario->email}}</td>
 						<td>{{$usuario->curso_nome}}</td>
 						<td> 
-							<a href='/editar/professor/{{$usuario->id}}'>Editar</a> - <a href='/remover/professor/{{$usuario->id}}'>Remover</a></td>
+							<a href='/editar/professor/{{$usuario->id}}'>Editar</a> - <a href='/remover/professor/{{$usuario->id}}'>Remover</a>
+						</td>
 					</tr>
 				@endforeach
 			</tbody>

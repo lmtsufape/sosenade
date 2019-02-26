@@ -24,7 +24,7 @@
 					<td>{{$usuario->nome}}</td>
 					<td>{{$usuario->cpf}}</td>
 					<td>{{$usuario->email}}</td>
-					<td>{{$usuario->curso_id}}</td>
+					<td>{{$usuario->curso_nome}}</td>
 					<td>
 						<a href='/editar/usuario/{{$usuario->userid}}'>Editar</a> - <a href='/remover/usuario/{{$usuario->userid}}'>Remover</a>
 					</td>
