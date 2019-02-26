@@ -1,18 +1,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<!-- Os scripts js e arquivos css estão sendo importados no includes.head -->
 	    @include('includes.head')
-	    
-	    <!-- include bootstrap css/js -->
-		<script type="text/javascript" src="{{ asset('js/jquery-3.3.1.slim.min.js') }}"></script> 
-		<script type="text/javascript" src="{{ asset('sn_editor/bootstrap.min.js') }}"></script>
-		<link rel="stylesheet" href="{{ asset('sn_editor/bootstrap.min.css') }}" />
-		
-		<!-- include summernote css/js -->
-		<link rel="stylesheet" type="text/css" href="{{ asset('sn_editor/summernote.css') }}">
-		<script src="{{ asset('sn_editor/summernote.js') }}"></script>
-
-		<script type="text/javascript" src="{{ asset('js/cadastrar_editar_qts.js') }}"></script>
 
 	    <title></title>
 	</head>
@@ -26,6 +16,7 @@
 		        </div>
 		    </div>
 		</div>
+		@include('includes.footer')
 	</body>
 
 	<script type="text/javascript">
