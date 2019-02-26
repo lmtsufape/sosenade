@@ -25,7 +25,7 @@
 					<input type="alternativa1" id="alternativa1" name="alternativa[]" placeholder="Escreva aqui a alternativa" style="width:100%" value="{{$questao->alternativa_a}}" required autofocus>
 				</td>  
 				<td style="border: 0px;text-align: center; width: 1%">
-					<input type="radio" name="alternativa_correta" id="alternativa_correta" value="0" required {{ ($questao->alternativa_correta == "0") ? 'checked': ''}}>
+					<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="0" required {{ ($questao->alternativa_correta == "0") ? 'checked': ''}}>
 				</td>  
 			</tr>
 			<tr>  
@@ -34,7 +34,7 @@
 					<input type="alternativa2" id="alternativa2" name="alternativa[]" placeholder="Escreva aqui a alternativa" style="width:100%" value="{{$questao->alternativa_b}}" required autofocus>
 				</td>
 				<td style="border: 0px;text-align: center; width: 1%">
-					<input type="radio" name="alternativa_correta" id="alternativa_correta" value="1" {{ ($questao->alternativa_correta == "1") ? 'checked': ''}}>
+					<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="1" {{ ($questao->alternativa_correta == "1") ? 'checked': ''}}>
 				</td>
 			</tr>
 
@@ -42,12 +42,14 @@
 
 			@if ($questao->alternativa_c != '')
 				<tr id="row2">  
-					<td style="border: 0px; width: 1%; vertical-align:middle;">3.</td>
+					<td style="border: 0px; width: 1%; vertical-align:middle;">
+						<p style="vertical-align:middle; display:inherit;" class="p">3.</p>
+					</td>
 					<td style="border: 0px">
 						<input type="alternativa3" id="alternativa3" name="alternativa[]" placeholder="Escreva aqui a alternativa" style="width:100%" value="{{$questao->alternativa_c}}" required autofocus>
 					</td>
 					<td style="border: 0px;text-align: center; width: 1%">
-						<input type="radio" name="alternativa_correta" id="alternativa_correta" value="2" {{ ($questao->alternativa_correta == "2") ? 'checked': ''}}>
+						<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="2" {{ ($questao->alternativa_correta == "2") ? 'checked': ''}}>
 					</td>
 					<td style="border: 0px; width: 1%">
 						<a href="#" name="remove" id="2" class="remove_field">Remover</a>
@@ -57,12 +59,14 @@
 
  				@if ($questao->alternativa_d != '')
 					<tr id="row3">  
-						<td style="border: 0px; width: 1%; vertical-align:middle;">4.</td>
+						<td style="border: 0px; width: 1%; vertical-align:middle;">
+							<p style="vertical-align:middle; display:inherit;" class="p">4.</p>
+						</td>
 						<td style="border: 0px">
 							<input type="alternativa4" id="alternativa4" name="alternativa[]" placeholder="Escreva aqui a alternativa" style="width:100%" value="{{$questao->alternativa_d}}" required autofocus>
 						</td>
 						<td style="border: 0px;text-align: center; width: 1%">
-							<input type="radio" name="alternativa_correta" id="alternativa_correta" value="3" {{ ($questao->alternativa_correta == "3") ? 'checked': ''}} >
+							<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="3" {{ ($questao->alternativa_correta == "3") ? 'checked': ''}} >
 						</td>
 						<td style="border: 0px; width: 1%">
 							<a href="#" name="remove" id="3" class="remove_field">Remover</a>
@@ -77,7 +81,7 @@
 								<input type="alternativa5" id="alternativa5" name="alternativa[]" placeholder="Escreva aqui a alternativa" style="width:100%" value="{{$questao->alternativa_e}}" required autofocus>
 							</td>
 							<td style="border: 0px;text-align: center; width: 1%">
-								<input type="radio" name="alternativa_correta" id="alternativa_correta" value="4" {{ ($questao->alternativa_correta == "4") ? 'checked': ''}}>
+								<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="4" {{ ($questao->alternativa_correta == "4") ? 'checked': ''}}>
 							</td>
 							<td style="border: 0px; width: 1%">
 								<a href="#" name="remove" id="4" class="remove_field">Remover</a>
@@ -89,24 +93,19 @@
 				@endif
 
 			@endif
+
 		</table>
 
-		<div id="btt_wrap">
-			<button class="btn btn-primary add_field_button form-group center-block">Adicionar alternativa</button>
+		<div id="btt_wrap" class="row justify-content-center">
+			<button class="btn btn-primary add_field_button form-group">Adicionar alternativa</button>
 		</div>
 
 		<br>
 
 		<div class="grid">
-			<div class="row center-block">
+			<div class="row justify-content-center">
 				
-				<div class="form-group col-md-4">
-					<label for="dificuldade">Dificuldade:</label>
-					<input type="text" id="rangeValue" value="{{$questao->dificuldade}}" disabled size="1" style="border: none; border-color: transparent; background: none">
-					<input class="h-50" id="dificuldade" name="dificuldade" type="range" min="1" max="5" step="1" onclick="updaterangeValue(this.value);" value="{{$questao->dificuldade}}" />
-				</div>
-
-				<div class="form-group col-md-4">
+				<div class="col-md-4 text-center">
 					<label for="disciplina_id">Disciplina</label>
 					<select name="disciplina_id" class="h-50 form-control{{ $errors->has('disciplina_id') ? ' is-invalid' : '' }}" required autofocus>	
 						@foreach ($disciplinas as $disciplina)
@@ -120,14 +119,19 @@
 					@endif
 				</div>
 				
+				<div class="col-md-4 form-group text-center">
+					<label for="dificuldade">Dificuldade:</label>
+					<input type="text" id="rangeValue" value="{{$questao->dificuldade}}" disabled size="1" style="border: none; border-color: transparent; background: none">
+					<br>
+					<input class="h-50" id="dificuldade" name="dificuldade" type="range" min="1" max="5" step="1" onclick="updaterangeValue(this.value);" value="{{$questao->dificuldade}}" />
+				</div>
 			</div>
 
 			<br>
 
-			<div class="row">
-				<button type="submit" name="cadastrar" class="btn btn-primary center-block col-md-1">Cadastrar</button>
+			<div class="row justify-content-center">
+				<button type="submit" name="editar" class="btn btn-primary center-block col-md-1">Editar</button>
 			</div>
 		</div>
-
 	</form>
 @stop
