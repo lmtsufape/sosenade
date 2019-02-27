@@ -104,12 +104,12 @@
 
 		<div class="grid">
 			<div class="row justify-content-center">
-				
+
 				<div class="col-md-4 text-center">
-					<label for="disciplina_id">Disciplina</label>
-					<select name="disciplina_id" class="h-50 form-control{{ $errors->has('disciplina_id') ? ' is-invalid' : '' }}" required autofocus>	
+					<label for="dificuldade">Disciplina</label>
+					<select name="disciplina_id" class="form-control{{ $errors->has('disciplina_id') ? ' is-invalid' : '' }}" required autofocus>	
 						@foreach ($disciplinas as $disciplina)
-							<option value="{{$disciplina->id}}" {{old('disciplina') == $disciplina->id ? 'selected' : '' }}	>{{$disciplina->nome}} </option>
+							<option value="{{$disciplina->id}}" {{ $questao->disciplina_id == $disciplina->id ? 'selected' : '' }}	>{{$disciplina->nome}} </option>
 						@endforeach
 					</select>
 					@if ($errors->has('disciplina_id'))
@@ -118,13 +118,16 @@
 						</span>
 					@endif
 				</div>
-				
-				<div class="col-md-4 form-group text-center">
-					<label for="dificuldade">Dificuldade:</label>
-					<input type="text" id="rangeValue" value="{{$questao->dificuldade}}" disabled size="1" style="border: none; border-color: transparent; background: none">
-					<br>
-					<input class="h-50" id="dificuldade" name="dificuldade" type="range" min="1" max="5" step="1" onclick="updaterangeValue(this.value);" value="{{$questao->dificuldade}}" />
+
+				<div class="col-md-4 text-center">
+					<label for="dificuldade">Dificuldade</label>
+					<select name="dificuldade" class="form-control{{ $errors->has('dificuldade') ? ' is-invalid' : '' }}" required autofocus>
+						<option value="1" {{ $questao->dificuldade == 1 ? 'selected' : '' }} >Fácil</option>
+						<option value="2" {{ $questao->dificuldade == 2 ? 'selected' : '' }} >Médio</option>
+						<option value="3" {{ $questao->dificuldade == 3 ? 'selected' : '' }} >Difícil</option>
+					</select>
 				</div>
+
 			</div>
 
 			<br>

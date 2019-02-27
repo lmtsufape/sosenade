@@ -49,8 +49,8 @@
 			<div class="row justify-content-center">
 				
 				<div class="col-md-4 text-center">
-					<label for="disciplina_id">Disciplina</label>
 					<select name="disciplina_id" class="form-control{{ $errors->has('disciplina_id') ? ' is-invalid' : '' }}" required autofocus>	
+						<option selected hidden value="">Selecione a disciplina</option>
 						@foreach ($disciplinas as $disciplina)
 							<option value="{{$disciplina->id}}" {{old('disciplina') == $disciplina->id ? 'selected' : '' }}	>{{$disciplina->nome}} </option>
 						@endforeach
@@ -62,12 +62,15 @@
 					@endif
 				</div>
 				
-				<div class="col-md-4 form-group text-center">
-					<label for="dificuldade">Dificuldade:</label>
-					<input type="text" id="rangeValue" value="1" disabled size="1" style="border: none; border-color: transparent; background: none">
-					<br>
-					<input id="dificuldade" name="dificuldade" type="range" min="1" max="5" step="1" onclick="updaterangeValue(this.value);" value="1" />
+				<div class="col-md-4 text-center">
+					<select name="dificuldade" class="form-control{{ $errors->has('disciplina_id') ? ' is-invalid' : '' }}" required autofocus>
+						<option selected hidden value="">Selecione o nível</option>
+						<option value="1">Fácil</option>
+						<option value="2">Médio</option>
+						<option value="3">Dificil</option>
+					</select>
 				</div>
+
 			</div>
 
 			<br>
