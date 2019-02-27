@@ -22,8 +22,8 @@
 						<td>{{$x++}}</td>
 						<td>{{preg_replace('/<[^>]*>|[&;]/', '', $questao->enunciado) }}</td>
 						<td>{{$questao->dificuldade}}</td>
-						<td>{{$questao->disciplina_id}}</td>
-						<td> <a href='/editar/questao/{{$questao->id}}'>Editar</a> - <a href='/remover/questao/{{$questao->id}}'>Remover</a></td>
+						<td>{{$questao->nome}}</td>
+						<td> <a href='/editar/questao/{{$questao->qtsid}}'>Editar</a> - <a href='/remover/questao/{{$questao->qtsid}}'>Remover</a></td>
 					</tr>
 				@endforeach
 			</tbody>
