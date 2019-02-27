@@ -7,25 +7,24 @@ use SimuladoENADE\Validator\AlunoValidator;
 use Illuminate\Support\Facades\Hash;
 use SimuladoENADE\Validator\ValidationException;
 
-class AlunoController extends Controller
-{
+class AlunoController extends Controller{
+
 	public function adicionar(Request $request){
-		try{
+		try {
 
-            $curso_id = \Auth::user()->curso_id;
-        	AlunoValidator::Validate($request->all());
+			$curso_id = \Auth::user()->curso_id;
+			AlunoValidator::Validate($request->all());
 
-        	$aluno = new \SimuladoENADE\Aluno();
-        	$aluno->fill($request->all());
-            $aluno->curso_id = $curso_id;
-        	$aluno->password = Hash::make($request->password);
-        	$aluno->save();
-        	return redirect("listar/aluno");
-    	}
-    	catch(ValidationException $ex){
-        	return redirect("cadastrar/aluno")->withErrors($ex->getValidator())->withInput();
-    	}
+			$aluno = new \SimuladoENADE\Aluno();
+			$aluno->fill($request->all());
+			$aluno->curso_id = $curso_id;
+			$aluno->password = Hash::make($request->password);
+			$aluno->save();
+			return redirect("listar/aluno");
 
+		} catch(ValidationException $ex) {
+			return redirect("cadastrar/aluno")->withErrors($ex->getValidator())->withInput();
+		}
 	}
 
 	public function cadastrar(){
@@ -35,33 +34,40 @@ class AlunoController extends Controller
 	}
 
 	public function listar (){
-		$alunos = \SimuladoENADE\Aluno::all();
+
+		$curso_user = \Auth::user()->curso_id; // curso_id do consultante
+
+		$alunos =\SimuladoENADE\Aluno::select('*', \DB::raw('alunos.id as aluno_id'))
+			->join('cursos', 'alunos.curso_id', '=', 'cursos.id') // para exibir o nome do curso
+			->where('curso_id', '=', $curso_user) // para limitar a exibição aos alunos do mesmo curso que o consultante
+			->orderBy('nome') // ordena
+			->get();
+		
 		return view('/AlunoView/listaAluno',['alunos'=> $alunos]);
 
 	}
+
 	public function editar(Request $request){
 		$aluno = \SimuladoENADE\Aluno::find($request->id);
 		$curso = \SimuladoENADE\Curso::all();
 		return view('/AlunoView/editarAluno', ['aluno' => $aluno], ['cursos' => $curso]);
-
 	}
 
 	public function atualizar(Request $request){
-		try{
-        	AlunoValidator::Validate($request->all());
-        	$aluno = \SimuladoENADE\Aluno::find($request->id);    
-        	$aluno->fill($request->all());
-        	$aluno->update();
-        	return redirect("listar/aluno");
-    	}
-    	catch(ValidationException $ex){
-        	return redirect("editar/aluno/".$request->id)->withErrors($ex->getValidator())->withInput();
-    	}
+		try {
+			AlunoValidator::Validate($request->all());
+			$aluno = \SimuladoENADE\Aluno::find($request->id);    
+			$aluno->fill($request->all());
+			$aluno->update();
+			return redirect("listar/aluno");
+		} catch(ValidationException $ex){
+			return redirect("editar/aluno/".$request->id)->withErrors($ex->getValidator())->withInput();
+		}
 	}
 
-	    public function remover(Request $request){
-        $aluno = \SimuladoENADE\Aluno::find($request->id);
-        $aluno->delete();
-        return redirect('\listar\aluno');
-    }
+	public function remover(Request $request){
+		$aluno = \SimuladoENADE\Aluno::find($request->id);
+		$aluno->delete();
+		return redirect('\listar\aluno');
+	}
 }

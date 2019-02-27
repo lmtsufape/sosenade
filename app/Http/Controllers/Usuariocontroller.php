@@ -102,8 +102,6 @@ class Usuariocontroller extends Controller
 
 		} elseif($tipo_usuario == 2){
 
-			$usuarios = \SimuladoENADE\Usuario::where('curso_id', '=', $curso_id)->where('tipousuario_id','=',3)->get();
-
 			// Apenas usuarios do tipo 3 (professores) e do mesmo curso do coord
 			$usuarios =\SimuladoENADE\Usuario::select('*', \DB::raw('usuarios.id as userid'))
 				->join('cursos', 'usuarios.curso_id', '=', 'cursos.id') // para exibir o nome do curso
