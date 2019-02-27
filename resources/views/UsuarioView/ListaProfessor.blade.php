@@ -24,7 +24,7 @@
 						<td>{{$usuario->email}}</td>
 						<td>{{$usuario->curso_nome}}</td>
 						<td> 
-							<a href='/editar/professor/{{$usuario->id}}'>Editar</a> - <a href='/remover/professor/{{$usuario->id}}'>Remover</a>
+							<a href='/editar/professor/{{$usuario->userid}}'>Editar</a> - <a href='/remover/professor/{{$usuario->userid}}'>Remover</a>
 						</td>
 					</tr>
 				@endforeach

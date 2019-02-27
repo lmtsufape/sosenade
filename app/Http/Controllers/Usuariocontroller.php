@@ -69,7 +69,7 @@ class Usuariocontroller extends Controller
 
 	public function cadastrar(){
 		// $this->authorize('adcionar', \SimuladoENADE\Usuario::class); 
-		$user = \Auth::user()->tipousuario_id;       
+		$user = \Auth::user()->tipousuario_id;      
 		$cursos = \SimuladoENADE\Curso::all();
 		$tipos_usuario = \SimuladoENADE\Tipousuario::all();
 
@@ -176,6 +176,12 @@ class Usuariocontroller extends Controller
 	public function remover (Request $request) {
 		$usuario = \SimuladoENADE\Usuario::find($request->id);
 		$usuario->delete();
-		return redirect("/listar/usuario");
+		
+		$user = \Auth::user()->tipousuario_id;      
+		if($user == 4){
+			return redirect("/listar/usuario");
+		}elseif($user == 2){
+			return redirect("/listar/professor");
+		}
 	}
 }
