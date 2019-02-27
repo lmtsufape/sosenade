@@ -43,12 +43,12 @@ Route::middleware('auth')->group(function(){
 		Route::post('/atualizar/aluno', 'AlunoController@atualizar');
 		Route::get('/remover/aluno/{id}', 'AlunoController@remover');
 
-		Route::get('/listar/professor', 'Usuariocontroller@listar');
-		Route::get('/cadastrar/professor', 'Usuariocontroller@cadastrar');
-		Route::post('/adicionar/professor', 'Usuariocontroller@adicionar');
-		Route::get('/editar/professor/{id}', 'Usuariocontroller@editar');
-		Route::post('/atualizar/professor', 'Usuariocontroller@atualizar');
-		Route::get('/remover/professor/{id}', 'Usuariocontroller@remover');
+		Route::get('/listar/professor', 'UsuarioController@listar');
+		Route::get('/cadastrar/professor', 'UsuarioController@cadastrar');
+		Route::post('/adicionar/professor', 'UsuarioController@adicionar');
+		Route::get('/editar/professor/{id}', 'UsuarioController@editar');
+		Route::post('/atualizar/professor', 'UsuarioController@atualizar');
+		Route::get('/remover/professor/{id}', 'UsuarioController@remover');
 
 		Route::get('/cadastrar/simulado', 'SimuladoController@cadastrar');
 		Route::post('/adicionar/simulado', 'SimuladoController@adicionar');
@@ -88,12 +88,12 @@ Route::middleware('auth')->group(function(){
 		Route::get('/remover/curso/{id}', 'Cursocontroller@remover');
 		Route::post('/atualizar/curso','Cursocontroller@atualizar');
 
-		Route::get('/listar/usuario', 'Usuariocontroller@listar');
-		Route::get('/cadastrar/usuario', 'Usuariocontroller@cadastrar');
-		Route::post('/adicionar/usuario', 'Usuariocontroller@adicionar');
-		Route::get('/editar/usuario/{id}', 'Usuariocontroller@editar');
-		Route::post('/atualizar/usuario', 'Usuariocontroller@atualizar');
-		Route::get('/remover/usuario/{id}', 'Usuariocontroller@remover');
+		Route::get('/listar/usuario', 'UsuarioController@listar');
+		Route::get('/cadastrar/usuario', 'UsuarioController@cadastrar');
+		Route::post('/adicionar/usuario', 'UsuarioController@adicionar');
+		Route::get('/editar/usuario/{id}', 'UsuarioController@editar');
+		Route::post('/atualizar/usuario', 'UsuarioController@atualizar');
+		Route::get('/remover/usuario/{id}', 'UsuarioController@remover');
 
 		Route::get('/listar/ciclo', 'Ciclocontroller@listar');
 		Route::get('/cadastrar/ciclo', 'Ciclocontroller@cadastrar');
