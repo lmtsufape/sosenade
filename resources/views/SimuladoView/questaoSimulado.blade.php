@@ -1,4 +1,4 @@
-)
+
 <form class="shadow p-3 mb-5 bg-white rounded" action= "{{route('answ_qst_simulado')}}" method="post">
 	<input type="hidden" name="_token" value="{{csrf_token()}}">
 	<input type="hidden" name="simulado_id" value="{{$simulado_id}}">
@@ -51,6 +51,4 @@
 			</div>
 		</div>
 	</div>
-
-
 </form>

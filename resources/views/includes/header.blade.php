@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="color: #1a75ff">
-	<a class="navbar-brand" href="{{route('welcome')}}">Início</a>
+	<a class="navbar-brand" href="{{(Auth::guard('aluno')->user() == null) ? route('welcome') : route('welcome_aluno')}}">Início</a>
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
 			
@@ -108,12 +108,28 @@
 					</div>
 				</li>
 			@endcan
+
+			@if(Auth::guard('aluno')->check())
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Simulados
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="{{route('list_simulado_aluno')}}">Lista de Simulados</a>		  
+					</div>
+				</li>
+			@endif
 		</ul>
 	</div>
 
 	<li class="nav-item dropdown" style="list-style-type: none">
 		<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				{{ Auth::user()->name }} <span class="caret"></span>
+			@if (Auth::guard('aluno')->user())
+				{{Auth::guard('aluno')->user()->name}}
+			@elseif (Auth::user())
+				{{Auth::user()->name}}
+			@endif
+			<span class="caret"></span>
 		</a>
 		<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 			<a class="dropdown-item" href="{{ route('logout') }}"

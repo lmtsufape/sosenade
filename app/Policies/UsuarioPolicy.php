@@ -55,17 +55,6 @@ class UsuarioPolicy
         }
     }
 
-
-   public function view_aluno(Usuario $user){
-        if($user->tipousuario->id === 1){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-
-
     /*public function simuladoAuth(Usuario $user){
         if($user->tipousuario->id === 4){
             return true;

@@ -115,7 +115,7 @@ Route::middleware('aluno.auth')->group(function(){
 
 	Route::get('/alunohome', function () {
 
-	    return view('teste');
+	    return view('welcome');
 
 	})->name('welcome_aluno');
 
