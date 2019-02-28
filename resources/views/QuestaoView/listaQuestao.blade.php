@@ -6,7 +6,6 @@
 
 		<table class="table">
 	 		<thead>
-			
 				<tr>
 					<th>Numº Questao</th>
 					<th>Enunciado</th>
@@ -23,14 +22,14 @@
 						<td>{{preg_replace('/<[^>]*>|[&;]/', '', $questao->enunciado) }}</td>
 						<td>{{$questao->dificuldade}}</td>
 						<td>{{$questao->nome}}</td>
-						<td> <a href='/editar/questao/{{$questao->qtsid}}'>Editar</a> - <a href='/remover/questao/{{$questao->qtsid}}'>Remover</a></td>
+						<td> <a href="{{route('edit_qst', ['id'=>$questao->qtsid])}}">Editar</a> - <a href="{{route('delete_qst', ['id'=>$questao->qtsid])}}">Remover</a></td>
 					</tr>
 				@endforeach
 			</tbody>
 		</table>
 
 		<div class="col-md-12 text-center">
-			<br><a class="btn btn-primary" href="/cadastrar/questao"> Inserir nova </a><br>
+			<br><a class="btn btn-primary" href="{{route('new_qst')}}"> Inserir nova </a><br>
 		</div>
 
 	</div>

@@ -15,18 +15,18 @@
 		</thead>
 		<tbody>
 			@foreach ($cursos as $curso)
-			<tr>
-				<td>{{$curso->id}}</td>
-				<td>{{$curso->curso_nome}}</td>
-				<td>{{$curso->ciclo_id}}</td>
-				<td>{{$curso->unidade->nome}}</td>
-				<td> 
-					<a href="/editar/curso/{{$curso->id}}">Editar</a> - 
-					<a href="/remover/curso/{{$curso->id}}">Remover</a>
-				</td>
-			</tr>
+				<tr>
+					<td>{{$curso->id}}</td>
+					<td>{{$curso->curso_nome}}</td>
+					<td>{{$curso->ciclo_id}}</td>
+					<td>{{$curso->unidade->nome}}</td>
+					<td> 
+						<a href="{{route('edit_curso',['id'=>$curso->id])}}">Editar</a> - 
+						<a href="{{route('delete_curso',['id'=>$curso->id])}}">Remover</a>
+					</td>
+				</tr>
 			@endforeach
 		</tbody>
 	</table>
-	<a href="/cadastrar/curso"> Adicionar um Curso</a>
+	<a href="{{route('new_curso')}}"> Adicionar um Curso</a>
 @stop

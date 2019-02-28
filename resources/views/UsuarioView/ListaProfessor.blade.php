@@ -24,7 +24,8 @@
 						<td>{{$usuario->email}}</td>
 						<td>{{$usuario->curso_nome}}</td>
 						<td> 
-							<a href='/editar/professor/{{$usuario->userid}}'>Editar</a> - <a href='/remover/professor/{{$usuario->userid}}'>Remover</a>
+							<a href="{{route('edit_professor',['id'=>$usuario->userid])}}">Editar</a> - 
+							<a href="{{route('delete_professor',['id'=>$usuario->userid])}}">Remover</a>
 						</td>
 					</tr>
 				@endforeach
@@ -32,7 +33,7 @@
 		</table>
 
 		<div class="col-md-12 text-center">
-			<br><a class="btn btn-primary" href="/cadastrar/professor"> Inserir novo </a><br>
+			<br><a class="btn btn-primary" href="{{route('new_professor')}}"> Inserir novo </a><br>
 		</div>
 		
 	</div>

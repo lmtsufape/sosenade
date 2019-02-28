@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')
-	
-	<form action = "/cadastrarQuestao/simulado" method = "post" class="shadow p-3 mb-5 bg-white rounded">
+
+	<form action = "{{route('new_simulado_qst')}}" method = "post" class="shadow p-3 mb-5 bg-white rounded">
 		
 		<h1 class="text-center">Montar Simulado</h1><br>
 
@@ -84,15 +84,13 @@
 								@endif
 							</td>
 							<td>{{$qst->disciplina_id}}</td>
-							<td><a href='/remover/questaosimulado/{{$qst->id}}'>Remover</a></td>
+							<td><a href="{{route('delete_qst_simulado', ['id'=>$qst->id])}}">Remover</a></td>
 						</tr>
 					@endforeach
 				@else
 					<td colspan="4 ">Não existe questões cadastradas</td>
 				@endif
 			</tbody>
-
 		</table>
-
 	</form>
 @stop

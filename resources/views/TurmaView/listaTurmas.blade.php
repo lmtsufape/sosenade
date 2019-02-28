@@ -19,13 +19,13 @@
 				<td>{{$turma->aluno_id}}</td>
 				<td>{{$turma->ciclo_id}}</td>
 				<td> 
-					<a href="/editar/turma/{{$turma->id}}">Editar</a> -
-					<a href="/remover/turma/{{$turma->id}}">Remover</a>
+					<a href="{{route('edit_turma', ['id'=>$turma->id])}}">Editar</a> -
+					<a href="{{route('delete_turma', ['id'=>$turma->id])}}">Remover</a>
 				</td>
 			</tr>
 			@endforeach
 		</tbody>
 	</table>
 
-	<a href="/cadastrar/turma"> Adicionar uma Turma</a>
+	<a href="{{route('new_turma')}}"> Adicionar uma Turma</a>
 @stop

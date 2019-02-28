@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')
 	<h1>Cadastrar Simulado Aluno</h1><br><br>
-	<form action = "/adicionar/simuladoaluno" method = "post">
+	<form action = "{{route('add_simulado_aluno')}}" method = "post">
 		<input type = "hidden" name="_token" value="{{csrf_token()}}">
 
 		ID do Aluno:

@@ -1,11 +1,11 @@
 @extends('layouts.default')
 @section('content')
 
-	<form class="shadow p-3 mb-5 bg-white rounded" action= "/adicionar/simulado" method="post">
+	<form class="shadow p-3 mb-5 bg-white rounded" action= "{{route('add_simulado')}}" method="post">
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
 		
 		<h1 class="text-center"> Cadastrar simulado </h1><br><br>	
-
+    
 		<div class="form-group justify-content-center row">
 			<div class="col-md-6 text-center">
 				<label for="descricao_simulado">Descrição simulado</label>

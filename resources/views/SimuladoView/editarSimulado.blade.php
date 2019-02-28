@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')
 
-<form class="shadow p-3 mb-5 bg-white rounded" action= "/atualizar/simulado" method="post">
+<form class="shadow p-3 mb-5 bg-white rounded" action= "{{route('update_simulado')}}" method="post">
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
 		<input type="hidden" name="id" value="{{$simulado->id}}">
 
@@ -9,13 +9,13 @@
 
 		<div class="form-row ">
 	    	<div class="form-group col-md-6">
-	      	<label for="descricao_simulado">Descricao simulado</label>
-	      	<input type="text" class="form-control{{ $errors->has('descricao_simulado') ? ' is-invalid' : '' }}"  name="descricao_simulado" id="descricao_simulado" placeholder="Descricao" value="{{$simulado->descricao_simulado}}" required autofocus>
-	    	@if ($errors->has('descricao_simulado'))
-	    	<span class = "invalid-feedback" role="alert">
-	    		{{$errors->first('descricao_simulado')}}
-	    	</span>
-	    	@endif
+		      	<label for="descricao_simulado">Descricao simulado</label>
+		      	<input type="text" class="form-control{{ $errors->has('descricao_simulado') ? ' is-invalid' : '' }}"  name="descricao_simulado" id="descricao_simulado" placeholder="Descricao" value="{{$simulado->descricao_simulado}}" required autofocus>
+		    	@if ($errors->has('descricao_simulado'))
+			    	<span class = "invalid-feedback" role="alert">
+			    		{{$errors->first('descricao_simulado')}}
+			    	</span>
+		    	@endif
 	    	</div> 
   	
 	    	<div class="form-group col-md-4">
@@ -27,13 +27,13 @@
 				@endforeach
 				</select>
 				@if ($errors->has('curso_id'))
-	    		<span class = "invalid-feedback" role="alert">
-	    			{{$errors->first('curso_id')}}
-	    		</span>
-	    	@endif
+		    		<span class = "invalid-feedback" role="alert">
+		    			{{$errors->first('curso_id')}}
+		    		</span>
+	    		@endif
 	    	</div>
 
-	    		<div class="form-group col-md-4">
+	    	<div class="form-group col-md-4">
 		      	<label for="usuario_id">Unidade</label>
 		      	<select class="form-control{{ $errors->has('usuario_id') ? ' is-invalid' : '' }}" name="usuario_id" required autofocus>
 					@foreach($usuarios as $usuario)
@@ -46,10 +46,7 @@
 		    		</span>
 		    	@endif
 	    	</div>
-
-
 	   	</div>
-
 	  <button type="submit" name="editar" class="btn btn-primary float-right">Editar</button><br><br>
 	</form>
 

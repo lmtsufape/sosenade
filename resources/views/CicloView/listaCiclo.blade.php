@@ -18,13 +18,13 @@
 				<td>{{$ciclo->id}}</td>
 				<td>{{$ciclo->tipo_ciclo}}</td>
 				<td>
-					<a href="/editar/ciclo/{{$ciclo->id}}">Editar</a> -
-					<a href="/remover/ciclo/{{$ciclo->id}}">Remover</a>
+					<a href="{{route('edit_ciclo', ['id' => $ciclo->id])}}">Editar</a> -
+					<a href="{{route('delete_ciclo', ['id' => $ciclo->id])}}">Remover</a>
 				</td>
 			</tr>
 			@endforeach
 		</tbody>
 		
 	</table>
-	<a href="/cadastrar/ciclo"> Adicionar um ciclo</a>
+	<a href="{{route('new_ciclo')}}"> Adicionar um ciclo</a>
 @stop

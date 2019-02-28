@@ -1,7 +1,3 @@
-function updaterangeValue(val) {
-	document.getElementById('rangeValue').value=val; 
-}
-
 function add_field() {
 	$('#dynamic_field').append('<tr id="row'+x+'"><td style="border: 0px; width: 1%; vertical-align:middle;"><p style="vertical-align:middle; display:inherit;" class="p">'+x+'.</p></td><td style="border: 0px"><input type="alternativa'+x+'" id="alternativa'+x+'" name="alternativa[]" placeholder="Escreva aqui a alternativa" style="width:100%" required autofocus></td><td style="border: 0px;text-align: center;"><input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="'+(x-1)+'"></td><td style="border: 0px; width: 1%"><a href="#" name="remove" id="'+x+'" class="remove_field">Remover</a></td></tr>');
 }

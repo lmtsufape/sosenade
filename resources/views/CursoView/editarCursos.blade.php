@@ -2,7 +2,7 @@
 @extends('layouts.default')
 @section('content')
     
-	<form class="shadow p-3 mb-5 bg-white rounded" action= "/atualizar/curso" method="post">
+	<form class="shadow p-3 mb-5 bg-white rounded" action= "{{route('update_curso')}}" method="post">
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
 		<input type="hidden" name="id" value="{{$curso->id}}">
 
@@ -13,9 +13,9 @@
 	      	<label for="curso_nome">Tipo curso</label>
 	      	<input type="text" class="form-control{{ $errors->has('curso_nome') ? ' is-invalid' : '' }}"  name="curso_nome" id="curso_nome" placeholder="Nome" value="{{$curso->nome}}" required autofocus>
 	    	@if ($errors->has('curso_nome'))
-	    	<span class = "invalid-feedback" role="alert">
-	    	<strong>{{$errors->first('curso_nome')}}
-	    	</span>
+		    	<span class = "invalid-feedback" role="alert">
+		    		<strong>{{$errors->first('curso_nome')}}
+		    	</span>
 	    	@endif
 	    	</div> 
   	

@@ -21,13 +21,13 @@
 				<td>{{$resposta->aluno_id}}</td>
 				<td>{{$resposta->questao_id}}</td>
 				<td> 
-					<a href="/editar/resposta/{{$resposta->id}}">Editar</a> -
-					<a href="/remover/resposta/{{$resposta->id}}">Remover</a>
+					<a href="{{route('edit_resposta', ['id'=>$resposta->id])}}">Editar</a> -
+					<a href="{{route('delete_resposta', ['id'=>$resposta->id])}}">Remover</a>
 				</td>
 			</tr>
 			@endforeach
 		</tbody>
 	</table>
 
-	<a href="/cadastrar/resposta"> Adicionar uma Resposta</a>
+	<a href="{{route('new_resposta')}}"> Adicionar uma Resposta</a>
 @stop
