@@ -26,8 +26,8 @@ class SimuladoController extends Controller
             $simulado->usuario_id = $user_id;
             $simulado->save();
             return redirect("listar/simulado");
-        }
-        catch(ValidationException $ex){
+        
+        } catch(ValidationException $ex){
             return redirect("cadastrar/simulado")->withErrors($ex->getValidator())->withInput();
         }
     }
@@ -38,14 +38,14 @@ class SimuladoController extends Controller
         $usuarios = \SimuladoENADE\Usuario::all();
         $disciplinas = \SimuladoENADE\Disciplina::all();
     	return view('/SimuladoView/cadastrarSimulado', ['cursos' => $cursos, 'usuarios' => $usuarios, 'disciplinas' => $disciplinas]);
+
     }
 
 
 
     public function listar(){
-        $user = \Auth::user()->curso_id;
-        //dd($user);
-    	$simulados = \SimuladoENADE\Simulado::where('curso_id', '=', $user)->get();
+        $curso_id = \Auth::user()->curso_id;
+    	$simulados = \SimuladoENADE\Simulado::where('curso_id', '=', $curso_id)->get();
     	return view('/SimuladoView/listaSimulado', ['simulados' => $simulados]);
     }
 
@@ -220,7 +220,6 @@ class SimuladoController extends Controller
 
         //Id do usuário
         $usuario = \Auth::guard('aluno')->user()->id;
-
 
         $questaos = \DB::table('questao_simulados')
             ->join('respostas', 'respostas.questao_id','=','questao_simulados.questao_id')

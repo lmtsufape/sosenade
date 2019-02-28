@@ -5,12 +5,11 @@
 	<h1> Simulados Cadastrados </h1><br><br>
 	<table class="table">
  		<thead>
-		
 			<tr>
-				<th>Id do simulado</th>
-				<th>Descricao</th>
-				<th>Nome Usuario</th>
-				<th>Nome Curso</th>
+				<th>#</th>
+				<th>Descrição</th>
+				<th>Criado por</th>
+				<th>Curso</th>
 				<th>Funções</th>
 			</tr>
 		</thead>
@@ -29,7 +28,9 @@
 			</tr>
 			@endforeach
 		</tbody>
-		
 	</table>
-	<a href="{{route('new_simulado')}}">Adicionar um simulado</a>
+  
+	<div class="col-md-12 text-center">
+		<br><a class="btn btn-primary" href="{{route('new_simulado')}}">Adicionar um simulado</a><br>
+	</div>
 @stop
