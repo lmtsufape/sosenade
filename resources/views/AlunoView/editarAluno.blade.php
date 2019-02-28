@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')
 
-	<form class="shadow p-3 mb-5 bg-white rounded" action= "/atualizar/aluno" method="post">
+	<form class="shadow p-3 mb-5 bg-white rounded" action= "{{route('update_aluno')}}" method="post">
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
 		<input type="hidden" name="id" value="{{$aluno->id}}">
 		<input type="hidden" name="password" value="{{$aluno->password}}">

@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')
 	<h1>Cadastrar Turmas</h1><br><br>
-	<form action = "/adicionar/turma" method = "post">
+	<form action = "{{route('add_turma')}}" method = "post">
 		<input type = "hidden" name="_token" value="{{csrf_token()}}">
 
 		ID do Aluno:

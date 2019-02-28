@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')
     
-	<form class="shadow p-3 mb-5 bg-white rounded" action= "/adicionar/questao" method="post">
+	<form class="shadow p-3 mb-5 bg-white rounded" action= "{{route('add_qst')}}" method="post">
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
 		<h1 class="text-center"> Cadastrar Nova Questão </h1><br>	
 

@@ -18,7 +18,8 @@ class Usuariocontroller extends Controller
 	public function adicionar(Request $request){
 
 		try{
-				
+			
+
 			$user =  \Auth::user()->tipousuario_id;
 
 			if($user == 4){ // adm

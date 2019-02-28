@@ -15,7 +15,7 @@
 			<tr>
 				<td>{{$simulado->descricao_simulado}}</td>>
 				<td>
-					<a href="/questao/simulado/{{$simulado->id}}">Responder</a>
+					<a href="{{route('qst_simulado', ['id'=>$simulado->id])}}">Responder</a>
 				</td>
 			</tr>
 			@endforeach

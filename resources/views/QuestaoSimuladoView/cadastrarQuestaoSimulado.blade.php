@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')
 	<h1>Cadastrar Questao Simulado</h1><br><br>
-	<form action = "/adicionar/questaosimulado" method = "post">
+	<form action = "{{route('add_qst_simulado')}}" method = "post">
 		<input type = "hidden" name="_token" value="{{csrf_token()}}">
 
 		Id da Questao:

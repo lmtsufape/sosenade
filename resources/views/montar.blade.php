@@ -2,7 +2,7 @@
 @section('content')
     
 	<h1>Montar Simulados</h1><br><br>
-	<form action = "/cadastrarQuestao/simulado" method = "post">
+	<form action = "{{route('new_simulado_qst')}}" method = "post">
 
 
 
@@ -78,7 +78,7 @@
 
 				</td>
 				<td>{{$questaocerta->disciplina_id}}</td>
-				<td> <a href='/remover/questaosimulado/{{$questaocerta->id}}'>Remover</a></td>
+				<td> <a href="{{route('delete_qst_simulado', ['id'=>$questaocerta->id])}}">Remover</a></td>
 			</tr>
 			@endforeach
 			@else

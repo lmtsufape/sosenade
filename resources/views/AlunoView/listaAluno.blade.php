@@ -22,7 +22,7 @@
 					<td>{{$aluno->email}}</td>
 					<td>{{$aluno->curso_nome}}</td>
 					<td> 
-						<a href='/editar/aluno/{{$aluno->aluno_id}}'>Editar</a> - <a href='/remover/aluno/{{$aluno->aluno_id}}'>Remover</a>
+						<a href="{{route('edit_aluno', ['id' => $aluno->aluno_id])}}">Editar</a> - <a href="{{route('delete_aluno', ['id' => $aluno->aluno_id])}}">Remover</a>
 					</td>
 				</tr>
 			@endforeach
@@ -30,6 +30,6 @@
 	</table>
 	
 	<div class="col-md-12 text-center">
-		<br><a class="btn btn-primary" href="/cadastrar/aluno"> Inserir novo </a><br>
+		<br><a class="btn btn-primary" href="{{route('new_aluno')}}"> Inserir novo </a><br>
 	</div>
 @stop

@@ -2,7 +2,7 @@
 @section('content')
   
 	<h1>Editar Questao Simulado</h1><br><br>
-	<form action = "/atualizar/questaosimulado" method = "post">
+	<form action = "{{route('update_qst_simulado')}}" method = "post">
 		<input type = "hidden" name="_token" value="{{csrf_token()}}">
 		
 		ID da Questao:

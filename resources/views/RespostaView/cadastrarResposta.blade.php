@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')
 	<h1>Cadastrar Respostas</h1><br><br>
-	<form action = "/adicionar/resposta" method = "post">
+	<form action="{{route('add_resposta')}}" method = "post">
 		<input type = "hidden" name="_token" value="{{csrf_token()}}">
 		Alternativa marcada:<input type="text" name="alternativa_questao"/>
 		ID do Aluno:

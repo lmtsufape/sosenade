@@ -2,7 +2,7 @@
 @section('content')
     <div class="shadow p-4 mb-5 bg-white rounded container-fluid" style="overflow-x: auto;">
     
-	<h1> Lista de Simulado </h1><br><br>
+	<h1> Simulados Cadastrados </h1><br><br>
 	<table class="table">
  		<thead>
 		
@@ -22,17 +22,14 @@
 				<td>{{$simulado->usuario_id}}</td>
 				<td>{{$simulado->curso_id}}</td>
 				<td>
-					
-					<a href="/editar/simulado/{{$simulado->id}}">Editar</a> -
-					<a href="/remover/simulado/{{$simulado->id}}">Remover</a> - 
-					<a href="/montar/simulado/{{$simulado->id}}">Montar</a> -
-					
-					
+					<a href="{{route('edit_simulado', ['id'=>$simulado->id])}}">Editar</a> -
+					<a href="{{route('delete_simulado', ['id'=>$simulado->id])}}">Remover</a> - 
+					<a href="{{route('set_simulado', ['id'=>$simulado->id])}}">Montar</a>
 				</td>
 			</tr>
 			@endforeach
 		</tbody>
 		
 	</table>
-	<a href="/cadastrar/simulado"> Adicionar um simulado</a>
+	<a href="{{route('new_simulado')}}">Adicionar um simulado</a>
 @stop

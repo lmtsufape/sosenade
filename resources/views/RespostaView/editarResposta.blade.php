@@ -2,7 +2,7 @@
 @section('content')
   
 	<h1>Editar Resposta</h1><br><br>
-	<form action = "/atualizar/resposta" method = "post">
+	<form action = "{{route('update_resposta')}}" method = "post">
 		<input type = "hidden" name="_token" value="{{csrf_token()}}">
 		Alternativa Questao:<input type="text" name="alternativa_questao" value="{{$resposta->alternativa_questao}}" />
 		

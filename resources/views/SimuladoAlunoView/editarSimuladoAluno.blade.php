@@ -2,7 +2,7 @@
 @section('content')
   
 	<h1>editar Turma</h1><br><br>
-	<form action = "/atualizar/simuladoaluno" method = "post">
+	<form action = "{{route('update_simulado_aluno')}}" method = "post">
 		<input type = "hidden" name="_token" value="{{csrf_token()}}">
 		
 		ID do Aluno:

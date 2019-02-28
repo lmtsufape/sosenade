@@ -14,7 +14,7 @@
         </a>
 
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href='/listaSimuladoAluno/simulado'>Lista de Simulados</a>
+          <a class="dropdown-item" href="{{route('list_simulado_aluno')}}">Lista de Simulados</a>
          
           
         </div>
