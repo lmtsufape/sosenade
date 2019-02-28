@@ -119,7 +119,7 @@ Route::middleware('auth')->group(function(){
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home2');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/listar/turma','TurmaController@listar')->name('list_turma');
 Route::get('/cadastrar/turma','TurmaController@cadastrar')->name('new_turma');
