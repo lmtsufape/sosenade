@@ -72,6 +72,7 @@ class SimuladoController extends Controller
 
 
     public function listaSimuladoAluno(Request $request){
+        
         $curso = \Auth::guard('aluno')->user()->curso_id;
         $simulados = \SimuladoENADE\Simulado::where('curso_id', '=', $curso)->get();
        

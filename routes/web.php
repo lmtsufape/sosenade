@@ -22,7 +22,9 @@ use App\Http\Middleware\AdministradorMiddleware;
 Route::middleware('auth')->group(function(){
 	
 	Route::get('/', function () {
+	    
 	    return view('welcome');
+
 	})->name('welcome');
 
 	Route::get('/listar/simulado', 'SimuladoController@listar')->name('list_simulado');
@@ -107,14 +109,21 @@ Route::middleware('auth')->group(function(){
 
 	});
 
-	Route::middleware('aluno.auth')->group(function(){
+});
 
-		Route::get('/listaSimuladoAluno/simulado', 'SimuladoController@listaSimuladoAluno')->name('list_simulado_aluno');
-		Route::get('/questao/simulado/{id}', 'SimuladoController@questao')->name('qst_simulado');
-		Route::post('/responder/simulado/', 'SimuladoController@responder')->name('answ_qst_simulado');
-		Route::get('/resultado/simulado/{id}', 'SimuladoController@resultado')->name('result_simulado');
+Route::middleware('aluno.auth')->group(function(){
 
-	});
+	Route::get('/alunohome', function () {
+
+	    return view('teste');
+
+	})->name('welcome_aluno');
+
+	Route::get('/listaSimuladoAluno/simulado', 'SimuladoController@listaSimuladoAluno')->name('list_simulado_aluno');
+	Route::get('/questao/simulado/{id}', 'SimuladoController@questao')->name('qst_simulado');
+	Route::post('/responder/simulado/', 'SimuladoController@responder')->name('answ_qst_simulado');
+	Route::get('/resultado/simulado/{id}', 'SimuladoController@resultado')->name('result_simulado');
+
 });
 
 Auth::routes();
@@ -135,7 +144,7 @@ Route::get('/editar/resposta/{id}','RespostaController@editar')->name('edit_resp
 Route::post('/atualizar/resposta','RespostaController@atualizar')->name('update_resposta');
 Route::get('/remover/resposta/{id}','RespostaController@remover')->name('delete_resposta');
 
-Route::get('/listar/simuladoaluno','SimuladoAlunoController@listar')->name('list_simulado_aluno');
+// Route::get('/listar/simuladoaluno','SimuladoAlunoController@listar')->name('list_simulado_aluno');
 Route::get('/cadastrar/simuladoaluno','SimuladoAlunoController@cadastrar')->name('new_simulado_aluno');
 Route::post('/adicionar/simuladoaluno','SimuladoAlunoController@adicionar')->name('add_simulado_aluno');
 Route::get('/editar/simuladoaluno/{id}','SimuladoAlunoController@editar')->name('edit_simulado_aluno');

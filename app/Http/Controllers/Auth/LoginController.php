@@ -43,18 +43,18 @@ class LoginController extends Controller
     }
 
     public function login (Request $request) {
-        //echo $request['email'];
         $cred = ['email' => $request['email'],
                  'password' => $request['password']];
+        
         if(Auth::attempt($cred)) {
             return redirect ("/");
-            //echo "não eh aluno";
         } else {
+
             if(Auth::guard('aluno')->attempt($cred))
-                //echo $request['email'];
-                return view("teste");
+                return redirect ("/alunohome");
             else
                 echo "não logou";
+
         }
         
         exit(0);

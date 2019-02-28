@@ -4,7 +4,6 @@
 	<h1> Lista de Simulado </h1><br><br>
 	<table class="table">
  		<thead>
-		
 			<tr>
 				<th>Descricao</th>
 				<th>Funções</th>
@@ -12,13 +11,12 @@
 		</thead>
 		<tbody>
 			@foreach ($simulados as $simulado)
-			<tr>
-				<td>{{$simulado->descricao_simulado}}</td>>
-				<td>
-					<a href="{{route('qst_simulado', ['id'=>$simulado->id])}}">Responder</a>
-				</td>
-			</tr>
+				<tr>
+					<td>{{$simulado->descricao_simulado}}</td>>
+					<td>
+						<a href="{{route('qst_simulado', ['id'=>$simulado->id])}}">Responder</a>
+					</td>
+				</tr>
 			@endforeach
 		</tbody>
-		
 	</table>

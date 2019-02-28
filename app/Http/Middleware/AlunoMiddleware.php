@@ -14,28 +14,17 @@ class AlunoMiddleware
      * @return mixed
      */
 
-    public function handle($request, Closure $next){
+    public function handle($request, Closure $next) {
 
         $user = \Auth::guard('aluno')->user();
-       // echo($user);
-        //exit(0);
-        
-        
 
         if ($user == 'aluno'){
 
-            
-        return redirect("home");
+            return redirect("/alunohome");
+
         }
 
         return $next($request);
-      /*  if(\Auth::guest() || \Auth::user()->Usuario->tipousuario_id === 1){
-               echo "Teste";
-        exit(0);
-            return redirect("home");
-            }
-        
-        return $next($request);*/
 
     }
 }
