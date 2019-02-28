@@ -20,8 +20,8 @@
 				<td>{{$simuladoAluno->aluno_id}}</td>
 				<td>{{$simuladoAluno->simulado_id}}</td>
 				<td>
-					<a href="{{route('edit_simulado_aluno', ['id'=>$simuladoAluno->id]}}">Editar</a> -
-					<a href="{{route('delete_simulado_aluno', ['id'=>$simuladoAluno->id]}}">Remover</a>
+					<a href="{{route('edit_simulado_aluno', ['id'=>$simuladoAluno->id])}}">Editar</a> -
+					<a href="{{route('delete_simulado_aluno', ['id'=>$simuladoAluno->id])}}">Remover</a>
 				</td>
 			</tr>
 			@endforeach
