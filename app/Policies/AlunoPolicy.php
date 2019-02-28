@@ -18,9 +18,9 @@ class AlunoPolicy
      * @param  \SimuladoENADE\Aluno  $aluno
      * @return mixed
      */
-    public function view(Usuario $user, Aluno $aluno)
+    public function view_aluno(Aluno $aluno)
     {
-        //
+        dd('babaca');
     }
 
     /**

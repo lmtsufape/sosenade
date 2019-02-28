@@ -14,7 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'SimuladoENADE\Model' => 'SimuladoENADE\Policies\ModelPolicy',
-	\SimuladoENADE\Usuario::class=>\SimuladoENADE\Policies\UsuarioPolicy::class,
+        \SimuladoENADE\Usuario::class=>\SimuladoENADE\Policies\UsuarioPolicy::class,
         \SimuladoENADE\Aluno::class=>\SimuladoENADE\Policies\AlunoPolicy::class
     ];
 

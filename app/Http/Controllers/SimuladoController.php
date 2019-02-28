@@ -186,10 +186,8 @@ class SimuladoController extends Controller
      
 
         //Id do usuário
-
         $usuario = \Auth::guard('aluno')->user()->id;
         
-
         /*$respondidas = \DB::table('respostas')->select('questao_id')
                         ->where('respostas.aluno_id','=',$usuario)->get()->toArray();
 
@@ -204,16 +202,14 @@ class SimuladoController extends Controller
             ->join('questaos', 'questao_simulados.questao_id', '=', 'questaos.id')
             ->select('*')
             ->get()->toArray();
-        //echo("teste");
-        //dd($questaos);
-        //exit(0);
-           
 
             
         if (empty($questaos)){
             return redirect('/resultado/simulado/'.$request->id);
         }
+
         $array = (array) $questaos[0];
+        
         return view('/SimuladoView/questaoSimulado',['questao'=> $array, 'simulado_id'=>$request->id]);
 
     }
