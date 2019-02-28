@@ -123,6 +123,8 @@ Route::middleware('aluno.auth')->group(function(){
 	Route::get('/questao/simulado/{id}', 'SimuladoController@questao')->name('qst_simulado');
 	Route::post('/responder/simulado/', 'SimuladoController@responder')->name('answ_qst_simulado');
 	Route::get('/resultado/simulado/{id}', 'SimuladoController@resultado')->name('result_simulado');
+	
+	Route::get('/startSimulado/{id}', 'SimuladoController@startSimulado')->name('startSimulado');
 
 });
 
