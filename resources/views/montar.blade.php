@@ -84,7 +84,7 @@
 								@endif
 							</td>
 							<td>{{$qst->disciplina_id}}</td>
-							<td><a href="{{route('delete_qst_simulado', ['id'=>$questaocerta->id])}}">Remover</a></td>
+							<td><a href="{{route('delete_qst_simulado', ['id'=>$qst->id])}}">Remover</a></td>
 						</tr>
 					@endforeach
 				@else
