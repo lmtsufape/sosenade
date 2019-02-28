@@ -23,7 +23,7 @@ Route::middleware('auth')->group(function(){
 	
 	Route::get('/', function () {
 	    return view('welcome');
-	})->name('home');
+	})->name('welcome');
 
 	Route::get('/listar/simulado', 'SimuladoController@listar')->name('list_simulado');
 		
@@ -119,7 +119,7 @@ Route::middleware('auth')->group(function(){
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home2');
 
 Route::get('/listar/turma','TurmaController@listar')->name('list_turma');
 Route::get('/cadastrar/turma','TurmaController@cadastrar')->name('new_turma');
