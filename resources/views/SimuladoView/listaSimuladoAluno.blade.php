@@ -4,19 +4,19 @@
 
 		<h1> Simulados disponíveis </h1><br>
 
-		<table class="table">
+		<table class="table table-hover">
 	 		<thead>
 				<tr>
 					<th>Nome do Simulado</th>
-					<th>Opções</th>
+					<th style="vertical-align:middle; text-align: center; width: 40%">Opções</th>
 				</tr>
 			</thead>
 			<tbody>
 				@foreach ($simulados as $simulado)
 					<tr>
 						<td>{{$simulado->descricao_simulado}}</td>
-						<td>
-							<a href="{{route('qst_simulado', ['id'=>$simulado->id])}}">Responder</a>
+						<td style="vertical-align:middle; text-align: center; width: 40%">
+							<a href="{{route('startSimulado', ['id'=>$simulado->id])}}">Ver</a>
 						</td>
 					</tr>
 				@endforeach
