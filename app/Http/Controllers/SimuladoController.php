@@ -77,61 +77,6 @@ class SimuladoController extends Controller{
 
 	}
 
-	//Quando e se cezar terminar o controle de acesso, nois iremos instanciar disciplinas pelo curso do usuario atual(coordenador)
-	public function montar(Request $request){
-
-		$curso = \Auth::user()->curso_id;
-		$simulado = \SimuladoENADE\Simulado::all();
-	 
-		$disciplinas = \SimuladoENADE\Disciplina::where('curso_id', '=', $curso)->get();
-
-		$questaos = \DB::table('questao_simulados')
-			->join('questaos', 'questao_simulados.questao_id', '=', 'questaos.id')
-			->select('questaos.*', 'questao_simulados.*')
-			->where('simulado_id', '=', $request->id)
-			->get();
-
-		return view('/SimuladoView/montarSimulado',['disciplinas' => $disciplinas, 'questaos' => $questaos, 'simulado_id'=> $request->id]);     
-	 
-	}
-
-	public function cadastrarQuestao(Request $request){
-
-		try{
-			
-			$questaos = \SimuladoENADE\Questao::where([['dificuldade', '=', $request->dificuldade],
-											 ['disciplina_id', '=', $request->disciplina_id]])
-											->get()
-											->toArray();
-		   
-			$num_questao = \SimuladoENADE\QuestaoSimulado::where('simulado_id', '=', $request->simulado_id)->get();
-
-			$cont = count($num_questao);
-
-			MontarSimuladoValidator::Validate(count($questaos), $request->numero);
-
-			if(($cont + $request->numero) > 30)
-				return redirect('/montar/simulado/'.$request->simulado_id);
-
-			shuffle($questaos); 
-			$row = [];
-
-			for($i = 0; $i < $request->numero; $i++){
-				$row = $questaos[$i];
-				$questao = new \SimuladoENADE\QuestaoSimulado();
-				$questao->questao_id = $row['id'];
-				$questao->simulado_id = $request->simulado_id;
-				$questao->save();
-			}
-
-			return redirect('/montar/simulado/'.$request->simulado_id);
-
-		}catch(ValidationException $ex){
-			return redirect("/montar/simulado/".$request->simulado_id)->withErrors($ex->getValidator())->withInput();
-		}
-
-	}
-
 	public function listaSimuladoAluno(Request $request){
 		
 		$curso = \Auth::guard('aluno')->user()->curso_id;
@@ -145,6 +90,7 @@ class SimuladoController extends Controller{
 		$simulado = \SimuladoENADE\Simulado::find($request->id);
 
 		$questaos = self::getQuestoes($simulado);
+		
 		if (empty($questaos))
 			return redirect('/resultado/simulado/'.$request->id);
 
@@ -190,6 +136,7 @@ class SimuladoController extends Controller{
 			->get()->toArray();
 
 		return $questaos;
+		
 	}
 
 	// Leva a página de solução da primeira questão achada não respondida no simulado

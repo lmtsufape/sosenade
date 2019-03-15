@@ -33,7 +33,7 @@ class Usuariocontroller extends Controller
 				$new_user->password = Hash::make($request->password);
 				$new_user->save();
 		  
-				if(false){
+				if(false){ // email de confirmação não funcionando ainda
 					Mail::to($request->email)->send(new emailConfirmacao());
 				}
 
@@ -58,6 +58,7 @@ class Usuariocontroller extends Controller
 
 				return redirect("/listar/professor");
 			}
+
 		} catch(ValidationException $ex){
 			$user =  \Auth::user()->tipousuario_id;
 			if($user == 4){
@@ -72,7 +73,7 @@ class Usuariocontroller extends Controller
 		// $this->authorize('adcionar', \SimuladoENADE\Usuario::class); 
 		$user = \Auth::user()->tipousuario_id;      
 		$cursos = \SimuladoENADE\Curso::all();
-		$tipos_usuario = \SimuladoENADE\Tipousuario::all();
+		$tipos_usuario = \SimuladoENADE\Tipousuario::all(); // Tem q retirar aluno, pois está em outra tabela
 
 		if($user == 4){
 			return view('/UsuarioView/cadastrarUsuario',['cursos' => $cursos, 'tipos_usuario' => $tipos_usuario]);

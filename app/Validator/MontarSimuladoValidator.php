@@ -14,7 +14,7 @@ class MontarSimuladoValidator
     	$validator = Validator::make($rules = [], $messages = []);
 
     	if($qtd_existente < $qtd_exigido){
-    		$validator->errors()->add('qtd_maior', 'A quantidade de Questoes exigidas esta muito grande pra o banco'); 
+    		$validator->errors()->add('qtd_maior', 'A quantidade de questões exigidas ('.$qtd_exigido.') está muito grande. A quantidade máxima de questões compatíveis com os filtros é '.$qtd_existente.'.'); 
     	}
 
     	if(!$validator->errors()->isEmpty()){

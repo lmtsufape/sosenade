@@ -1,10 +1,10 @@
 @extends('layouts.default')
 @section('content')
+    
     <div class="shadow p-4 mb-5 bg-white rounded container-fluid" style="overflow-x: auto;">
 		
 		<h1>Professores cadastrados</h1><br>
-		
-		<table class="table table-hover table-bordered">
+		<table class="table table-hover">
 	 		<thead>
 				<tr>
 					<th>ID</th>
@@ -37,4 +37,5 @@
 		</div>
 		
 	</div>
+
 @stop

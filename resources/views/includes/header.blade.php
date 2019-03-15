@@ -38,7 +38,7 @@
 			@can('view_coordenador', Auth::user())
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Disciplina
+						Disciplinas
 					</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="{{route('new_disciplina')}}">Cadastrar</a>
@@ -48,7 +48,7 @@
 
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Aluno
+						Alunos
 					</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="{{route('new_aluno')}}">Cadastrar</a>
@@ -58,17 +58,27 @@
 
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Professor
+						Professores
 					</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="{{route('new_professor')}}">Cadastrar</a>
 						<a class="dropdown-item" href="{{route('list_professor')}}">Listar</a>
 					</div>
 				</li>
+
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Questões
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="{{route('new_qst')}}">Cadastrar</a>
+						<a class="dropdown-item" href="{{route('list_qst')}}">Listar</a>
+					</div>
+				</li>
 				
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Simulado
+						Simulados
 					</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="{{route('new_simulado')}}">Cadastrar</a>
@@ -76,21 +86,12 @@
 					</div>
 				</li>
 
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Questao
-					</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="{{route('new_qst')}}">Cadastrar</a>
-						<a class="dropdown-item" href="{{route('list_qst')}}">Listar</a>
-					</div>
-				</li>
 			@endcan
 
 			@can('view_professor', Auth::user())
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Questao
+						Questões
 					</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="{{route('new_qst')}}">Cadastrar</a>
@@ -100,11 +101,11 @@
 
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Simulado Questao
+						Simulados
 					</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="{{route('new_simulado')}}">Cadastrar</a>
-						<a class="dropdown-item" href="{{route('list_simulado')}}">listar</a>
+						<a class="dropdown-item" href="{{route('list_simulado')}}">Listar</a>
 					</div>
 				</li>
 			@endcan
