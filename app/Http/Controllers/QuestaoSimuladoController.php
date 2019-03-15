@@ -18,9 +18,12 @@ class QuestaoSimuladoController extends Controller{
 
         $questaos = \DB::table('questao_simulados')
             ->join('questaos', 'questao_simulados.questao_id', '=', 'questaos.id')
-            ->select('questaos.*', 'questao_simulados.*')
+            ->join('disciplinas', 'questaos.disciplina_id', '=', 'disciplinas.id')
+            ->select('questaos.*', 'questao_simulados.*', 'disciplinas.nome as disc_nome')
             ->where('simulado_id', '=', $request->id)
             ->get();
+
+        
 
         return view('/SimuladoView/montarSimulado',['disciplinas' => $disciplinas, 'questaos' => $questaos, 'simulado_id'=> $request->id]);     
      

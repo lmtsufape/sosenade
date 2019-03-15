@@ -36,14 +36,10 @@ class AlunoController extends Controller{
 	public function listar (){
 
 		$curso_user = \Auth::user()->curso_id; // curso_id do consultante
+		$nome_curso = \SimuladoENADE\Curso::find($curso_user)->curso_nome;
+        $alunos = \SimuladoENADE\Aluno::where('curso_id', '=', $curso_user)->orderBy('nome')->get();
 
-		$alunos =\SimuladoENADE\Aluno::select('*', \DB::raw('alunos.id as aluno_id'))
-			->join('cursos', 'alunos.curso_id', '=', 'cursos.id') // para exibir o nome do curso
-			->where('curso_id', '=', $curso_user) // para limitar a exibição aos alunos do mesmo curso que o consultante
-			->orderBy('nome') // ordena
-			->get();
-		
-		return view('/AlunoView/listaAluno',['alunos'=> $alunos]);
+		return view('/AlunoView/listaAluno',['alunos'=> $alunos, 'nome_curso' => $nome_curso]);
 
 	}
 

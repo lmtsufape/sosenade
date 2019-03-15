@@ -47,8 +47,15 @@ class SimuladoController extends Controller{
 	public function listar(){
 		
 		$curso_id = \Auth::user()->curso_id;
-		$simulados = \SimuladoENADE\Simulado::where('curso_id', '=', $curso_id)->get();
-		return view('/SimuladoView/listaSimulado', ['simulados' => $simulados]);
+		$nome_curso = \SimuladoENADE\Curso::find($curso_id)->curso_nome;
+
+		$simulados =\SimuladoENADE\Simulado::select('*', \DB::raw('simulados.id as sim_id'))
+			->join('usuarios', 'simulados.usuario_id', '=', 'usuarios.id')
+			->where('simulados.curso_id', '=', $curso_id)
+			->orderBy('descricao_simulado')
+			->get();
+
+		return view('/SimuladoView/listaSimulado', ['simulados' => $simulados, 'nome_curso' => $nome_curso]);
 
 	}
 
@@ -57,6 +64,7 @@ class SimuladoController extends Controller{
 		$simulado= \SimuladoENADE\Simulado::find($request->id);
 		$cursos = \SimuladoENADE\Curso::all();
 		$usuarios = \SimuladoENADE\Usuario::all();
+
 		return view ('/SimuladoView/editarSimulado', ['simulado' => $simulado, 'cursos' => $cursos, 'usuarios' => $usuarios]);
 
 	}
@@ -64,6 +72,7 @@ class SimuladoController extends Controller{
 	public function atualizar(Request $request){
 		
 		try{
+			
 			SimuladoValidator::Validate($request->all());
 
 			$simulado = \SimuladoENADE\Simulado::find($request->id);
@@ -79,16 +88,17 @@ class SimuladoController extends Controller{
 
 	public function listaSimuladoAluno(Request $request){
 		
-		$curso = \Auth::guard('aluno')->user()->curso_id;
-		$simulados = \SimuladoENADE\Simulado::where('curso_id', '=', $curso)->get();
-		return view('/SimuladoView/listaSimuladoAluno', ['simulados' => $simulados]);
+		$curso_id = \Auth::guard('aluno')->user()->curso_id;
+		$nome_curso = \SimuladoENADE\Curso::find($curso_id)->curso_nome;
+		$simulados = \SimuladoENADE\Simulado::where('curso_id', '=', $curso_id)->get();
+		
+		return view('/SimuladoView/listaSimuladoAluno', ['simulados' => $simulados, 'nome_curso' => $nome_curso]);
 
 	}
 
 	public function startSimulado(Request $request)	{
 		
 		$simulado = \SimuladoENADE\Simulado::find($request->id);
-
 		$questaos = self::getQuestoes($simulado);
 		
 		if (empty($questaos))

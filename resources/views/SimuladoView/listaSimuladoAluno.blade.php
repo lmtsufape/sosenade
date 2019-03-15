@@ -2,7 +2,8 @@
 @section('content')
     <div class="shadow p-4 mb-5 bg-white rounded container-fluid" style="overflow-x: auto;">
 
-		<h1> Simulados disponíveis </h1><br>
+		<h1 class="text-center"> Simulados disponíveis </h1>
+		<h2 class="text-center">{{$nome_curso}}</h2><br>
 
 		<table class="table table-hover">
 	 		<thead>

@@ -61,10 +61,10 @@
 
 			<thead>
 				<tr>
-					<th>Numº Questao</th>
+					<th>Cód. Questão</th>
 					<th>Enunciado</th>
-					<th>Nivel Questão</th>
-					<th>ID da Disciplina</th>
+					<th>Nível</th>
+					<th>Disciplina</th>
 					<th>Funções</th>
 				</tr>
 			</thead>
@@ -75,15 +75,15 @@
 							<td>{{$qst->id}}</td>
 							<td>{{  preg_replace('/<[^>]*>|[&;]/', '', $qst->enunciado) }}</td>
 							<td>
-								@if($qst->dificuldade  == 1)
+								@if($qst->dificuldade == 1)
 									Fácil
-								@elseif($qst->dificuldade  == 2)
+								@elseif($qst->dificuldade == 2)
 									Médio
 								@else
 									Difícil
 								@endif
 							</td>
-							<td>{{$qst->disciplina_id}}</td>
+							<td>{{$qst->disc_nome}}</td>
 							<td><a href="{{route('remove_qst_simulado', ['sim_qst_id'=>$qst->id])}}">Remover</a></td>
 						</tr>
 					@endforeach

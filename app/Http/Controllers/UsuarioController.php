@@ -60,12 +60,13 @@ class Usuariocontroller extends Controller
 			}
 
 		} catch(ValidationException $ex){
+			
 			$user =  \Auth::user()->tipousuario_id;
-			if($user == 4){
+			if($user == 4)
 				return redirect("/cadastrar/usuario")->withErrors($ex->getValidator())->withInput();
-			} elseif($user == 2){
+			elseif($user == 2)
 				return redirect("/cadastrar/professor")->withErrors($ex->getValidator())->withInput();
-			}	
+
 		}
 	}
 
@@ -75,11 +76,11 @@ class Usuariocontroller extends Controller
 		$cursos = \SimuladoENADE\Curso::all();
 		$tipos_usuario = \SimuladoENADE\Tipousuario::all(); // Tem q retirar aluno, pois está em outra tabela
 
-		if($user == 4){
+		if($user == 4)
 			return view('/UsuarioView/cadastrarUsuario',['cursos' => $cursos, 'tipos_usuario' => $tipos_usuario]);
-		} elseif($user == 2){
+		elseif($user == 2)
 			return view('/UsuarioView/cadastrarProfessor',['cursos' => $cursos, 'tipos_usuario' => $tipos_usuario]);
-		}
+		
 	}
 
 	public function listar (Request $request) {
@@ -105,16 +106,17 @@ class Usuariocontroller extends Controller
 		} elseif($tipo_usuario == 2){
 
 			// Apenas usuarios do tipo 3 (professores) e do mesmo curso do coord
-			$usuarios =\SimuladoENADE\Usuario::select('*', \DB::raw('usuarios.id as userid'))
-				->join('cursos', 'usuarios.curso_id', '=', 'cursos.id') // para exibir o nome do curso
-				->where('curso_id', '=', $curso_id) // para limitar a exibição aos usuarios do mesmo curso que o consultante
-				->where('tipousuario_id','=',3) // apenas professores
-				->orderBy('nome') // ordena
-				->get();
+        	$usuarios = \SimuladoENADE\Usuario::where('curso_id', '=', $curso_id)
+        		->where('tipousuario_id','=',3) // apenas professores
+        		->orderBy('nome')
+        		->get();
+        		
+			$nome_curso = \SimuladoENADE\Curso::find($curso_id)->curso_nome;
 
-			return view('/UsuarioView/ListaProfessor',['usuarios' => $usuarios]); 
+			return view('/UsuarioView/ListaProfessor',['usuarios' => $usuarios, 'nome_curso' => $nome_curso]); 
 			
 		}
+
 	}
 
 	public function editar(Request $request) {

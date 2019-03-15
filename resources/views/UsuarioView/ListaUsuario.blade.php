@@ -3,15 +3,14 @@
 
     <div class="shadow p-4 mb-5 bg-white rounded container-fluid" style="overflow-x: auto;">
 	
-		<h1>Usuários Cadastrados</h1><br>
-		
+		<h1 class="text-center">Usuários Cadastrados</h1><br>
 		<table class="table table-hover">
 	 		<thead>
 				<tr>
 					<th>Nome</th>
 					<th>Tipo de usuário</th>
 					<th>CPF</th>
-					<th>Email</th>
+					<th>E-mail</th>
 					<th>Curso</th>
 					<th>Funções</th>
 				</tr>

@@ -3,22 +3,19 @@
 
 	<div class="shadow p-4 mb-5 bg-white rounded container-fluid" style="overflow-x: auto;">
 	    
-		<h1>Lista de Disciplinas</h1><br>
+		<h1 class="text-center">Disciplinas Cadastradas</h1>
+		<h2 class="text-center">{{$nome_curso}}</h2><br>
 		<table class="table table-hover">
 	 		<thead>
 				<tr>
-					<th>ID</th>
-					<th>Nome</th>
-					<th>Curso</th>
+					<th style="width: 70%">Nome</th>
 					<th>Funções</th>
 				</tr>
 			</thead>
 			<tbody>
 				@foreach ($disciplinas as $disciplina)
 					<tr>
-						<td>{{$disciplina->id}}</td>
-						<td>{{$disciplina->nome}}</td>
-						<td>{{$disciplina->curso_id}}</td>
+						<td style="">{{$disciplina->nome}}</td>
 						<td> 
 							<a href="{{route('edit_disciplina',['id'=>$disciplina->id])}}">Editar</a> -
 							<a href="{{route('delete_disciplina',['id'=>$disciplina->id])}}">Remover</a>
