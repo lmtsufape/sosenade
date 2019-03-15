@@ -54,11 +54,9 @@ Route::middleware('auth')->group(function(){
 
 		Route::get('/cadastrar/simulado', 'SimuladoController@cadastrar')->name('new_simulado');
 		Route::post('/adicionar/simulado', 'SimuladoController@adicionar')->name('add_simulado');
-		Route::get('/editar/simulado/{id}', 'SimuladoController@editar')->name('edit_simulado');;
-		Route::post('/atualizar/simulado', 'SimuladoController@atualizar')->name('update_simulado');;
+		Route::get('/editar/simulado/{id}', 'SimuladoController@editar')->name('edit_simulado');
+		Route::post('/atualizar/simulado', 'SimuladoController@atualizar')->name('update_simulado');
 		Route::get('/remover/simulado/{id}', 'SimuladoController@remover')->name('delete_simulado');
-		Route::get('/montar/simulado/{id}', 'SimuladoController@montar')->name('set_simulado');
-		Route::post('/cadastrarQuestao/simulado', 'SimuladoController@cadastrarQuestao')->name('new_simulado_qst');;
 
 	});
 
@@ -71,16 +69,21 @@ Route::middleware('auth')->group(function(){
 		Route::post('/atualizar/questao', 'QuestaoController@atualizar')->name('update_qst');
 		Route::get('/remover/questao/{id}', 'QuestaoController@remover')->name('delete_qst');
 
+		Route::get('/montarSimulado/{id}', 'QuestaoSimuladoController@montar')->name('set_simulado');
+		Route::post('/cadastrarQuestaoSimulado/', 'QuestaoSimuladoController@cadastrarQuestao')->name('add_qst_simulado');
+		Route::get('/removerQuestaoSimulado/{sim_qst_id}', 'QuestaoSimuladoController@removerQuestao')->name('remove_qst_simulado');
+
 	});
 
 	Route::middleware('professor.auth')->group(function(){
 		
-		Route::get('/listar/questaosimulado','QuestaoSimuladoController@listar')->name('list_qst_simulado');
-		Route::get('/cadastrar/questaosimulado','QuestaoSimuladoController@cadastrar')->name('new_qst_simulado');
-		Route::post('/adicionar/questaosimulado','QuestaoSimuladoController@adicionar')->name('add_qst_simulado');
-		Route::get('/editar/questaosimulado/{id}','QuestaoSimuladoController@editar')->name('edit_qst_simulado');
-		Route::post('/atualizar/questaosimulado','QuestaoSimuladoController@atualizar')->name('update_qst_simulado');
-		Route::get('/remover/questaosimulado/{id}','QuestaoSimuladoController@remover')->name('delete_qst_simulado');
+		// Verificar se essas rotas serão mesmo necessarias
+		// Route::get('/listar/questaosimulado','QuestaoSimuladoController@listar')->name('list_qst_simulado');
+		// Route::get('/cadastrar/questaosimulado','QuestaoSimuladoController@cadastrar')->name('new_qst_simulado');
+		// Route::post('/adicionar/questaosimulado','QuestaoSimuladoController@adicionar')->name('add_qst_simulado');
+		// Route::get('/editar/questaosimulado/{id}','QuestaoSimuladoController@editar')->name('edit_qst_simulado');
+		// Route::post('/atualizar/questaosimulado','QuestaoSimuladoController@atualizar')->name('update_qst_simulado');
+		// Route::get('/remover/questaosimulado/{id}','QuestaoSimuladoController@remover')->name('delete_qst_simulado');
 		
 	});
 

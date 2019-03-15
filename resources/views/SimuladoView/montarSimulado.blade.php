@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')
 
-	<form action = "{{route('new_simulado_qst')}}" method = "post" class="shadow p-3 mb-5 bg-white rounded">
+	<form action = "{{route('add_qst_simulado')}}" method = "post" class="shadow p-3 mb-5 bg-white rounded">
 		
 		<h1 class="text-center">Montar Simulado</h1><br>
 
@@ -49,14 +49,14 @@
 			</div>
 
 			<div class="row justify-content-center">
-				<input type="submit" value="Montar" name="nome" class="btn btn-primary" />
+				<input type="submit" value="Adicionar" name="nome" class="btn btn-primary" />
 			</div>
 
 		</div>
 
 		<br>
 			
-		<h1>Lista de Questões Selecionadas</h1>
+		<h1>Lista de Questões Adicionadas</h1><br>
 		<table class="table">
 
 			<thead>
@@ -84,7 +84,7 @@
 								@endif
 							</td>
 							<td>{{$qst->disciplina_id}}</td>
-							<td><a href="{{route('delete_qst_simulado', ['id'=>$qst->id])}}">Remover</a></td>
+							<td><a href="{{route('remove_qst_simulado', ['sim_qst_id'=>$qst->id])}}">Remover</a></td>
 						</tr>
 					@endforeach
 				@else
