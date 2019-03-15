@@ -35,11 +35,12 @@ class DisciplinaController extends Controller
     	
     
  	public function listar(){
-        $user = \Auth::user();
-        #dd($user->curso_id);
-		$disciplinas = \SimuladoENADE\Disciplina::where('curso_id', '=', $user->curso_id)->get();
-        $cursos = \SimuladoENADE\Curso::all();
-		return view('/DisciplinaView/listaDisciplinas', ['disciplinas' => $disciplinas]);
+
+        $curso_user = \Auth::user()->curso_id;
+		$nome_curso = \SimuladoENADE\Curso::find($curso_user)->curso_nome;
+        $disciplinas = \SimuladoENADE\Disciplina::where('curso_id', '=', $curso_user)->orderBy('nome')->get();
+
+		return view('/DisciplinaView/listaDisciplinas', ['disciplinas' => $disciplinas, 'nome_curso' => $nome_curso]);
 
  	}   
  	

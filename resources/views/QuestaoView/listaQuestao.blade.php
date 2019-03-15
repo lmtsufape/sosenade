@@ -3,23 +3,20 @@
     
     <div class="shadow p-4 mb-5 bg-white rounded container-fluid" style="overflow-x: auto;">
     
-		<h1>Questões Cadastradas</h1><br>
+		<h1 class="text-center">Questões Cadastradas</h1>
+		<h2 class="text-center">{{$nome_curso}}</h2><br>
 		<table class="table table-hover">
 	 		<thead>
 				<tr>
-					<th>Numº Questao</th>
 					<th>Enunciado</th>
-					<th>Nivel Questão</th>
-					<th>ID da Disciplina</th>
-					<th>Funções</th>
+					<th>Nível</th>
+					<th>Disciplina</th>
+					<th style="width: 15%">Funções</th>
 				</tr>
 			</thead>
 			<tbody>
-				<!-- Verificar se o contador nesse local fere o modelo MVC -->
-				<p type="hidden" value="{{ $x = 1 }}"></p>
 				@foreach($questaos as $questao)
 					<tr>
-						<td>{{$x++}}</td> 
 						<td>{{preg_replace('/<[^>]*>|[&;]/', '', $questao->enunciado) }}</td>
 						<td>{{$questao->dificuldade}}</td>
 						<td>{{$questao->nome}}</td>

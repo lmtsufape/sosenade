@@ -2,13 +2,13 @@
 @section('content')
     <div class="shadow p-4 mb-5 bg-white rounded container-fluid" style="overflow-x: auto;">
 
-		<h1> Cursos </h1><br>
+		<h1 class="text-center"> Cursos </h1><br>
 		<table class="table table-hover">
 	 		<thead>
 				<tr>
 					<th>Id</th>
 					<th>Nome do Curso</th>
-					<th>ID do Ciclo</th>
+					<th>Ciclo</th>
 					<th>Unidade</th>
 					<th>Funções</th>
 				</tr>
@@ -16,13 +16,13 @@
 			<tbody>
 				@foreach ($cursos as $curso)
 					<tr>
-						<td>{{$curso->id}}</td>
+						<td>{{$curso->curso_id}}</td>
 						<td>{{$curso->curso_nome}}</td>
-						<td>{{$curso->ciclo_id}}</td>
+						<td>{{$curso->tipo_ciclo}}</td>
 						<td>{{$curso->unidade->nome}}</td>
 						<td> 
-							<a href="{{route('edit_curso',['id'=>$curso->id])}}">Editar</a> - 
-							<a href="{{route('delete_curso',['id'=>$curso->id])}}">Remover</a>
+							<a href="{{route('edit_curso',['id'=>$curso->curso_id])}}">Editar</a> - 
+							<a href="{{route('delete_curso',['id'=>$curso->curso_id])}}">Remover</a>
 						</td>
 					</tr>
 				@endforeach

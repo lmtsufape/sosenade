@@ -3,7 +3,7 @@
 
 	<div class="shadow p-4 mb-5 bg-white rounded container-fluid" style="overflow-x: auto;">
 
-		<h1>Ciclos</h1><br>
+		<h1 class="text-center">Ciclos</h1><br>
 		<table class="table table-hover">
 	 		<thead>
 				<tr>

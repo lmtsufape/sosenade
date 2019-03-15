@@ -4,10 +4,8 @@ namespace SimuladoENADE;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Questao extends Model
-
-{
-    //
+class Questao extends Model {
+    
     public function disciplina(){
     	return $this->hasOne('SimuladoENADE\Disciplina');
     }
@@ -16,7 +14,6 @@ class Questao extends Model
 						   'alternativa_correta', 
 						   'dificuldade',
                         'disciplina_id'];
-
 
     public static $rules = [
     	'enunciado' => 'required|min:10',
@@ -31,5 +28,19 @@ class Questao extends Model
     	'alternativa_correta.max' => 'Este campo de ter no max 1 caracteres',
         'disciplina_id.integer' => 'o id deve ser inteiro'
     ];
+
+    public function getDificuldadeAttribute($dificuldade){
+
+        switch ($dificuldade) {
+            case 1:
+                return "Fácil";
+            case 2:
+                return "Médio";
+            case 3:
+                return "Difícil";
+        }
+
+        return null;
+    }
 
 }
