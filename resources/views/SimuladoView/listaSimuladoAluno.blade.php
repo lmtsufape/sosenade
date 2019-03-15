@@ -8,7 +8,7 @@
 		<table class="table table-hover">
 	 		<thead>
 				<tr>
-					<th>Nome do Simulado</th>
+					<th>Descrição do Simulado</th>
 					<th style="vertical-align:middle; text-align: center; width: 40%">Opções</th>
 				</tr>
 			</thead>
