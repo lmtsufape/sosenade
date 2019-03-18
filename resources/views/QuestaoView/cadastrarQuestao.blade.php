@@ -12,38 +12,61 @@
 			</div>
 		</div>
 
+		<br>
+
 		<table class="table form-group justify-content-center" id="dynamic_field" >
 			<th style="text-align: center;">#</th>
-			<th>Resposta</th>
-			<th style="text-align: center;">Resposta correta</th>
+			<th style="text-align: center;">Alternativas</th>
+			<th style="text-align: center;">Alternativa correta</th>
 			<th>&nbsp</th>
 			<tr>
 				<td style="border: 0px; width: 1%; vertical-align:middle;">1.</td>
 				<td style="border: 0px">
-					<input type="alternativa1" id="alternativa1" name="alternativa[]" placeholder="Escreva aqui a alternativa" style="width:100%" required autofocus>
+					<textarea class="form-control summernote_alt" type="alternativa1" id="alternativa1" name="alternativa[]" placeholder="Escreva aqui a alternativa" required autofocus></textarea>
 				</td>  
-				<td style="border: 0px;text-align: center; width: 1%">
+				<td style="border: 0px;text-align: center; width: 1%; vertical-align:middle;">
 					<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="0" checked required>
 				</td>  
 			</tr>
 			<tr>  
 				<td style="border: 0px; width: 1%; vertical-align:middle;">2.</td>
 				<td style="border: 0px">
-					<input type="alternativa2" id="alternativa2" name="alternativa[]" placeholder="Escreva aqui a alternativa" style="width:100%" required autofocus>
-				</td>
-				<td style="border: 0px;text-align: center; width: 1%">
+					<textarea class="form-control summernote_alt" type="alternativa2" id="alternativa2" name="alternativa[]" placeholder="Escreva aqui a alternativa" required autofocus></textarea>
+				</td> 
+				<td style="border: 0px;text-align: center; width: 1%; vertical-align:middle;">
 					<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="1">
 				</td>
-			</tr>  
+			</tr>
+			<tr>  
+				<td style="border: 0px; width: 1%; vertical-align:middle;">3.</td>
+				<td style="border: 0px">
+					<textarea class="form-control summernote_alt" type="alternativa3" id="alternativa3" name="alternativa[]" placeholder="Escreva aqui a alternativa" required autofocus></textarea>
+				</td> 
+				<td style="border: 0px;text-align: center; width: 1%; vertical-align:middle;">
+					<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="2">
+				</td>
+			</tr>
+			<tr>  
+				<td style="border: 0px; width: 1%; vertical-align:middle;">4.</td>
+				<td style="border: 0px">
+					<textarea class="form-control summernote_alt" type="alternativa4" id="alternativa4" name="alternativa[]" placeholder="Escreva aqui a alternativa" required autofocus></textarea>
+				</td> 
+				<td style="border: 0px;text-align: center; width: 1%; vertical-align:middle;">
+					<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="3">
+				</td>
+			</tr>
+			<tr>  
+				<td style="border: 0px; width: 1%; vertical-align:middle;">5.</td>
+				<td style="border: 0px">
+					<textarea class="form-control summernote_alt" type="alternativa5" id="alternativa5" name="alternativa[]" placeholder="Escreva aqui a alternativa" required autofocus></textarea>
+				</td> 
+				<td style="border: 0px;text-align: center; width: 1%; vertical-align:middle;">
+					<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="4">
+				</td>
+			</tr>
 		</table>
 
-		<script>
-			var x = 2; // numero de alternativas
-		</script>	
-
-		<div id="btt_wrap" class="row justify-content-center">
-			<button class="btn btn-primary add_field_button form-group">Adicionar alternativa</button>
-		</div>
+		<br>
 
 		<div class="grid">
 			<div class="row justify-content-center">
@@ -78,6 +101,7 @@
 			<div class="row justify-content-center">
 				<button type="submit" name="cadastrar" class="btn btn-primary center-block col-md-1">Cadastrar</button>
 			</div>
+			
 		</div>
 	</form>
 
