@@ -15,7 +15,7 @@
 			</li>
 		</ul>
 
-		<table class="table table-hover">
+		<table class="table table-hover table-borderless">
 			<tbody>
 				@if (!empty($simulados))
 					@foreach ($simulados as $simulado)
