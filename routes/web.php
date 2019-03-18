@@ -123,6 +123,8 @@ Route::middleware('aluno.auth')->group(function(){
 	})->name('welcome_aluno');
 
 	Route::get('/listaSimuladoAluno/simulado', 'SimuladoController@listaSimuladoAluno')->name('list_simulado_aluno');
+	Route::get('/listaSimuladoAluno/simuladoFeitos', 'SimuladoController@listaSimuladoAlunoFeitos')->name('list_simulado_feitos');
+	
 	Route::get('/questao/simulado/{id}', 'SimuladoController@questao')->name('qst_simulado');
 	Route::post('/responder/simulado/', 'SimuladoController@responder')->name('answ_qst_simulado');
 	Route::get('/resultado/simulado/{id}', 'SimuladoController@resultado')->name('result_simulado');

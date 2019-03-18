@@ -90,9 +90,33 @@ class SimuladoController extends Controller{
 		
 		$curso_id = \Auth::guard('aluno')->user()->curso_id;
 		$nome_curso = \SimuladoENADE\Curso::find($curso_id)->curso_nome;
-		$simulados = \SimuladoENADE\Simulado::where('curso_id', '=', $curso_id)->get();
+		$simulados_curso = \SimuladoENADE\Simulado::where('curso_id', '=', $curso_id)->get();
+
+		$simulados_disp = [];
+		foreach ($simulados_curso as $simulado) {
+			$questaos = self::getQuestoes($simulado);
+			if (!empty($questaos))
+				$simulados_disp[] = $simulado;
+		}
 		
-		return view('/SimuladoView/listaSimuladoAluno', ['simulados' => $simulados, 'nome_curso' => $nome_curso]);
+		return view('/SimuladoView/listaSimuladoAluno', ['simulados' => $simulados_disp, 'nome_curso' => $nome_curso]);
+
+	}
+
+	public function listaSimuladoAlunoFeitos(Request $request){
+		
+		$curso_id = \Auth::guard('aluno')->user()->curso_id;
+		$nome_curso = \SimuladoENADE\Curso::find($curso_id)->curso_nome;
+		$simulados_curso = \SimuladoENADE\Simulado::where('curso_id', '=', $curso_id)->get();
+
+		$simulados_feitos = [];
+		foreach ($simulados_curso as $simulado) {
+			$questaos = self::getQuestoes($simulado);
+			if (empty($questaos))
+				$simulados_feitos[] = $simulado;
+		}
+		
+		return view('/SimuladoView/listaSimuladoAlunoFeitos', ['simulados' => $simulados_feitos, 'nome_curso' => $nome_curso]);
 
 	}
 

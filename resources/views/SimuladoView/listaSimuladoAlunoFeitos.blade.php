@@ -8,10 +8,10 @@
 
 		<ul class="nav nav-tabs">
 			<li class="nav-item">
-				<a class="nav-link active" href="#">Disponíveis</a>
+				<a class="nav-link" href="{{route('list_simulado_aluno')}}">Disponíveis</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="{{route('list_simulado_feitos')}}">Feitos</a>
+				<a class="nav-link active" href="#">Feitos</a>
 			</li>
 		</ul>
 
@@ -27,13 +27,13 @@
 					@endforeach
 				@else
 					<br>
-					<p class="text-center alert alert-light">Você não tem simulados disponíveis</p>
+					<p class="text-center alert alert-light">Você não tem simulado feitos</p>
 				@endif
 			</tbody>
 		</table>
 
 		<br>
-		
-	</div>
 
+	</div>
+	
 @stop
