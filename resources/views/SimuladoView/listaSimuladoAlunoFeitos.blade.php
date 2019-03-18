@@ -11,7 +11,7 @@
 				<a class="nav-link" href="{{route('list_simulado_aluno')}}">Disponíveis</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link active" href="#">Feitos</a>
+				<a class="nav-link active" href="#">Realizados</a>
 			</li>
 		</ul>
 
