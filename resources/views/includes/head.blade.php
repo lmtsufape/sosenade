@@ -10,5 +10,3 @@
 <!-- include summernote css/js -->
 <link rel="stylesheet" type="text/css" href="{{ asset('sn_editor/summernote-bs4.css') }}">
 <script src="{{ asset('sn_editor/summernote-bs4.js') }}"></script>
-
-<script type="text/javascript" src="{{ asset('js/cadastrar_editar_qts.js') }}"></script>
