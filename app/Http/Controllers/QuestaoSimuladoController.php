@@ -38,22 +38,46 @@ class QuestaoSimuladoController extends Controller{
                                              ['disciplina_id', '=', $request->disciplina_id]])
                                             ->get()
                                             ->toArray();
+            
+
+            $countQuestao = count($questaos);
+
            
             $num_questao = \SimuladoENADE\QuestaoSimulado::where('simulado_id', '=', $request->simulado_id)->get();
 
             $cont = count($num_questao);
 
-            MontarSimuladoValidator::Validate(count($questaos), $request->numero);            
+            $vetor = [];
+
+            for ($i=0; $i < $countQuestao; $i++) { 
+                $f = False;
+                for ($j=0; $j < $cont ; $j++) { 
+                     // dd($questaos[$i]['id']);
+            
+                    if($questaos[$i]['id'] == $num_questao[$j]->questao_id){
+                        $f = True;
+                    }
+                }
+                if($f == False){
+                    $vetor[] = $questaos[$i];    
+                }
+                
+            }
+             
+
+            
+
+            MontarSimuladoValidator::Validate(count($vetor), $request->numero);            
 
             if(($cont + $request->numero) > 30)
                 return redirect()->route('list_disciplina');
 
-            shuffle($questaos); 
+            shuffle($vetor); 
             $row = [];
 
             # Cria as relações entre as qsts e o simulado
             for($i = 0; $i < $request->numero; $i++){
-                $row = $questaos[$i];
+                $row = $vetor[$i];
                 $questao = new \SimuladoENADE\QuestaoSimulado();
                 $questao->questao_id = $row['id'];
                 $questao->simulado_id = $request->simulado_id;
