@@ -73,6 +73,8 @@ class QuestaoController extends Controller
 	
 	public function listar(){
 
+
+
 		$curso_id = \Auth::user()->curso_id;
 		$nome_curso = \SimuladoENADE\Curso::find($curso_id)->curso_nome;
 
@@ -145,5 +147,8 @@ class QuestaoController extends Controller
 
 		return json_encode($questaos);
 	}
+
+	public function lista_questao_disciplina(Request $request){
+			}
 
 }

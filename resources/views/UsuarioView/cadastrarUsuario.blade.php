@@ -27,7 +27,7 @@
 
 			<div class="form-group col-md-4">
 				<label for="email">E-mail</label>
-				<input type="text" id="email" name="email" placeholder="exemplo@exemplo" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" required autofocus>
+				<input type="text" id="email" name="email" placeholder="exemplo@exemplo.com" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" required autofocus>
 				@if ($errors->has('email'))
 					<span class = "invalid-feedback" role="alert">
 						{{$errors->first('email')}}
