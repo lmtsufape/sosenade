@@ -12,7 +12,11 @@ class CursoSeeder extends Seeder
     public function run()
     {
         //for($i = 1; $i < 6; $i++){
-        	DB::table('cursos')->insert(['ciclo_id'=> 1, 'curso_nome'=> "", 'unidade_id' => 1]);
+        	DB::table('cursos')->insert(['ciclo_id'=> 1, 'curso_nome'=> "Ciência da Computação", 'unidade_id' => 2]);
+
+            DB::table('cursos')->insert(['ciclo_id'=> 1, 'curso_nome'=> "Agronomia", 'unidade_id' => 2]);
+        //}
+            DB::table('cursos')->insert(['ciclo_id'=> 1, 'curso_nome'=> "Eng de Alimentos", 'unidade_id' => 3]);
         //}
     }
 }
