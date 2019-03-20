@@ -28,9 +28,13 @@ class AlunoController extends Controller{
 	}
 
 	public function cadastrar(){
+
+		$curso_id = \Auth::user()->curso_id;
+        $nome_curso = \SimuladoENADE\Curso::find($curso_id)->curso_nome;
+
 		$cursos = \SimuladoENADE\Curso::all();
 		$alunos = \SimuladoENADE\Aluno::all();
-		return view('/AlunoView/cadastrarAluno',['cursos' => $cursos], ['alunos' => $alunos]);
+		return view('/AlunoView/cadastrarAluno',['cursos' => $cursos, 'alunos' => $alunos, 'nome_curso' => $nome_curso]);
 	}
 
 	public function listar (){

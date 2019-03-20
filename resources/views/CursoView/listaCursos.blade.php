@@ -6,7 +6,6 @@
 		<table class="table table-hover">
 	 		<thead>
 				<tr>
-					<th>Id</th>
 					<th>Nome do Curso</th>
 					<th>Ciclo</th>
 					<th>Unidade</th>
@@ -16,7 +15,6 @@
 			<tbody>
 				@foreach ($cursos as $curso)
 					<tr>
-						<td>{{$curso->curso_id}}</td>
 						<td>{{$curso->curso_nome}}</td>
 						<td>{{$curso->tipo_ciclo}}</td>
 						<td>{{$curso->unidade->nome}}</td>

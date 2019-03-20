@@ -3,7 +3,9 @@
     
 	<form class="shadow p-3 mb-5 bg-white rounded" action= "{{route('add_qst')}}" method="post">
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
-		<h1 class="text-center"> Cadastrar Nova Questão </h1><br>	
+		
+		<h1 class="text-center"> Cadastrar Nova Questão </h1>
+		<h2 class="text-center">{{$nome_curso}}</h2><br>	
 
 		<div class="col-xs-12 col-sm-12 col-md-12 justify-content-center">
 			<div class="form-group">

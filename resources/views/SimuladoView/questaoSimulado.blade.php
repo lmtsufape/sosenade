@@ -22,45 +22,36 @@
 						    A) {{$questao['alternativa_a']}}
 						  </label>
 						</div>
+						
 						<div class="form-check">
 						  <input class="form-check-input" type="radio" name="alternativa" id="radiob" value="1">
 						  <label class="form-check-label" for="radiob">
 						    B) {{$questao['alternativa_b']}}
 						  </label>
 						</div>
-						
-						@if ($questao['alternativa_c'] != '')
 							
-							<div class="form-check">
-								<input class="form-check-input" type="radio" name="alternativa" id="radioc" value="2">
-								<label class="form-check-label" for="radioc">
-									C) {{$questao['alternativa_c']}}
-								</label>
-							</div>
-
-			 				@if ($questao['alternativa_d'] != '')
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="alternativa" id="radioc" value="2">
+							<label class="form-check-label" for="radioc">
+								C) {{$questao['alternativa_c']}}
+							</label>
+						</div>
 								
-			 					<div class="form-check">
-									<input class="form-check-input" type="radio" name="alternativa" id="radiod" value="3">
-									<label class="form-check-label" for="radiod">
-										D) {{$questao['alternativa_d']}}
-								  </label>
-								</div>
-
-				 				@if ($questao['alternativa_e'] != '')
+	 					<div class="form-check">
+							<input class="form-check-input" type="radio" name="alternativa" id="radiod" value="3">
+							<label class="form-check-label" for="radiod">
+								D) {{$questao['alternativa_d']}}
+						  </label>
+						</div>
 									
-				 					<div class="form-check">
-										<input class="form-check-input" type="radio" name="alternativa" id="radioe" value="4">
-										<label class="form-check-label" for="radioe">
-											E) {{$questao['alternativa_e']}}
-									  </label>
-									</div><br>
+	 					<div class="form-check">
+							<input class="form-check-input" type="radio" name="alternativa" id="radioe" value="4">
+							<label class="form-check-label" for="radioe">
+								E) {{$questao['alternativa_e']}}
+						  </label>
+						</div>
 
-								@endif
-
-							@endif
-
-						@endif
+						<br>
 					
 					</dir>
 

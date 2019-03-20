@@ -12,7 +12,7 @@
 				<tr>
 					<th style="text-align: center;">#</th>
 					<th>Questão</th>
-					<th style="text-align: center;">Acertou</th>
+					<th style="text-align: center;"></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -23,7 +23,7 @@
 						</td>
 						<td style="vertical-align:middle;">
 							<!-- O enunciado tem que levar a uma explicação da resposta da questão -->
-							<a href="">{{preg_replace('/<[^>]*>|[&;]/', '', $questao->enunciado) }}</a>
+							{{preg_replace('/<[^>]*>|[&;]/', '', $questao->enunciado) }}
 						</td>  
 						<td style="vertical-align:middle; text-align: center; width: 40%">
 							@if($questao->alternativa_questao == $questao->alternativa_correta)

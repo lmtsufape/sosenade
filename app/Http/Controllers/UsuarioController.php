@@ -78,8 +78,14 @@ class Usuariocontroller extends Controller
 
 		if($user == 4)
 			return view('/UsuarioView/cadastrarUsuario',['cursos' => $cursos, 'tipos_usuario' => $tipos_usuario]);
-		elseif($user == 2)
-			return view('/UsuarioView/cadastrarProfessor',['cursos' => $cursos, 'tipos_usuario' => $tipos_usuario]);
+		elseif($user == 2){
+			
+			$curso_id = \Auth::user()->curso_id;
+        	$nome_curso = \SimuladoENADE\Curso::find($curso_id)->curso_nome;
+
+			return view('/UsuarioView/cadastrarProfessor',['cursos' => $cursos, 'tipos_usuario' => $tipos_usuario, 'nome_curso' => $nome_curso]);
+		
+		}
 		
 	}
 

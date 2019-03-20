@@ -11,7 +11,7 @@ class QuestaoController extends Controller
 {
 	public function adicionar(Request $request){
 		
-		// Esse código serve para salvar as imagens na pasta public/uploads, porem
+		// Esse código serve para salvar as imagens na pasta public/uploads, porém
 		// a imagem vai pra questão mesmo sem salvar no server. Vou deixar comentado,
 		// para caso de algum erro com isso.
 
@@ -66,8 +66,11 @@ class QuestaoController extends Controller
 
 	public function cadastrar(){
 
+		$curso_id = \Auth::user()->curso_id;
+        $nome_curso = \SimuladoENADE\Curso::find($curso_id)->curso_nome;
+
 		$disciplinas = \SimuladoENADE\Disciplina::where('curso_id', '=', \Auth::user()->curso_id)->get(); 
-		return view('/QuestaoView/cadastrarQuestao', ['disciplinas' => $disciplinas]); 
+		return view('/QuestaoView/cadastrarQuestao', ['disciplinas' => $disciplinas, 'nome_curso' => $nome_curso]); 
 		
 	}
 	

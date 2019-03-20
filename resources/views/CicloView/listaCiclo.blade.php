@@ -7,7 +7,6 @@
 		<table class="table table-hover">
 	 		<thead>
 				<tr>
-					<th>Id do ciclo</th>
 					<th>Tipo do ciclo</th>
 					<th>Funções</th>
 				</tr>
@@ -15,7 +14,6 @@
 			<tbody>
 				@foreach ($ciclos as $ciclo)
 					<tr>
-						<td>{{$ciclo->id}}</td>
 						<td>{{$ciclo->tipo_ciclo}}</td>
 						<td>
 							<a href="{{route('edit_ciclo', ['id' => $ciclo->id])}}">Editar</a> -

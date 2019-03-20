@@ -37,10 +37,13 @@ class SimuladoController extends Controller{
 
 	public function cadastrar(){
 
+		$curso_id = \Auth::user()->curso_id;
+		$nome_curso = \SimuladoENADE\Curso::find($curso_id)->curso_nome;
+
 		$cursos = \SimuladoENADE\Curso::all();
 		$usuarios = \SimuladoENADE\Usuario::all();
 		$disciplinas = \SimuladoENADE\Disciplina::all();
-		return view('/SimuladoView/cadastrarSimulado', ['cursos' => $cursos, 'usuarios' => $usuarios, 'disciplinas' => $disciplinas]);
+		return view('/SimuladoView/cadastrarSimulado', ['cursos' => $cursos, 'usuarios' => $usuarios, 'disciplinas' => $disciplinas, 'nome_curso' => $nome_curso]);
 
 	}
 

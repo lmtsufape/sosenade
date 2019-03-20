@@ -61,7 +61,6 @@
 
 			<thead>
 				<tr>
-					<th>Cód. Questão</th>
 					<th>Enunciado</th>
 					<th>Nível</th>
 					<th>Disciplina</th>
@@ -72,7 +71,6 @@
 				@if($questaos)
 					@foreach($questaos as $qst)
 						<tr>
-							<td>{{$qst->id}}</td>
 							<td>{{  preg_replace('/<[^>]*>|[&;]/', '', $qst->enunciado) }}</td>
 							<td>
 								@if($qst->dificuldade == 1)
