@@ -20,12 +20,8 @@ use App\Http\Middleware\AdministradorMiddleware;
 */
 
 Route::middleware('auth')->group(function(){
-	
-	Route::get('/', function () {
-	    
-	    return view('welcome');
 
-	})->name('welcome');
+	Route::get('/','UsuarioController@welcome')->name('welcome');
 
 	Route::get('/listar/simulado', 'SimuladoController@listar')->name('list_simulado');
 		
@@ -116,11 +112,7 @@ Route::middleware('auth')->group(function(){
 
 Route::middleware('aluno.auth')->group(function(){
 
-	Route::get('/alunohome', function () {
-
-	    return view('welcome');
-
-	})->name('welcome_aluno');
+	Route::get('/alunohome','AlunoController@welcome')->name('welcome_aluno');
 
 	Route::get('/listaSimuladoAluno/simulado', 'SimuladoController@listaSimuladoAluno')->name('list_simulado_aluno');
 	Route::get('/listaSimuladoAluno/simuladoFeitos', 'SimuladoController@listaSimuladoAlunoFeitos')->name('list_simulado_feitos');
