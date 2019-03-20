@@ -13,13 +13,23 @@ use SimuladoENADE\Validator\UsuarioValidator;
 use SimuladoENADE\Validator\ValidationException;
 
 
-class Usuariocontroller extends Controller
-{
+class Usuariocontroller extends Controller{
+
+	public function welcome(){
+		
+		$user =  \Auth::user();
+		$curso = \SimuladoENADE\Curso::find($user->curso_id);
+		$unidade = \SimuladoENADE\UnidadeAcademica::find($curso->unidade_id)->nome;
+		$tipo_usuario = \SimuladoENADE\Tipousuario::find($user->tipousuario_id)->tipo;
+
+		return view('welcome', ['nome' => $user->nome, 'curso' => $curso->curso_nome, 'unidade' => $unidade, 'tipo' => $tipo_usuario]);
+
+	}
+
 	public function adicionar(Request $request){
 
 		try{
 			
-
 			$user =  \Auth::user()->tipousuario_id;
 
 			if($user == 4){ // adm

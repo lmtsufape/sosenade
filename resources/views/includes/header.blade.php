@@ -125,12 +125,13 @@
 
 	<li class="nav-item dropdown" style="list-style-type: none">
 		<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			@if (Auth::guard('aluno')->user())
-				{{Auth::guard('aluno')->user()->name}}
-			@elseif (Auth::user())
-				{{Auth::user()->name}}
-			@endif
-			<span class="caret"></span>
+			<span class="caret">
+				@if (Auth::guard('aluno')->user())
+					{{Auth::guard('aluno')->user()->nome}}
+				@elseif (Auth::user())
+					{{Auth::user()->nome}}
+				@endif
+			</span>
 		</a>
 		<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 			<a class="dropdown-item" href="{{ route('logout') }}"

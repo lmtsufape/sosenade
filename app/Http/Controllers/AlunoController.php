@@ -9,6 +9,16 @@ use SimuladoENADE\Validator\ValidationException;
 
 class AlunoController extends Controller{
 
+	public function welcome(){
+		
+		$user =  \Auth::guard('aluno')->user();
+		$curso = \SimuladoENADE\Curso::find($user->curso_id);
+		$unidade = \SimuladoENADE\UnidadeAcademica::find($curso->unidade_id)->nome;
+
+		return view('welcome', ['nome' => $user->nome, 'curso' => $curso->curso_nome, 'unidade' => $unidade, 'tipo' => 'Aluno']);
+
+	}
+
 	public function adicionar(Request $request){
 		try {
 

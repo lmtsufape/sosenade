@@ -12,7 +12,7 @@ class AlunoSeeder extends Seeder
     public function run()
     {
         //for($i = 1; $i < 5; $i++){
-    		DB::table('alunos')->insert(['nome' => "", 'cpf' =>"", 'password' => \Hash::make('123456'), 'email' =>  "".'@'.str_random(5).'.com', 'curso_id' => 1]);
+    		DB::table('alunos')->insert(['nome' => "Aluno", 'cpf' =>"12345678911", 'password' => \Hash::make('12345678'), 'email' =>  "Aluno@gmail.com", 'curso_id' => 1]);
     	//}
     }
 }
