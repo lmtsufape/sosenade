@@ -98,16 +98,6 @@
 						<a class="dropdown-item" href="{{route('list_qst')}}">Listar</a>
 					</div>
 				</li>
-
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Simulados
-					</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="{{route('new_simulado')}}">Cadastrar</a>
-						<a class="dropdown-item" href="{{route('list_simulado')}}">Listar</a>
-					</div>
-				</li>
 			@endcan
 
 			@if(Auth::guard('aluno')->check())
