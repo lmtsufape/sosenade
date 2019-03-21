@@ -7,7 +7,12 @@
 		<h2 class="text-center">{{$nome_curso}}</h2><br>
 
 
-		<input type="text" id="myInput" onkeyup="myFunction()">
+	<div class="form-group justify-content-center row">
+ 		<img style="width: 3%" src="{{ asset('search3.png')}}" alt=""/>
+  		<input type="text" id="myInput" placeholder="Buscar disciplina" onkeyup="myFunction()" />
+	</div>
+
+		
 		<table class="table table-hover" id="myTable">
 	 		<thead>
 				<tr class="header">
