@@ -20,6 +20,8 @@ class CreateSimuladosTable extends Migration
             $table->integer('usuario_id')->unsigned()->nullable();
             $table->foreign('curso_id')->references('id')->on('cursos')->onDelete('set null');
             $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('set null');
+            $table->date('data_inicio_simulado');
+            $table->date('data_fim_simulado');
             ##Saber quando se foi realizado o simulado
             $table->timestamps();
         });

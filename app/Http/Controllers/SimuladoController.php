@@ -26,6 +26,7 @@ class SimuladoController extends Controller{
 			$simulado->fill($request->all());
 			$simulado->curso_id = $curso_id;
 			$simulado->usuario_id = $user_id;
+			#$sim
 			$simulado->save();
 			return redirect("/montarSimulado/".$simulado->id);
 		
