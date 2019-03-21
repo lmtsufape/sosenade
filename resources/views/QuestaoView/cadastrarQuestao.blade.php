@@ -7,6 +7,34 @@
 		<h1 class="text-center"> Cadastrar Nova Questão </h1>
 		<h2 class="text-center">{{$nome_curso}}</h2><br>	
 
+		<div class="grid">
+			<div class="row justify-content-center">
+				
+				<div class="col-md-4 text-center">
+					<select name="disciplina_id" class="form-control{{ $errors->has('disciplina_id') ? ' is-invalid' : '' }}" required autofocus>	
+						<option selected hidden value="">Selecione a disciplina</option>
+						@foreach ($disciplinas as $disciplina)
+							<option value="{{$disciplina->id}}" {{old('disciplina') == $disciplina->id ? 'selected' : '' }}	>{{$disciplina->nome}} </option>
+						@endforeach
+					</select>
+					@if ($errors->has('disciplina_id'))
+						<span class = "invalid-feedback" role="alert">
+							{{$errors->first('disciplina_id')}}
+						</span>
+					@endif
+				</div>
+				
+				<div class="col-md-4 text-center">
+					<select name="dificuldade" class="form-control{{ $errors->has('disciplina_id') ? ' is-invalid' : '' }}" required autofocus>
+						<option selected hidden value="">Selecione o nível</option>
+						<option value="1">Fácil</option>
+						<option value="2">Médio</option>
+						<option value="3">Dificil</option>
+					</select>
+				</div>
+
+			</div>
+
 		<div class="col-xs-12 col-sm-12 col-md-12 justify-content-center">
 			<div class="form-group">
 				<strong>Enunciado:</strong>
@@ -70,33 +98,7 @@
 
 		<br>
 
-		<div class="grid">
-			<div class="row justify-content-center">
-				
-				<div class="col-md-4 text-center">
-					<select name="disciplina_id" class="form-control{{ $errors->has('disciplina_id') ? ' is-invalid' : '' }}" required autofocus>	
-						<option selected hidden value="">Selecione a disciplina</option>
-						@foreach ($disciplinas as $disciplina)
-							<option value="{{$disciplina->id}}" {{old('disciplina') == $disciplina->id ? 'selected' : '' }}	>{{$disciplina->nome}} </option>
-						@endforeach
-					</select>
-					@if ($errors->has('disciplina_id'))
-						<span class = "invalid-feedback" role="alert">
-							{{$errors->first('disciplina_id')}}
-						</span>
-					@endif
-				</div>
-				
-				<div class="col-md-4 text-center">
-					<select name="dificuldade" class="form-control{{ $errors->has('disciplina_id') ? ' is-invalid' : '' }}" required autofocus>
-						<option selected hidden value="">Selecione o nível</option>
-						<option value="1">Fácil</option>
-						<option value="2">Médio</option>
-						<option value="3">Dificil</option>
-					</select>
-				</div>
-
-			</div>
+		
 
 			<br>
 
