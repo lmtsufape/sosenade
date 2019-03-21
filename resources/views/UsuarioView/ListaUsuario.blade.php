@@ -32,6 +32,10 @@
 			</tbody>
 		</table>
 
+		<div class="form-group justify-content-center row">
+			{{$usuarios->links()}}
+		</div>
+
 		<div class="col-md-12 text-center">
 			<br><a class="btn btn-primary " href="{{route('new_usuario')}}"> Inserir novo </a><br>
 		</div>

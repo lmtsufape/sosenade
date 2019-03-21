@@ -6,13 +6,11 @@
 		<h1 class="text-center">Questões Cadastradas</h1>
 		<h2 class="text-center">{{$nome_curso}}</h2><br>
 
+		<div class="form-group justify-content-center row">
+	 		<img style="width: 3%" src="{{ asset('search3.png')}}" alt=""/>
+	  		<input type="text" id="myInput" placeholder="Buscar disciplina" onkeyup="myFunction()" />
+		</div>
 
-	<div class="form-group justify-content-center row">
- 		<img style="width: 3%" src="{{ asset('search3.png')}}" alt=""/>
-  		<input type="text" id="myInput" placeholder="Buscar disciplina" onkeyup="myFunction()" />
-	</div>
-
-		
 		<table class="table table-hover" id="myTable">
 	 		<thead>
 				<tr class="header">
@@ -33,6 +31,10 @@
 				@endforeach
 			</tbody>
 		</table>
+
+		<div class="form-group justify-content-center row">
+			{{$questaos->links()}}
+		</div>
 
 		<div class="col-md-12 text-center">
 			<br><a class="btn btn-primary" href="{{route('new_qst')}}"> Inserir nova questão </a><br>

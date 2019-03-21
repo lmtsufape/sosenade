@@ -51,7 +51,7 @@ class AlunoController extends Controller{
 
 		$curso_user = \Auth::user()->curso_id; // curso_id do consultante
 		$nome_curso = \SimuladoENADE\Curso::find($curso_user)->curso_nome;
-        $alunos = \SimuladoENADE\Aluno::where('curso_id', '=', $curso_user)->orderBy('nome')->get();
+        $alunos = \SimuladoENADE\Aluno::where('curso_id', '=', $curso_user)->orderBy('nome')->paginate(10);
 
 		return view('/AlunoView/listaAluno',['alunos'=> $alunos, 'nome_curso' => $nome_curso]);
 
