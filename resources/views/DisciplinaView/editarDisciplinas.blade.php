@@ -5,7 +5,14 @@
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
 		<input type = "hidden" name="id" value="{{$disciplina->id}}">
 
-		<h1 class="text-center"> Editar disciplina </h1><br><br>	
+		<h1 class="text-center"> Editar disciplina </h1>
+		<h2 class="text-center">
+			@if (Auth::guard('aluno')->user())
+				{{Auth::guard('aluno')->user()->curso->curso_nome}}
+			@elseif (Auth::user())
+				{{Auth::user()->curso->curso_nome}}
+			@endif
+		</h2><br>
 
 	  <div class="form-row ">
 	    <div class="form-group col-md-6">

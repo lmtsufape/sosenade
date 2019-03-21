@@ -40,18 +40,14 @@ class QuestaoController extends Controller
 
 	public function cadastrar(){
 
-		$curso_id = \Auth::user()->curso_id;
-        $nome_curso = \SimuladoENADE\Curso::find($curso_id)->curso_nome;
-
 		$disciplinas = \SimuladoENADE\Disciplina::where('curso_id', '=', \Auth::user()->curso_id)->get(); 
-		return view('/QuestaoView/cadastrarQuestao', ['disciplinas' => $disciplinas, 'nome_curso' => $nome_curso]); 
+		return view('/QuestaoView/cadastrarQuestao', ['disciplinas' => $disciplinas]); 
 		
 	}
 	
 	public function listar(){
 
 		$curso_id = \Auth::user()->curso_id;
-		$nome_curso = \SimuladoENADE\Curso::find($curso_id)->curso_nome;
 
 		$questaos =\SimuladoENADE\Questao::select('*', \DB::raw('questaos.id as qtsid'))
 			->join('disciplinas', 'questaos.disciplina_id', '=', 'disciplinas.id')
@@ -59,7 +55,7 @@ class QuestaoController extends Controller
 			->orderBy('nome')
 			->paginate(10);
 
-		return view('/QuestaoView/listaQuestao', ['questaos' => $questaos, 'nome_curso' => $nome_curso]);
+		return view('/QuestaoView/listaQuestao', ['questaos' => $questaos]);
 
 	}
 

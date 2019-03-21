@@ -5,7 +5,14 @@
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
 		<input type="hidden" name="id" value="{{$simulado->id}}">
 
-		<h1 class="text-center"> Editar simulado </h1><br><br>	
+		<h1 class="text-center"> Editar simulado </h1>
+		<h2 class="text-center">
+			@if (Auth::guard('aluno')->user())
+				{{Auth::guard('aluno')->user()->curso->curso_nome}}
+			@elseif (Auth::user())
+				{{Auth::user()->curso->curso_nome}}
+			@endif
+		</h2><br>
 
 		<div class="form-row ">
 	    	<div class="form-group col-md-6">
@@ -31,24 +38,12 @@
 		    			{{$errors->first('curso_id')}}
 		    		</span>
 	    		@endif
-	    	</div>
-
-	    	<div class="form-group col-md-4">
-		      	<label for="usuario_id">Usuários</label>
-		      	<select class="form-control{{ $errors->has('usuario_id') ? ' is-invalid' : '' }}" name="usuario_id" required autofocus>
-					@foreach($usuarios as $usuario)
-					<option value="{{$usuario->id}}" {{$simulado->usuario_id == $usuario->id ? 'selected' : '' }}  >{{$usuario->nome}}</option>
-					@endforeach
-				</select>
-				@if ($errors->has('usuario_id'))
-		    		<span class = "invalid-feedback" role="alert">
-		    			{{$errors->first('usuario_id')}}
-		    		</span>
-		    	@endif
-	    	</div>
+	    	</div>	
 	   	</div>
-	  <button type="submit" name="editar" class="btn btn-primary float-right">Editar</button><br><br>
-	</form>
 
+		<div class="row justify-content-center">
+			<button type="submit" name="editar" class="btn btn-primary float-right">Editar</button><br><br>
+		</div>
+	</form>
 
 @stop

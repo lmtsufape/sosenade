@@ -30,11 +30,8 @@ class DisciplinaController extends Controller
 
     public function cadastrar() {
 
-        $curso_id = \Auth::user()->curso_id;
-        $nome_curso = \SimuladoENADE\Curso::find($curso_id)->curso_nome;
-
     	$cursos = \SimuladoENADE\Curso::all();
-    	return view('/DisciplinaView/cadastrarDisciplinas', ['cursos' => $cursos, 'nome_curso' => $nome_curso]);
+    	return view('/DisciplinaView/cadastrarDisciplinas', ['cursos' => $cursos]);
         
     }
     	
@@ -42,10 +39,9 @@ class DisciplinaController extends Controller
  	public function listar(){
 
         $curso_user = \Auth::user()->curso_id;
-		$nome_curso = \SimuladoENADE\Curso::find($curso_user)->curso_nome;
         $disciplinas = \SimuladoENADE\Disciplina::where('curso_id', '=', $curso_user)->orderBy('nome')->get();
 
-		return view('/DisciplinaView/listaDisciplinas', ['disciplinas' => $disciplinas, 'nome_curso' => $nome_curso]);
+		return view('/DisciplinaView/listaDisciplinas', ['disciplinas' => $disciplinas]);
 
  	}   
  	

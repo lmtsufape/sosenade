@@ -3,7 +3,14 @@
 
 	<form action = "{{route('add_qst_simulado')}}" method = "post" class="shadow p-3 mb-5 bg-white rounded">
 		
-		<h1 class="text-center">Montar Simulado</h1><br>
+		<h1 class="text-center">Montar Simulado</h1>
+		<h2 class="text-center">
+			@if (Auth::guard('aluno')->user())
+				{{Auth::guard('aluno')->user()->curso->curso_nome}}
+			@elseif (Auth::user())
+				{{Auth::user()->curso->curso_nome}}
+			@endif
+		</h2><br>
 
 		@if ($errors->any())
 			<div class="alert alert-danger">

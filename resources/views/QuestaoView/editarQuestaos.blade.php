@@ -5,9 +5,45 @@
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
 		<input type="hidden" name="id" value="{{$questao->id}}">
 
-		<h1 class="text-center"> Editar Questão </h1><br>
+		<h1 class="text-center"> Editar Questão </h1>
+		<h2 class="text-center">
+			@if (Auth::guard('aluno')->user())
+				{{Auth::guard('aluno')->user()->curso->curso_nome}}
+			@elseif (Auth::user())
+				{{Auth::user()->curso->curso_nome}}
+			@endif
+		</h2><br>
 
-	   <div class="col-xs-12 col-sm-12 col-md-12">
+		<div class="row justify-content-center">
+
+			<div class="col-md-4 text-center">
+				<label for="dificuldade">Disciplina</label>
+				<select name="disciplina_id" class="form-control{{ $errors->has('disciplina_id') ? ' is-invalid' : '' }}" required autofocus>	
+					@foreach ($disciplinas as $disciplina)
+						<option value="{{$disciplina->id}}" {{ $questao->disciplina_id == $disciplina->id ? 'selected' : '' }}	>{{$disciplina->nome}} </option>
+					@endforeach
+				</select>
+				@if ($errors->has('disciplina_id'))
+					<span class = "invalid-feedback" role="alert">
+						{{$errors->first('disciplina_id')}}
+					</span>
+				@endif
+			</div>
+
+			<div class="col-md-4 text-center">
+				<label for="dificuldade">Dificuldade</label>
+				<select name="dificuldade" class="form-control{{ $errors->has('dificuldade') ? ' is-invalid' : '' }}" required autofocus>
+					<option value="1" {{ $questao->dificuldade == 1 ? 'selected' : '' }} >Fácil</option>
+					<option value="2" {{ $questao->dificuldade == 2 ? 'selected' : '' }} >Médio</option>
+					<option value="3" {{ $questao->dificuldade == 3 ? 'selected' : '' }} >Difícil</option>
+				</select>
+			</div>
+
+		</div>
+
+		<br>
+
+		<div class="col-xs-12 col-sm-12 col-md-12">
 			<div class="form-group">
 				<strong>Enunciado:</strong>
 				<textarea class="form-control summernote" name="enunciado" id="enunciado">{{$questao->enunciado}}</textarea>
@@ -78,41 +114,15 @@
 			</tr>
 		</table>
 
-		<br>
-
 		<div class="grid">
-			<div class="row justify-content-center">
-
-				<div class="col-md-4 text-center">
-					<label for="dificuldade">Disciplina</label>
-					<select name="disciplina_id" class="form-control{{ $errors->has('disciplina_id') ? ' is-invalid' : '' }}" required autofocus>	
-						@foreach ($disciplinas as $disciplina)
-							<option value="{{$disciplina->id}}" {{ $questao->disciplina_id == $disciplina->id ? 'selected' : '' }}	>{{$disciplina->nome}} </option>
-						@endforeach
-					</select>
-					@if ($errors->has('disciplina_id'))
-						<span class = "invalid-feedback" role="alert">
-							{{$errors->first('disciplina_id')}}
-						</span>
-					@endif
-				</div>
-
-				<div class="col-md-4 text-center">
-					<label for="dificuldade">Dificuldade</label>
-					<select name="dificuldade" class="form-control{{ $errors->has('dificuldade') ? ' is-invalid' : '' }}" required autofocus>
-						<option value="1" {{ $questao->dificuldade == 1 ? 'selected' : '' }} >Fácil</option>
-						<option value="2" {{ $questao->dificuldade == 2 ? 'selected' : '' }} >Médio</option>
-						<option value="3" {{ $questao->dificuldade == 3 ? 'selected' : '' }} >Difícil</option>
-					</select>
-				</div>
-
-			</div>
 
 			<br>
 
 			<div class="row justify-content-center">
 				<button type="submit" name="editar" class="btn btn-primary center-block col-md-1">Editar</button>
 			</div>
+
+			<br>
 
 		</div>
 	</form>
