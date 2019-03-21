@@ -10,32 +10,6 @@ use SimuladoENADE\Validator\ValidationException;
 class QuestaoController extends Controller
 {
 	public function adicionar(Request $request){
-		
-		// Esse código serve para salvar as imagens na pasta public/uploads, porém
-		// a imagem vai pra questão mesmo sem salvar no server. Vou deixar comentado,
-		// para caso de algum erro com isso.
-
-		// $this->validate($request, [
-		//     'enunciado' => 'required',
-		// ]);
-
-		// $enunciado = $request->input('enunciado');
-		// $dom = new \DomDocument();
-		// $dom->loadHtml($enunciado, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);    
-		// $images = $dom->getElementsByTagName('img');
-
-		// foreach($images as $k => $img){
-		//     $data = $img->getAttribute('src');
-		//     list($type, $data) = explode(';', $data);
-		//     list(, $data)      = explode(',', $data);
-		//     $data = base64_decode($data);
-		//     $image_name= "/upload/" . time().$k.'.png';
-		//     $path = public_path() . $image_name;
-		//     file_put_contents($path, $data);
-		//     $img->removeAttribute('src');
-		//     $img->setAttribute('src', $image_name);
-		// }
-		// $enunciado = $dom->saveHTML();
 
 		try{
 			QuestaoValidator::Validate($request->all()); 
@@ -50,10 +24,9 @@ class QuestaoController extends Controller
 
 			$questao->alternativa_a = $alternativas[0];
 			$questao->alternativa_b = $alternativas[1];
-
-			$questao->alternativa_c = $alternativas[2] ?? "";
-			$questao->alternativa_d = $alternativas[3] ?? "";
-			$questao->alternativa_e = $alternativas[4] ?? "";
+			$questao->alternativa_c = $alternativas[2];
+			$questao->alternativa_d = $alternativas[3];
+			$questao->alternativa_e = $alternativas[4];
 
 			$questao->save();
 
@@ -62,6 +35,7 @@ class QuestaoController extends Controller
 		} catch(ValidationException $ex){
 			return redirect("cadastrar/questao")->withErrors($ex->getValidator())->withInput();
 		}
+
 	}
 
 	public function cadastrar(){
@@ -76,8 +50,6 @@ class QuestaoController extends Controller
 	
 	public function listar(){
 
-
-
 		$curso_id = \Auth::user()->curso_id;
 		$nome_curso = \SimuladoENADE\Curso::find($curso_id)->curso_nome;
 
@@ -85,16 +57,19 @@ class QuestaoController extends Controller
 			->join('disciplinas', 'questaos.disciplina_id', '=', 'disciplinas.id')
 			->where('curso_id', '=', \Auth::user()->curso_id)
 			->orderBy('nome')
-			->get();
+			->paginate(10);
 
 		return view('/QuestaoView/listaQuestao', ['questaos' => $questaos, 'nome_curso' => $nome_curso]);
+
 	}
 
 	public function editar(Request $request){
+
 		$questao = \SimuladoENADE\Questao::find($request->id);
 		$disciplinas = \SimuladoENADE\Disciplina::where('curso_id', '=', \Auth::user()->curso_id)->get();
 
 		return view('/QuestaoView/editarQuestaos', ['questao' => $questao], ['disciplinas'=>$disciplinas]);
+
 	}
 
 	public function atualizar(Request $request){
