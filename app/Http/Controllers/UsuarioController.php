@@ -89,11 +89,8 @@ class Usuariocontroller extends Controller{
 		if($user == 4)
 			return view('/UsuarioView/cadastrarUsuario',['cursos' => $cursos, 'tipos_usuario' => $tipos_usuario]);
 		elseif($user == 2){
-			
-			$curso_id = \Auth::user()->curso_id;
-        	$nome_curso = \SimuladoENADE\Curso::find($curso_id)->curso_nome;
 
-			return view('/UsuarioView/cadastrarProfessor',['cursos' => $cursos, 'tipos_usuario' => $tipos_usuario, 'nome_curso' => $nome_curso]);
+			return view('/UsuarioView/cadastrarProfessor',['cursos' => $cursos, 'tipos_usuario' => $tipos_usuario]);
 		
 		}
 		
@@ -126,10 +123,8 @@ class Usuariocontroller extends Controller{
         		->where('tipousuario_id','=',3) // apenas professores
         		->orderBy('nome')
         		->paginate(10);
-        		
-			$nome_curso = \SimuladoENADE\Curso::find($curso_id)->curso_nome;
 
-			return view('/UsuarioView/ListaProfessor',['usuarios' => $usuarios, 'nome_curso' => $nome_curso]); 
+			return view('/UsuarioView/ListaProfessor',['usuarios' => $usuarios]); 
 			
 		}
 

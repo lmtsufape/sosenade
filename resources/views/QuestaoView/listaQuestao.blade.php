@@ -4,7 +4,13 @@
     <div class="shadow p-4 mb-5 bg-white rounded container-fluid" style="overflow-x: auto;">
     
 		<h1 class="text-center">Questões Cadastradas</h1>
-		<h2 class="text-center">{{$nome_curso}}</h2><br>
+		<h2 class="text-center">
+			@if (Auth::guard('aluno')->user())
+				{{Auth::guard('aluno')->user()->curso->curso_nome}}
+			@elseif (Auth::user())
+				{{Auth::user()->curso->curso_nome}}
+			@endif
+		</h2><br>
 
 		<div class="form-group justify-content-center row">
 	 		<img style="width: 3%" src="{{ asset('search3.png')}}" alt=""/>

@@ -37,20 +37,16 @@ class SimuladoController extends Controller{
 
 	public function cadastrar(){
 
-		$curso_id = \Auth::user()->curso_id;
-		$nome_curso = \SimuladoENADE\Curso::find($curso_id)->curso_nome;
-
 		$cursos = \SimuladoENADE\Curso::all();
 		$usuarios = \SimuladoENADE\Usuario::all();
 		$disciplinas = \SimuladoENADE\Disciplina::all();
-		return view('/SimuladoView/cadastrarSimulado', ['cursos' => $cursos, 'usuarios' => $usuarios, 'disciplinas' => $disciplinas, 'nome_curso' => $nome_curso]);
+		return view('/SimuladoView/cadastrarSimulado', ['cursos' => $cursos, 'usuarios' => $usuarios, 'disciplinas' => $disciplinas]);
 
 	}
 
 	public function listar(){
 		
 		$curso_id = \Auth::user()->curso_id;
-		$nome_curso = \SimuladoENADE\Curso::find($curso_id)->curso_nome;
 
 		$simulados =\SimuladoENADE\Simulado::select('*', \DB::raw('simulados.id as sim_id'))
 			->join('usuarios', 'simulados.usuario_id', '=', 'usuarios.id')
@@ -58,7 +54,7 @@ class SimuladoController extends Controller{
 			->orderBy('descricao_simulado')
 			->get();
 
-		return view('/SimuladoView/listaSimulado', ['simulados' => $simulados, 'nome_curso' => $nome_curso]);
+		return view('/SimuladoView/listaSimulado', ['simulados' => $simulados]);
 
 	}
 

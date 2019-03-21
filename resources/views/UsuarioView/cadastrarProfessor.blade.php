@@ -4,7 +4,13 @@
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
 		
 		<h1 class="text-center"> Cadastrar Professor </h1>
-		<h2 class="text-center">{{$nome_curso}}</h2><br>
+		<h2 class="text-center">
+			@if (Auth::guard('aluno')->user())
+				{{Auth::guard('aluno')->user()->curso->curso_nome}}
+			@elseif (Auth::user())
+				{{Auth::user()->curso->curso_nome}}
+			@endif
+		</h2><br>
 		
 		<div class="form-group justify-content-center row">
 			<div class="form-group col-md-8">

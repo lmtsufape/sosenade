@@ -6,7 +6,14 @@
 		<input type="hidden" name="id" value="{{$aluno->id}}">
 		<input type="hidden" name="password" value="{{$aluno->password}}">
 
-		<h1 class="text-center"> Editar Aluno </h1><br>
+		<h1 class="text-center"> Editar Aluno </h1>
+		<h2 class="text-center">
+			@if (Auth::guard('aluno')->user())
+				{{Auth::guard('aluno')->user()->curso->curso_nome}}
+			@elseif (Auth::user())
+				{{Auth::user()->curso->curso_nome}}
+			@endif
+		</h2><br>
 
 		<div class="form-group justify-content-center row">
 			<div class="form-group col-md-8">
