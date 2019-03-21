@@ -5,7 +5,8 @@
     
 		<h1 class="text-center">Questões Cadastradas</h1>
 		<h2 class="text-center">{{$nome_curso}}</h2><br>
-		
+
+
 		<input type="text" id="myInput" onkeyup="myFunction()">
 		<table class="table table-hover" id="myTable">
 	 		<thead>
