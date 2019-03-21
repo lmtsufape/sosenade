@@ -117,9 +117,9 @@
 		<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<span class="caret">
 				@if (Auth::guard('aluno')->user())
-					{{Auth::guard('aluno')->user()->nome}}
+					{{Auth::guard('aluno')->user()->nome}} (Aluno) - {{Auth::guard('aluno')->user()->curso->curso_nome}}
 				@elseif (Auth::user())
-					{{Auth::user()->nome}}
+					{{Auth::user()->nome}} ({{Auth::user()->tipousuario->tipo}}) - {{Auth::user()->curso->curso_nome}}
 				@endif
 			</span>
 		</a>

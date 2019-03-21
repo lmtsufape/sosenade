@@ -14,8 +14,9 @@ class Usuario extends Authenticatable
     public function tipousuario(){
         return $this->BelongsTo('\SimuladoENADE\Tipousuario');
     }
+    
     public function curso(){
-        return $this->hasOne('\SimuladoENADE\Curso');
+        return $this->hasOne('\SimuladoENADE\Curso', 'id', 'curso_id');
     }
 
     public static $rules = [
