@@ -19,8 +19,8 @@ class Simulado extends Model
 
     public static $rules = [
     	'descricao_simulado' => 'required|min:5',
-//        'usuario_id' => 'required',
-//        'curso_id' => 'required'
+//      'usuario_id' => 'required',
+//      'curso_id' => 'required'
     ];
 
     public static $messages = [
@@ -28,8 +28,6 @@ class Simulado extends Model
     	'descricao_simulado.min' => 'O campo deve ser no minimo 5 letras'
 
     ];
-
-
 
     public function dificuldade() {
             return $this->belongsTo('\SimuladoENADE\Questao', 'dificuldade');    

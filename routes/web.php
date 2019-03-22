@@ -54,6 +54,10 @@ Route::middleware('auth')->group(function(){
 		Route::post('/atualizar/simulado', 'SimuladoController@atualizar')->name('update_simulado');
 		Route::get('/remover/simulado/{id}', 'SimuladoController@remover')->name('delete_simulado');
 
+		Route::get('/montarSimulado/{id}', 'QuestaoSimuladoController@montar')->name('set_simulado');
+		Route::post('/cadastrarQuestaoSimulado/', 'QuestaoSimuladoController@cadastrarQuestao')->name('add_qst_simulado');
+		Route::get('/removerQuestaoSimulado/{sim_qst_id}', 'QuestaoSimuladoController@removerQuestao')->name('remove_qst_simulado');
+
 	});
 
 	Route::group(['middleware' => ['professor.auth' OR 'coordenador.auth']], function() {
@@ -64,10 +68,6 @@ Route::middleware('auth')->group(function(){
 		Route::get('/editar/questao/{id}', 'QuestaoController@editar')->name('edit_qst');
 		Route::post('/atualizar/questao', 'QuestaoController@atualizar')->name('update_qst');
 		Route::get('/remover/questao/{id}', 'QuestaoController@remover')->name('delete_qst');
-
-		Route::get('/montarSimulado/{id}', 'QuestaoSimuladoController@montar')->name('set_simulado');
-		Route::post('/cadastrarQuestaoSimulado/', 'QuestaoSimuladoController@cadastrarQuestao')->name('add_qst_simulado');
-		Route::get('/removerQuestaoSimulado/{sim_qst_id}', 'QuestaoSimuladoController@removerQuestao')->name('remove_qst_simulado');
 
 	});
 

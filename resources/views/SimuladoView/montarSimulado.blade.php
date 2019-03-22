@@ -3,7 +3,7 @@
 
 	<form action = "{{route('add_qst_simulado')}}" method = "post" class="shadow p-3 mb-5 bg-white rounded">
 		
-		<h1 class="text-center">Montar Simulado</h1>
+		<h1 class="text-center">Montar Simulado - {{$titulo_simulado}} </h1>
 		<h2 class="text-center">
 			@if (Auth::guard('aluno')->user())
 				{{Auth::guard('aluno')->user()->curso->curso_nome}}
@@ -51,7 +51,7 @@
 				</div>
 				<div class="form-group col-md-4 parent">
 					<label for="numero">Quantidade de Questões</label>
-					<input type="number" class="form-control"  name="numero" id="numero" placeholder="numero" max="30" required>
+					<input type="number" class="form-control"  name="numero" id="numero" value="1" max="30" required>
 				</div>
 			</div>
 

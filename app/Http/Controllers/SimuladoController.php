@@ -27,7 +27,7 @@ class SimuladoController extends Controller{
 			$simulado->curso_id = $curso_id;
 			$simulado->usuario_id = $user_id;
 			$simulado->save();
-			return redirect("/montarSimulado/".$simulado->id);
+			return redirect()->route('set_simulado', ['id' => $simulado->id]);
 		
 		} catch(ValidationException $ex){
 			return redirect("cadastrar/simulado")->withErrors($ex->getValidator())->withInput();
