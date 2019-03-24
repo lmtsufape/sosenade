@@ -23,8 +23,8 @@ class QuestaoSimuladoController extends Controller{
             ->where('simulado_id', '=', $request->id)
             ->get();
 
-        return view('/SimuladoView/montarSimulado', ['disciplinas' => $disciplinas, 'questaos' => $questaos, 'simulado_id'=> $request->id, 'titulo_simulado' => $simulado->descricao_simulado]);     
-     
+        return view('/SimuladoView/montarSimulado', ['disciplinas' => $disciplinas, 'questaos' => $questaos, 'simulado_id'=> $request->id, 'titulo_simulado' => $simulado->descricao_simulado]);
+        
     }
 
     // Relaciona questões (seguindo o filtro) ao simulado

@@ -17,7 +17,7 @@
 					<th>Nome</th>
 					<th>CPF</th>
 					<th>E-mail</th>
-					<th>Funções</th>
+					<th style="width: 10%">Opções</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -26,8 +26,9 @@
 						<td>{{$aluno->nome}}</td>
 						<td>{{$aluno->cpf}}</td>
 						<td>{{$aluno->email}}</td>
-						<td> 
-							<a href="{{route('edit_aluno', ['id' => $aluno->id])}}">Editar</a> - <a href="{{route('delete_aluno', ['id' => $aluno->id])}}">Remover</a>
+						<td class="btn-group">
+							<a href="{{route('edit_aluno', ['id' => $aluno->id])}}" class="btn btn-sm btn-primary">Editar</a>
+							<a href="{{route('delete_aluno', ['id' => $aluno->id])}}" class="btn btn-sm btn-danger">Remover</a>
 						</td>
 					</tr>
 				@endforeach

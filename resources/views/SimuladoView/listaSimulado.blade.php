@@ -17,7 +17,8 @@
 				<tr>
 					<th>Descrição</th>
 					<th>Criado por</th>
-					<th style="width: 20%">Funções</th>
+					<th>Status (Nº de Questôes)</th>
+					<th style="width: 20%">Opções</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -26,9 +27,29 @@
 						<td>{{$simulado->descricao_simulado}}</td>
 						<td>{{$simulado->nome}}</td>
 						<td>
-							<a href="{{route('edit_simulado', ['id'=>$simulado->sim_id])}}">Editar</a> -
-							<a href="{{route('delete_simulado', ['id'=>$simulado->sim_id])}}">Remover</a> - 
-							<a href="{{route('set_simulado', ['id'=>$simulado->sim_id])}}">Montar</a>
+							@if($simulado->data_inicio_simulado == null)
+								<span>
+									Não agendado
+								</span>
+							@else
+								<span class="text-success">
+									Agendado ({{$simulado->data_inicio_simulado->format('d/m')}} - {{$simulado->data_fim_simulado->format('d/m')}})
+								</span>
+							@endif
+							@if($simulado->questaos_count == 0)
+								<span class="text-danger">
+									(0)
+								</span>
+							@else
+								<span>
+									({{$simulado->questaos_count}})
+								</span>
+							@endif
+						</td>
+						<td class="btn-group">
+							<a href="{{route('set_simulado', ['id'=>$simulado->sim_id])}}" class="btn btn-sm btn-secondary">Montar</a>
+							<a href="{{route('edit_simulado', ['id'=>$simulado->sim_id])}}" class="btn btn-sm btn-primary">Editar</a>
+							<a href="{{route('delete_simulado', ['id'=>$simulado->sim_id])}}" class="btn btn-sm btn-danger">Remover</a>
 						</td>
 					</tr>
 				@endforeach

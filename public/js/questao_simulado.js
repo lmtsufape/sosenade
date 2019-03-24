@@ -1,5 +1,4 @@
 function live_search_usuarios(dados){
-
   	$(dados).autocomplete({
 	    source: function(request, response){
 	        $.ajax({

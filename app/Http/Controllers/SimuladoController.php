@@ -2,6 +2,7 @@
 
 namespace SimuladoENADE\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use SimuladoENADE\Validator\SimuladoValidator;
 use SimuladoENADE\Validator\MontarSimuladoValidator;
@@ -26,9 +27,13 @@ class SimuladoController extends Controller{
 			$simulado->fill($request->all());
 			$simulado->curso_id = $curso_id;
 			$simulado->usuario_id = $user_id;
-			$simulado->data_inicio_simulado = $request->data_inicio_simulado;
-			$simulado->data_fim_simulado = $request->data_fim_simulado;
-			#$sim
+
+			// Completa as datas seguindo o fomarto de data do BD
+			(empty($request->data_inicio_simulado) ? null : $request['data_inicio_simulado'] .= ' 00:00:00');
+			(empty($request->data_fim_simulado) ? null : $request['data_fim_simulado'] .= ' 00:00:00');
+
+			$simulado->data_inicio_simulado = (empty($request->data_inicio_simulado) ? null : date('Y-m-d H:i:s',strtotime($request->data_inicio_simulado)));
+			$simulado->data_fim_simulado = (empty($request->data_fim_simulado) ? null : date('Y-m-d H:i:s',strtotime($request->data_fim_simulado)));
 			$simulado->save();
 			return redirect()->route('set_simulado', ['id' => $simulado->id]);
 		
@@ -51,12 +56,13 @@ class SimuladoController extends Controller{
 		
 		$curso_id = \Auth::user()->curso_id;
 
-		$simulados =\SimuladoENADE\Simulado::select('*', \DB::raw('simulados.id as sim_id'))
-			->join('usuarios', 'simulados.usuario_id', '=', 'usuarios.id')
+		$simulados = \SimuladoENADE\Simulado::join('usuarios', 'simulados.usuario_id', '=', 'usuarios.id')
 			->where('simulados.curso_id', '=', $curso_id)
 			->orderBy('descricao_simulado')
+            ->select('simulados.id as sim_id', 'usuarios.nome as nome', 'simulados.*')
+            ->withCount('questaos')
 			->get();
-
+		
 		return view('/SimuladoView/listaSimulado', ['simulados' => $simulados]);
 
 	}
@@ -66,7 +72,6 @@ class SimuladoController extends Controller{
 		$simulado= \SimuladoENADE\Simulado::find($request->id);
 		$cursos = \SimuladoENADE\Curso::all();
 		$usuarios = \SimuladoENADE\Usuario::all();
-
 		return view ('/SimuladoView/editarSimulado', ['simulado' => $simulado, 'cursos' => $cursos, 'usuarios' => $usuarios]);
 
 	}
@@ -79,6 +84,14 @@ class SimuladoController extends Controller{
 
 			$simulado = \SimuladoENADE\Simulado::find($request->id);
 			$simulado->fill($request->all());
+
+			// Completa as datas seguindo o fomarto de data do BD
+			(empty($request->data_inicio_simulado) ? null : $request['data_inicio_simulado'] .= ' 00:00:00');
+			(empty($request->data_fim_simulado) ? null : $request['data_fim_simulado'] .= ' 00:00:00');
+
+			$simulado->data_inicio_simulado = (empty($request->data_inicio_simulado) ? null : date('Y-m-d H:i:s',strtotime($request->data_inicio_simulado)));
+			$simulado->data_fim_simulado = (empty($request->data_fim_simulado) ? null : date('Y-m-d H:i:s',strtotime($request->data_fim_simulado)));
+
 			$simulado->update();
 			return redirect("listar/simulado");
 

@@ -15,17 +15,17 @@
 		<table class="table table-hover">
 	 		<thead>
 				<tr>
-					<th style="width: 70%">Nome</th>
-					<th>Funções</th>
+					<th>Nome</th>
+					<th style="width: 10%">Opções</th>
 				</tr>
 			</thead>
 			<tbody>
 				@foreach ($disciplinas as $disciplina)
 					<tr>
 						<td style="">{{$disciplina->nome}}</td>
-						<td> 
-							<a href="{{route('edit_disciplina',['id'=>$disciplina->id])}}">Editar</a> -
-							<a href="{{route('delete_disciplina',['id'=>$disciplina->id])}}">Remover</a>
+						<td class="btn-group"> 
+							<a href="{{route('edit_disciplina',['id'=>$disciplina->id])}}" class="btn btn-sm btn-primary">Editar</a>
+							<a href="{{route('delete_disciplina',['id'=>$disciplina->id])}}" class="btn btn-sm btn-danger">Remover</a>
 						</td>
 					</tr>
 				@endforeach
