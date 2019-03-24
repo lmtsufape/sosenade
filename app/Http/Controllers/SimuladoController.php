@@ -103,47 +103,36 @@ class SimuladoController extends Controller{
 
 	public function listaSimuladoAluno(Request $request){
 		
+		$hoje = Carbon::now();
 		$curso_id = \Auth::guard('aluno')->user()->curso_id;
-		$nome_curso = \SimuladoENADE\Curso::find($curso_id)->curso_nome;
-		$simulados_curso = \SimuladoENADE\Simulado::where('curso_id', '=', $curso_id)->get();
+		$simulados_curso = \SimuladoENADE\Simulado::where('curso_id', '=', $curso_id)
+			->withCount('questaos')
+			->get();
 
 		$simulados_disp = [];
-		foreach ($simulados_curso as $simulado) {
-			$questaos = self::getQuestoes($simulado);
-			if (!empty($questaos))
-				$simulados_disp[] = $simulado;
-		}
-		
-		return view('/SimuladoView/listaSimuladoAluno', ['simulados' => $simulados_disp, 'nome_curso' => $nome_curso]);
-
-	}
-
-	public function listaSimuladoAlunoFeitos(Request $request){
-		
-		$curso_id = \Auth::guard('aluno')->user()->curso_id;
-		$nome_curso = \SimuladoENADE\Curso::find($curso_id)->curso_nome;
-		$simulados_curso = \SimuladoENADE\Simulado::where('curso_id', '=', $curso_id)->get();
-
 		$simulados_feitos = [];
 		foreach ($simulados_curso as $simulado) {
-			$questaos = self::getQuestoes($simulado);
-			if (empty($questaos))
-				$simulados_feitos[] = $simulado;
+			$questaos_nao_respondidas = self::getQuestoes($simulado);
+			if ($simulado->questaos_count != 0 && $simulado->data_inicio_simulado != null && $hoje->between($simulado->data_inicio_simulado, $simulado->data_fim_simulado))
+				if (!empty($questaos_nao_respondidas))
+					$simulados_disp[] = $simulado;
+				else if (empty($questaos_nao_respondidas))
+					$simulados_feitos[] = $simulado;
 		}
 		
-		return view('/SimuladoView/listaSimuladoAlunoFeitos', ['simulados' => $simulados_feitos, 'nome_curso' => $nome_curso]);
+		return view('/SimuladoView/listaSimuladoAluno', ['simulados' => $simulados_disp, 'simulados_feitos' => $simulados_feitos]);
 
 	}
 
 	public function startSimulado(Request $request)	{
 		
 		$simulado = \SimuladoENADE\Simulado::find($request->id);
-		$questaos = self::getQuestoes($simulado);
+		$questaos_nao_respondidas = self::getQuestoes($simulado);
 		
-		if (empty($questaos))
+		if (empty($questaos_nao_respondidas))
 			return redirect('/resultado/simulado/'.$request->id);
 
-	    return view('/SimuladoView/startSimulado', ['simulado'=>$simulado, 'questaos'=>$questaos]);
+	    return view('/SimuladoView/startSimulado', ['simulado'=>$simulado, 'questaos'=>$questaos_nao_respondidas]);
 	}
    
    	// Salva a resposta da questão no BD
