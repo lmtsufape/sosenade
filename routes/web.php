@@ -58,6 +58,19 @@ Route::middleware('auth')->group(function(){
 		Route::post('/cadastrarQuestaoSimulado/', 'QuestaoSimuladoController@cadastrarQuestao')->name('add_qst_simulado');
 		Route::get('/removerQuestaoSimulado/{sim_qst_id}', 'QuestaoSimuladoController@removerQuestao')->name('remove_qst_simulado');
 
+
+
+
+# Teste de leitura de arquivos em laravel, novo branch
+
+		Route::get('/gerar', 'ImportController@getImport')->name('import');
+		Route::post('/import_parse', 'ImportController@parseImport')->name('import_parse');
+		Route::post('/import_process', 'ImportController@processImport')->name('import_process');
+
+
+#########################################
+
+
 	});
 
 	Route::group(['middleware' => ['professor.auth' OR 'coordenador.auth']], function() {

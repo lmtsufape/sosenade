@@ -43,6 +43,8 @@
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="{{route('new_disciplina')}}">Cadastrar</a>
 						<a class="dropdown-item" href="{{route('list_disciplina')}}">Listar</a>
+
+
 					</div>
 				</li>
 
@@ -53,6 +55,7 @@
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="{{route('new_aluno')}}">Cadastrar</a>
 						<a class="dropdown-item" href="{{route('list_aluno')}}">Listar</a>
+						<a class="dropdown-item" href="{{route('import')}}">Importar Alunos</a>
 					</div>
 				</li>
 
