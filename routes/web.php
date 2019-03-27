@@ -8,6 +8,7 @@ use App\Aluno;
 use App\Turma;
 use App\Simulado;
 use App\Http\Middleware\AdministradorMiddleware;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,6 +41,7 @@ Route::middleware('auth')->group(function(){
 		Route::get('/editar/aluno/{id}', 'AlunoController@editar')->name('edit_aluno');
 		Route::post('/atualizar/aluno', 'AlunoController@atualizar')->name('update_aluno');
 		Route::get('/remover/aluno/{id}', 'AlunoController@remover')->name('delete_aluno');
+		Route::post('/importa/aluno/', 'AlunoController@importaArquivo')->name('import_aluno');
 
 		Route::get('/listar/professor', 'UsuarioController@listar')->name('list_professor');
 		Route::get('/cadastrar/professor', 'UsuarioController@cadastrar')->name('new_professor');
@@ -57,19 +59,6 @@ Route::middleware('auth')->group(function(){
 		Route::get('/montarSimulado/{id}', 'QuestaoSimuladoController@montar')->name('set_simulado');
 		Route::post('/cadastrarQuestaoSimulado/', 'QuestaoSimuladoController@cadastrarQuestao')->name('add_qst_simulado');
 		Route::get('/removerQuestaoSimulado/{sim_qst_id}', 'QuestaoSimuladoController@removerQuestao')->name('remove_qst_simulado');
-
-
-
-
-# Teste de leitura de arquivos em laravel, novo branch
-
-		Route::get('/gerar', 'ImportController@getImport')->name('import');
-		Route::post('/import_parse', 'ImportController@parseImport')->name('import_parse');
-		Route::post('/import_process', 'ImportController@processImport')->name('import_process');
-
-
-#########################################
-
 
 	});
 
