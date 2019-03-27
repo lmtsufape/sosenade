@@ -22,7 +22,21 @@
 				<tr class="header">
 					<th>Enunciado</th>
 					<th>Nível</th>
-					<th>Disciplina</th>
+					<th>
+						<div class="dropdown show">
+							Disciplinas
+							<a style="color: inherit;" class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							</a>
+							<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+								<a class="dropdown-item" href="{{route('list_qst')}}">
+									<b>Todas</b>
+								</a>
+								@foreach($disciplinas as $disciplina)
+									<a class="dropdown-item" href="{{route('list_qst_disciplina', ['id'=>$disciplina->id])}}"> {{$disciplina->nome}} </a>
+								@endforeach
+							</div>
+						</div>
+					</th>
 					<th style="width: 10%">Opções</th>
 				</tr>
 			</thead>
