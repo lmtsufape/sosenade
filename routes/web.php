@@ -67,6 +67,7 @@ Route::middleware('auth')->group(function(){
 	Route::group(['middleware' => ['professor.auth' OR 'coordenador.auth']], function() {
 
 		Route::get('/listar/questao', 'QuestaoController@listar')->name('list_qst');
+		Route::get('/listar/questoes/disciplina/{id}', 'QuestaoController@listarQstDisciplina')->name('list_qst_disciplina');
 		Route::get('/cadastrar/questao', 'QuestaoController@cadastrar')->name('new_qst');
 		Route::post('/adicionar/questao', 'QuestaoController@adicionar')->name('add_qst');
 		Route::get('/editar/questao/{id}', 'QuestaoController@editar')->name('edit_qst');
