@@ -55,7 +55,25 @@ class QuestaoController extends Controller
 			->orderBy('nome')
 			->paginate(20);
 
-		return view('/QuestaoView/listaQuestao', ['questaos' => $questaos]);
+		$disciplinas = \SimuladoENADE\Disciplina::where('curso_id', '=', \Auth::user()->curso_id)->get();
+
+		return view('/QuestaoView/listaQuestao', ['questaos' => $questaos, 'disciplinas' => $disciplinas]);
+
+	}
+
+	public function listarQstDisciplina(Request $request){
+
+		$curso_id = \Auth::user()->curso_id;
+
+		$questaos =\SimuladoENADE\Questao::select('*', \DB::raw('questaos.id as qtsid'))
+			->join('disciplinas', 'questaos.disciplina_id', '=', 'disciplinas.id')
+			->where('disciplina_id', '=', $request->id)
+			->orderBy('nome')
+			->paginate(10);
+
+		$disciplinas = \SimuladoENADE\Disciplina::where('curso_id', '=', \Auth::user()->curso_id)->get();
+
+		return view('/QuestaoView/listaQuestao', ['questaos' => $questaos, 'disciplinas' => $disciplinas]);
 
 	}
 
