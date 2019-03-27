@@ -18,6 +18,7 @@
 					<a class="nav-link" id="importar-tab" data-toggle="tab" href="#importar" role="tab" aria-controls="importar" aria-selected="false">Importar de arquivo</a>
 				</li>
 			</ul>
+			<br>
 			<div class="tab-content" id="myTabContent">
 				<div class="tab-pane fade show active" id="cadastrar" role="tabpanel" aria-labelledby="cadastrar-tab">
 					<div class="list-group list-group-flush">
