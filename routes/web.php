@@ -60,6 +60,8 @@ Route::middleware('auth')->group(function(){
 		Route::post('/cadastrarQuestaoSimulado/', 'QuestaoSimuladoController@cadastrarQuestao')->name('add_qst_simulado');
 		Route::get('/removerQuestaoSimulado/{sim_qst_id}', 'QuestaoSimuladoController@removerQuestao')->name('remove_qst_simulado');
 
+		Route::get('/relatorio/QstDis', 'PdfController@questoesPorDisciplina')->name('qst_por_disciplina');
+
 	});
 
 	Route::group(['middleware' => ['professor.auth' OR 'coordenador.auth']], function() {

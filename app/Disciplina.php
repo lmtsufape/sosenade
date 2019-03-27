@@ -11,6 +11,10 @@ class Disciplina extends Model
     	return $this->hasOne('SimuladoENADE\Curso');
     }
     
+    public function questaos(){
+        return $this->hasMany('\SimuladoENADE\Questao', 'disciplina_id', 'id');
+    }
+
     protected $fillable = ['nome', 'curso_id'];
     
     public static $rules = [

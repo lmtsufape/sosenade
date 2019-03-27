@@ -41,6 +41,8 @@
 			</tbody>
 		</table>
 
+		<hr class="star-light">
+		
 		<div class="form-group float-right row mr-1">
 			{{$questaos->links()}}
 		</div>

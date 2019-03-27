@@ -75,6 +75,7 @@
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="{{route('new_qst')}}">Cadastrar</a>
 						<a class="dropdown-item" href="{{route('list_qst')}}">Listar</a>
+						<a class="dropdown-item" href="{{route('qst_por_disciplina')}}">Relatório de Questões</a>
 					</div>
 				</li>
 				

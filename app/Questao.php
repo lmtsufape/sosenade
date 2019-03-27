@@ -13,7 +13,7 @@ class Questao extends Model {
     protected $fillable = ['enunciado',
 						   'alternativa_correta', 
 						   'dificuldade',
-                        'disciplina_id'];
+                           'disciplina_id'];
 
     public static $rules = [
     	'enunciado' => 'required|min:10',
