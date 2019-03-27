@@ -28,8 +28,8 @@
 							<a style="color: inherit;" class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							</a>
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-								<a class="dropdown-item" href="{{route('list_qst')}}">
-									<b>Todas</b>
+								<a class="dropdown-item font-weight-bold" href="{{route('list_qst')}}">
+									Todas
 								</a>
 								@foreach($disciplinas as $disciplina)
 									<a class="dropdown-item" href="{{route('list_qst_disciplina', ['id'=>$disciplina->id])}}"> {{$disciplina->nome}} </a>
@@ -43,7 +43,11 @@
 			<tbody>
 				@foreach($questaos as $questao)
 					<tr>
-						<td>{{preg_replace('/<[^>]*>|[&;]/', '', $questao->enunciado) }}</td>
+						<td>
+							<span class="d-inline-block text-truncate" style="max-width: 450px;">
+								{{preg_replace('/<[^>]*>|[&;]/', '', $questao->enunciado) }}
+							</span>
+						</td>
 						<td>{{$questao->dificuldade}}</td>
 						<td id="disciplina">{{$questao->nome}}</td>
 						<td class="btn-group">
