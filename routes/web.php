@@ -8,6 +8,7 @@ use App\Aluno;
 use App\Turma;
 use App\Simulado;
 use App\Http\Middleware\AdministradorMiddleware;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,6 +41,7 @@ Route::middleware('auth')->group(function(){
 		Route::get('/editar/aluno/{id}', 'AlunoController@editar')->name('edit_aluno');
 		Route::post('/atualizar/aluno', 'AlunoController@atualizar')->name('update_aluno');
 		Route::get('/remover/aluno/{id}', 'AlunoController@remover')->name('delete_aluno');
+		Route::post('/importa/aluno/', 'AlunoController@importaArquivo')->name('import_aluno');
 
 		Route::get('/listar/professor', 'UsuarioController@listar')->name('list_professor');
 		Route::get('/cadastrar/professor', 'UsuarioController@cadastrar')->name('new_professor');
