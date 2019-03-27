@@ -53,7 +53,7 @@ class QuestaoController extends Controller
 			->join('disciplinas', 'questaos.disciplina_id', '=', 'disciplinas.id')
 			->where('curso_id', '=', \Auth::user()->curso_id)
 			->orderBy('nome')
-			->paginate(10);
+			->paginate(20);
 
 		return view('/QuestaoView/listaQuestao', ['questaos' => $questaos]);
 
