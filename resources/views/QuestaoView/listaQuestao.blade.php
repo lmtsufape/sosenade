@@ -14,7 +14,7 @@
 
 		<div class="form-group justify-content-center row">
 	 		<img style="width: 3%" src="{{ asset('search3.png')}}" alt=""/>
-	  		<input type="text" id="termo_busca" placeholder="Buscar disciplina" onkeyup="pesquisa()" />
+	  		<input type="text" id="termo_busca" placeholder="Buscar questão..." onkeyup="pesquisa()" />
 		</div>
 
 		<table class="table table-hover" id="tabela_dados">
@@ -73,7 +73,7 @@
 		    table = document.getElementById("tabela_dados");
 		    tr = table.getElementsByTagName("tr");
 		    for (i = 0; i < tr.length; i++) {
-		        td = tr[i].getElementsByTagName("td")[2];
+		        td = tr[i].getElementsByTagName("td")[0];
 		         if (td) {
 		          if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
 		          tr[i].style.display = "";
