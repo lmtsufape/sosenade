@@ -1,7 +1,7 @@
 @extends('layouts.relatorios')
+@section('titulo','Questões Cadastradas Por Disciplina')
+@section('date',$date)
 @section('content')
-	@section('titulo','Questões Cadastradas Por Disciplina')
-	@section('date',$date)
     <table class="table table-bordered">
  		<thead>
 			<tr>
