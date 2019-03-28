@@ -3,8 +3,7 @@
 	<head>
 		<!-- Os scripts js e arquivos css estão sendo importados no includes.head -->
 	    @include('includes.head')
-
-	    <title></title>
+	    <title>@yield('titulo') | S.O.S Enade</title>
 	</head>
 
 	<body style="background: #EEE">

@@ -19,7 +19,7 @@ class PdfController extends Controller {
 		$date = date('d/m/Y');
 		$view = \View::make($view, compact('disciplinas','date'))->render();
 		$pdf = \App::make('dompdf.wrapper');
-		$pdf->loadHTML($view);
+		$pdf->loadHTML($view)->setPaper('a4', 'landscape');
 
 		$filename = 'QuestoesPorDisciplina_'.$date;
 

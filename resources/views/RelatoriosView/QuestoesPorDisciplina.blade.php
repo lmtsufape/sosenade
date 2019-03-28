@@ -1,24 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="{{ asset('css/relatorios.css') }}" rel="stylesheet">
-    <title>Relatório de Questões</title>
-</head>
-<body>
-    <h1 class="text-center">Questões Cadastradas Por Disciplina</h1>
-	<h2 class="text-center">
-		@if (Auth::guard('aluno')->user())
-			{{Auth::guard('aluno')->user()->curso->curso_nome}}
-		@elseif (Auth::user())
-			{{Auth::user()->curso->curso_nome}}
-		@endif
-		- Emitido em {{$date}}
-	</h2><br>
-
-	<table class="table table-bordered">
+@extends('layouts.relatorios')
+@section('content')
+	@section('titulo','Questões Cadastradas Por Disciplina')
+	@section('date',$date)
+    <table class="table table-bordered">
  		<thead>
 			<tr>
 				<th>Disciplina</th>
@@ -44,6 +28,4 @@
 			@endforeach
 		</tbody>
 	</table>
-
-</body>
-</html>
+@stop
