@@ -117,13 +117,12 @@
 
 	<li class="nav-item dropdown" style="list-style-type: none">
 		<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			<span class="caret">
-				@if (Auth::guard('aluno')->user())
-					{{Auth::guard('aluno')->user()->nome}} (Aluno) - {{Auth::guard('aluno')->user()->curso->curso_nome}}
-				@elseif (Auth::user())
-					{{Auth::user()->nome}} ({{Auth::user()->tipousuario->tipo}}) - {{Auth::user()->curso->curso_nome}}
-				@endif
-			</span>
+			@if (Auth::guard('aluno')->user())
+				{{Auth::guard('aluno')->user()->nome}} (Aluno) - {{Auth::guard('aluno')->user()->curso->curso_nome}}
+			@elseif (Auth::user())
+				{{Auth::user()->nome}} ({{Auth::user()->tipousuario->tipo}}) - {{Auth::user()->curso->curso_nome}}
+			@endif
+			<span class="caret"></span>
 		</a>
 		<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 			<a class="dropdown-item" href="{{ route('logout') }}"
@@ -133,7 +132,7 @@
 					{{ __('Logout') }}
 			</a>
 			<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-					@csrf
+				@csrf
 			</form>
 		</div>
 	</li>

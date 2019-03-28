@@ -46,6 +46,6 @@
 
 	</form>
 
-	<!-- Script do DatePicker no Footer.blade -->
+	<!-- Script do DatePicker no footer.blade -->
 
 @stop
