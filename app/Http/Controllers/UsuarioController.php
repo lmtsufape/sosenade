@@ -15,14 +15,14 @@ use SimuladoENADE\Validator\ValidationException;
 
 class Usuariocontroller extends Controller{
 
-	public function welcome(){
+	public function home(){
 		
 		$user =  \Auth::user();
 		$curso = \SimuladoENADE\Curso::find($user->curso_id);
 		$unidade = \SimuladoENADE\UnidadeAcademica::find($curso->unidade_id)->nome;
 		$tipo_usuario = \SimuladoENADE\Tipousuario::find($user->tipousuario_id)->tipo;
 
-		return view('welcome', ['nome' => $user->nome, 'curso' => $curso->curso_nome, 'unidade' => $unidade, 'tipo' => $tipo_usuario]);
+		return view('home', ['nome' => $user->nome, 'curso' => $curso->curso_nome, 'unidade' => $unidade, 'tipo' => $tipo_usuario]);
 
 	}
 

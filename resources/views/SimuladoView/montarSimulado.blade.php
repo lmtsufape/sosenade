@@ -1,4 +1,5 @@
-@extends('layouts.default')
+@extends('layouts.app')
+@section('titulo','Montar Simulado')
 @section('content')
 
 	<form action = "{{route('add_qst_simulado')}}" method = "post" class="shadow p-3 mb-5 bg-white rounded">

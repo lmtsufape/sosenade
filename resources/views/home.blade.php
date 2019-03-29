@@ -1,24 +1,14 @@
 @extends('layouts.app')
-
+@section('titulo', 'Bem-vindo')
 @section('content')
-echo(aqui)
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+	<div class="shadow p-1 mb-5 bg-white rounded container-fluid text-center">
+		<td align="left" valign="top">
+			<img class="img-fluid mb-5 d-block mx-auto" src="1.png" width="250px">
+			<h2 class="text-uppercase mb-0">Bem Vindo, {{$nome}}</h1>
+			<hr class="star-light">
+			<h3 class="font-weight-light mb-0">{{$curso}} - {{$unidade}}</h2>
+			<h3 class="font-weight-light mb-0">Você está logado como {{$tipo}}.</h2>
+			<br>
+		</td>
+	</div>
+@stop

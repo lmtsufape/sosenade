@@ -22,7 +22,8 @@ use App\Http\Middleware\AdministradorMiddleware;
 
 Route::middleware('auth')->group(function(){
 
-	Route::get('/','UsuarioController@welcome')->name('welcome');
+	Route::get('/','UsuarioController@home')->name('home');
+	Route::get('/home','UsuarioController@home');
 
 	Route::get('/listar/simulado', 'SimuladoController@listar')->name('list_simulado');
 		
@@ -76,18 +77,6 @@ Route::middleware('auth')->group(function(){
 
 	});
 
-	Route::middleware('professor.auth')->group(function(){
-		
-		// Verificar se essas rotas serão mesmo necessarias
-		// Route::get('/listar/questaosimulado','QuestaoSimuladoController@listar')->name('list_qst_simulado');
-		// Route::get('/cadastrar/questaosimulado','QuestaoSimuladoController@cadastrar')->name('new_qst_simulado');
-		// Route::post('/adicionar/questaosimulado','QuestaoSimuladoController@adicionar')->name('add_qst_simulado');
-		// Route::get('/editar/questaosimulado/{id}','QuestaoSimuladoController@editar')->name('edit_qst_simulado');
-		// Route::post('/atualizar/questaosimulado','QuestaoSimuladoController@atualizar')->name('update_qst_simulado');
-		// Route::get('/remover/questaosimulado/{id}','QuestaoSimuladoController@remover')->name('delete_qst_simulado');
-		
-	});
-
 	Route::middleware('adm.auth')->group(function(){
 
 		Route::get('/listar/curso','CursoController@listar')->name('list_curso');
@@ -117,7 +106,7 @@ Route::middleware('auth')->group(function(){
 
 Route::middleware('aluno.auth')->group(function(){
 
-	Route::get('/alunohome','AlunoController@welcome')->name('welcome_aluno');
+	Route::get('/alunohome','AlunoController@home')->name('welcome_aluno');
 
 	Route::get('/listaSimuladoAluno/simulado', 'SimuladoController@listaSimuladoAluno')->name('list_simulado_aluno');
 	Route::get('/listaSimuladoAluno/simuladoFeitos', 'SimuladoController@listaSimuladoAlunoFeitos')->name('list_simulado_feitos');
@@ -132,25 +121,25 @@ Route::middleware('aluno.auth')->group(function(){
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/listar/turma','TurmaController@listar')->name('list_turma');
-Route::get('/cadastrar/turma','TurmaController@cadastrar')->name('new_turma');
-Route::post('/adicionar/turma','TurmaController@adicionar')->name('add_turma');
-Route::get('/editar/turma/{id}','TurmaController@editar')->name('edit_turma');
-Route::post('/atualizar/turma','TurmaController@atualizar')->name('update_turma');
-Route::get('/remover/turma/{id}','TurmaController@remover')->name('delete_turma');
+// Route::get('/listar/turma','TurmaController@listar')->name('list_turma');
+// Route::get('/cadastrar/turma','TurmaController@cadastrar')->name('new_turma');
+// Route::post('/adicionar/turma','TurmaController@adicionar')->name('add_turma');
+// Route::get('/editar/turma/{id}','TurmaController@editar')->name('edit_turma');
+// Route::post('/atualizar/turma','TurmaController@atualizar')->name('update_turma');
+// Route::get('/remover/turma/{id}','TurmaController@remover')->name('delete_turma');
 
-Route::get('/listar/resposta','RespostaController@listar')->name('list_resposta');
-Route::get('/cadastrar/resposta','RespostaController@cadastrar')->name('new_resposta');
-Route::post('/adicionar/resposta','RespostaController@adicionar')->name('add_resposta');
-Route::get('/editar/resposta/{id}','RespostaController@editar')->name('edit_resposta');
-Route::post('/atualizar/resposta','RespostaController@atualizar')->name('update_resposta');
-Route::get('/remover/resposta/{id}','RespostaController@remover')->name('delete_resposta');
+// Route::get('/listar/resposta','RespostaController@listar')->name('list_resposta');
+// Route::get('/cadastrar/resposta','RespostaController@cadastrar')->name('new_resposta');
+// Route::post('/adicionar/resposta','RespostaController@adicionar')->name('add_resposta');
+// Route::get('/editar/resposta/{id}','RespostaController@editar')->name('edit_resposta');
+// Route::post('/atualizar/resposta','RespostaController@atualizar')->name('update_resposta');
+// Route::get('/remover/resposta/{id}','RespostaController@remover')->name('delete_resposta');
 
-// Route::get('/listar/simuladoaluno','SimuladoAlunoController@listar')->name('list_simulado_aluno');
-Route::get('/cadastrar/simuladoaluno','SimuladoAlunoController@cadastrar')->name('new_simulado_aluno');
-Route::post('/adicionar/simuladoaluno','SimuladoAlunoController@adicionar')->name('add_simulado_aluno');
-Route::get('/editar/simuladoaluno/{id}','SimuladoAlunoController@editar')->name('edit_simulado_aluno');
-Route::post('/atualizar/simuladoaluno','SimuladoAlunoController@atualizar')->name('update_simulado_aluno');
-Route::get('/remover/simuladoaluno/{id}','SimuladoAlunoController@remover')->name('delete_simulado_aluno');
+// // Route::get('/listar/simuladoaluno','SimuladoAlunoController@listar')->name('list_simulado_aluno');
+// Route::get('/cadastrar/simuladoaluno','SimuladoAlunoController@cadastrar')->name('new_simulado_aluno');
+// Route::post('/adicionar/simuladoaluno','SimuladoAlunoController@adicionar')->name('add_simulado_aluno');
+// Route::get('/editar/simuladoaluno/{id}','SimuladoAlunoController@editar')->name('edit_simulado_aluno');
+// Route::post('/atualizar/simuladoaluno','SimuladoAlunoController@atualizar')->name('update_simulado_aluno');
+// Route::get('/remover/simuladoaluno/{id}','SimuladoAlunoController@remover')->name('delete_simulado_aluno');

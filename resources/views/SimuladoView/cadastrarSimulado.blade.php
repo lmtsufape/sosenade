@@ -1,4 +1,5 @@
-@extends('layouts.default')
+@extends('layouts.app')
+@section('titulo','Cadastrar Simulado')
 @section('content')
 
 	<form class="shadow p-3 mb-5 bg-white rounded" action= "{{route('add_simulado')}}" method="post">
@@ -46,6 +47,6 @@
 
 	</form>
 
-	<!-- Script do DatePicker no Footer.blade -->
+	<!-- Script do DatePicker no footer.blade -->
 
 @stop

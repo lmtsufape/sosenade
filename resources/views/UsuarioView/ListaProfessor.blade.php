@@ -1,4 +1,5 @@
-@extends('layouts.default')
+@extends('layouts.app')
+@section('titulo','Professores Cadastrados')
 @section('content')
     
     <div class="shadow p-4 mb-5 bg-white rounded container-fluid" style="overflow-x: auto;">
@@ -12,29 +13,33 @@
 			@endif
 		</h2><br>
 		
-		<table class="table table-hover">
-	 		<thead>
-				<tr>
-					<th>Nome</th>
-					<th>CPF</th>
-					<th>E-mail</th>
-					<th style="width: 10%">Opções</th>
-				</tr>
-			</thead>
-			<tbody>
-				@foreach($usuarios as $usuario)
+		@if(!$usuarios->isEmpty())
+			<table class="table table-hover">
+		 		<thead>
 					<tr>
-						<td>{{$usuario->nome}}</td>
-						<td>{{$usuario->cpf}}</td>
-						<td>{{$usuario->email}}</td>
-						<td class="btn-group">
-							<a href="{{route('edit_professor',['id'=>$usuario->id])}}" class="btn btn-sm btn-primary">Editar</a>
-							<a href="{{route('delete_professor',['id'=>$usuario->id])}}" class="btn btn-sm btn-danger">Remover</a>
-						</td>
+						<th>Nome</th>
+						<th>CPF</th>
+						<th>E-mail</th>
+						<th style="width: 10%">Opções</th>
 					</tr>
-				@endforeach
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+					@foreach($usuarios as $usuario)
+						<tr>
+							<td>{{$usuario->nome}}</td>
+							<td>{{$usuario->cpf}}</td>
+							<td>{{$usuario->email}}</td>
+							<td class="btn-group">
+								<a href="{{route('edit_professor',['id'=>$usuario->id])}}" class="btn btn-sm btn-primary">Editar</a>
+								<a href="{{route('delete_professor',['id'=>$usuario->id])}}" class="btn btn-sm btn-danger">Remover</a>
+							</td>
+						</tr>
+					@endforeach
+				</tbody>
+			</table>
+		@else
+			<p class="text-center alert alert-light">Não existem professores cadastrados até o momento.</p>
+		@endif
 
 		<div class="form-group justify-content-center row">
 			{{$usuarios->links()}}

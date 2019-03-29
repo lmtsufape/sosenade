@@ -11,9 +11,12 @@ $('#dp1').datepicker({
 $('#dp2').datepicker({
 	format:'dd-mm-yyyy',
 	uiLibrary: 'bootstrap4',
-	minDate: today,
 	minDate: function () {
-		return $('#dp1').val();
+		if ($('#dp1').val()){
+			return $('#dp1').val();
+		} else{
+			return today;
+		}
 	}
 });
 
