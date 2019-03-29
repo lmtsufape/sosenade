@@ -36,6 +36,10 @@
 			<p class="text-center alert alert-light">Não existem disciplinas cadastradas até o momento.</p>
 		@endif
 
+		<div class="form-group justify-content-center row">
+			{{$disciplinas->links()}}
+		</div>
+
 		<div class="col-md-12 text-center">
 			<br><a class="btn btn-primary" href="{{route('new_disciplina')}}"> Adicionar uma nova disciplina </a><br>
 		</div>
