@@ -1,4 +1,5 @@
-@extends('layouts.default')
+@extends('layouts.app')
+@section('titulo','Editar Alunos')
 @section('content')
 
 	<form class="shadow p-3 mb-5 bg-white rounded" action= "{{route('update_aluno')}}" method="post">

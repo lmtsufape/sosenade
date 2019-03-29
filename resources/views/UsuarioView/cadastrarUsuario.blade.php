@@ -1,4 +1,5 @@
-@extends('layouts.default')
+@extends('layouts.app')
+@section('titulo','Cadastrar Usuário')
 @section('content')
 	<form class="shadow p-3 mb-5 bg-white rounded" action= "{{route('add_usuario')}}" method="post">
 		<input type="hidden" name="_token" value="{{csrf_token()}}">

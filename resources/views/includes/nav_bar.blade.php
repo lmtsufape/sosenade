@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="color: #1a75ff">
-	<a class="navbar-brand" href="{{(Auth::guard('aluno')->user() == null) ? route('welcome') : route('welcome_aluno')}}">Início</a>
+	<a class="navbar-brand" href="{{(Auth::guard('aluno')->user() == null) ? route('home') : route('home_aluno')}}">Início</a>
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
 			

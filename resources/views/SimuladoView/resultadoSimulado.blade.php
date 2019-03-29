@@ -1,4 +1,5 @@
-@extends('layouts.default')
+@extends('layouts.app')
+@section('titulo','Resultado do Simulado')
 @section('content')
 	<div class="shadow p-3 mb-5 bg-white rounded">
 		

@@ -10,13 +10,13 @@ use SimuladoENADE\Validator\CsvImportRequest;
 
 class AlunoController extends Controller{
 
-	public function welcome(){
+	public function home(){
 		
 		$user =  \Auth::guard('aluno')->user();
 		$curso = \SimuladoENADE\Curso::find($user->curso_id);
 		$unidade = \SimuladoENADE\UnidadeAcademica::find($curso->unidade_id)->nome;
 
-		return view('welcome', ['nome' => $user->nome, 'curso' => $curso->curso_nome, 'unidade' => $unidade, 'tipo' => 'Aluno']);
+		return view('home', ['nome' => $user->nome, 'curso' => $curso->curso_nome, 'unidade' => $unidade, 'tipo' => 'Aluno']);
 
 	}
 
