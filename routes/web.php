@@ -63,6 +63,9 @@ Route::middleware('auth')->group(function(){
 
 		Route::get('/relatorio/QstDis', 'PdfController@questoesPorDisciplina')->name('qst_por_disciplina');
 
+
+		Route::get('/relatorio/relatorioAluno', 'PdfController@relatorioAluno')->name('rel_aluno');
+
 	});
 
 	Route::group(['middleware' => ['professor.auth' OR 'coordenador.auth']], function() {
@@ -106,7 +109,7 @@ Route::middleware('auth')->group(function(){
 
 Route::middleware('aluno.auth')->group(function(){
 
-	Route::get('/alunohome','AlunoController@home')->name('welcome_aluno');
+	Route::get('/alunohome','AlunoController@home')->name('home_aluno');
 
 	Route::get('/listaSimuladoAluno/simulado', 'SimuladoController@listaSimuladoAluno')->name('list_simulado_aluno');
 	Route::get('/listaSimuladoAluno/simuladoFeitos', 'SimuladoController@listaSimuladoAlunoFeitos')->name('list_simulado_feitos');

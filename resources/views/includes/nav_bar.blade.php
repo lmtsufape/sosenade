@@ -86,6 +86,7 @@
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="{{route('new_simulado')}}">Cadastrar</a>
 						<a class="dropdown-item" href="{{route('list_simulado')}}">Listar</a>
+						<a class="dropdown-item" href="{{route('rel_aluno')}}">Listar</a>
 					</div>
 				</li>
 

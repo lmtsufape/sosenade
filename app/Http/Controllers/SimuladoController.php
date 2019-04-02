@@ -216,6 +216,13 @@ class SimuladoController extends Controller{
 		$resultado = ($certas*100)/$total;
 		$resultado = round($resultado, 0);
 
+		$simuladoAluno = new \SimuladoENADE\SimuladoAluno();
+		$simuladoAluno->aluno_id = $user_id;
+		$simuladoAluno->simulado_id = $request->id;
+		$simuladoAluno->curso_aluno = \Auth::guard('aluno')->user()->curso_id;
+		$simuladoAluno->media = $resultado;
+		$simuladoAluno->save();
+
 		return view('/SimuladoView/resultadoSimulado',['resultado' => $resultado, 'total'=>$total, 'questaos' => $questaos]);
 
 	}
