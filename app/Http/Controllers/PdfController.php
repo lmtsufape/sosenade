@@ -55,4 +55,20 @@ class PdfController extends Controller {
 		return $pdf->stream($filename.'.pdf');
 	}
 	
+	public function relatorioGeralCursos(){
+		// $view = 'RelatoriosView.QuestoesPorDisciplina';
+		
+		$curso =\SimuladoENADE\Curso::all();
+
+		dd($curso);
+
+		// $date = date('d/m/Y');
+		// $view = \View::make($view, compact('disciplinas','date'))->render();
+		// $pdf = \App::make('dompdf.wrapper');
+		// $pdf->loadHTML($view)->setPaper('a4', 'landscape');
+
+		// $filename = 'QuestoesPorDisciplina_'.$date;
+
+		// return $pdf->stream($filename.'.pdf');
+	}
 }

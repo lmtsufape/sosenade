@@ -35,9 +35,13 @@
 				</tbody>
 			</table>
 
-		<div class="form-group justify-content-center row">
-			{{$usuarios->links()}}
-		</div>
+			<div class="form-group justify-content-center row">
+				{{$usuarios->links()}}
+			</div>
+
+		@else
+			<p class="text-center alert alert-light">Não existem usuários cadastrados até o momento.</p>
+		@endif
 
 		<div class="col-md-12 text-center">
 			<br><a class="btn btn-primary " href="{{route('new_usuario')}}"> Inserir novo </a><br>

@@ -36,9 +36,11 @@
 			<p class="text-center alert alert-light">Não existem cursos cadastrados até o momento.</p>
 		@endif
 
-
-		<div class="col-md-12 text-center">
-			<br><a class="btn btn-primary" href="{{route('new_curso')}}"> Adicionar um novo curso </a><br>
+		<div class="form-row">
+			<div class="col-md-12 text-center">
+				<a class="btn btn-primary" href="{{route('new_curso')}}"> Adicionar um novo curso </a>
+				<a class="btn btn-secondary" href="{{route('geral_cursos')}}"> Ver relatório de uso </a>
+			</div>
 		</div>
 
 	</div>

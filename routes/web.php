@@ -103,6 +103,8 @@ Route::middleware('auth')->group(function(){
 		Route::post('/atualizar/ciclo', 'CicloController@atualizar')->name('update_ciclo');
 		Route::get('/remover/ciclo/{id}', 'CicloController@remover')->name('delete_ciclo');
 
+		Route::get('/relatorio/cursos', 'PdfController@relatorioGeralCursos')->name('geral_cursos');
+
 	});
 
 });
