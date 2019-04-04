@@ -68,10 +68,11 @@ class PdfController extends Controller {
 			$resum_aluno[$i]['md_geral'] = $soma/count($alunos[$i]->simulados_alunos);
 		}
 
+		$total_alunos = count($alunos);
 		// dd($resum_aluno);
 
 		$date = date('d/m/Y');
-		$view = \View::make($view, compact('resum_aluno','date'))->render();
+		$view = \View::make($view, compact('resum_aluno','date', 'total_alunos'))->render();
 		$pdf = \App::make('dompdf.wrapper');
 		$pdf->loadHTML($view)->setPaper('a4', 'portrait');
 

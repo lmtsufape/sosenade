@@ -12,8 +12,8 @@
 		<link href="{{ asset('css/relatorios.css') }}" rel="stylesheet">
 	</head>
 	<body>
-		<h1 class="text-center">@yield('titulo')</h1>
-		<h2 class="text-center">
+		<h1 style="text-align:center;">@yield('titulo')</h1>
+		<h2 style="text-align:center;">
 			@if (Auth::guard('aluno')->user())
 				{{Auth::guard('aluno')->user()->curso->curso_nome}}
 			@elseif (Auth::user())
@@ -21,7 +21,6 @@
 			@endif
 			- Emitido em @yield('date')
 		</h2>
-		<br>
 	    @yield('content')
 	</body>
 </html>
