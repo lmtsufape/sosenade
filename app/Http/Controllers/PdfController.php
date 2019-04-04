@@ -28,8 +28,8 @@ class PdfController extends Controller {
 	}
 
 
-	public function relatorioAluno(){
-		$view = 'RelatoriosView.RelatorioPorAluno';
+	public function desempenhoAlunos(){
+		$view = 'RelatoriosView.DesempenhoPorAluno';
 
 		$alunos = \SimuladoENADE\Aluno::where('alunos.curso_id', '=', \Auth::user()->curso_id)
 			->get();
@@ -44,7 +44,6 @@ class PdfController extends Controller {
 				$resum_aluno[$i]['simulados'][$resultado_simulado->simulado->descricao_simulado]['media'] = $resultado_simulado->media;
 				
 				foreach ($resultado_simulado->simulado->questaos as $qst_simulado) {
-
 					$resposta = \SimuladoENADE\Resposta::where([
 						['aluno_id', '=', $alunos[$i]->id],
 		    			['questao_id', '=', $qst_simulado->questao->id]])
@@ -63,13 +62,11 @@ class PdfController extends Controller {
 					}
 					$resum_aluno[$i]['simulados'][$resultado_simulado->simulado->descricao_simulado]['disciplinas'][$nome_disc]['media'] = ($acertos/count($disciplina['qsts']))*100;
 				}
-
 			}
 			$resum_aluno[$i]['md_geral'] = $soma/count($alunos[$i]->simulados_alunos);
 		}
 
 		$total_alunos = count($alunos);
-		// dd($resum_aluno);
 
 		$date = date('d/m/Y');
 		$view = \View::make($view, compact('resum_aluno','date', 'total_alunos'))->render();

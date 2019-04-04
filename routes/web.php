@@ -62,9 +62,7 @@ Route::middleware('auth')->group(function(){
 		Route::get('/removerQuestaoSimulado/{sim_qst_id}', 'QuestaoSimuladoController@removerQuestao')->name('remove_qst_simulado');
 
 		Route::get('/relatorio/QstDis', 'PdfController@questoesPorDisciplina')->name('qst_por_disciplina');
-
-
-		Route::get('/relatorio/relatorioAluno', 'PdfController@relatorioAluno')->name('rel_aluno');
+		Route::get('/relatorio/DesempenhoAlunos', 'PdfController@desempenhoAlunos')->name('desempenho_alunos');
 
 	});
 

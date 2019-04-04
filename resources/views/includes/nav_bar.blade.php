@@ -1,8 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="color: #1a75ff">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
 	<a class="navbar-brand" href="{{(Auth::guard('aluno')->user() == null) ? route('home') : route('home_aluno')}}">Início</a>
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
-			
 			@can('create', Auth::user()) 
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -86,10 +85,9 @@
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="{{route('new_simulado')}}">Cadastrar</a>
 						<a class="dropdown-item" href="{{route('list_simulado')}}">Listar</a>
-						<a class="dropdown-item" href="{{route('rel_aluno')}}">Listar</a>
+						<a class="dropdown-item" href="{{route('desempenho_alunos')}}">Desempenho por Aluno</a>
 					</div>
 				</li>
-
 			@endcan
 
 			@can('view_professor', Auth::user())
