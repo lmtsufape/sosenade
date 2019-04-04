@@ -1,5 +1,5 @@
 @extends('layouts.relatorios')
-@section('titulo','Relatório Por Aluno')
+@section('titulo','Relatório de Desempenho Por Aluno')
 @section('date',$date)
 @section('content')
 	<h3 style="text-align:center;">
