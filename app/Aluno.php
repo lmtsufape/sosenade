@@ -15,6 +15,14 @@ class Aluno extends Authenticatable
         return $this->hasOne('\SimuladoENADE\Curso', 'id', 'curso_id');
     }
 
+    public function simulados_alunos(){
+        return $this->hasMany('\SimuladoENADE\SimuladoAluno', 'aluno_id', 'id');
+    }
+
+    public function respostas(){
+        return $this->hasMany('SimuladoENADE\Resposta');
+    }
+
     public static $rules = [
     	'nome'  => 'required|',
     	'cpf' => 'required|min:14',

@@ -14,6 +14,7 @@ class PdfController extends Controller {
 			->where('curso_id', '=', \Auth::user()->curso_id)
 			->select('nome', 'questaos.dificuldade', DB::raw('count(*) as questaos_count'))
 			->groupBy('nome', 'questaos.dificuldade')
+			->orderBy('nome')
 			->get();
 
 		$date = date('d/m/Y');
@@ -28,27 +29,51 @@ class PdfController extends Controller {
 
 
 	public function relatorioAluno(){
-		$view = 'RelatoriosView.relatorioAluno';
+		$view = 'RelatoriosView.RelatorioPorAluno';
 
-		$alunos = \SimuladoENADE\Aluno::select('*', \DB::raw('alunos.curso_id as curso_aluno'))
-			->join('simulado_alunos', 'alunos.id', '=', 'simulado_alunos.aluno_id')
-			->where('curso_id','=',\Auth::user()->curso_id)
+		$alunos = \SimuladoENADE\Aluno::where('alunos.curso_id', '=', \Auth::user()->curso_id)
 			->get();
 
-		$disciplinas =\SimuladoENADE\Disciplina::join('questaos', 'disciplinas.id', '=','questaos.disciplina_id')
-			->where('curso_id', '=', \Auth::user()->curso_id)
-			->join('questao_simulados', 'questaos.id', '=', 'questao_simulados.questao_id')
-			->join('respostas', 'respostas.questao_id', '=', 'questao_simulados.questao_id')
-			
-			->get();
+		$resum_aluno = array();
+		for ($i=0; $i < count($alunos); $i++) {
+			$resum_aluno[$i]['nome'] = $alunos[$i]->nome;
+			$soma = 0;
+			foreach ($alunos[$i]->simulados_alunos as $resultado_simulado) {
+				$soma += $resultado_simulado->media;
+				$resum_aluno[$i]['simulados'][$resultado_simulado->simulado->descricao_simulado]['titulo_simu'] = $resultado_simulado->simulado->descricao_simulado;
+				$resum_aluno[$i]['simulados'][$resultado_simulado->simulado->descricao_simulado]['media'] = $resultado_simulado->media;
+				
+				foreach ($resultado_simulado->simulado->questaos as $qst_simulado) {
 
-		dd($disciplinas);
+					$resposta = \SimuladoENADE\Resposta::where([
+						['aluno_id', '=', $alunos[$i]->id],
+		    			['questao_id', '=', $qst_simulado->questao->id]])
+						->first();
 
-	
+					$resum_aluno[$i]['simulados'][$resultado_simulado->simulado->descricao_simulado]['disciplinas'][$qst_simulado->questao->disciplina->nome]['nome'] = $qst_simulado->questao->disciplina->nome;
+					$resum_aluno[$i]['simulados'][$resultado_simulado->simulado->descricao_simulado]['disciplinas'][$qst_simulado->questao->disciplina->nome]['media'] = 0;
+					$resum_aluno[$i]['simulados'][$resultado_simulado->simulado->descricao_simulado]['disciplinas'][$qst_simulado->questao->disciplina->nome]['qsts'][] = $resposta->acertou;
+				}
+
+				foreach ($resum_aluno[$i]['simulados'][$resultado_simulado->simulado->descricao_simulado]['disciplinas'] as $disciplina) {
+					$nome_disc = ($disciplina['nome']);
+					$acertos = 0;
+					foreach ($disciplina['qsts'] as $questao) {
+						$acertos += $questao ? 1 : 0;
+					}
+					$resum_aluno[$i]['simulados'][$resultado_simulado->simulado->descricao_simulado]['disciplinas'][$nome_disc]['media'] = ($acertos/count($disciplina['qsts']))*100;
+				}
+
+			}
+			$resum_aluno[$i]['md_geral'] = $soma/count($alunos[$i]->simulados_alunos);
+		}
+
+		// dd($resum_aluno);
+
 		$date = date('d/m/Y');
-		$view = \View::make($view, compact('disciplinas','date'))->render();
+		$view = \View::make($view, compact('resum_aluno','date'))->render();
 		$pdf = \App::make('dompdf.wrapper');
-		$pdf->loadHTML($view)->setPaper('a4', 'landscape');
+		$pdf->loadHTML($view)->setPaper('a4', 'portrait');
 
 		$filename = 'QuestoesPorDisciplina_'.$date;
 

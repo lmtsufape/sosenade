@@ -18,6 +18,10 @@ class Simulado extends Model
         return $this->hasMany('\SimuladoENADE\QuestaoSimulado', 'simulado_id', 'id');
     }
 
+    public function simulados_alunos(){
+        return $this->hasMany('\SimuladoENADE\SimuladoAluno', 'simulado_id', 'id');
+    }    
+
     protected $fillable = ['descricao_simulado','usuario_id','curso_id'];
     
     protected $dates = ['data_inicio_simulado', 'data_fim_simulado'];

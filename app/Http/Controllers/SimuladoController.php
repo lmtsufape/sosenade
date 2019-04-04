@@ -141,10 +141,12 @@ class SimuladoController extends Controller{
 		try{
 
 			$user_id = \Auth::guard('aluno')->user()->id;
+			$qst_alt_correta = \SimuladoENADE\Questao::find($request->questao_id)->alternativa_correta;
 	  
 			$resposta = new \SimuladoENADE\Resposta();
 			$resposta->questao_id = $request->questao_id;
 			$resposta->alternativa_questao = $request->alternativa;
+			$resposta->acertou = ($request->alternativa == $qst_alt_correta);
 			$resposta->aluno_id = $user_id;
 			$resposta->simulado_id = $request->simulado_id;
 			$resposta->save();
@@ -216,12 +218,19 @@ class SimuladoController extends Controller{
 		$resultado = ($certas*100)/$total;
 		$resultado = round($resultado, 0);
 
-		$simuladoAluno = new \SimuladoENADE\SimuladoAluno();
-		$simuladoAluno->aluno_id = $user_id;
-		$simuladoAluno->simulado_id = $request->id;
-		$simuladoAluno->curso_aluno = \Auth::guard('aluno')->user()->curso_id;
-		$simuladoAluno->media = $resultado;
-		$simuladoAluno->save();
+		if (\SimuladoENADE\SimuladoAluno::where([
+				['aluno_id', '=', $user_id],
+    			['simulado_id', '=', $request->id]])
+				->get()
+				->isEmpty()) {
+					// armazena o resultado do simulado
+					$simuladoAluno = new \SimuladoENADE\SimuladoAluno();
+					$simuladoAluno->aluno_id = $user_id;
+					$simuladoAluno->simulado_id = $request->id;
+					$simuladoAluno->curso_aluno = \Auth::guard('aluno')->user()->curso_id;
+					$simuladoAluno->media = $resultado;
+					$simuladoAluno->save();
+		}
 
 		return view('/SimuladoView/resultadoSimulado',['resultado' => $resultado, 'total'=>$total, 'questaos' => $questaos]);
 
