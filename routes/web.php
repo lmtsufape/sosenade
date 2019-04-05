@@ -63,6 +63,7 @@ Route::middleware('auth')->group(function(){
 
 		Route::get('/relatorio/QstDis', 'PdfController@questoesPorDisciplina')->name('qst_por_disciplina');
 		Route::get('/relatorio/DesempenhoAlunos', 'PdfController@desempenhoAlunos')->name('desempenho_alunos');
+		Route::get('/relatorio/relatorioSimulados', 'PdfController@relatorioSimulados')->name('relatorio_simulados');
 
 	});
 

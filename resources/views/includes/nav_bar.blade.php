@@ -92,6 +92,7 @@
 							<a class="dropdown-item" href="{{route('new_simulado')}}">Cadastrar</a>
 							<a class="dropdown-item" href="{{route('list_simulado')}}">Listar</a>
 							<a class="dropdown-item" href="{{route('desempenho_alunos')}}">Desempenho por Aluno</a>
+							<a class="dropdown-item" href="{{route('relatorio_simulados')}}">Desempenho por Simulado</a>
 						</div>
 					</li>
 				@endcan

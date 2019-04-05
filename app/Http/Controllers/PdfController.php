@@ -85,4 +85,22 @@ class PdfController extends Controller {
 
 		return view('/RelatoriosView/VisaoGeral',['cursos' => $cursos, 'unidades' => $unidades]);
 	}
+
+
+	public function relatorioSimulados()
+	{
+		$simulados = DB::table('simulado_alunos')
+		->join('simulados', 'simulados.id', '=', 'simulado_alunos.simulado_id')
+		->where('simulados.curso_id', '=', \Auth::user()->curso_id)
+		->select(DB::raw('avg(media) as media_alunos, simulado_id, count(*) as numero_respostas'))
+		->groupBy('simulado_id')
+		->get();
+
+		$simulado_info = array();
+		for ($i=0; $i < count($simulados); $i++) {
+			$simulado_info[$i]['info'] = $simulados[$i];
+			$simulado_info[$i]['n_qts'] = count(\SimuladoENADE\Simulado::find($simulados[$i]->simulado_id)->first()->questaos);
+		}
+		dd($simulado_info);
+	}
 }
