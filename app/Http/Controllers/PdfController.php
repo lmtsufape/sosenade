@@ -27,7 +27,6 @@ class PdfController extends Controller {
 		return $pdf->stream($filename.'.pdf');
 	}
 
-
 	public function desempenhoAlunos(){
 		$view = 'RelatoriosView.DesempenhoPorAluno';
 
@@ -82,8 +81,8 @@ class PdfController extends Controller {
 	public function relatorioGeralCursos(){
 		
 		$cursos = \SimuladoENADE\Curso::orderBy('curso_nome')->get();
-		$unidades = \SimuladoENADE\UnidadeAcademica::all()->count();
+		$unidades = \SimuladoENADE\UnidadeAcademica::all();
 
-		return view('/RelatoriosView/VisaoGeral',['cursos' => $cursos, 'n_unidades' => $unidades]);
+		return view('/RelatoriosView/VisaoGeral',['cursos' => $cursos, 'unidades' => $unidades]);
 	}
 }
