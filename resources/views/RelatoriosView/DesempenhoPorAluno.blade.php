@@ -12,10 +12,16 @@
 						<th style="font-size: 14; width: 60%">{{$aluno['nome']}}</th>
 						<th style="font-size: 14">Média Geral: {{$aluno['md_geral']}}%</th>
 					</tr>
-					<tr style="font-style: italic;">
-						<th>Título do Simulado</th>
-						<th>Média do Simulado</th>
-					</tr>
+					@if($aluno['simulados'])
+						<tr style="font-style: italic;">
+							<th>Título do Simulado</th>
+							<th>Média do Simulado</th>
+						</tr>
+					@else
+						<tr style="font-style: italic;">
+							<th colspan="2">Nenhum simulado respondido</th>
+						</tr>
+					@endif
 				</thead>
 				<tbody>
 					@foreach($aluno['simulados'] as $simulados)

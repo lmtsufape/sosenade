@@ -8,10 +8,11 @@ class Simulado extends Model
 {
     //
 	public function usuario(){
-    	return $this->hasOne('SimuladoENADE\Usuario');
+    	return $this->belongsTo('SimuladoENADE\Usuario');
     }
+
     public function curso(){
-    	return $this->hasOne('SimuladoENADE\Curso');
+    	return $this->belongsTo('SimuladoENADE\Curso');
     }
     
     public function questaos(){
@@ -37,7 +38,4 @@ class Simulado extends Model
     	'descricao_simulado.min' => 'O campo deve ser no mínimo 5 letras'
     ];
 
-    public function dificuldade() {
-        return $this->belongsTo('\SimuladoENADE\Questao', 'dificuldade');    
-    }
 }

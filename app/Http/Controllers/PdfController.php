@@ -38,6 +38,7 @@ class PdfController extends Controller {
 		for ($i=0; $i < count($alunos); $i++) {
 			$resum_aluno[$i]['nome'] = $alunos[$i]->nome;
 			$soma = 0;
+			$resum_aluno[$i]['simulados'] = array();
 			foreach ($alunos[$i]->simulados_alunos as $resultado_simulado) {
 				$soma += $resultado_simulado->media;
 				$resum_aluno[$i]['simulados'][$resultado_simulado->simulado->descricao_simulado]['titulo_simu'] = $resultado_simulado->simulado->descricao_simulado;
@@ -63,7 +64,7 @@ class PdfController extends Controller {
 					$resum_aluno[$i]['simulados'][$resultado_simulado->simulado->descricao_simulado]['disciplinas'][$nome_disc]['media'] = ($acertos/count($disciplina['qsts']))*100;
 				}
 			}
-			$resum_aluno[$i]['md_geral'] = $soma/count($alunos[$i]->simulados_alunos);
+			$resum_aluno[$i]['md_geral'] = count($alunos[$i]->simulados_alunos) ? $soma/count($alunos[$i]->simulados_alunos) : 0;
 		}
 
 		$total_alunos = count($alunos);
@@ -79,19 +80,10 @@ class PdfController extends Controller {
 	}
 	
 	public function relatorioGeralCursos(){
-		// $view = 'RelatoriosView.QuestoesPorDisciplina';
 		
-		$curso =\SimuladoENADE\Curso::all();
+		$cursos = \SimuladoENADE\Curso::orderBy('curso_nome')->get();
+		$unidades = \SimuladoENADE\UnidadeAcademica::all()->count();
 
-		dd($curso);
-
-		// $date = date('d/m/Y');
-		// $view = \View::make($view, compact('disciplinas','date'))->render();
-		// $pdf = \App::make('dompdf.wrapper');
-		// $pdf->loadHTML($view)->setPaper('a4', 'landscape');
-
-		// $filename = 'QuestoesPorDisciplina_'.$date;
-
-		// return $pdf->stream($filename.'.pdf');
+		return view('/RelatoriosView/VisaoGeral',['cursos' => $cursos, 'n_unidades' => $unidades]);
 	}
 }

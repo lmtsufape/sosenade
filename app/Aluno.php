@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
-class Aluno extends Authenticatable
-{
+class Aluno extends Authenticatable{
+    
     protected $fillable = ['nome', 'email', 'password', 'cpf', 'curso_id'];
     protected $hidden = ['password', 'remember_token'];
     
     public function curso(){
-        return $this->hasOne('\SimuladoENADE\Curso', 'id', 'curso_id');
+        return $this->belongsTo('\SimuladoENADE\Curso', 'id', 'curso_id');
     }
 
     public function simulados_alunos(){

@@ -4,9 +4,12 @@ namespace SimuladoENADE;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Ciclo extends Model
-{
-    //
+class Ciclo extends Model{
+
+	public function cursos(){
+    	return $this->hasMany('SimuladoENADE\Curso');
+    }
+    
     protected $fillable = ['tipo_ciclo'];
 
     public static $rules = [
