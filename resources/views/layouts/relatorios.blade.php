@@ -9,7 +9,9 @@
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 
 		<title>@yield('titulo') | S.O.S Enade</title>
-		<link href="{{ asset('css/relatorios.css') }}" rel="stylesheet">
+		<!-- include bootstrap css/js -->
+		<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}">
+		<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
 	</head>
 	<body>
 		<h1 style="text-align:center;">@yield('titulo')</h1>
@@ -20,7 +22,7 @@
 				{{Auth::user()->curso->curso_nome}}
 			@endif
 			- Emitido em @yield('date')
-		</h2>
+		</h2><br>
 	    @yield('content')
 	</body>
 </html>

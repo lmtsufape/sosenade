@@ -6,18 +6,13 @@
 		{{$total_alunos}} aluno(s) cadastrados.
 	</h3>
 	@foreach($resum_aluno as $aluno)
-		<table>
-				<thead>
+		<table class="table table-bordered">
+				<thead class="thead">
 					<tr>
 						<th style="font-size: 14; width: 60%">{{$aluno['nome']}}</th>
 						<th style="font-size: 14">Média Geral: {{$aluno['md_geral']}}%</th>
 					</tr>
-					@if($aluno['simulados'])
-						<tr style="font-style: italic;">
-							<th>Título do Simulado</th>
-							<th>Média do Simulado</th>
-						</tr>
-					@else
+					@if(!$aluno['simulados'])
 						<tr style="font-style: italic;">
 							<th colspan="2">Nenhum simulado respondido</th>
 						</tr>
@@ -25,13 +20,13 @@
 				</thead>
 				<tbody>
 					@foreach($aluno['simulados'] as $simulados)
-						<tr>
+						<tr style="background-color: #f2f2f2">
 							<td>{{$simulados['titulo_simu']}}</td>
 							<td>{{$simulados['media']}}%</td>
 						</tr>
 						<tr>
 							<td colspan="2">
-								<table>
+								<table class="table">
 									<thead>
 										<tr style="font-style: italic;">
 											<th style="font-size: 12; width: 60.2%">Nome da Disciplina</th>
@@ -49,13 +44,9 @@
 								</table>
 							</td>
 						</tr>
-						<tr>
-							<td colspan="2">
-								
-							</td>
-						</tr>
 					@endforeach
 				</tbody>
 		</table>
+		<br>
 	@endforeach
 @stop

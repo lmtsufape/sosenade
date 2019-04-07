@@ -80,4 +80,10 @@
   'gijgo-material' => array(
     'normal' => $fontDir . '/f5b603b44baf658a0180216dfb4bdbf5',
   ),
+  'raleway' => array(
+    'normal' => $fontDir . '/9801c597c91aabc329b4bdbd67ef806c',
+  ),
+  'summernote' => array(
+    'normal' => $fontDir . '/7d4b5eaa4ca772e692fc5b1cd7265310',
+  ),
 ) ?>

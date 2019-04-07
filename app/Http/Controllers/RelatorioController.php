@@ -6,7 +6,7 @@ use Dompdf\Dompdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class PdfController extends Controller {
+class RelatorioController extends Controller {
 	public function questoesPorDisciplina(){
 		$view = 'RelatoriosView.QuestoesPorDisciplina';
 		
@@ -71,15 +71,14 @@ class PdfController extends Controller {
 		$date = date('d/m/Y');
 		$view = \View::make($view, compact('resum_aluno','date', 'total_alunos'))->render();
 		$pdf = \App::make('dompdf.wrapper');
-		$pdf->loadHTML($view)->setPaper('a4', 'portrait');
+		$pdf->loadHTML($view)->setPaper('a4', 'landscape');
 
-		$filename = 'QuestoesPorDisciplina_'.$date;
+		$filename = 'DesempenhoPorAluno_'.$date;
 
 		return $pdf->stream($filename.'.pdf');
 	}
 	
 	public function relatorioGeralCursos(){
-		
 		$cursos = \SimuladoENADE\Curso::orderBy('curso_nome')->get();
 		$unidades = \SimuladoENADE\UnidadeAcademica::all();
 
@@ -87,20 +86,24 @@ class PdfController extends Controller {
 	}
 
 
-	public function relatorioSimulados()
-	{
-		$simulados = DB::table('simulado_alunos')
-		->join('simulados', 'simulados.id', '=', 'simulado_alunos.simulado_id')
-		->where('simulados.curso_id', '=', \Auth::user()->curso_id)
-		->select(DB::raw('avg(media) as media_alunos, simulado_id, count(*) as numero_respostas'))
-		->groupBy('simulado_id')
-		->get();
+	public function relatorioSimulados(){
+		$view = 'RelatoriosView.DesempenhoPorRelatorio';
+		
+		$simulados = \SimuladoENADE\SimuladoAluno::where('simulado_alunos.curso_aluno', '=', \Auth::user()->curso_id)
+			->join('simulados', 'simulado_alunos.simulado_id', 'simulados.id')
+			->orderBy('simulados.descricao_simulado')
+			->selectRaw('avg(media) as media_alunos, simulados.id, simulado_alunos.simulado_id, count(simulado_alunos.id) as numero_respostas')
+			->groupBy('simulados.id', 'simulado_alunos.simulado_id')
+			->get();
 
-		$simulado_info = array();
-		for ($i=0; $i < count($simulados); $i++) {
-			$simulado_info[$i]['info'] = $simulados[$i];
-			$simulado_info[$i]['n_qts'] = count(\SimuladoENADE\Simulado::find($simulados[$i]->simulado_id)->first()->questaos);
-		}
-		dd($simulado_info);
+		$date = date('d/m/Y');
+		$view = \View::make($view, compact('simulados', 'date'))->render();
+		$pdf = \App::make('dompdf.wrapper');
+		$pdf->loadHTML($view)->setPaper('a4', 'landscape');
+
+		$filename = 'DesempenhoPorRelatorio_'.$date;
+
+		return $pdf->stream($filename.'.pdf');
+
 	}
 }
