@@ -85,7 +85,6 @@ class RelatorioController extends Controller {
 		return view('/RelatoriosView/VisaoGeral',['cursos' => $cursos, 'unidades' => $unidades]);
 	}
 
-
 	public function relatorioSimulados(){
 		$view = 'RelatoriosView.DesempenhoPorRelatorio';
 		

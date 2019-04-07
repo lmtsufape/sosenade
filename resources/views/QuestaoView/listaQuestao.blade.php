@@ -54,7 +54,7 @@
 							<td id="disciplina">{{$questao->nome}}</td>
 							<td class="btn-group">
 								<a href="{{route('edit_qst', ['id'=>$questao->qtsid])}}" class="btn btn-sm btn-primary">Editar</a>
-								<a href="{{route('delete_qst', ['id'=>$questao->qtsid])}}" class="btn btn-sm btn-danger">Remover</a>
+								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_qst', ['id'=>$questao->qtsid])}}" class="btn btn-sm btn-danger">Remover</a>
 							</td>
 						</tr>
 					@endforeach

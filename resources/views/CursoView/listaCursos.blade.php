@@ -23,7 +23,7 @@
 							<td>{{$curso->unidade->nome}}</td>
 							<td> 
 								<a href="{{route('edit_curso',['id'=>$curso->curso_id])}}">Editar</a> - 
-								<a href="{{route('delete_curso',['id'=>$curso->curso_id])}}">Remover</a>
+								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_curso',['id'=>$curso->curso_id])}}">Remover</a>
 							</td>
 						</tr>
 					@endforeach

@@ -31,7 +31,7 @@
 							<td>{{$usuario->email}}</td>
 							<td class="btn-group">
 								<a href="{{route('edit_professor',['id'=>$usuario->id])}}" class="btn btn-sm btn-primary">Editar</a>
-								<a href="{{route('delete_professor',['id'=>$usuario->id])}}" class="btn btn-sm btn-danger">Remover</a>
+								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_professor',['id'=>$usuario->id])}}" class="btn btn-sm btn-danger">Remover</a>
 							</td>
 						</tr>
 					@endforeach
