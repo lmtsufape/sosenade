@@ -106,30 +106,40 @@ class RelatorioController extends Controller {
 
 	}
 
+	public function relatorioDisciplina(){
+		$view = 'RelatoriosView.DesempenhoPorDisciplina';
 
-	public function relatorioDisciplina()
-	{
-		$teste = \SimuladoENADE\Resposta::join('simulados', 'simulados.id', '=', 'respostas.simulado_id')
-		->where('simulados.curso_id', '=', \Auth::user()->curso_id)
-		->get();
+		$disciplinas = \SimuladoENADE\Disciplina::where('curso_id', '=', \Auth::user()->curso_id)
+			->orderBy('nome')
+			->get();
 
+		$respostas = \SimuladoENADE\Resposta::join('simulados', 'simulados.id', '=', 'respostas.simulado_id')
+			->where('simulados.curso_id', '=', \Auth::user()->curso_id)
+			->get();
 
 		$cont_respostas = array();
 		$acertos = array();
-		foreach ($teste as $respostas) {
-			if(!array_key_exists($respostas->questao->disciplina->nome, $acertos)){
-				$acertos[$respostas->questao->disciplina->nome] = 0;
-				$cont_respostas[$respostas->questao->disciplina->nome] = 0;
+		foreach ($respostas as $resposta) {
+			if(!array_key_exists($resposta->questao->disciplina->nome, $acertos)){
+				$acertos[$resposta->questao->disciplina->nome] = 0;
+				$cont_respostas[$resposta->questao->disciplina->nome] = 0;
 			}
-			$acertos[$respostas->questao->disciplina->nome] += $respostas->acertou ? 1 : 0;
-			$cont_respostas[$respostas->questao->disciplina->nome] += 1;
+			$acertos[$resposta->questao->disciplina->nome] += $resposta->acertou ? 1 : 0;
+			$cont_respostas[$resposta->questao->disciplina->nome] += 1;
 		}
 
 		$medias = array();
-		foreach ($teste as $respostas) {
-			$medias[$respostas->questao->disciplina->nome] = $acertos[$respostas->questao->disciplina->nome]/$cont_respostas[$respostas->questao->disciplina->nome];
+		foreach ($respostas as $resposta) {
+			$medias[$resposta->questao->disciplina->nome] = $acertos[$resposta->questao->disciplina->nome]/$cont_respostas[$resposta->questao->disciplina->nome];
 		}
 
-		dd($acertos, $cont_respostas, $medias);
+		$date = date('d/m/Y');
+		$view = \View::make($view, compact('cont_respostas', 'medias', 'disciplinas', 'date'))->render();
+		$pdf = \App::make('dompdf.wrapper');
+		$pdf->loadHTML($view)->setPaper('a4', 'landscape');
+
+		$filename = 'DesempenhoPorDisciplina_'.$date;
+
+		return $pdf->stream($filename.'.pdf');
 	}
 }
