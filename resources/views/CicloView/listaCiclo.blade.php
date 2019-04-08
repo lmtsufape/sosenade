@@ -19,7 +19,7 @@
 							<td>{{$ciclo->tipo_ciclo}}</td>
 							<td>
 								<a href="{{route('edit_ciclo', ['id' => $ciclo->id])}}">Editar</a> -
-								<a href="{{route('delete_ciclo', ['id' => $ciclo->id])}}">Remover</a>
+								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_ciclo', ['id' => $ciclo->id])}}">Remover</a>
 							</td>
 						</tr>
 					@endforeach

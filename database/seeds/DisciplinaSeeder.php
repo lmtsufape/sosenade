@@ -15,6 +15,9 @@ class DisciplinaSeeder extends Seeder
 		DB::table('disciplinas')->insert(['nome' => 'AED', 'curso_id' => 1]);
         DB::table('disciplinas')->insert(['nome' => 'AED2', 'curso_id' => 1]);
         DB::table('disciplinas')->insert(['nome' => 'Desenvolvimento Web', 'curso_id' => 1]);
+        DB::table('disciplinas')->insert(['nome' => 'PAA', 'curso_id' => 1]);
+        DB::table('disciplinas')->insert(['nome' => 'POO', 'curso_id' => 2]);
+        DB::table('disciplinas')->insert(['nome' => 'IP', 'curso_id' => 2]);
 			//}
     }
 }

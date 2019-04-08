@@ -28,16 +28,20 @@
 							<td>{{$usuario->curso_nome}}</td>
 							<td>
 								<a href="{{route('edit_usuario',['id'=>$usuario->userid])}}">Editar</a> -
-								<a href="{{route('delete_usuario',['id'=>$usuario->userid])}}">Remover</a>
+								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_usuario',['id'=>$usuario->userid])}}">Remover</a>
 							</td>
 						</tr>
 					@endforeach
 				</tbody>
 			</table>
 
-		<div class="form-group justify-content-center row">
-			{{$usuarios->links()}}
-		</div>
+			<div class="form-group justify-content-center row">
+				{{$usuarios->links()}}
+			</div>
+
+		@else
+			<p class="text-center alert alert-light">Não existem usuários cadastrados até o momento.</p>
+		@endif
 
 		<div class="col-md-12 text-center">
 			<br><a class="btn btn-primary " href="{{route('new_usuario')}}"> Inserir novo </a><br>

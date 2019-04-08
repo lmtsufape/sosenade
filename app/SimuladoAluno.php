@@ -4,26 +4,27 @@ namespace SimuladoENADE;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SimuladoAluno extends Model
-{
+class SimuladoAluno extends Model {
     //
     public function simulado(){
-    	return $this->hasOne('SimuladoENADE\Simulado');
+    	return $this->belongsTo('SimuladoENADE\Simulado', 'simulado_id', 'id');
     }
     public function aluno(){
-    	return $this->hasOne('SimuladoENADE\Aluno');
+    	return $this->belongsTo('SimuladoENADE\Aluno');
     }
 
-      protected $fillable = ['aluno_id','simulado_id'];
+    public function questaos(){
+        return $this->hasManyThrough('SimuladoENADE\QuestaoSimulado', 'SimuladoENADE\Simulado', 'id', 'simulado_id');
+    }
 
+    protected $fillable = ['aluno_id','simulado_id'];
 
-     public static $rules = [
+    public static $rules = [
      	'aluno_id' => 'required',
      	'simulado_id' => 'required'
-     ];
+    ];
 
-     public static $messages = [
+    public static $messages = [
      	'required' => 'O campo:attribute é obrigatório'
-
-     ];
+    ];
 }

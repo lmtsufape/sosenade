@@ -33,8 +33,7 @@ class Cursocontroller extends Controller
 	public function listar(){
 
 		$cursos =\SimuladoENADE\Curso::select('*', \DB::raw('cursos.id as curso_id'))
-            ->join('ciclos', 'cursos.ciclo_id', '=', 'ciclos.id')
-            ->get();
+            ->join('ciclos', 'cursos.ciclo_id', '=', 'ciclos.id')->orderBy('curso_nome')->paginate(20);
 
 		return view('/CursoView/listaCursos', ['cursos' => $cursos]);
 

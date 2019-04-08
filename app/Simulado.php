@@ -8,15 +8,20 @@ class Simulado extends Model
 {
     //
 	public function usuario(){
-    	return $this->hasOne('SimuladoENADE\Usuario');
+    	return $this->belongsTo('SimuladoENADE\Usuario');
     }
+
     public function curso(){
-    	return $this->hasOne('SimuladoENADE\Curso');
+    	return $this->belongsTo('SimuladoENADE\Curso');
     }
     
     public function questaos(){
         return $this->hasMany('\SimuladoENADE\QuestaoSimulado', 'simulado_id', 'id');
     }
+
+    public function simulados_alunos(){
+        return $this->hasMany('\SimuladoENADE\SimuladoAluno', 'simulado_id', 'id');
+    }    
 
     protected $fillable = ['descricao_simulado','usuario_id','curso_id'];
     
@@ -33,7 +38,4 @@ class Simulado extends Model
     	'descricao_simulado.min' => 'O campo deve ser no mínimo 5 letras'
     ];
 
-    public function dificuldade() {
-        return $this->belongsTo('\SimuladoENADE\Questao', 'dificuldade');    
-    }
 }

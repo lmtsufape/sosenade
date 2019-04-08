@@ -53,7 +53,7 @@
         </div>
         <div id="app">
             @if(!Auth::guard('aluno')->check() && !Auth::check())
-                <nav class="navbar navbar-expand-lg navbar-light bg-light" style="color: #1a75ff">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <div class="container">
                         <a class="navbar-brand" href="{{ url('/') }}">
                             S.O.S Enade
@@ -104,9 +104,7 @@
             @endif
             <main class="py-4">
                 <div class="container justify-content-center">
-                    <div class="col-sm-12">
-                        @yield('content')
-                    </div>
+                    @yield('content')
                 </div>
             </main>
             @include('includes.footer')

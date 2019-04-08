@@ -51,7 +51,7 @@
 							<td class="btn-group">
 								<a href="{{route('set_simulado', ['id'=>$simulado->sim_id])}}" class="btn btn-sm btn-secondary">Montar</a>
 								<a href="{{route('edit_simulado', ['id'=>$simulado->sim_id])}}" class="btn btn-sm btn-primary">Editar</a>
-								<a href="{{route('delete_simulado', ['id'=>$simulado->sim_id])}}" class="btn btn-sm btn-danger">Remover</a>
+								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_simulado', ['id'=>$simulado->sim_id])}}" class="btn btn-sm btn-danger">Remover</a>
 							</td>
 						</tr>
 					@endforeach

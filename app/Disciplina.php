@@ -8,9 +8,31 @@ class Disciplina extends Model
 {
     //
     public function curso(){
-    	return $this->hasOne('SimuladoENADE\Curso');
+    	return $this->belongsTo('SimuladoENADE\Curso');
     }
     
+    public function questaos(){
+        return $this->hasMany('\SimuladoENADE\Questao');
+    } 
+
+    public function questaos_facil(){
+        return $this->questaos()->where([
+            ['disciplina_id','=',$this->id],
+            ['dificuldade','=',1]]);
+    }
+
+    public function questaos_medio(){
+        return $this->questaos()->where([
+            ['disciplina_id','=',$this->id],
+            ['dificuldade','=',2]]);
+    }
+
+    public function questaos_dificil(){
+        return $this->questaos()->where([
+            ['disciplina_id','=',$this->id],
+            ['dificuldade','=',3]]);
+    }
+
     protected $fillable = ['nome', 'curso_id'];
     
     public static $rules = [

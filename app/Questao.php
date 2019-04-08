@@ -7,13 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 class Questao extends Model {
     
     public function disciplina(){
-    	return $this->hasOne('SimuladoENADE\Disciplina');
+    	return $this->belongsTo('SimuladoENADE\Disciplina');
+    }
+
+    public function questao_simulado(){
+        return $this->hasMany('\SimuladoENADE\QuestaoSimulado');
+    }
+
+    public function respostas(){
+        return $this->hasMany('SimuladoENADE\Resposta');
     }
 
     protected $fillable = ['enunciado',
 						   'alternativa_correta', 
 						   'dificuldade',
-                        'disciplina_id'];
+                           'disciplina_id'];
 
     public static $rules = [
     	'enunciado' => 'required|min:10',

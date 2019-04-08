@@ -8,10 +8,10 @@ class QuestaoSimulado extends Model
 {
     //
     public function simulado(){
-    	return $this->hasOne('SimuladoENADE\Simulado');
+    	return $this->belongsTo('SimuladoENADE\Simulado');
     }
     public function questao(){
-    	return $this->hasOne('SimuladoENADE\Questao');
+    	return $this->belongsTo('SimuladoENADE\Questao');
     }
 
     protected $fillable = ['questao_id','simulado_id'];

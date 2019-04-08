@@ -112,7 +112,7 @@ class Usuariocontroller extends Controller{
 				->join('tipousuarios', 'usuarios.tipousuario_id', '=', 'tipousuarios.id')
 				->join('cursos', 'usuarios.curso_id', '=', 'cursos.id') // para exibir o nome do curso
 				->orderBy('nome')
-				->paginate(10);
+				->paginate(20);
 
 			return view('/UsuarioView/ListaUsuario',['usuarios' => $usuarios]); 
 

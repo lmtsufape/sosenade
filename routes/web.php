@@ -61,6 +61,11 @@ Route::middleware('auth')->group(function(){
 		Route::post('/cadastrarQuestaoSimulado/', 'QuestaoSimuladoController@cadastrarQuestao')->name('add_qst_simulado');
 		Route::get('/removerQuestaoSimulado/{sim_qst_id}', 'QuestaoSimuladoController@removerQuestao')->name('remove_qst_simulado');
 
+		Route::get('/relatorio/QstDis', 'RelatorioController@questoesPorDisciplina')->name('qst_por_disciplina');
+		Route::get('/relatorio/DesempenhoAlunos', 'RelatorioController@desempenhoAlunos')->name('desempenho_alunos');
+		Route::get('/relatorio/relatorioSimulados', 'RelatorioController@relatorioSimulados')->name('relatorio_simulados');
+		Route::get('/relatorio/relatorioDisciplina', 'RelatorioController@relatorioDisciplina')->name('relatorio_disciplinas');
+
 	});
 
 	Route::group(['middleware' => ['professor.auth' OR 'coordenador.auth']], function() {
@@ -98,13 +103,15 @@ Route::middleware('auth')->group(function(){
 		Route::post('/atualizar/ciclo', 'CicloController@atualizar')->name('update_ciclo');
 		Route::get('/remover/ciclo/{id}', 'CicloController@remover')->name('delete_ciclo');
 
+		Route::get('/relatorio/cursos', 'RelatorioController@relatorioGeralCursos')->name('geral_cursos');
+
 	});
 
 });
 
 Route::middleware('aluno.auth')->group(function(){
 
-	Route::get('/alunohome','AlunoController@home')->name('welcome_aluno');
+	Route::get('/alunohome','AlunoController@home')->name('home_aluno');
 
 	Route::get('/listaSimuladoAluno/simulado', 'SimuladoController@listaSimuladoAluno')->name('list_simulado_aluno');
 	Route::get('/listaSimuladoAluno/simuladoFeitos', 'SimuladoController@listaSimuladoAlunoFeitos')->name('list_simulado_feitos');

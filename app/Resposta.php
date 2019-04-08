@@ -8,10 +8,10 @@ class Resposta extends Model
 {
     //
     public function aluno(){
-    	return $this->hasOne('SimuladoENADE\Aluno');
+    	return $this->belongsTo('SimuladoENADE\Aluno');
     }
     public function questao(){
-    	return $this->hasOne('SimuladoENADE\Questao');
+    	return $this->belongsTo('SimuladoENADE\Questao');
     }
 
     protected $fillable = ['questao_id','aluno_id','alternativa_questao'];
@@ -23,7 +23,6 @@ class Resposta extends Model
     	'alternativa_questao' => 'required|max:1'
 
     ];
-
 
     public static $messages = [
     	'required' => 'O campo: attribute é obrigatiorio',
