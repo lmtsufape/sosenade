@@ -86,7 +86,7 @@ class RelatorioController extends Controller {
 	}
 
 	public function relatorioSimulados(){
-		$view = 'RelatoriosView.DesempenhoPorRelatorio';
+		$view = 'RelatoriosView.DesempenhoPorSimulado';
 		
 		$simulados = \SimuladoENADE\SimuladoAluno::where('simulado_alunos.curso_aluno', '=', \Auth::user()->curso_id)
 			->join('simulados', 'simulado_alunos.simulado_id', 'simulados.id')
@@ -100,7 +100,7 @@ class RelatorioController extends Controller {
 		$pdf = \App::make('dompdf.wrapper');
 		$pdf->loadHTML($view)->setPaper('a4', 'landscape');
 
-		$filename = 'DesempenhoPorRelatorio_'.$date;
+		$filename = 'DesempenhoPorSimulado_'.$date;
 
 		return $pdf->stream($filename.'.pdf');
 

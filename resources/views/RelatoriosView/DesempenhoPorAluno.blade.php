@@ -17,34 +17,49 @@
 			@foreach($resum_aluno as $aluno)
 				@php ($first = true)
 				@php ($count_discplina = 0)
-				@foreach($aluno['simulados'] as $simulados)
-					<tr>
-						@if($first == true)
-							<td rowspan="{{count($aluno['simulados'])}}" class="align-middle">
-								{{$aluno['nome']}}
-							</td>
-							@php ($first = false)
-						@endif
-						<td class="align-middle">
-							<p style="text-align:left;">
-								{{$simulados['titulo_simu']}}
-								<span style="float:right; font-weight: bold;">
-									{{$simulados['media']}}%
-								</span>
-							</p>
-						</td>
-						<td class="align-middle">
-							@foreach($simulados['disciplinas'] as $disciplinas)
+				@if(count($aluno['simulados']))
+					@foreach($aluno['simulados'] as $simulados)
+						<tr>
+							@if($first == true)
+								<td rowspan="{{count($aluno['simulados'])}}" class="align-middle">
+									<p style="text-align:left;">
+										{{$aluno['nome']}}
+									</p>
+								</td>
+								@php ($first = false)
+							@endif
+							<td class="align-middle">
 								<p style="text-align:left;">
-									{{$disciplinas['nome']}}
+									{{$simulados['titulo_simu']}}
 									<span style="float:right; font-weight: bold;">
-										{{$disciplinas['media']}}%
+										{{$simulados['media']}}%
 									</span>
 								</p>
-							@endforeach
+							</td>
+							<td class="align-middle">
+								@foreach($simulados['disciplinas'] as $disciplinas)
+									<p style="text-align:left;">
+										{{$disciplinas['nome']}}
+										<span style="float:right; font-weight: bold;">
+											{{$disciplinas['media']}}%
+										</span>
+									</p>
+								@endforeach
+							</td>
+						</tr>
+					@endforeach
+				@else
+					<tr class="table-active">
+						<td class="align-middle">
+							<p style="text-align:left;">
+								{{$aluno['nome']}}
+							</p>
+						</td>
+						<td colspan="2" class="align-middle">
+							<p>Não fez nenhum simulado.</p>
 						</td>
 					</tr>
-				@endforeach
+				@endif
 			@endforeach
 		</tbody>
 	</table>
