@@ -12,7 +12,7 @@ class Aluno extends Authenticatable{
     protected $hidden = ['password', 'remember_token'];
     
     public function curso(){
-        return $this->belongsTo('\SimuladoENADE\Curso', 'id', 'curso_id');
+        return $this->belongsTo('\SimuladoENADE\Curso', 'curso_id', 'id');
     }
 
     public function simulados_alunos(){

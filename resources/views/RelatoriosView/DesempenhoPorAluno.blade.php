@@ -4,49 +4,49 @@
 @section('content')
 	<h3 style="text-align:center;">
 		{{$total_alunos}} aluno(s) cadastrados.
-	</h3>
-	@foreach($resum_aluno as $aluno)
-		<table class="table table-bordered">
-				<thead class="thead">
+	</h3><br>
+	<table class="table table-bordered">
+		<thead class="thead-dark">
+			<tr>
+				<th>Nome do Aluno</th>
+				<th>Simulados Feitos (Tx. de Acerto)</th>
+				<th>Disciplinas Abrangentes (Tx. de Acerto)</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach($resum_aluno as $aluno)
+				@php ($first = true)
+				@php ($count_discplina = 0)
+				@foreach($aluno['simulados'] as $simulados)
 					<tr>
-						<th style="font-size: 14; width: 60%">{{$aluno['nome']}}</th>
-						<th style="font-size: 14">Média Geral: {{$aluno['md_geral']}}%</th>
-					</tr>
-					@if(!$aluno['simulados'])
-						<tr style="font-style: italic;">
-							<th colspan="2">Nenhum simulado respondido</th>
-						</tr>
-					@endif
-				</thead>
-				<tbody>
-					@foreach($aluno['simulados'] as $simulados)
-						<tr style="background-color: #f2f2f2">
-							<td>{{$simulados['titulo_simu']}}</td>
-							<td>{{$simulados['media']}}%</td>
-						</tr>
-						<tr>
-							<td colspan="2">
-								<table class="table">
-									<thead>
-										<tr style="font-style: italic;">
-											<th style="font-size: 12; width: 60.2%">Nome da Disciplina</th>
-											<th style="font-size: 12">Média da Disciplina</th>
-										</tr>
-									</thead>
-									<tbody>
-										@foreach($simulados['disciplinas'] as $disciplinas)
-											<tr>
-												<td>{{$disciplinas['nome']}}</td>
-												<td>{{$disciplinas['media']}}%</td>
-											</tr>
-										@endforeach
-									</tbody>
-								</table>
+						@if($first == true)
+							<td rowspan="{{count($aluno['simulados'])}}" class="align-middle">
+								{{$aluno['nome']}}
 							</td>
-						</tr>
-					@endforeach
-				</tbody>
-		</table>
-		<br>
-	@endforeach
+							@php ($first = false)
+						@endif
+						<td class="align-middle">
+							<p style="text-align:left;">
+								{{$simulados['titulo_simu']}}
+								<span style="float:right; font-weight: bold;">
+									{{$simulados['media']}}%
+								</span>
+							</p>
+						</td>
+						<td class="align-middle">
+							@foreach($simulados['disciplinas'] as $disciplinas)
+								<p style="text-align:left;">
+									{{$disciplinas['nome']}}
+									<span style="float:right; font-weight: bold;">
+										{{$disciplinas['media']}}%
+									</span>
+								</p>
+							@endforeach
+						</td>
+					</tr>
+				@endforeach
+			@endforeach
+		</tbody>
+	</table>
+	<br>
 @stop
