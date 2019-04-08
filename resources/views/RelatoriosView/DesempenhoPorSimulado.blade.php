@@ -17,7 +17,7 @@
 					<td>{{$simulado->simulado->descricao_simulado}}</td>
 					<td>{{$simulado->numero_respostas}}</td>
 					<td>{{$simulado->questaos->count()}}</td>
-					<td>{{$simulado->media_alunos}}</td>
+					<td>{{$simulado->media_alunos}}%</td>
 				</tr>
 			@endforeach
 		</tbody>
