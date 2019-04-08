@@ -105,4 +105,31 @@ class RelatorioController extends Controller {
 		return $pdf->stream($filename.'.pdf');
 
 	}
+
+
+	public function relatorioDisciplina()
+	{
+		$teste = \SimuladoENADE\Resposta::join('simulados', 'simulados.id', '=', 'respostas.simulado_id')
+		->where('simulados.curso_id', '=', \Auth::user()->curso_id)
+		->get();
+
+
+		$cont_respostas = array();
+		$acertos = array();
+		foreach ($teste as $respostas) {
+			if(!array_key_exists($respostas->questao->disciplina->nome, $acertos)){
+				$acertos[$respostas->questao->disciplina->nome] = 0;
+				$cont_respostas[$respostas->questao->disciplina->nome] = 0;
+			}
+			$acertos[$respostas->questao->disciplina->nome] += $respostas->acertou ? 1 : 0;
+			$cont_respostas[$respostas->questao->disciplina->nome] += 1;
+		}
+
+		$medias = array();
+		foreach ($teste as $respostas) {
+			$medias[$respostas->questao->disciplina->nome] = $acertos[$respostas->questao->disciplina->nome]/$cont_respostas[$respostas->questao->disciplina->nome];
+		}
+
+		dd($acertos, $cont_respostas, $medias);
+	}
 }

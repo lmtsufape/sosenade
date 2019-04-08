@@ -48,6 +48,7 @@
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="{{route('new_disciplina')}}">Cadastrar</a>
 							<a class="dropdown-item" href="{{route('list_disciplina')}}">Listar</a>
+							<a class="dropdown-item" href="{{route('relatorio_disciplinas')}}">Relatório Disciplinas</a>
 
 
 						</div>
