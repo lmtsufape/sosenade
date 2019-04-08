@@ -48,9 +48,6 @@
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="{{route('new_disciplina')}}">Cadastrar</a>
 							<a class="dropdown-item" href="{{route('list_disciplina')}}">Listar</a>
-							<a class="dropdown-item" href="{{route('relatorio_disciplinas')}}">Relatório Disciplinas</a>
-
-
 						</div>
 					</li>
 
@@ -93,6 +90,7 @@
 							<a class="dropdown-item" href="{{route('new_simulado')}}">Cadastrar</a>
 							<a class="dropdown-item" href="{{route('list_simulado')}}">Listar</a>
 							<a class="dropdown-item" href="{{route('desempenho_alunos')}}">Desempenho por Aluno</a>
+							<a class="dropdown-item" href="{{route('relatorio_disciplinas')}}">Desempenho por Disciplinas</a>
 							<a class="dropdown-item" href="{{route('relatorio_simulados')}}">Desempenho por Simulado</a>
 						</div>
 					</li>
