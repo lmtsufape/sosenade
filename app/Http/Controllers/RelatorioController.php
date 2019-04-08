@@ -130,7 +130,7 @@ class RelatorioController extends Controller {
 
 		$medias = array();
 		foreach ($respostas as $resposta) {
-			$medias[$resposta->questao->disciplina->nome] = $acertos[$resposta->questao->disciplina->nome]/$cont_respostas[$resposta->questao->disciplina->nome];
+			$medias[$resposta->questao->disciplina->nome] = $acertos[$resposta->questao->disciplina->nome]/$cont_respostas[$resposta->questao->disciplina->nome]*100;
 		}
 
 		$date = date('d/m/Y');

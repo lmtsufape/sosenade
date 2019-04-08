@@ -19,7 +19,7 @@
 						<td>{{count($disciplina->questaos)}}</td>
 						@if(array_key_exists($disciplina->nome, $cont_respostas))
 							<td>{{$cont_respostas[$disciplina->nome]}}</td>
-							<td>{{$medias[$disciplina->nome]}}</td>
+							<td>{{$medias[$disciplina->nome]}}%</td>
 						@else
 							<td colspan="2" style="font-weight: bold;">
 								Não possui nenhuma resposta
