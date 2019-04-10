@@ -21,7 +21,7 @@ public function run()
 
 
         //Criação de Adm geral do sistema
-        DB::table('usuarios')->insert(['nome' => 'LMTS', 'cpf' => '12345678901', 'password' => $password, 'remember_token' =>$remember_token, 'email' => 'lmts@ufrpe.com', 'tipousuario_id' => 4, 'curso_id' => 1]);
+        DB::table('usuarios')->insert(['nome' => 'LMTS', 'cpf' => '12345678901', 'password' => $password, 'remember_token' =>$remember_token, 'email' => 'lmts@ufrpe.br', 'tipousuario_id' => 4, 'curso_id' => 1]);
 
 
         //Criação de Coordenador do primeiro curso
