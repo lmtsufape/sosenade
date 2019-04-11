@@ -21,15 +21,15 @@ public function run()
 
 
         //Criação de Adm geral do sistema
-        DB::table('usuarios')->insert(['nome' => 'LMTS', 'cpf' => '12345678901', 'password' => $password, 'remember_token' =>$remember_token, 'email' => 'lmts@ufrpe.com', 'tipousuario_id' => 4, 'curso_id' => 1]);
+        DB::table('usuarios')->insert(['nome' => 'LMTS', 'cpf' => '12345678901', 'password' => $password, 'remember_token' =>$remember_token, 'email' => 'lmts@ufrpe.br', 'tipousuario_id' => 4, 'curso_id' => 1]);
 
 
         //Criação de Coordenador do primeiro curso
-        DB::table('usuarios')->insert(['nome' => 'Coordenador', 'cpf' => '12345678911', 'password' => $senhac, 'remember_token' =>$remember_token, 'email' => 'coordenador@ufrpe.br', 'tipousuario_id' => 2, 'curso_id' => 1]);
+        DB::table('usuarios')->insert(['nome' => 'Coordenador', 'cpf' => '12345678911', 'password' => $senhac, 'remember_token' =>$remember_token, 'email' => 'coordenador-teste@ufrpe.br', 'tipousuario_id' => 2, 'curso_id' => 1]);
 
         //Criação de professor
 
-        DB::table('usuarios')->insert(['nome' => 'Professor', 'cpf' => '02345678913', 'password' => $senhap, 'remember_token' =>$remember_token, 'email' => 'professor@ufrpe.br', 'tipousuario_id' => 3, 'curso_id' => 1]);
+        DB::table('usuarios')->insert(['nome' => 'Professor', 'cpf' => '02345678913', 'password' => $senhap, 'remember_token' =>$remember_token, 'email' => 'professor-teste@ufrpe.br', 'tipousuario_id' => 3, 'curso_id' => 1]);
 
     }
 }
