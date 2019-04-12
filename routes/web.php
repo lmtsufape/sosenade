@@ -133,7 +133,7 @@ Route::middleware('aluno.auth')->group(function(){
 	Route::get('/startSimulado/{id}', 'SimuladoController@startSimulado')->name('startSimulado');
 
 	Route::get('/editarPerfil', 'AlunoController@editarPerfil')->name('edit_perfil_aluno');	
-	Route::post('/alterarSenha', 'AlunoController@editarSenha')->name('alterar_senha_aluno');
+	Route::post('/alterarSenhaAluno', 'AlunoController@editarSenha')->name('alterar_senha_aluno');
 
 });
 
