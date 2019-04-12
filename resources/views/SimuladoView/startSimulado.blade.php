@@ -2,7 +2,7 @@
 @section('titulo','Simulado')
 @section('content')
 	
-	<div class="shadow p-3 mb-5 bg-white rounded">
+	<div class="shadow p-3 bg-white rounded">
 		
 		<div class="col-md-12 text-center">
 			<h2>Responder simulado - {{$simulado->descricao_simulado}}</h2><br>

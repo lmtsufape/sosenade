@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('titulo','Ciclos Cadastrados')
 @section('content')
-    <div class="shadow p-4 mb-5 bg-white rounded container-fluid" style="overflow-x: auto;">
+    <div class="shadow p-4 bg-white rounded container-fluid" style="overflow-x: auto;">
 
 		<h1 class="text-center"> Cursos </h1><br>
 		@if(!$cursos->isEmpty())

@@ -2,7 +2,7 @@
 @section('titulo','Cadastrar Ciclo')
 @section('content')
     
-	<form class="shadow p-3 mb-5 bg-white rounded" action= "{{route('add_ciclo')}}" method="post">
+	<form class="shadow p-3 bg-white rounded" action= "{{route('add_ciclo')}}" method="post">
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
 		<h1 class="text-center"> Cadastrar Ciclo </h1><br><br>	
 

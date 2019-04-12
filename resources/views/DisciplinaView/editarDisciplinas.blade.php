@@ -2,7 +2,7 @@
 @section('titulo','Editar Disciplina')
 @section('content')
 
-	<form class="shadow p-3 mb-5 bg-white rounded" action= "{{route('update_disciplina')}}" method="post">
+	<form class="shadow p-3 bg-white rounded" action= "{{route('update_disciplina')}}" method="post">
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
 		<input type = "hidden" name="id" value="{{$disciplina->id}}">
 

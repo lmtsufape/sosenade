@@ -2,7 +2,7 @@
 @section('titulo','Visão Geral do Sistema')
 @section('content')
 	
-	<div class="shadow p-4 mb-5 bg-white rounded container-fluid" style="overflow-x: auto;">
+	<div class="shadow p-4 bg-white rounded container-fluid" style="overflow-x: auto;">
 	
 		<h1 class="text-center">Visão Geral do Sistema</h1>
 		<h3 class="text-center">{{$cursos->count()}} curso(s) em {{count($unidades)}} unidade(s) acadêmica(s)</h3><br>

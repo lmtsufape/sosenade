@@ -1,8 +1,15 @@
 @extends('layouts.app')
 @section('content')
+
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            @if(Session::has('fail'))
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> {{ Session::get('message', '') }}
+                </div>
+            @endif
             <div class="card">
                 <div class="card-header" style="background-color: #1B2E4F; border-color: #d3e0e9; color: white">{{ __('Login') }}</div>
 

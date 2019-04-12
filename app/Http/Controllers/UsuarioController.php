@@ -2,28 +2,26 @@
 
 namespace SimuladoENADE\Http\Controllers;
 
-use Illuminate\Notifications\Notification;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use \SimuladoENADE\Notifications\usuarioNotificacao;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Notifications\Notification;
+
 use \SimuladoENADE\Mail\emailConfirmacao;
 use SimuladoENADE\Validator\UsuarioValidator;
 use SimuladoENADE\Validator\ValidationException;
-
+use \SimuladoENADE\Notifications\usuarioNotificacao;
 
 class Usuariocontroller extends Controller{
 
 	public function home(){
-		
 		$user =  \Auth::user();
 		$curso = \SimuladoENADE\Curso::find($user->curso_id);
 		$unidade = \SimuladoENADE\UnidadeAcademica::find($curso->unidade_id)->nome;
 		$tipo_usuario = \SimuladoENADE\Tipousuario::find($user->tipousuario_id)->tipo;
 
 		return view('home', ['nome' => $user->nome, 'curso' => $curso->curso_nome, 'unidade' => $unidade, 'tipo' => $tipo_usuario]);
-
 	}
 
 	public function adicionar(Request $request){
@@ -89,9 +87,7 @@ class Usuariocontroller extends Controller{
 		if($user == 4)
 			return view('/UsuarioView/cadastrarUsuario',['cursos' => $cursos, 'tipos_usuario' => $tipos_usuario]);
 		elseif($user == 2){
-
 			return view('/UsuarioView/cadastrarProfessor',['cursos' => $cursos, 'tipos_usuario' => $tipos_usuario]);
-		
 		}
 		
 	}
@@ -119,10 +115,10 @@ class Usuariocontroller extends Controller{
 		} elseif($tipo_usuario == 2){
 
 			// Apenas usuarios do tipo 3 (professores) e do mesmo curso do coord
-        	$usuarios = \SimuladoENADE\Usuario::where('curso_id', '=', $curso_id)
-        		->where('tipousuario_id','=',3) // apenas professores
-        		->orderBy('nome')
-        		->paginate(10);
+			$usuarios = \SimuladoENADE\Usuario::where('curso_id', '=', $curso_id)
+				->where('tipousuario_id','=',3) // apenas professores
+				->orderBy('nome')
+				->paginate(10);
 
 			return view('/UsuarioView/ListaProfessor',['usuarios' => $usuarios]); 
 			
@@ -137,10 +133,28 @@ class Usuariocontroller extends Controller{
 		$user = \Auth::user()->tipousuario_id;
 
 		if($user == 4){
-			return view('/UsuarioView/editarUsuario', ['usuario'=> $usuario, 'cursos' => $cursos, 'tipos_usuario' => $tipos_usuario]);
-		} elseif($user == 2){
-			return view('/UsuarioView/editarProfessor', ['usuario'=> $usuario, 'cursos' => $cursos, 'tipos_usuario' => $tipos_usuario]);
+			return view('/UsuarioView/editarPerfilAdm', ['usuario'=> $usuario, 'cursos' => $cursos, 'tipos_usuario' => $tipos_usuario]);
+		} else {
+			return view('/UsuarioView/editarPerfilGeral', ['usuario'=> $usuario, 'cursos' => $cursos, 'tipos_usuario' => $tipos_usuario]);
 		}    
+	}
+
+	public function editarSenha(Request $request) {
+		$usuario = \SimuladoENADE\Usuario::find($request->id);
+		if (!(Hash::check($request->old_password, $usuario->password)))
+			return redirect()->back()->with('fail', true)->with('message','Senha incorreta! Alterações não efetuadas.')->with('senha', true);
+
+		if ($request->password != $request->password_confirmation)
+			return redirect()->back()->with('fail', true)->with('message','Nova senha e confirmação são diferentes.')->with('senha', true);
+
+		$validator = Validator::make($request->all(), ['password' => 'min:6|max:16']);
+		if($validator->fails())
+			return redirect()->back()->withErrors($validator->errors())->withInput();
+
+		$usuario->password = Hash::make($request->password);
+		$usuario->save();
+
+		return redirect()->back()->with('success', true)->with('message','Senha alterada com sucesso!');
 	}
 	
 	public function atualizar(Request $request){
@@ -175,7 +189,7 @@ class Usuariocontroller extends Controller{
 
 				$usuario->fill($inf_array);
 				$usuario->update();
-				return redirect("/listar/professor");
+				return redirect()->back()->with('success', true)->with('message','Alterações efetuadas.');
 
 			}
 		}

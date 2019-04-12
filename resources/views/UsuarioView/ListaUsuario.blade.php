@@ -2,7 +2,7 @@
 @section('titulo','Usuários Cadastrados')
 @section('content')
 
-    <div class="shadow p-4 mb-5 bg-white rounded container-fluid" style="overflow-x: auto;">
+    <div class="shadow p-4 bg-white rounded container-fluid" style="overflow-x: auto;">
 	
 		<h1 class="text-center">Usuários Cadastrados</h1><br>
 		

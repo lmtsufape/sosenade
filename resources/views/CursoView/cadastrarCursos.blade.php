@@ -2,7 +2,7 @@
 @section('titulo','Cadastrar Curso')
 @section('content')
 	
-	<form class="shadow p-3 mb-5 bg-white rounded" action= "{{route('add_curso')}}" method="post">
+	<form class="shadow p-3 bg-white rounded" action= "{{route('add_curso')}}" method="post">
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
 		<h1 class="text-center"> Cadastrar curso </h1><br><br>	
 		<div class="form-group col-md-4">

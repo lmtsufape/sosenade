@@ -40,7 +40,6 @@ Route::middleware('auth')->group(function(){
 		Route::get('/cadastrar/aluno', 'AlunoController@cadastrar')->name('new_aluno');
 		Route::post('/adicionar/aluno', 'AlunoController@adicionar')->name('add_aluno');
 		Route::get('/editar/aluno/{id}', 'AlunoController@editar')->name('edit_aluno');
-		Route::post('/atualizar/aluno', 'AlunoController@atualizar')->name('update_aluno');
 		Route::get('/remover/aluno/{id}', 'AlunoController@remover')->name('delete_aluno');
 		Route::post('/importa/aluno/', 'AlunoController@importaArquivo')->name('import_aluno');
 
@@ -68,6 +67,13 @@ Route::middleware('auth')->group(function(){
 
 	});
 
+	Route::group(['middleware' => ['professor.auth' OR 'coordenador.auth' OR 'adm.auth']], function() {
+
+		Route::get('/editar/usuario/{id}', 'UsuarioController@editar')->name('edit_usuario');
+		Route::post('/alterarSenha/', 'UsuarioController@editarSenha')->name('alterar_senha');
+
+	});
+
 	Route::group(['middleware' => ['professor.auth' OR 'coordenador.auth']], function() {
 
 		Route::get('/listar/questao', 'QuestaoController@listar')->name('list_qst');
@@ -92,7 +98,6 @@ Route::middleware('auth')->group(function(){
 		Route::get('/listar/usuario', 'UsuarioController@listar')->name('list_usuario');
 		Route::get('/cadastrar/usuario', 'UsuarioController@cadastrar')->name('new_usuario');
 		Route::post('/adicionar/usuario', 'UsuarioController@adicionar')->name('add_usuario');
-		Route::get('/editar/usuario/{id}', 'UsuarioController@editar')->name('edit_usuario');
 		Route::post('/atualizar/usuario', 'UsuarioController@atualizar')->name('update_usuario');
 		Route::get('/remover/usuario/{id}', 'UsuarioController@remover')->name('delete_usuario');
 
@@ -109,6 +114,12 @@ Route::middleware('auth')->group(function(){
 
 });
 
+Route::group(['middleware' => ['aluno.auth' OR 'coordenador.auth']], function() {
+
+	Route::post('/atualizar/aluno', 'AlunoController@atualizar')->name('update_aluno');
+
+});
+
 Route::middleware('aluno.auth')->group(function(){
 
 	Route::get('/alunohome','AlunoController@home')->name('home_aluno');
@@ -119,8 +130,10 @@ Route::middleware('aluno.auth')->group(function(){
 	Route::get('/questao/simulado/{id}', 'SimuladoController@questao')->name('qst_simulado');
 	Route::post('/responder/simulado/', 'SimuladoController@responder')->name('answ_qst_simulado');
 	Route::get('/resultado/simulado/{id}', 'SimuladoController@resultado')->name('result_simulado');
-	
 	Route::get('/startSimulado/{id}', 'SimuladoController@startSimulado')->name('startSimulado');
+
+	Route::get('/editarPerfil', 'AlunoController@editarPerfil')->name('edit_perfil_aluno');	
+	Route::post('/alterarSenha', 'AlunoController@editarSenha')->name('alterar_senha_aluno');
 
 });
 

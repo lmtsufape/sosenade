@@ -133,7 +133,7 @@
 					<span class="caret"></span>
 				</a>
 				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="{{route('edit_usuario', ['id' => Auth::guard('aluno')->user() ? Auth::guard('aluno')->user()->id : Auth::user()->id])}}">
+					<a class="dropdown-item" href="{{(Auth::guard('aluno')->user()) ? route('edit_perfil_aluno') : route('edit_usuario', ['id' => Auth::user()->id])}}">
 							Meu Perfil
 					</a>
 					<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

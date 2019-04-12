@@ -2,7 +2,7 @@
 @section('titulo','Professores Cadastrados')
 @section('content')
     
-    <div class="shadow p-4 mb-5 bg-white rounded container-fluid" style="overflow-x: auto;">
+    <div class="shadow p-4 bg-white rounded container-fluid" style="overflow-x: auto;">
 		
 		<h1 class="text-center">Professores Cadastrados</h1>
 		<h2 class="text-center">

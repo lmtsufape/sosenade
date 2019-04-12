@@ -1,14 +1,14 @@
 @extends('layouts.app')
-@section('titulo','Editar Usuário')
+@section('titulo','Atualizar Perfil')
 @section('content')
 
-	<form class="shadow p-3 mb-5 bg-white rounded" action= "{{route('update_usuario')}}" method="post">
+	<form class="shadow p-3 bg-white rounded" action= "{{route('update_usuario')}}" method="post">
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
 		<input type="hidden" name="id" value="{{$usuario->id}}">
 
 		<input type="hidden" name="password" value="{{$usuario->password}}">
 
-		<h1 class="text-center"> Editar Usuário </h1><br>
+		<h1 class="text-center"> Atualizar Perfil </h1><br>
 
 		<div class="form-group justify-content-center row">
 			<div class="form-group col-md-8">

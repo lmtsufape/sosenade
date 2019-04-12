@@ -2,7 +2,7 @@
 @section('titulo','Montar Simulado')
 @section('content')
 
-	<form action = "{{route('add_qst_simulado')}}" method = "post" class="shadow p-3 mb-5 bg-white rounded">
+	<form action = "{{route('add_qst_simulado')}}" method = "post" class="shadow p-3 bg-white rounded">
 		
 		<h1 class="text-center">Montar Simulado - {{$titulo_simulado}} </h1>
 		<h2 class="text-center">

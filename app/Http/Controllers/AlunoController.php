@@ -5,6 +5,7 @@ namespace SimuladoENADE\Http\Controllers;
 use Illuminate\Http\Request;
 use SimuladoENADE\Validator\AlunoValidator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use SimuladoENADE\Validator\ValidationException;
 use SimuladoENADE\Validator\CsvImportRequest;
 
@@ -93,13 +94,37 @@ class AlunoController extends Controller{
 		return view('/AlunoView/editarAluno', ['aluno' => $aluno], ['cursos' => $curso]);
 	}
 
+	public function editarPerfil(){
+		$aluno = \Auth::guard('aluno')->user();
+		$curso = \SimuladoENADE\Curso::all();
+		return view('/AlunoView/editarPerfil', ['aluno' => $aluno], ['cursos' => $curso]);
+	}
+
+	public function editarSenha(Request $request) {
+		$usuario = \SimuladoENADE\Aluno::find($request->id);
+		if (!(Hash::check($request->old_password, $usuario->password)))
+			return redirect()->back()->with('fail', true)->with('message','Senha incorreta! Alterações não efetuadas.')->with('senha', true);
+
+		if ($request->password != $request->password_confirmation)
+			return redirect()->back()->with('fail', true)->with('message','Nova senha e confirmação são diferentes.')->with('senha', true);
+
+		$validator = Validator::make($request->all(), ['password' => 'min:6|max:16']);
+		if($validator->fails())
+			return redirect()->back()->withErrors($validator->errors())->withInput();
+
+		$usuario->password = Hash::make($request->password);
+		$usuario->save();
+
+		return redirect()->back()->with('success', true)->with('message','Senha alterada com sucesso!');
+	}
+
 	public function atualizar(Request $request){
 		try {
 			AlunoValidator::Validate($request->all());
 			$aluno = \SimuladoENADE\Aluno::find($request->id);    
 			$aluno->fill($request->all());
 			$aluno->update();
-			return redirect("listar/aluno");
+			return redirect()->back()->with('success', true)->with('message','Alterações efetuadas.');
 		} catch(ValidationException $ex){
 			return redirect("editar/aluno/".$request->id)->withErrors($ex->getValidator())->withInput();
 		}

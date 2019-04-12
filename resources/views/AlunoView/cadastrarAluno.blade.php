@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('titulo','Cadastro de Alunos')
 @section('content')
-	<div class="shadow p-3 mb-5 bg-white rounded">
+	<div class="shadow p-3 bg-white rounded">
 		<h1 class="text-center"> Cadastro de Alunos </h1>
 		<h2 class="text-center">
 			@if (Auth::guard('aluno')->user())

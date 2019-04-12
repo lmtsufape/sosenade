@@ -2,7 +2,7 @@
 @section('titulo','Simulado')
 @section('content')
 
-	<form class="shadow p-3 mb-5 bg-white rounded" action= "{{route('answ_qst_simulado')}}" method="post">
+	<form class="shadow p-3 bg-white rounded" action= "{{route('answ_qst_simulado')}}" method="post">
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
 		<input type="hidden" name="simulado_id" value="{{$simulado_id}}">
 		<input type="hidden" name="questao_id" value="{{$questao['id']}}">
