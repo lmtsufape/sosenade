@@ -144,12 +144,13 @@ class Usuariocontroller extends Controller{
 		if (!(Hash::check($request->old_password, $usuario->password)))
 			return redirect()->back()->with('fail', true)->with('message','Senha incorreta! Alterações não efetuadas.')->with('senha', true);
 
-		if ($request->password != $request->password_confirmation)
-			return redirect()->back()->with('fail', true)->with('message','Nova senha e confirmação são diferentes.')->with('senha', true);
+		$validator = Validator::make($request->all(), [
+			'password' => 'min:6|max:16|required_with:password_confirmation',
+			'password_confirmation' => 'required_with:password|same:password'
+			]);
 
-		$validator = Validator::make($request->all(), ['password' => 'min:6|max:16']);
 		if($validator->fails())
-			return redirect()->back()->withErrors($validator->errors())->withInput();
+			return redirect()->back()->withErrors($validator->errors())->withInput()->with('senha', true);
 
 		$usuario->password = Hash::make($request->password);
 		$usuario->save();

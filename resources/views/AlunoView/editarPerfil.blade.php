@@ -90,12 +90,7 @@
 								<div class="form-row col-md-12 justify-content-center">
 									<div class="form-group col-md-4">
 										<label for="password">Senha atual</label>
-										<input type="password" id="password" name="old_password" placeholder="Digite a sua senha atual" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" value="{{ old('password') }}" required autofocus>
-										@if ($errors->has('password'))
-											<span class = "invalid-feedback" role="alert">
-												{{$errors->first('password')}}
-											</span>
-										@endif
+										<input type="password" id="password" name="old_password" placeholder="Digite a sua senha atual" class="form-control" value="{{ old('password') }}" required autofocus>
 									</div>
 									<div class="form-group col-md-4">
 										<label for="password">Nova senha</label>
