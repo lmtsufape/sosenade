@@ -56,8 +56,6 @@
 		<table class="table form-group" id="dynamic_field" >
 			<th style="text-align: center;">#</th>
 			<th style="text-align: center;">Alternativas</th>
-			<th style="text-align: center;">Alternativa correta</th>
-			<th>&nbsp</th>
 			<tr>
 				<td style="border: 0px; width: 1%; vertical-align:middle;">1.</td>
 				<td style="border: 0px">
@@ -66,7 +64,7 @@
 					</textarea>
 				</td>  
 				<td style="border: 0px;text-align: center; width: 1%; vertical-align:middle;">
-					<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="0" required {{ ($questao->alternativa_correta == "0") ? 'checked': ''}}>
+					
 				</td>  
 			</tr>
 			<tr>  
@@ -77,7 +75,7 @@
 					</textarea>
 				</td> 
 				<td style="border: 0px;text-align: center; width: 1%; vertical-align:middle;">
-					<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="1" required {{ ($questao->alternativa_correta == "1") ? 'checked': ''}}>
+					
 				</td>
 			</tr>
 			<tr>  
@@ -88,7 +86,7 @@
 					</textarea>
 				</td> 
 				<td style="border: 0px;text-align: center; width: 1%; vertical-align:middle;">
-					<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="2" required {{ ($questao->alternativa_correta == "2") ? 'checked': ''}}>
+					
 				</td>
 			</tr>
 			<tr>  
@@ -99,7 +97,7 @@
 					</textarea>
 				</td> 
 				<td style="border: 0px;text-align: center; width: 1%; vertical-align:middle;">
-					<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="3" required {{ ($questao->alternativa_correta == "3") ? 'checked': ''}}>
+					
 				</td>
 			</tr>
 			<tr>  
@@ -110,21 +108,38 @@
 					</textarea>
 				</td> 
 				<td style="border: 0px;text-align: center; width: 1%; vertical-align:middle;">
-					<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="4" required {{ ($questao->alternativa_correta == "4") ? 'checked': ''}}>
+					
 				</td>
 			</tr>
 		</table>
 
+		<div class="wrapper text-center">
+			<span style="font-weight: bold">Alternativa correta:&nbsp</span>
+			<div class="btn-group btn-group-toggle" data-toggle="buttons">
+				<label class="btn btn-info {{($questao->alternativa_correta == '0') ? 'active': ''}}">
+					<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="0" required {{ ($questao->alternativa_correta == "0") ? 'checked': ''}}> A
+				</label>
+				<label class="btn btn-info {{($questao->alternativa_correta == '1') ? 'active': ''}}">
+					<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="1" required {{ ($questao->alternativa_correta == "1") ? 'checked': ''}}> B
+				</label>
+				<label class="btn btn-info {{($questao->alternativa_correta == '2') ? 'active': ''}}">
+					<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="2" required {{ ($questao->alternativa_correta == "2") ? 'checked': ''}}> C
+				</label>
+				<label class="btn btn-info {{($questao->alternativa_correta == '3') ? 'active': ''}}">
+					<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="3" required {{ ($questao->alternativa_correta == "3") ? 'checked': ''}}> D
+				</label>
+				<label class="btn btn-info {{($questao->alternativa_correta == '4') ? 'active': ''}}">
+					<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="4" required {{ ($questao->alternativa_correta == "4") ? 'checked': ''}}> E
+				</label>
+			</div>
+		</div>
+
 		<div class="grid">
-
 			<br>
-
 			<div class="row justify-content-center">
 				<button type="submit" name="editar" class="btn btn-primary center-block col-md-1">Editar</button>
 			</div>
-
 			<br>
-
 		</div>
 	</form>
 	
