@@ -43,7 +43,7 @@
 
 		<div class="form-group justify-content-center row">
 			<div class="col-md-2 text-center">
-				<button type="submit" name="editar" class="btn btn-primary btn-block">Editar</button>
+				<button type="submit" name="editar" class="btn btn-primary btn-block">Salvar alterações</button>
 	    	</div>
 		</div>
 	</form>

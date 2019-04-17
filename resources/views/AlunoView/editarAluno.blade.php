@@ -62,7 +62,7 @@
 			</div>
 
 			<div class="col-md-12 text-center">
-				<button type="submit" name="cadastrar" class="btn btn-primary">Cadastrar</button><br><br>
+				<button type="submit" name="cadastrar" class="btn btn-primary">Salvar alterações</button><br><br>
 			</div>
 		</form>
 	</div>

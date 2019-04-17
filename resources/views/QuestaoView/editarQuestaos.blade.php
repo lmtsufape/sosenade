@@ -137,7 +137,7 @@
 		<div class="grid">
 			<br>
 			<div class="row justify-content-center">
-				<button type="submit" name="editar" class="btn btn-primary center-block col-md-1">Editar</button>
+				<button type="submit" name="editar" class="btn btn-primary center-block col-md-1">Salvar alterações</button>
 			</div>
 			<br>
 		</div>

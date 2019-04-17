@@ -75,7 +75,7 @@
 							</div>
 
 							<div class="col-md-12 text-center">
-								<button type="submit" name="alterar" class="btn btn-primary">Alterar</button><br><br>
+								<button type="submit" name="alterar" class="btn btn-primary">Salvar alterações</button><br><br>
 							</div>
 						</form>
 					</div>
@@ -114,7 +114,7 @@
 							</div>
 							<div class="justify-content-center row">
 								<div class="text-center" id="btn_alterar">
-									<button type="submit" name="alterar" class="btn btn-primary">Alterar senha</button>
+									<button type="submit" name="alterar" class="btn btn-primary">Salvar senha</button>
 								</div>
 							</div>
 						</form>
