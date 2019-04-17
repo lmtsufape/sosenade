@@ -99,7 +99,7 @@
 			</tbody>
 		</table>
 		<div class="form-group col-md-12 text-center">
-			<br><a class="btn btn-primary mr-3" href="{{route('list_simulado')}}"> Voltar para lista </a><br>
+			<br><a class="btn btn-primary mr-3" href="{{route('list_simulado')}}"> Pronto </a><br>
 		</div>
 	</form>
 @stop
