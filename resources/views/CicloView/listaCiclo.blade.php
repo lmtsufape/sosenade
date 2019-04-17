@@ -1,25 +1,23 @@
 @extends('layouts.app')
 @section('titulo','Ciclos Cadastrados')
 @section('content')
-
 	<div class="shadow p-4 bg-white rounded container-fluid" style="overflow-x: auto;">
-
 		<h1 class="text-center">Ciclos</h1><br>
 		@if(!$ciclos->isEmpty())
 			<table class="table table-hover">
 		 		<thead>
 					<tr>
-						<th>Tipo do ciclo</th>
-						<th>Funções</th>
+						<th>Ciclo (nº de cursos)</th>
+						<th style="width: 10%">Opções</th>
 					</tr>
 				</thead>
 				<tbody>
 					@foreach ($ciclos as $ciclo)
 						<tr>
-							<td>{{$ciclo->tipo_ciclo}}</td>
-							<td>
-								<a href="{{route('edit_ciclo', ['id' => $ciclo->id])}}">Editar</a> -
-								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_ciclo', ['id' => $ciclo->id])}}">Remover</a>
+							<td>{{$ciclo->tipo_ciclo}} <span class="badge badge-primary badge-pill">{{count($ciclo->cursos)}}</span></td>
+							<td class="btn-group">
+								<a href="{{route('edit_ciclo', ['id' => $ciclo->id])}}" class="btn btn-sm btn-primary">Editar</a>
+								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_ciclo', ['id' => $ciclo->id])}}" class="btn btn-sm btn-danger">Remover</a>
 							</td>
 						</tr>
 					@endforeach
@@ -32,7 +30,5 @@
 		<div class="col-md-12 text-center">
 			<br><a class="btn btn-primary" href="{{route('new_ciclo')}}"> Adicionar um novo ciclo </a><br>
 		</div>
-
 	</div>
-	
 @stop

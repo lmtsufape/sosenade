@@ -1,4 +1,4 @@
-<footer id="footer" style="background-color: #1B2E4F">
+<footer id="footer" style="background-color: #1B2E4F; position: absolute; bottom: 0; width: 100%; height: 60px">
 	<div class="container py-2">
 		<!-- Footer Brasil -->
 		<div id="footer-brasil"></div>

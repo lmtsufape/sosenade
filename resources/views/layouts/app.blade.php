@@ -22,7 +22,7 @@
 		</title>
 	</head>
 	
-	<body style="background: #EEE">
+	<body style="background: #EEE; min-height: 100vh; position: relative; padding-bottom: 60px">
 		<!-- Barra Brasil -->
 		<div id="barra-brasil" style="background:#7F7F7F; height: 20px; padding:0 0 0 10px; display:block;">
 			<ul id="menu-barra-temp" style="list-style:none;">
@@ -100,7 +100,7 @@
 			@else
 				@include('includes.nav_bar')
 			@endif
-			<main class="py-4">
+			<main class="py-3">
 				<div class="container justify-content-center">
 					@yield('content')
 				</div>

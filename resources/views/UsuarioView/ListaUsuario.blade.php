@@ -15,7 +15,7 @@
 						<th>CPF</th>
 						<th>E-mail</th>
 						<th>Curso</th>
-						<th>Funções</th>
+						<th style="width: 15%">Opções</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -26,25 +26,26 @@
 							<td>{{$usuario->cpf}}</td>
 							<td>{{$usuario->email}}</td>
 							<td>{{$usuario->curso_nome}}</td>
-							<td>
-								<a href="{{route('edit_usuario',['id'=>$usuario->userid])}}">Editar</a> -
-								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_usuario',['id'=>$usuario->userid])}}">Remover</a>
+							<td class="btn-group">
+								<a href="{{route('edit_usuario',['id'=>$usuario->userid])}}" class="btn btn-sm btn-primary">Editar</a>
+								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_usuario',['id'=>$usuario->userid])}}" class="btn btn-sm btn-danger">Remover</a>
 							</td>
 						</tr>
 					@endforeach
 				</tbody>
 			</table>
-
-			<div class="form-group justify-content-center row">
-				{{$usuarios->links()}}
-			</div>
-
 		@else
 			<p class="text-center alert alert-light">Não existem usuários cadastrados até o momento.</p>
 		@endif
 
-		<div class="col-md-12 text-center">
-			<br><a class="btn btn-primary " href="{{route('new_usuario')}}"> Inserir novo </a><br>
+		<hr class="star-light">
+
+		<div class="form-group justify-content-center row">
+			{{$usuarios->links()}}
+		</div>
+
+		<div class="col-md-6 left">
+			<a class="btn btn-primary " href="{{route('new_usuario')}}"> Inserir novo </a><br><br>
 		</div>
 
 	</div>

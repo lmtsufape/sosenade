@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('titulo','Atualizar Perfil')
+@section('titulo','Editar Conta')
 @section('content')
 
 	<form class="shadow p-3 bg-white rounded" action= "{{route('update_usuario')}}" method="post">
@@ -8,7 +8,7 @@
 
 		<input type="hidden" name="password" value="{{$usuario->password}}">
 
-		<h1 class="text-center"> Atualizar Perfil </h1><br>
+		<h1 class="text-center"> Editar Conta </h1><br>
 
 		<div class="form-group justify-content-center row">
 			<div class="form-group col-md-8">
@@ -45,9 +45,11 @@
 				<label for="tipousuario_id">Tipo de usuário</label>
 				<select name="tipousuario_id" class="form-control{{ $errors->has('tipousuario_id') ? ' is-invalid' : '' }}" required autofocus>
 					@foreach ($tipos_usuario as $tipo_usuario)
-					<option value="{{$tipo_usuario->id}}" {{$usuario->tipousuario_id == $tipo_usuario->id ? 'selected' : '' }}>
-						{{$tipo_usuario->tipo}}
-					</option>
+						@if ($tipo_usuario->id != 1)
+							<option value="{{$tipo_usuario->id}}" {{old('tipousuario') == $tipo_usuario->id ? 'selected' : '' }}>
+								{{$tipo_usuario->tipo}}
+							</option>
+						@endif
 					@endforeach
 				</select>
 				@if ($errors->has('tipousuario_id'))

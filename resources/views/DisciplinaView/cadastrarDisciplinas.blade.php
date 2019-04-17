@@ -17,7 +17,7 @@
 		<div class="form-group justify-content-center row">
 			<div class="col-md-6">
 				<label for="nome">Nome</label>
-				<input type="text" name="nome" id="nome" placeholder="Escreva o nome da disciplina aqui" class="form-control{{ $errors->has('nome') ? ' is-invalid' : '' }}" value="{{ old('nome') }}" required autofocus>
+				<input type="text" name="nome" id="nome" placeholder="Digite o nome da disciplina aqui" class="form-control{{ $errors->has('nome') ? ' is-invalid' : '' }}" value="{{ old('nome') }}" required autofocus>
 					@if ($errors->has('nome'))
 						<span class = "invalid-feedback" role="alert">
 							<strong>{{$errors->first('nome')}}</strong>
@@ -29,6 +29,5 @@
 		<div class="col-md-12 text-center">
 			<br><button type="submit" name="cadastrar" class="btn btn-primary">Cadastrar</button><br><br>
 		</div>
-
 	</form>
 @stop

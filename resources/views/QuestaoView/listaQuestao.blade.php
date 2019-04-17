@@ -14,7 +14,7 @@
 		</h2><br>
 
 		<div class="form-group justify-content-center row">
-	 		<img style="width: 3%" src="{{ asset('search3.png')}}" alt=""/>
+	 		<img style="width: 3%; height: 3%" src="{{ asset('search3.png')}}" alt=""/>
 	  		<input type="text" id="termo_busca" placeholder="Buscar questão..." onkeyup="pesquisa()" />
 		</div>
 		
@@ -61,7 +61,7 @@
 				</tbody>
 			</table>
 		@else
-			<p class="text-center alert alert-light">Não existem professores cadastrados até o momento.</p>
+			<p class="text-center alert alert-light">Não existem questões correspondentes até o momento.</p>
 		@endif
 
 		<hr class="star-light">
