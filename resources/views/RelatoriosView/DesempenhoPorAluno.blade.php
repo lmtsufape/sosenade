@@ -6,7 +6,7 @@
 		{{$total_alunos}} aluno(s) cadastrados.
 	</h3><br>
 	<table class="table table-bordered">
-		<thead class="thead-dark">
+		<thead class="thead-ligth">
 			<tr>
 				<th>Nome do Aluno</th>
 				<th>Simulados Feitos (Tx. de Acerto)</th>
