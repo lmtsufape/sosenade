@@ -1,4 +1,4 @@
-<p align="center"><img src="https://github.com/lmts-ufape/enade/raw/master/public/1.png" height=150px></p>
+<p align="center"><img src="https://github.com/lmts-ufape/enade/raw/master/public/1.png" height=200px></p>
 
 ## Sobre o S.O.S ENADE
 
