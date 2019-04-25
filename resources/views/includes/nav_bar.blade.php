@@ -5,6 +5,7 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<!-- Left Side Of Navbar -->
 			<ul class="navbar-nav mr-auto">
 				@can('create', Auth::user()) 
 					<li class="nav-item dropdown">
@@ -124,9 +125,11 @@
 					</li>
 				@endif
 			</ul>
-			<ul class="navbar-nav mr-auto">
+
+			<!-- Right Side Of Navbar -->
+			<ul class="navbar-nav ml-auto">
 				<li class="nav-item dropdown" style="list-style-type: none">
-					<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<a id="navbarDropdown" class="nav-link dropdown-toggle font-weight-bold" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						@if (Auth::guard('aluno')->user())
 							{{Auth::guard('aluno')->user()->nome}} (Aluno) - {{Auth::guard('aluno')->user()->curso->curso_nome}}
 						@elseif (Auth::user() && !(Auth::user()->tipousuario->id == 4))
