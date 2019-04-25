@@ -36,18 +36,28 @@
 		</div>
 
 		<!-- Barra de Logos -->
-		<div id="barra-logos" style="background:#FFFFFF; margin-top: 1px; height: 150px; padding: 10px 0 10px 0">
-			<div class="container">
-				<ul id="logos" style="list-style:none;">
-					<li style="margin-right:30px; border-right:1px">
-						<a href="{{ (Auth::guard('aluno')->user()) ? route('home_aluno') : route('home') }}"><img src="{{asset('1.png')}}" height="100px" align = "left" ></a>
-						<a target="_blank" href="http://lmts.uag.ufrpe.br/"><img src="{{asset('images/lmts3.png')}}" style = "margin-top: 1% " height="80" align = "right" ></a>
-						<img src="{{asset('images/separador.png')}}" style = "margin-left: 15px; margin-top: 1%" height="70" align = "right" >
-						<a target="_blank" href="http://ww3.uag.ufrpe.br/"><img src="{{asset('images/uag.png')}}" style = "margin-left: 10px; margin-top: 1%" height="80" width="70" align = "right" ></a>
-						<img src="{{asset('images/separador.png')}}" style = "margin-left: 15px; margin-top: 1%" height="70" align = "right" >
-						<a target="_blank" href="http://www.ufrpe.br/"><img src="{{asset('images/ufrpe.png')}}" style = "margin-left: 15px; margin-right: -10px; margin-top: 1% " height="80" width="70" align = "right"></a>
-					</li>
-				</ul>
+		<div id="barra-logos" class="py-3 bg-white">
+			<div class="container px-4">
+				<div class="d-flex align-items-center">
+					<div class="d-flex align-items-center flex-row">
+						<a href="{{ (Auth::guard('aluno')->user()) ? route('home_aluno') : route('home') }}" style="max-height: 45%; max-width: 45%">
+							<img src="{{asset('1.png')}}" class="img-fluid float-left">
+						</a>
+					</div>
+					<div class="d-flex align-items-center flex-row-reverse">
+						<a href="http://lmts.uag.ufrpe.br/" style="max-height: 20%; max-width: 20%">
+							<img src="{{asset('images/lmts3.png')}}" class="float-right img-fluid px-1">
+						</a>
+						<img src="{{asset('images/separador.png')}}" class="float-right px-1" style="max-height: 3%; max-width: 3%">
+						<a href="http://ww3.uag.ufrpe.br/" style="max-height: 12%; max-width: 12%">
+							<img src="{{asset('images/uag.png')}}" class="float-right img-fluid px-1">
+						</a>
+						<img src="{{asset('images/separador.png')}}" class="float-right px-1" style="max-height: 3%; max-width: 3%">
+						<a href="http://www.ufrpe.br/" style=" max-height: 12%; max-width: 12%">
+							<img src="{{asset('images/ufrpe.png')}}" class="float-right img-fluid px-1">
+						</a>
+					</div>
+				</div>
 			</div>
 		</div>
 
