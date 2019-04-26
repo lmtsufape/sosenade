@@ -13,7 +13,6 @@
 	@endif
 
 	<div class="shadow p-3 bg-white rounded">
-
 		<h1 class="text-center"> Editar Perfil </h1>
 		<h2 class="text-center">
 			@if (Auth::guard('aluno')->user())
@@ -23,15 +22,17 @@
 			@endif
 		</h2><br>
 
-		<div id="body-tabs">
-			<ul class="nav nav-tabs" id="myTab" role="tablist">
-				<li class="nav-item">
-					<a class="nav-link {{Session::has('senha') ? '' : 'active'}}" id="alterar-tab" data-toggle="tab" href="#alterar" role="tab" aria-controls="alterar" aria-selected="true">Alterar Dados</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link {{Session::has('senha') ? 'active' : ''}}" id="importar-tab" data-toggle="tab" href="#importar" role="tab" aria-controls="importar" aria-selected="false">Alterar Senha</a>
-				</li>
-			</ul>
+		<div class="card" id="body-tabs">
+			<div class="card-header">
+				<ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+					<li class="nav-item">
+						<a class="nav-link {{Session::has('senha') ? '' : 'active'}}" id="alterar-tab" data-toggle="tab" href="#alterar" role="tab" aria-controls="alterar" aria-selected="true">Alterar Dados</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link {{Session::has('senha') ? 'active' : ''}}" id="importar-tab" data-toggle="tab" href="#importar" role="tab" aria-controls="importar" aria-selected="false">Alterar Senha</a>
+					</li>
+				</ul>
+			</div>
 			<div class="tab-content" id="myTabContent">
 				<div class="tab-pane fade {{Session::has('senha') ? '' : 'show active'}}" id="alterar" role="tabpanel" aria-labelledby="alterar-tab">
 					<div class="list-group list-group-flush">
@@ -113,7 +114,7 @@
 								</div>
 							</div>
 							<div class="justify-content-center row">
-								<div class="text-center" id="btn_alterar">
+								<div class="text-center my-3" id="btn_alterar">
 									<button type="submit" name="alterar" class="btn btn-primary">Salvar senha</button>
 								</div>
 							</div>

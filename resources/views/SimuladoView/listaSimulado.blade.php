@@ -17,27 +17,17 @@
 			<table class="table table-hover">
 		 		<thead>
 					<tr>
-						<th>Descrição</th>
+						<th>Descrição (Nº de Questôes)</th>
 						<th>Criado por</th>
-						<th>Status (Nº de Questôes)</th>
+						<th>Status</th>
 						<th style="width: 20%">Opções</th>
 					</tr>
 				</thead>
 				<tbody>
 					@foreach ($simulados as $simulado)
 						<tr>
-							<td>{{$simulado->descricao_simulado}}</td>
-							<td>{{$simulado->nome}}</td>
 							<td>
-								@if($simulado->data_inicio_simulado == null)
-									<span>
-										Não agendado
-									</span>
-								@else
-									<span class="text-success">
-										Agendado ({{$simulado->data_inicio_simulado->format('d/m')}} - {{$simulado->data_fim_simulado->format('d/m')}})
-									</span>
-								@endif
+								{{$simulado->descricao_simulado}}
 								@if($simulado->questaos_count == 0)
 									<span class="badge badge-danger badge-pill">
 										0
@@ -45,6 +35,22 @@
 								@else
 									<span class="badge badge-primary badge-pill">
 										{{$simulado->questaos_count}}
+									</span>
+								@endif
+							</td>
+							<td>{{$simulado->nome}}</td>
+							<td>
+								@if($simulado->data_inicio_simulado == null)
+									<span>
+										Não agendado
+									</span>
+								@elseif($simulado->data_fim_simulado->isPast())
+									<span class="text-danger">
+										Expirado em {{$simulado->data_fim_simulado->format('d/m')}}
+									</span>
+								@else
+									<span class="text-success">
+										Agendado ({{$simulado->data_inicio_simulado->format('d/m')}} - {{$simulado->data_fim_simulado->format('d/m')}})
 									</span>
 								@endif
 							</td>

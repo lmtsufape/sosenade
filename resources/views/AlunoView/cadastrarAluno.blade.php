@@ -10,15 +10,17 @@
 				{{Auth::user()->curso->curso_nome}}
 			@endif
 		</h2><br>
-		<div id="body-tabs">
-			<ul class="nav nav-tabs" id="myTab" role="tablist">
-				<li class="nav-item">
-					<a class="nav-link active" id="cadastrar-tab" data-toggle="tab" href="#cadastrar" role="tab" aria-controls="cadastrar" aria-selected="true">Cadastrar </a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" id="importar-tab" data-toggle="tab" href="#importar" role="tab" aria-controls="importar" aria-selected="false">Importar de arquivo</a>
-				</li>
-			</ul>
+		<div class="card" id="body-tabs">
+			<div class="card-header">
+				<ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+					<li class="nav-item">
+						<a class="nav-link active" id="cadastrar-tab" data-toggle="tab" href="#cadastrar" role="tab" aria-controls="cadastrar" aria-selected="true">Cadastrar </a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" id="importar-tab" data-toggle="tab" href="#importar" role="tab" aria-controls="importar" aria-selected="false">Importar de arquivo</a>
+					</li>
+				</ul>
+			</div>
 			<br>
 			<div class="tab-content" id="myTabContent">
 				<div class="tab-pane fade show active" id="cadastrar" role="tabpanel" aria-labelledby="cadastrar-tab">
@@ -78,7 +80,7 @@
 								</div>
 							</div>
 							<div class="justify-content-center row">
-								<div class="text-center" id="btn_cadastrar">
+								<div class="text-center my-3" id="btn_cadastrar">
 									<button type="submit" name="cadastrar" class="btn btn-primary">Cadastrar</button>
 								</div>
 							</div>
@@ -101,7 +103,7 @@
 								</div>
 							</div>
 							<div class="justify-content-center row">
-								<div class="text-center" id="btn_cadastrar">
+								<div class="text-center my-3" id="btn_cadastrar">
 									<button type="submit" name="cadastrar" class="btn btn-primary">Importar</button>
 								</div>
 							</div>
@@ -109,7 +111,6 @@
 					</div>
 				</div>
 			</div>
-		</div>	
-		<br>
+		</div>
 	</div>
 @stop
