@@ -16,12 +16,12 @@ class CreateQuestaosTable extends Migration
         Schema::create('questaos', function (Blueprint $table) {
             $table->increments('id');
             $table->longText('enunciado');
-            $table->string('alternativa_a');
-            $table->string('alternativa_b');
-			$table->string('alternativa_c');
-			$table->string('alternativa_d');
-			$table->string('alternativa_e');
-			$table->string('alternativa_correta');
+            $table->longText('alternativa_a');
+            $table->longText('alternativa_b');
+			$table->longText('alternativa_c');
+			$table->longText('alternativa_d');
+			$table->longText('alternativa_e');
+			$table->longText('alternativa_correta');
             $table->integer('dificuldade');
             $table->integer('disciplina_id')->unsigned()->nullable();
 
