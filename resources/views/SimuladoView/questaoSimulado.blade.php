@@ -9,62 +9,73 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h2 class="text-center">Responda a questão</h2><br>
-					<h4> {!! $questao['enunciado']!!} </h4><br>
+					<h2 class="display-4 text-center">Responda a questão</h2><br>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-md-12 form-group">
-					<p>Selecione a resposta correta:</p>
-					<dir class="container">	
-						<div class="form-check">
-						  <input class="form-check-input" type="radio" name="alternativa" id="radioa" value="0" required autofocus>
-						  <label class="form-check-label" for="radioa">
-						    A) {{$questao['alternativa_a']}}
-						  </label>
-						</div>
-						
-						<div class="form-check">
-						  <input class="form-check-input" type="radio" name="alternativa" id="radiob" value="1">
-						  <label class="form-check-label" for="radiob">
-						    B) {{$questao['alternativa_b']}}
-						  </label>
-						</div>
-							
-						<div class="form-check">
-							<input class="form-check-input" type="radio" name="alternativa" id="radioc" value="2">
-							<label class="form-check-label" for="radioc">
-								C) {{$questao['alternativa_c']}}
-							</label>
-						</div>
-								
-	 					<div class="form-check">
-							<input class="form-check-input" type="radio" name="alternativa" id="radiod" value="3">
-							<label class="form-check-label" for="radiod">
-								D) {{$questao['alternativa_d']}}
-						  </label>
-						</div>
-									
-	 					<div class="form-check">
-							<input class="form-check-input" type="radio" name="alternativa" id="radioe" value="4">
-							<label class="form-check-label" for="radioe">
-								E) {{$questao['alternativa_e']}}
-						  </label>
-						</div>
+			<div class="card row">
+				<div class="card-header">
+					<h4 class="card-text"> {!! $questao['enunciado']!!} </h4>
+				</div>
+				<div class="card-body col-md-12 form-group">
+					<h5 class="card-title">Selecione a resposta correta:</h5>
+					<div class="list-group container">
+						<input type="radio" name="alternativa" id="radioa" value="0" required autofocus />
+						<label class="list-group-item" for="radioa">{{nl2br($questao['alternativa_a'])}}</label>
 
-						<br>
-					
-					</dir>
+						<input type="radio" name="alternativa" id="radiob" value="1" />
+						<label class="list-group-item" for="radiob">{{$questao['alternativa_b']}}</label>
 
-					<br>
+						<input type="radio" name="alternativa" id="radioc" value="2" />
+						<label class="list-group-item" for="radioc">{{$questao['alternativa_c']}}</label>
 
-					<div class="col-md-12 text-center">
-						<button type="submit" class="btn btn-success pull-center">Próxima</button>
+						<input type="radio" name="alternativa" id="radiod" value="3" />
+						<label class="list-group-item" for="radiod">{{$questao['alternativa_d']}}</label>
+
+						<input type="radio" name="alternativa" id="radioe" value="4" />
+						<label class="list-group-item" for="radioe">{{$questao['alternativa_e']}}</label>
 					</div>
-				
+					<div class="col-md-12 mt-3 text-center">
+						<button type="submit" class="btn btn-success pull-center" data-container="body" data-toggle="popover" data-placement="right" data-content="Selecione uma alternativa para prosseguir.">Próxima</button>
+					</div>
 				</div>
 			</div>
 		</div>
 	</form>
+
+<style type="text/css">
+	.list-group-item {
+		user-select: none;
+	}
+
+	.list-group input[type="radio"] {
+		display: none;
+	}
+
+	.list-group input[type="radio"] + .list-group-item {
+		cursor: pointer;
+	}
+
+	.list-group input[type="radio"] + .list-group-item:before {
+		display: none;
+	}
+
+	.list-group input[type="radio"]:checked + .list-group-item {
+		background-color: #e9ecef;
+		color: #000;
+	}
+
+	.list-group input[type="radio"]:checked + .list-group-item:before {
+		display: none;
+	}
+</style>
+
+<script type="text/javascript">
+	$(function () {
+		$('[data-toggle="popover"]').popover()
+		$('.example-popover').popover({
+			container: 'body'
+		})
+	})
+</script>
 
 @stop
