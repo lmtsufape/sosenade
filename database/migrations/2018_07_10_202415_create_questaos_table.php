@@ -21,7 +21,7 @@ class CreateQuestaosTable extends Migration
 			$table->longText('alternativa_c');
 			$table->longText('alternativa_d');
 			$table->longText('alternativa_e');
-			$table->longText('alternativa_correta');
+			$table->string('alternativa_correta');
             $table->integer('dificuldade');
             $table->integer('disciplina_id')->unsigned()->nullable();
 
