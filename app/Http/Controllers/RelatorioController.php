@@ -10,12 +10,11 @@ class RelatorioController extends Controller {
 	public function questoesPorDisciplina(){
 		$view = 'RelatoriosView.QuestoesPorDisciplina';
 		
-		$disciplinas =\SimuladoENADE\Disciplina::join('questaos', 'disciplinas.id', '=','questaos.disciplina_id')
-			->where('curso_id', '=', \Auth::user()->curso_id)
-			->select('nome', 'questaos.dificuldade', DB::raw('count(*) as questaos_count'))
-			->groupBy('nome', 'questaos.dificuldade')
+		$disciplinas = \SimuladoENADE\Disciplina::where('curso_id', '=', \Auth::user()->curso_id)
 			->orderBy('nome')
 			->get();
+
+		// dd($disciplinas[0]->id, $disciplinas[0]->questaos[0]->respostas->where("acertou")->count());
 
 		$date = date('d/m/Y');
 		$view = \View::make($view, compact('disciplinas','date'))->render();

@@ -12,7 +12,7 @@ class Disciplina extends Model
     }
     
     public function questaos(){
-        return $this->hasMany('\SimuladoENADE\Questao');
+        return $this->hasMany('\SimuladoENADE\Questao', 'disciplina_id', 'id');
     } 
 
     public function questaos_facil(){
