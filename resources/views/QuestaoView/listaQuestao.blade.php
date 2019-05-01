@@ -47,7 +47,7 @@
 						<tr>
 							<td>
 								<span class="d-inline-block text-truncate" style="max-width: 450px;">
-									{{preg_replace('/<[^>]*>|[&;]/', '', $questao->enunciado) }}
+									{{ str_limit(preg_replace('/<[^>]*>|[&;]|nbsp/', '', preg_replace('/nbsp|<br>/', ' ', $questao->enunciado)), $limit = 50, $end = '...') }}
 								</span>
 							</td>
 							<td>{{$questao->dificuldade}}</td>
