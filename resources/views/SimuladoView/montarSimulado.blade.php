@@ -56,8 +56,8 @@
 				</div>
 			</div>
 
-			<div class="row justify-content-center">
-				<input type="submit" value="Adicionar" name="nome" class="btn btn-primary" />
+			<div class="col-md-12 row justify-content-center text-center">
+				<input type="submit" value="Adicionar" name="nome" class="btn btn-primary"/>
 			</div>
 
 		</div>
@@ -98,7 +98,7 @@
 				@endif
 			</tbody>
 		</table>
-		<div class="form-group col-md-12 text-center">
+		<div class="form-group col-md-12 text-center justify-content-center">
 			<br><a class="btn btn-primary mr-3" href="{{route('list_simulado')}}"> Pronto </a><br>
 		</div>
 	</form>
