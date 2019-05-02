@@ -6,7 +6,7 @@
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
 		<input type = "hidden" name="id" value="{{$disciplina->id}}">
 
-		<h1 class="text-center"> Editar Disciplina </h1>
+		<h1 class="text-center"> Editar Disciplina/Conteúdos </h1>
 		<h2 class="text-center">
 			@if (Auth::guard('aluno')->user())
 				{{Auth::guard('aluno')->user()->curso->curso_nome}}

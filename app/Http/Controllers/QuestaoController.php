@@ -39,9 +39,10 @@ class QuestaoController extends Controller
 	}
 
 	public function cadastrar(){
-
+		$cursos = \SimuladoENADE\Curso::all();
+		#dd($cursos);
 		$disciplinas = \SimuladoENADE\Disciplina::where('curso_id', '=', \Auth::user()->curso_id)->get(); 
-		return view('/QuestaoView/cadastrarQuestao', ['disciplinas' => $disciplinas]); 
+		return view('/QuestaoView/cadastrarQuestao', ['disciplinas' => $disciplinas, 'cursos' => $cursos]); 
 		
 	}
 	
