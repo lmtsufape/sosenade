@@ -34,7 +34,9 @@
 										Todas
 									</a>
 									@foreach($disciplinas as $disciplina)
-										<a class="dropdown-item {{Request::is('listar/questoes/disciplina/'.$disciplina->id) ? 'font-weight-bold' : ''}}" href="{{route('list_qst_disciplina', ['id'=>$disciplina->id])}}"> {{$disciplina->nome}} </a>
+										@if($disciplina->questaos->count())
+											<a class="dropdown-item {{Request::is('listar/questoes/disciplina/'.$disciplina->id) ? 'font-weight-bold' : ''}}" href="{{route('list_qst_disciplina', ['id'=>$disciplina->id])}}"> {{$disciplina->nome}} </a>
+										@endif
 									@endforeach
 								</div>
 							</div>
