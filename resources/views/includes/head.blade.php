@@ -26,3 +26,6 @@
 
 <!-- Barra Brasil script -->
 <script defer="defer" src="//barra.brasil.gov.br/barra.js" type="text/javascript"></script>
+
+<!-- Icons script -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

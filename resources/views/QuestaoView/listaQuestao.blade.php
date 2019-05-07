@@ -14,7 +14,7 @@
 		</h2><br>
 
 		<div class="form-group justify-content-center row">
-	 		<img style="width: 3%; height: 3%" src="{{ asset('search3.png')}}" alt=""/>
+	 		<img style="width: 30px; height: 30px" src="{{ asset('search3.png')}}" alt=""/>
 	  		<input type="text" id="termo_busca" placeholder="Buscar questão..." onkeyup="pesquisa()" />
 		</div>
 		
@@ -41,24 +41,44 @@
 								</div>
 							</div>
 						</th>
-						<th style="width: 10%">Opções</th>
+						<th style="width: 15%">Opções</th>
 					</tr>
 				</thead>
 				<tbody>
 					@foreach($questaos as $questao)
 						<tr>
-							<td>
-								<span class="d-inline-block text-truncate" style="max-width: 450px;">
-									{{ str_limit(preg_replace('/<[^>]*>|[&;]|nbsp/', '', preg_replace('/nbsp|<br>/', ' ', $questao->enunciado)), $limit = 50, $end = '...') }}
-								</span>
+							<td style="overflow: hidden; word-wrap: break-word; max-width: 38rem;">
+								{{ str_limit(preg_replace('/<[^>]*>|[&;]|nbsp/', '', preg_replace(array('/nbsp/','/<(.*?)>/'), ' ', $questao->enunciado)), $limit = 180, $end = '...') }}
 							</td>
 							<td>{{$questao->dificuldade}}</td>
 							<td id="disciplina">{{$questao->nome}}</td>
-							<td class="btn-group">
-								<a href="{{route('edit_qst', ['id'=>$questao->qtsid])}}" class="btn btn-sm btn-primary">Editar</a>
-								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_qst', ['id'=>$questao->qtsid])}}" class="btn btn-sm btn-danger">Remover</a>
+							<td>
+								<a class="icons btn btn-info" data-toggle="modal" href="#modal_{{$questao->qtsid}}"><i class="fa fa-info-circle"></i></a>
+								<a href="{{route('edit_qst', ['id'=>$questao->qtsid])}}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_qst', ['id'=>$questao->qtsid])}}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
 							</td>
 						</tr>
+
+						<!-- Modal -->
+						<div class="modal fade" id="modal_{{$questao->qtsid}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="modalTitle_{{$questao->qtsid}}">{{$questao->nome}}</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Voltar">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body" style="overflow: hidden; word-wrap: break-word;">
+										{{ preg_replace('/<[^>]*>|[&;]|nbsp/', '', preg_replace(array('/nbsp/','/<(.*?)>/'), ' ', $questao->enunciado)) }}
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-info" data-dismiss="modal"><i class="fa fa-eye"></i> Ver mais</button>
+										<a href="{{route('edit_qst', ['id'=>$questao->qtsid])}}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
 					@endforeach
 				</tbody>
 			</table>
@@ -75,7 +95,6 @@
 		<div class="col-md-6 left">
 			<a class="btn btn-primary" href="{{route('new_qst')}}"> Inserir nova questão </a><br>
 		</div>
-
 	</div>
 
 	<script type="text/javascript">
