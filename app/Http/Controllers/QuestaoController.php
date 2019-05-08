@@ -49,6 +49,7 @@ class QuestaoController extends Controller {
 			->join('disciplinas', 'questaos.disciplina_id', '=', 'disciplinas.id')
 			->where('curso_id', '=', \Auth::user()->curso_id)
 			->orderBy('nome')
+			->orderBy('dificuldade')
 			->paginate(20);
 
 		$disciplinas = \SimuladoENADE\Disciplina::where('curso_id', '=', \Auth::user()->curso_id)->get();
@@ -63,7 +64,8 @@ class QuestaoController extends Controller {
 			->join('disciplinas', 'questaos.disciplina_id', '=', 'disciplinas.id')
 			->where('disciplina_id', '=', $request->id)
 			->orderBy('nome')
-			->paginate(10);
+			->orderBy('dificuldade')
+			->paginate(20);
 
 		$disciplinas = \SimuladoENADE\Disciplina::where('curso_id', '=', \Auth::user()->curso_id)->get();
 
