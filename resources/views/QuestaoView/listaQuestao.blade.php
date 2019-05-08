@@ -53,28 +53,42 @@
 							<td>{{$questao->dificuldade}}</td>
 							<td id="disciplina">{{$questao->nome}}</td>
 							<td>
-								<a class="icons btn btn-info" data-toggle="modal" href="#modal_{{$questao->qtsid}}"><i class="fa fa-info-circle"></i></a>
-								<a href="{{route('edit_qst', ['id'=>$questao->qtsid])}}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
-								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_qst', ['id'=>$questao->qtsid])}}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+								<a class="icons btn btn-info" data-toggle="modal" href="#modal_{{$questao->qstid}}"><i class="fa fa-info-circle"></i></a>
+								<a href="{{route('edit_qst', ['id'=>$questao->qstid])}}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_qst', ['id'=>$questao->qstid])}}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
 							</td>
 						</tr>
 
 						<!-- Modal -->
-						<div class="modal fade" id="modal_{{$questao->qtsid}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-							<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal fade" id="modal_{{$questao->qstid}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h5 class="modal-title" id="modalTitle_{{$questao->qtsid}}">{{$questao->nome}}</h5>
+										<h5 class="modal-title" id="modalTitle_{{$questao->qstid}}">{{$questao->disciplina->nome}} - {{$questao->dificuldade}}</h5>
 										<button type="button" class="close" data-dismiss="modal" aria-label="Voltar">
 											<span aria-hidden="true">&times;</span>
 										</button>
 									</div>
 									<div class="modal-body" style="overflow: hidden; word-wrap: break-word;">
-										{{ preg_replace('/<[^>]*>|[&;]|nbsp/', '', preg_replace(array('/nbsp/','/<(.*?)>/'), ' ', $questao->enunciado)) }}
+										<div class="row">
+											<div class="card-header w-100">
+												<span> {!! $questao->toArray()['enunciado'] !!} </span>
+											</div>
+											<div class="card-body">
+												<h5 class="card-title">Alternativas:</h5>
+												<div class="list-group container">
+													<span class="list-group-item {{  $questao->alternativa_correta == '0' ? 'list-group-item-success' : '' }}">{!! $questao->toArray()['alternativa_a'] !!}</span>
+													<span class="list-group-item {{  $questao->alternativa_correta == '1' ? 'list-group-item-success' : '' }}">{!! $questao->toArray()['alternativa_b'] !!}</span>
+													<span class="list-group-item {{  $questao->alternativa_correta == '2' ? 'list-group-item-success' : '' }}">{!! $questao->toArray()['alternativa_c'] !!}</span>
+													<span class="list-group-item {{  $questao->alternativa_correta == '3' ? 'list-group-item-success' : '' }}">{!! $questao->toArray()['alternativa_d'] !!}</span>
+													<span class="list-group-item {{  $questao->alternativa_correta == '4' ? 'list-group-item-success' : '' }}">{!! $questao->toArray()['alternativa_e'] !!}</span>
+												</div>
+											</div>
+										</div>
 									</div>
 									<div class="modal-footer">
-										<button type="button" class="btn btn-info" data-dismiss="modal"><i class="fa fa-eye"></i> Ver mais</button>
-										<a href="{{route('edit_qst', ['id'=>$questao->qtsid])}}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+										<a href="{{route('edit_qst', ['id'=>$questao->qstid])}}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+										<a onclick="return confirm('Você tem certeza que deseja remover?')" href="{{route('remove_qst_simulado', 	['sim_qst_id'=>$questao->qstid])}}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
 									</div>
 								</div>
 							</div>
