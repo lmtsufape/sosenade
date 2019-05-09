@@ -15,105 +15,98 @@
 			@endif
 		</h2><br>
 
-		<div class="row justify-content-center">
-
-			<div class="col-md-4 text-center">
-				<label for="dificuldade">Disciplina</label>
-				<select name="disciplina_id" class="form-control{{ $errors->has('disciplina_id') ? ' is-invalid' : '' }}" required autofocus>	
-					@foreach ($disciplinas as $disciplina)
-						<option value="{{$disciplina->id}}" {{ $questao->disciplina_id == $disciplina->id ? 'selected' : '' }}	>{{$disciplina->nome}} </option>
-					@endforeach
-				</select>
-				@if ($errors->has('disciplina_id'))
-					<span class = "invalid-feedback" role="alert">
-						{{$errors->first('disciplina_id')}}
-					</span>
-				@endif
+		<div class="card">
+			<div class="card-header">
+				<h5 class="card-title">Classificação da questão</h5>
 			</div>
+			<div class="card-body row justify-content-center">
+				<div class="col-md-4 text-center">
+					<label for="dificuldade">Disciplina</label>
+					<select name="disciplina_id" class="form-control{{ $errors->has('disciplina_id') ? ' is-invalid' : '' }}" required autofocus>	
+						@foreach ($disciplinas as $disciplina)
+							<option value="{{$disciplina->id}}" {{ $questao->disciplina_id == $disciplina->id ? 'selected' : '' }}	>{{$disciplina->nome}} </option>
+						@endforeach
+					</select>
+					@if ($errors->has('disciplina_id'))
+						<span class = "invalid-feedback" role="alert">
+							{{$errors->first('disciplina_id')}}
+						</span>
+					@endif
+				</div>
 
-			<div class="col-md-4 text-center">
-				<label for="dificuldade">Dificuldade</label>
-				<select name="dificuldade" class="form-control{{ $errors->has('dificuldade') ? ' is-invalid' : '' }}" required autofocus>
-					<option value="1" {{ $questao->dificuldade == 1 ? 'selected' : '' }} >Fácil</option>
-					<option value="2" {{ $questao->dificuldade == 2 ? 'selected' : '' }} >Médio</option>
-					<option value="3" {{ $questao->dificuldade == 3 ? 'selected' : '' }} >Difícil</option>
-				</select>
+				<div class="col-md-4 text-center">
+					<label for="dificuldade">Dificuldade</label>
+					<select name="dificuldade" class="form-control{{ $errors->has('dificuldade') ? ' is-invalid' : '' }}" required autofocus>
+						<option value="1" {{ $questao->dificuldade == 'Fácil' ? 'selected' : '' }} >Fácil</option>
+						<option value="2" {{ $questao->dificuldade == 'Médio' ? 'selected' : '' }} >Médio</option>
+						<option value="3" {{ $questao->dificuldade == 'Difícil' ? 'selected' : '' }} >Difícil</option>
+					</select>
+				</div>
 			</div>
-
 		</div>
 
-		<br>
-
-		<div class="col-xs-12 col-sm-12 col-md-12">
-			<div class="form-group">
-				<strong>Enunciado:</strong>
+		<div class="card my-3">
+			<div class="card-header">
+				<h5 class="card-title">Enunciado</h5>
+			</div>
+			<div class="card-body">
 				<textarea class="form-control summernote" name="enunciado" id="enunciado">{{$questao->enunciado}}</textarea>
 			</div>
 		</div>
 
-		<br>
+		<div class="card">
+			<div class="card-header">
+				<h5 class="card-title">Alternativas</h5>
+			</div>
+			<div class="card-body">
+				<table class="table">
+					<tbody>
+						<tr>
+							<td style="border: 0px; width: 1%; vertical-align:middle;">A.</td>
+							<td style="border: 0px">
+								<textarea class="form-control summernote_alt" type="alternativa1" id="alternativa1" name="alternativa[]" placeholder="Escreva aqui a alternativa" required autofocus>
+									{{$questao->alternativa_a}}
+								</textarea>
+							</td>
+						</tr>
+						<tr>  
+							<td style="border: 0px; width: 1%; vertical-align:middle;">B.</td>
+							<td style="border: 0px">
+								<textarea class="form-control summernote_alt" type="alternativa2" id="alternativa2" name="alternativa[]" placeholder="Escreva aqui a alternativa" required autofocus>
+									{{$questao->alternativa_b}}
+								</textarea>
+							</td>
+						</tr>
+						<tr>  
+							<td style="border: 0px; width: 1%; vertical-align:middle;">C.</td>
+							<td style="border: 0px">
+								<textarea class="form-control summernote_alt" type="alternativa3" id="alternativa3" name="alternativa[]" placeholder="Escreva aqui a alternativa" required autofocus>
+									{{$questao->alternativa_c}}
+								</textarea>
+							</td>
+						</tr>
+						<tr>  
+							<td style="border: 0px; width: 1%; vertical-align:middle;">D.</td>
+							<td style="border: 0px">
+								<textarea class="form-control summernote_alt" type="alternativa4" id="alternativa4" name="alternativa[]" placeholder="Escreva aqui a alternativa" required autofocus>
+									{{$questao->alternativa_d}}
+								</textarea>
+							</td>
+						</tr>
+						<tr>  
+							<td style="border: 0px; width: 1%; vertical-align:middle;">E.</td>
+							<td style="border: 0px">
+								<textarea class="form-control summernote_alt" type="alternativa5" id="alternativa5" name="alternativa[]" placeholder="Escreva aqui a alternativa" required autofocus>
+									{{$questao->alternativa_e}}
+								</textarea>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
 
-		<table class="table form-group" id="dynamic_field" >
-			<th style="text-align: center;">#</th>
-			<th style="text-align: center;">Alternativas</th>
-			<tr>
-				<td style="border: 0px; width: 1%; vertical-align:middle;">1.</td>
-				<td style="border: 0px">
-					<textarea class="form-control summernote_alt" type="alternativa1" id="alternativa1" name="alternativa[]" placeholder="Escreva aqui a alternativa" required autofocus>
-						{{$questao->alternativa_a}}
-					</textarea>
-				</td>  
-				<td style="border: 0px;text-align: center; width: 1%; vertical-align:middle;">
-					
-				</td>  
-			</tr>
-			<tr>  
-				<td style="border: 0px; width: 1%; vertical-align:middle;">2.</td>
-				<td style="border: 0px">
-					<textarea class="form-control summernote_alt" type="alternativa2" id="alternativa2" name="alternativa[]" placeholder="Escreva aqui a alternativa" required autofocus>
-						{{$questao->alternativa_b}}
-					</textarea>
-				</td> 
-				<td style="border: 0px;text-align: center; width: 1%; vertical-align:middle;">
-					
-				</td>
-			</tr>
-			<tr>  
-				<td style="border: 0px; width: 1%; vertical-align:middle;">3.</td>
-				<td style="border: 0px">
-					<textarea class="form-control summernote_alt" type="alternativa3" id="alternativa3" name="alternativa[]" placeholder="Escreva aqui a alternativa" required autofocus>
-						{{$questao->alternativa_c}}
-					</textarea>
-				</td> 
-				<td style="border: 0px;text-align: center; width: 1%; vertical-align:middle;">
-					
-				</td>
-			</tr>
-			<tr>  
-				<td style="border: 0px; width: 1%; vertical-align:middle;">4.</td>
-				<td style="border: 0px">
-					<textarea class="form-control summernote_alt" type="alternativa4" id="alternativa4" name="alternativa[]" placeholder="Escreva aqui a alternativa" required autofocus>
-						{{$questao->alternativa_d}}
-					</textarea>
-				</td> 
-				<td style="border: 0px;text-align: center; width: 1%; vertical-align:middle;">
-					
-				</td>
-			</tr>
-			<tr>  
-				<td style="border: 0px; width: 1%; vertical-align:middle;">5.</td>
-				<td style="border: 0px">
-					<textarea class="form-control summernote_alt" type="alternativa5" id="alternativa5" name="alternativa[]" placeholder="Escreva aqui a alternativa" required autofocus>
-						{{$questao->alternativa_e}}
-					</textarea>
-				</td> 
-				<td style="border: 0px;text-align: center; width: 1%; vertical-align:middle;">
-					
-				</td>
-			</tr>
-		</table>
-
-		<div class="wrapper text-center">
+		<div class="wrapper text-center my-4">
 			<span style="font-weight: bold">Alternativa correta:&nbsp</span>
 			<div class="btn-group btn-group-toggle" data-toggle="buttons">
 				<label class="btn btn-info {{($questao->alternativa_correta == '0') ? 'active': ''}}">
@@ -134,12 +127,8 @@
 			</div>
 		</div>
 
-		<div class="grid">
-			<br>
-			<div class="row justify-content-center">
-				<button type="submit" name="editar" class="btn btn-primary center-block col-md-2">Salvar alterações</button>
-			</div>
-			<br>
+		<div class="row justify-content-center my-4">
+			<button type="submit" name="editar" class="btn btn-primary center-block">Salvar alterações</button>
 		</div>
 	</form>
 	
