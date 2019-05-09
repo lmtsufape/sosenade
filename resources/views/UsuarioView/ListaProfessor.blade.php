@@ -30,8 +30,8 @@
 							<td>{{$usuario->cpf}}</td>
 							<td>{{$usuario->email}}</td>
 							<td class="btn-group">
-								<a href="{{route('edit_professor',['id'=>$usuario->id])}}" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
-								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_professor',['id'=>$usuario->id])}}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+								<a href="{{route('edit_professor',['id'=>$usuario->id])}}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_professor',['id'=>$usuario->id])}}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
 							</td>
 						</tr>
 					@endforeach
