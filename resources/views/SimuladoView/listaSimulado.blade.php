@@ -20,7 +20,7 @@
 						<th>Descrição (Nº de Questôes)</th>
 						<th>Criado por</th>
 						<th>Status</th>
-						<th style="width: 20%">Opções</th>
+						<th style="width: 15%">Opções</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -54,10 +54,10 @@
 									</span>
 								@endif
 							</td>
-							<td class="btn-group">
-								<a href="{{route('set_simulado', ['id'=>$simulado->sim_id])}}" class="btn btn-sm btn-secondary">Montar</a>
-								<a href="{{route('edit_simulado', ['id'=>$simulado->sim_id])}}" class="btn btn-sm btn-primary">Editar</a>
-								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_simulado', ['id'=>$simulado->sim_id])}}" class="btn btn-sm btn-danger">Remover</a>
+							<td>
+								<a href="{{route('set_simulado', ['id'=>$simulado->sim_id])}}" class="btn btn-secondary" data-placement="bottom" rel="tooltip" title="Montar"><i class="fa fa-gear"></i></a>
+								<a href="{{route('edit_simulado', ['id'=>$simulado->sim_id])}}" class="btn btn-primary" data-placement="bottom" rel="tooltip" title="Editar"><i class="fa fa-pencil"></i></a>
+								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_simulado', ['id'=>$simulado->sim_id])}}" class="btn btn-danger" data-placement="bottom" rel="tooltip" title="Excluir"><i class="fa fa-trash"></i></a>
 							</td>
 						</tr>
 					@endforeach
@@ -72,5 +72,10 @@
 		</div>
 
 	</div>
+
+	<!-- Ativa todos os tooltips da pagina -->
+	<script type="text/javascript"> 
+		$('[rel="tooltip"]').tooltip(); 
+	</script>
 
 @stop

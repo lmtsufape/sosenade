@@ -108,7 +108,7 @@ class Usuariocontroller extends Controller{
 				->join('tipousuarios', 'usuarios.tipousuario_id', '=', 'tipousuarios.id')
 				->join('cursos', 'usuarios.curso_id', '=', 'cursos.id') // para exibir o nome do curso
 				->orderBy('nome')
-				->paginate(20);
+				->get();
 
 			return view('/UsuarioView/ListaUsuario',['usuarios' => $usuarios]); 
 
@@ -118,7 +118,7 @@ class Usuariocontroller extends Controller{
 			$usuarios = \SimuladoENADE\Usuario::where('curso_id', '=', $curso_id)
 				->where('tipousuario_id','=',3) // apenas professores
 				->orderBy('nome')
-				->paginate(10);
+				->get();
 
 			return view('/UsuarioView/ListaProfessor',['usuarios' => $usuarios]); 
 			
