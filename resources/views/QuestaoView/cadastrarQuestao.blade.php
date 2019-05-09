@@ -10,17 +10,8 @@
 				{{Auth::user()->curso->curso_nome}}
 			@endif
 		</h2><br>	
-		<div class="card" id="body-tabs">
-			<div class="card-header mb-3">
-				<ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
-					<li class="nav-item">
-						<a class="nav-link active" id="cadastrar-tab" data-toggle="tab" href="#cadastrar" role="tab" aria-controls="cadastrar" aria-selected="true">Cadastrar </a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" id="importar-tab" data-toggle="tab" href="#importar" role="tab" aria-controls="importar" aria-selected="false">Importar Questões</a>
-					</li>
-				</ul>
-			</div> 																							
+		<div  id="body-tabs">
+																					
 			<div class="tab-content" id="myTabContent">
 				<div class="tab-pane fade show active" id="cadastrar" role="tabpanel" aria-labelledby="cadastrar-tab">
 					<div class="list-group list-group-flush">
@@ -128,50 +119,7 @@
 						</form>
 					</div>
 				</div>
-				<div class="tab-pane fade" id="importar" role="tabpanel" aria-labelledby="importar-tab">
-					<div class="list-group list-group-flush mt-3">
-						
 
-
-				<div class="form-group col-md-4">
-					<label for="curso_id">Cursos:</label>
-					<select name="curso_id" class="form-control{{ $errors->has('curso_id') ? ' is-invalid' : '' }}" required autofocus>
-						@foreach ($cursos as $curso)
-							<option value="{{$curso->id}}" {{old('curso') == $curso->id ? 'selected' : '' }}>
-								{{$curso->curso_nome}} - {{$curso->unidade->nome}} 
-							</option>
-						@endforeach
-					</select>
-					@if ($errors->has('curso_id'))
-						<span class = "invalid-feedback" role="alert">
-							{{$errors->first('curso_id')}}
-						</span>
-					@endif
-				</div>
-
-
-				<div class="form-group col-md-4">
-					<label for="disciplina_id">Disciplinas:</label>
-					<select name="disciplina_id" class="form-control{{ $errors->has('disciplina_id') ? ' is-invalid' : '' }}" required autofocus>
-						@foreach ($cursos as $curso)
-							<option value="{{$curso->id}}" {{old('curso') == $curso->id ? 'selected' : '' }}>
-								{{$curso->curso_nome}} - {{$curso->unidade->nome}} 
-							</option>
-						@endforeach
-					</select>
-					@if ($errors->has('disciplina_id'))
-						<span class = "invalid-feedback" role="alert">
-							{{$errors->first('disciplina_id')}}
-						</span>
-					@endif
-				</div>
-
-
-
-
-
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>

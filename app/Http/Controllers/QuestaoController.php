@@ -115,4 +115,16 @@ class QuestaoController extends Controller {
 		return redirect('\listar\questao');
 	}
 
+
+	public function importarQuestao(Request $request){
+		#$disciplinas = \SimuladoENADE\Disciplina::all();
+		#
+		$cursos = \SimuladoENADE\Curso::all();
+		$disciplinas = \SimuladoENADE\Disciplina::all();
+
+		return view('/QuestaoView/importarQuestao', ['disciplinas' => $disciplinas], ['cursos' => $cursos]);
+	}
 }
+
+		#$questaos =\SimuladoENADE\Questao::select('*', \DB::raw('questaos.id as qstid'))
+		#	->join('disciplinas', 'questaos.disciplina_id', '=', 'disciplinas.id')

@@ -83,6 +83,7 @@
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="{{route('new_qst')}}">Cadastrar</a>
 							<a class="dropdown-item" href="{{route('list_qst')}}">Listar</a>
+							<a class="dropdown-item" href="{{route('import_qst')}}">Importar Questões</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="{{route('qst_por_disciplina')}}">Relatório de Questões</a>
 						</div>
