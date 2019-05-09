@@ -43,6 +43,9 @@
 					</select>
 				</div>
 			</div>
+			<div class="card-footer">
+				<small class="text-muted">Selecione a disciplina/conteúdo abrangido na questão e o nível de dificuldade da mesma.</small>
+			</div>
 		</div>
 
 		<div class="card my-3">
@@ -51,6 +54,9 @@
 			</div>
 			<div class="card-body">
 				<textarea class="form-control summernote" name="enunciado" id="enunciado">{{$questao->enunciado}}</textarea>
+			</div>
+			<div class="card-footer">
+				<small class="text-muted">Digite o enunciado da questão no campo acima.</small>
 			</div>
 		</div>
 
@@ -103,27 +109,29 @@
 						</tr>
 					</tbody>
 				</table>
+				<div class="wrapper text-center my-3">
+					<span style="font-weight: bold">Alternativa correta:&nbsp</span>
+					<div class="btn-group btn-group-toggle" data-toggle="buttons">
+						<label class="btn btn-info {{($questao->alternativa_correta == '0') ? 'active': ''}}">
+							<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="0" required {{ ($questao->alternativa_correta == "0") ? 'checked': ''}}> A
+						</label>
+						<label class="btn btn-info {{($questao->alternativa_correta == '1') ? 'active': ''}}">
+							<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="1" required {{ ($questao->alternativa_correta == "1") ? 'checked': ''}}> B
+						</label>
+						<label class="btn btn-info {{($questao->alternativa_correta == '2') ? 'active': ''}}">
+							<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="2" required {{ ($questao->alternativa_correta == "2") ? 'checked': ''}}> C
+						</label>
+						<label class="btn btn-info {{($questao->alternativa_correta == '3') ? 'active': ''}}">
+							<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="3" required {{ ($questao->alternativa_correta == "3") ? 'checked': ''}}> D
+						</label>
+						<label class="btn btn-info {{($questao->alternativa_correta == '4') ? 'active': ''}}">
+							<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="4" required {{ ($questao->alternativa_correta == "4") ? 'checked': ''}}> E
+						</label>
+					</div>
+				</div>
 			</div>
-		</div>
-
-		<div class="wrapper text-center my-4">
-			<span style="font-weight: bold">Alternativa correta:&nbsp</span>
-			<div class="btn-group btn-group-toggle" data-toggle="buttons">
-				<label class="btn btn-info {{($questao->alternativa_correta == '0') ? 'active': ''}}">
-					<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="0" required {{ ($questao->alternativa_correta == "0") ? 'checked': ''}}> A
-				</label>
-				<label class="btn btn-info {{($questao->alternativa_correta == '1') ? 'active': ''}}">
-					<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="1" required {{ ($questao->alternativa_correta == "1") ? 'checked': ''}}> B
-				</label>
-				<label class="btn btn-info {{($questao->alternativa_correta == '2') ? 'active': ''}}">
-					<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="2" required {{ ($questao->alternativa_correta == "2") ? 'checked': ''}}> C
-				</label>
-				<label class="btn btn-info {{($questao->alternativa_correta == '3') ? 'active': ''}}">
-					<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="3" required {{ ($questao->alternativa_correta == "3") ? 'checked': ''}}> D
-				</label>
-				<label class="btn btn-info {{($questao->alternativa_correta == '4') ? 'active': ''}}">
-					<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="4" required {{ ($questao->alternativa_correta == "4") ? 'checked': ''}}> E
-				</label>
+			<div class="card-footer">
+				<small class="text-muted">Preencha os campos acima com as alternativas correspondentes e marque a letra da alternativa correta</small>
 			</div>
 		</div>
 
