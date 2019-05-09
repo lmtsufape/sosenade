@@ -7,7 +7,7 @@
 		<h1 class="text-center">Usuários Cadastrados</h1><br>
 		
 		@if(!$usuarios->isEmpty())
-			<table class="table table-hover">
+			<table id="tabela_dados" class="table table-hover">
 		 		<thead>
 					<tr>
 						<th>Nome</th>
@@ -15,7 +15,7 @@
 						<th>CPF</th>
 						<th>E-mail</th>
 						<th>Curso</th>
-						<th style="width: 15%">Opções</th>
+						<th style="width: 7%">Opções</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -27,8 +27,8 @@
 							<td>{{$usuario->email}}</td>
 							<td>{{$usuario->curso_nome}}</td>
 							<td class="btn-group">
-								<a href="{{route('edit_usuario',['id'=>$usuario->userid])}}" class="btn btn-sm btn-primary">Editar</a>
-								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_usuario',['id'=>$usuario->userid])}}" class="btn btn-sm btn-danger">Remover</a>
+								<a href="{{route('edit_usuario',['id'=>$usuario->userid])}}" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
+								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_usuario',['id'=>$usuario->userid])}}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
 							</td>
 						</tr>
 					@endforeach
@@ -40,14 +40,23 @@
 
 		<hr class="star-light">
 
-		<div class="form-group justify-content-center row">
-			{{$usuarios->links()}}
-		</div>
-
-		<div class="col-md-6 left">
+		<div class="justify-content-center text-center">
 			<a class="btn btn-primary " href="{{route('new_usuario')}}"> Inserir novo </a><br><br>
 		</div>
 
 	</div>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#tabela_dados').DataTable({
+				"columnDefs": [
+					{ "orderable": false, "targets": 5 }
+				],
+				"language": {
+					"url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+				}
+			});
+		} );
+	</script>
 
 @stop

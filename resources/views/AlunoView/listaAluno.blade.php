@@ -12,7 +12,7 @@
 			@endif
 		</h2><br>
 		@if(!$alunos->isEmpty())
-			<table class="table table-hover">
+			<table id="tabela_dados" class="table table-hover">
 		 		<thead>
 					<tr>
 						<th>Nome</th>
@@ -28,8 +28,8 @@
 							<td>{{$aluno->cpf}}</td>
 							<td>{{$aluno->email}}</td>
 							<td class="btn-group">
-								<a href="{{route('edit_aluno', ['id' => $aluno->id])}}" class="btn btn-sm btn-primary">Editar</a>
-								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_aluno', ['id' => $aluno->id])}}" class="btn btn-sm btn-danger">Remover</a>
+								<a href="{{route('edit_aluno', ['id' => $aluno->id])}}" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
+								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_aluno', ['id' => $aluno->id])}}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
 							</td>
 						</tr>
 					@endforeach
@@ -38,15 +38,24 @@
 		@else
 			<p class="text-center alert alert-light">Não existem alunos cadastrados até o momento.</p>
 		@endif
-
-		<div class="form-group justify-content-center row">
-			{{$alunos->links()}}
-		</div>
 		
 		<div class="col-md-12 text-center">
 			<br><a class="btn btn-primary" href="{{route('new_aluno')}}"> Inserir novo </a><br>
 		</div>
 
 	</div>
-	
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#tabela_dados').DataTable({
+				"columnDefs": [
+					{ "orderable": false, "targets": 3 }
+				],
+				"language": {
+					"url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+				}
+			});
+		} );
+	</script>
+
 @stop

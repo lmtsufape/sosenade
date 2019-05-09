@@ -74,7 +74,7 @@
 				<h3 class="card-title">Questões Adicionadas</h3>
 			</div>
 			<div class="card-body">
-				<table class="table">
+				<table id="tabela_dados" class="table">
 					<thead>
 						<tr>
 							<th>Enunciado</th>
@@ -93,9 +93,9 @@
 									<td>{{$qst->questao->dificuldade}}</td>
 									<td id="disciplina">{{$qst->questao->disciplina->nome}}</td>
 									<td>
-										<a class="icons btn btn-info" data-toggle="modal" href="#modal_{{$qst->questao->id}}"><i class="fa fa-info-circle"></i></a>
-										<a href="{{route('edit_qst', ['id'=>$qst->questao->id])}}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
-										<a onclick="return confirm('Você tem certeza que deseja remover?')" href="{{route('remove_qst_simulado', ['sim_qst_id'=>$qst->id])}}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+										<a class="icons btn btn-info" data-toggle="modal" href="#modal_{{$qst->questao->id}}" data-placement="bottom" rel="tooltip" title="Visualizar"><i class="fa fa-eye"></i></a>
+										<a href="{{route('edit_qst', ['id'=>$qst->questao->id])}}" class="btn btn-primary" data-placement="bottom" rel="tooltip" title="Editar"><i class="fa fa-pencil"></i></a>
+										<a onclick="return confirm('Você tem certeza que deseja remover?')" href="{{route('remove_qst_simulado', ['sim_qst_id'=>$qst->id])}}" class="btn btn-danger" data-placement="bottom" rel="tooltip" title="Excluir"><i class="fa fa-trash"></i></a>
 									</td>
 								</tr>
 
@@ -149,4 +149,22 @@
 			</div>
 		</div>
 	</form>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+		    $('#tabela_dados').DataTable({
+		    	"order": [
+		    		[ 2, "asc" ]
+		    	],
+		    	"columnDefs": [
+					{ "orderable": false, "targets": 3 }
+				],
+				"language": {
+                	"url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+            	}
+		    });
+		} );
+		$('[rel="tooltip"]').tooltip();
+	</script>
+
 @stop

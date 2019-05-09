@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('titulo','Questões Cadastradas')
 @section('content')
-    
-    <div class="shadow p-4 bg-white rounded container-fluid" style="overflow-x: auto;">
-    
+	
+	<div class="shadow p-4 bg-white rounded container-fluid" style="overflow-x: auto;">
+	
 		<h1 class="text-center">Questões Cadastradas</h1>
 		<h2 class="text-center">
 			@if (Auth::guard('aluno')->user())
@@ -12,15 +12,10 @@
 				{{Auth::user()->curso->curso_nome}}
 			@endif
 		</h2><br>
-
-		<div class="form-group justify-content-center row">
-	 		<img style="width: 30px; height: 30px" src="{{ asset('search3.png')}}" alt=""/>
-	  		<input type="text" id="termo_busca" placeholder="Buscar questão..." onkeyup="pesquisa()" />
-		</div>
 		
 		@if(!$questaos->isEmpty())
 			<table class="table table-hover" id="tabela_dados">
-		 		<thead>
+				<thead>
 					<tr class="header">
 						<th>Enunciado</th>
 						<th>Nível</th>
@@ -53,9 +48,9 @@
 							<td>{{$questao->dificuldade}}</td>
 							<td id="disciplina">{{$questao->nome}}</td>
 							<td>
-								<a class="icons btn btn-info" data-toggle="modal" href="#modal_{{$questao->qstid}}"><i class="fa fa-info-circle"></i></a>
-								<a href="{{route('edit_qst', ['id'=>$questao->qstid])}}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
-								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_qst', ['id'=>$questao->qstid])}}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+								<a class="icons btn btn-info" href="#modal_{{$questao->qstid}}" data-toggle="modal" data-placement="bottom" rel="tooltip" title="Visualizar"><i class="fa fa-eye"></i></a>
+								<a class="btn btn-primary" href="{{route('edit_qst', ['id'=>$questao->qstid])}}" data-placement="bottom" rel="tooltip" title="Editar"><i class="fa fa-pencil"></i></a>
+								<a class="btn btn-danger" href="{{route('delete_qst', ['id'=>$questao->qstid])}}" data-placement="bottom" rel="tooltip" title="Excluir" onclick="return confirm('Você tem certeza que deseja excluir?')"><i class="fa fa-trash"></i></a>
 							</td>
 						</tr>
 
@@ -101,34 +96,26 @@
 		@endif
 
 		<hr class="star-light">
-		
-		<div class="form-group float-right row mr-1">
-			{{$questaos->links()}}
-		</div>
 
-		<div class="col-md-6 left">
+		<div class="text-center justify-content-center">
 			<a class="btn btn-primary" href="{{route('new_qst')}}"> Inserir nova questão </a><br>
 		</div>
-	</div>
 
 	<script type="text/javascript">
-		function pesquisa() {
-		    var input, filter, table, tr, td, i;
-		    input = document.getElementById("termo_busca");
-		    filter = input.value.toUpperCase();
-		    table = document.getElementById("tabela_dados");
-		    tr = table.getElementsByTagName("tr");
-		    for (i = 0; i < tr.length; i++) {
-		        td = tr[i].getElementsByTagName("td")[0];
-		         if (td) {
-		          if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-		          tr[i].style.display = "";
-		          } else {
-		          tr[i].style.display = "none";
-		       }
-		     }       
-		   }
-		}
+		$(document).ready(function() {
+			$('#tabela_dados').DataTable({
+				"order": [
+					[ 2, "asc" ]
+				],
+				"columnDefs": [
+					{ "orderable": false, "targets": 3 }
+				],
+				"language": {
+					"url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+				}
+			});
+		});
+		$('[rel="tooltip"]').tooltip();
 	</script>
 
 @stop

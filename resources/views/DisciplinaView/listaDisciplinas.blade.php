@@ -17,16 +17,16 @@
 		 		<thead>
 					<tr>
 						<th>Nome</th>
-						<th style="width: 10%">Opções</th>
+						<th style="width: 20%">Opções</th>
 					</tr>
 				</thead>
 				<tbody>
 					@foreach ($disciplinas as $disciplina)
 						<tr>
 							<td style="">{{$disciplina->nome}}</td>
-							<td class="btn-group"> 
-								<a href="{{route('edit_disciplina',['id'=>$disciplina->id])}}" class="btn btn-sm btn-primary">Editar</a>
-								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_disciplina',['id'=>$disciplina->id])}}" class="btn btn-sm btn-danger">Remover</a>
+							<td> 
+								<a href="{{route('edit_disciplina',['id'=>$disciplina->id])}}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_disciplina',['id'=>$disciplina->id])}}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
 							</td>
 						</tr>
 					@endforeach
@@ -35,10 +35,6 @@
 		@else
 			<p class="text-center alert alert-light">Não existem disciplinas cadastradas até o momento.</p>
 		@endif
-
-		<div class="form-group justify-content-center row">
-			{{$disciplinas->links()}}
-		</div>
 
 		<div class="col-md-12 text-center">
 			<br><a class="btn btn-primary" href="{{route('new_disciplina')}}"> Adicionar uma nova disciplina </a><br>

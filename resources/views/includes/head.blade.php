@@ -2,19 +2,24 @@
 <link rel="dns-prefetch" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
-<script type="text/javascript" src="{{ asset('js/jquery-3.3.1.slim.min.js') }}"></script> 
-<script src="{{ asset( 'js/jquery.mask.js') }}"></script>
-<script src="{{ asset( 'js/mask.js') }}"></script>
-<script src="{{ asset( 'js/popper.min.js') }}"></script>
+<!-- bootstrap css -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-<!-- include bootstrap css/js -->
-<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}">
-<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+<!-- jquery js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.1/umd/popper.min.js"></script>
+
+<!-- bootstrap js -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 <!-- include summernote css/js -->
-<link rel="stylesheet" type="text/css" href="{{ asset('sn_editor/summernote-bs4.css') }}">
-<script src="{{ asset('sn_editor/summernote-bs4.js') }}"></script>
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/lang/summernote-pt-BR.js"></script>
 <script src="{{ asset('js/summernote_config.js') }}"></script>
+
+<!-- corrige bug com toolbar para tabelas do summernote -->
+<style type="text/css">	body .popover{ display:none } </style>
 
 <!-- include datepicker css/js -->
 <script src="https://unpkg.com/gijgo@1.9.11/js/gijgo.min.js" type="text/javascript"></script>
@@ -27,5 +32,9 @@
 <!-- Barra Brasil script -->
 <script defer="defer" src="//barra.brasil.gov.br/barra.js" type="text/javascript"></script>
 
-<!-- Icons script -->
+<!-- Icons css -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- DataTables css/js -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css"/>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
