@@ -115,16 +115,19 @@ class QuestaoController extends Controller {
 		return redirect('\listar\questao');
 	}
 
-
 	public function importarQuestao(Request $request){
-		#$disciplinas = \SimuladoENADE\Disciplina::all();
-		#
 		$cursos = \SimuladoENADE\Curso::all();
 		$disciplinas = \SimuladoENADE\Disciplina::all();
-
-		return view('/QuestaoView/importarQuestao', ['disciplinas' => $disciplinas], ['cursos' => $cursos]);
+		$questaos = collect();
+		
+		if(!$request->all()){
+			return view('/QuestaoView/importarQuestao', ['disciplinas' => $disciplinas, 'cursos' => $cursos, 'questaos' => $questaos]);
+		} elseif ($request->input('disciplina_id')) {
+			$questaos = \SimuladoENADE\Disciplina::find($request->input('disciplina_id'))->questaos;
+			return view('/QuestaoView/importarQuestao', ['disciplinas' => $disciplinas, 'cursos' => $cursos, 'questaos' => $questaos]);
+		} else {
+			return redirect()->back()->with('fail', true)->with('message','Ocorreu um erro. Por favor, selecione uma disciplina.');
+		}
 	}
-}
 
-		#$questaos =\SimuladoENADE\Questao::select('*', \DB::raw('questaos.id as qstid'))
-		#	->join('disciplinas', 'questaos.disciplina_id', '=', 'disciplinas.id')
+}

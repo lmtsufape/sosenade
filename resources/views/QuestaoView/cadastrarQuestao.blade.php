@@ -15,7 +15,7 @@
 			
 			<div class="card">
 				<div class="card-header">
-					<h5 class="card-title">Classificação da questão</h5>
+					<h5 class="card-title">Classificação da Questão</h5>
 				</div>
 				<div class="card-body row justify-content-center">
 					<div class="col-md-4 text-center">

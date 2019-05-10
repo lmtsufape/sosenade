@@ -26,7 +26,7 @@
 		
 		<div class="card mb-3">
 			<div class="card-header">
-				<h3 class="card-title">Adicionar Questões</h3>
+				<h5 class="card-title">Adicionar Questões</h5>
 			</div>
 			<div class="card-body">
 				<div class="grid">
@@ -71,7 +71,7 @@
 		
 		<div class="card">
 			<div class="card-header">
-				<h3 class="card-title">Questões Adicionadas</h3>
+				<h5 class="card-title">Questões Adicionadas</h5>
 			</div>
 			<div class="card-body">
 				@if($questaos->all())
