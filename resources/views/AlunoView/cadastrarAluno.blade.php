@@ -93,8 +93,9 @@
 						<form method="POST" action="{{ route('import_aluno') }}" enctype="multipart/form-data">
 							<input type="hidden" name="_token" value="{{csrf_token()}}">		
 							<div class="form-group justify-content-center row" id="cadastrar">
-								<div class="form-group col-md-8">
-									<input id="csv_file" type="file" class="form-control" name="csv_file" required>
+								<div class="form-group col-md-8 custom-file">
+									<input id="csv_file" type="file" class="form-control custom-control-input" name="csv_file" required>
+									<label class="custom-file-label" for="csv_file">Escolha o arquivo</label>
 									@if ($errors->has('csv_file'))
 										<span class="help-block">
 											<strong>{{ $errors->first('csv_file') }}</strong>
