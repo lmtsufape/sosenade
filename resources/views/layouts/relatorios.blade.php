@@ -9,9 +9,7 @@
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 
 		<title>@yield('titulo') | S.O.S Enade</title>
-		<!-- include bootstrap css/js -->
-		<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}">
-		<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+		@include('includes.head')
 	</head>
 	<body>
 		<h1 style="text-align:center;">@yield('titulo')</h1>

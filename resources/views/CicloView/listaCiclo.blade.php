@@ -16,8 +16,8 @@
 						<tr>
 							<td>{{$ciclo->tipo_ciclo}} <span class="badge badge-primary badge-pill">{{count($ciclo->cursos)}}</span></td>
 							<td class="btn-group">
-								<a href="{{route('edit_ciclo', ['id' => $ciclo->id])}}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
-								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_ciclo', ['id' => $ciclo->id])}}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+								<a href="{{route('edit_ciclo', ['id' => $ciclo->id])}}" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
+								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_ciclo', ['id' => $ciclo->id])}}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
 							</td>
 						</tr>
 					@endforeach

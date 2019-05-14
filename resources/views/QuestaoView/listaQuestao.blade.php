@@ -42,12 +42,12 @@
 				<tbody>
 					@foreach($questaos as $questao)
 						<tr>
-							<td style="overflow: hidden; word-wrap: break-word; max-width: 38rem;">
+							<td class="align-middle" style="overflow: hidden; word-wrap: break-word; max-width: 38rem;">
 								{{ str_limit(preg_replace('/<[^>]*>|[&;]|nbsp/', '', preg_replace(array('/nbsp/','/<(.*?)>/'), ' ', $questao->enunciado)), $limit = 180, $end = '...') }}
 							</td>
-							<td>{{$questao->dificuldade}}</td>
-							<td id="disciplina">{{$questao->nome}}</td>
-							<td>
+							<td class="align-middle">{{$questao->dificuldade}}</td>
+							<td class="align-middle" id="disciplina">{{$questao->nome}}</td>
+							<td class="align-middle">
 								<a class="icons btn btn-info" href="#modal_{{$questao->qstid}}" data-toggle="modal" data-placement="bottom" rel="tooltip" title="Visualizar"><i class="fa fa-eye"></i></a>
 								<a class="btn btn-primary" href="{{route('edit_qst', ['id'=>$questao->qstid])}}" data-placement="bottom" rel="tooltip" title="Editar"><i class="fa fa-pencil"></i></a>
 								<a class="btn btn-danger" href="{{route('delete_qst', ['id'=>$questao->qstid])}}" data-placement="bottom" rel="tooltip" title="Excluir" onclick="return confirm('Você tem certeza que deseja excluir?')"><i class="fa fa-trash"></i></a>

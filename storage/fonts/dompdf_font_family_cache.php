@@ -86,4 +86,7 @@
   'summernote' => array(
     'normal' => $fontDir . '/7d4b5eaa4ca772e692fc5b1cd7265310',
   ),
+  'fontawesome' => array(
+    'normal' => $fontDir . '/43ed29441a44386a5b3b93c46e9b6448',
+  ),
 ) ?>

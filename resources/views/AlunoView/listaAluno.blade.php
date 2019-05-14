@@ -18,7 +18,7 @@
 						<th>Nome</th>
 						<th>CPF</th>
 						<th>E-mail</th>
-						<th style="width: 10%">Opções</th>
+						<th style="width: 15%">Opções</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -27,7 +27,7 @@
 							<td>{{$aluno->nome}}</td>
 							<td>{{$aluno->cpf}}</td>
 							<td>{{$aluno->email}}</td>
-							<td class="btn-group">
+							<td>
 								<a href="{{route('edit_aluno', ['id' => $aluno->id])}}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
 								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_aluno', ['id' => $aluno->id])}}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
 							</td>

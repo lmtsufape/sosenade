@@ -83,8 +83,9 @@ Route::middleware('auth')->group(function(){
 		Route::get('/editar/questao/{id}', 'QuestaoController@editar')->name('edit_qst');
 		Route::post('/atualizar/questao', 'QuestaoController@atualizar')->name('update_qst');
 		Route::get('/remover/questao/{id}', 'QuestaoController@remover')->name('delete_qst');
-		Route::get('/importarQuestao/questao', 'QuestaoController@importarQuestao')->name('import_qst');
-		Route::post('/importarQuestao/questao', 'QuestaoController@importarQuestao')->name('import_qst_post');
+		Route::get('/importarQuestao/', 'QuestaoController@importarQuestao')->name('import_qst');
+		Route::post('/importarQuestao/listando', 'QuestaoController@importarQuestao')->name('listar_import_qst');
+		Route::post('/importarQuestao/importando', 'QuestaoController@importandoQuestoes')->name('import_qst_post');
 
 	});
 

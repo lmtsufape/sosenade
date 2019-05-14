@@ -59,10 +59,10 @@ class RelatorioController extends Controller {
 					foreach ($disciplina['qsts'] as $questao) {
 						$acertos += $questao ? 1 : 0;
 					}
-					$resum_aluno[$i]['simulados'][$resultado_simulado->simulado->descricao_simulado]['disciplinas'][$nome_disc]['media'] = ($acertos/count($disciplina['qsts']))*100;
+					$resum_aluno[$i]['simulados'][$resultado_simulado->simulado->descricao_simulado]['disciplinas'][$nome_disc]['media'] = round(($acertos/count($disciplina['qsts']))*100, 2);
 				}
 			}
-			$resum_aluno[$i]['md_geral'] = count($alunos[$i]->simulados_alunos) ? $soma/count($alunos[$i]->simulados_alunos) : 0;
+			$resum_aluno[$i]['md_geral'] = count($alunos[$i]->simulados_alunos) ? round($soma/count($alunos[$i]->simulados_alunos, 2)) : 0;
 		}
 
 		$total_alunos = count($alunos);
@@ -129,7 +129,7 @@ class RelatorioController extends Controller {
 
 		$medias = array();
 		foreach ($respostas as $resposta) {
-			$medias[$resposta->questao->disciplina->nome] = $acertos[$resposta->questao->disciplina->nome]/$cont_respostas[$resposta->questao->disciplina->nome]*100;
+			$medias[$resposta->questao->disciplina->nome] = round($acertos[$resposta->questao->disciplina->nome]/$cont_respostas[$resposta->questao->disciplina->nome]*100, 2);
 		}
 
 		$date = date('d/m/Y');
