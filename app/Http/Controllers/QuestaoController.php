@@ -117,11 +117,11 @@ class QuestaoController extends Controller {
 
 	public function importarQuestao(Request $request){
 		$cursos = \SimuladoENADE\Curso::where('id', '!=', \Auth::user()->curso_id)->get();
-		$disciplinas = \SimuladoENADE\Disciplina::where('curso_id', '!=', \Auth::user()->curso_id)->get();
+		$disciplinas = \SimuladoENADE\Disciplina::all();
 		$questaos = collect();
+		$existe_no_curso = true;
 		
 		if(!$request->all()){
-			$existe_no_curso = true;
 			return view('/QuestaoView/importarQuestao', ['disciplinas' => $disciplinas, 'cursos' => $cursos, 'questaos' => $questaos, 'disc_existe' => $existe_no_curso]);
 		} elseif ($request->input('disciplina_id')) {
 			$questaos = \SimuladoENADE\Disciplina::find($request->input('disciplina_id'))->questaos;
@@ -134,30 +134,17 @@ class QuestaoController extends Controller {
 	}
 
 	public function importandoQuestoes(Request $request){
-		// Pega a disciplina das questões
-		$disciplina_qst = (\SimuladoENADE\Questao::find($request->qsts[0])->disciplina);
-
-		// Procura no curso do importador uma disciplina com mesmo nome para receber as questões
-		$condicoes = ['curso_id' => \Auth::user()->curso_id, 'nome' => $disciplina_qst->nome];
-		$disciplina_dest = \SimuladoENADE\Disciplina::where($condicoes)->first();
-
-		// Se tem uma disciplina com mesmo nome, as questoes sao salvas nela, se não existe, a disciplina é criada
-		if(!$disciplina_dest){
-			$disciplina_dest = new \SimuladoENADE\Disciplina();
-			$disciplina_dest->nome = $disciplina_qst->nome;
-			$disciplina_dest->curso_id = \Auth::user()->curso_id;
-			$disciplina_dest->save();
-		}
-
-		// Por fim, as questões são replicadas e salvas na disciplina temporaria
+		// As questões são replicadas e salvas na disciplina temporaria
 		foreach ($request->qsts as $qst_id) {
 			$questao = \SimuladoENADE\Questao::find($qst_id); // Encontra a qst a ser importada
 
 			$nova_qst = $questao->replicate(); // Duplica criando um novo model
-			$nova_qst->disciplina_id = $disciplina_dest->id; // Altera a disciplna
+			$nova_qst->disciplina_id = $request->disciplina_dst_id; // Altera a disciplna
 
 			$nova_qst->save(); // Salva a nova questão no bd
 		}
+
+		$disciplina_dest = \SimuladoENADE\Disciplina::find($request->input('disciplina_dst_id'));
 
 		$mensagem = 'Importação efetuada com sucesso! ';
 		$mensagem .= (count($request->qsts) == 1) ? count($request->qsts).' questão importada ' : 

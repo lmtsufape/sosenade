@@ -32,7 +32,6 @@
 					<div class="col-md-4 text-center">
 						<label for="curso_id">Cursos:</label>
 						<select id='curso_id' name="curso_id" class="form-control{{ $errors->has('curso_id') ? ' is-invalid' : '' }}" required autofocus>
-							<option selected hidden value="null"></option>
 							@foreach ($cursos as $curso)
 								<option value="{{$curso->id}}" {{old('curso') == $curso->id ? 'selected' : '' }}>
 									{{$curso->curso_nome}} - {{$curso->unidade->nome}} 
@@ -44,18 +43,16 @@
 					<div class="col-md-4 text-center">
 						<label for="disciplina_id">Disciplinas:</label>
 						<select id='disciplina_id' name="disciplina_id" class="form-control{{ $errors->has('disciplina_id') ? ' is-invalid' : '' }}" required autofocus>
-							<option selected hidden value="null"></option>
 							@foreach ($disciplinas as $disciplina)
 								<option rel="{{$disciplina->curso->id}}" value="{{$disciplina->id}}" {{old('disciplina') == $disciplina->id ? 'selected' : '' }}>
-									{{$disciplina->nome}} - {{$disciplina->curso->curso_nome}} 
+									{{$disciplina->nome}} 
 								</option>
 							@endforeach
 						</select>
 						<small id="message_small" class="text-muted" hidden>Nenhuma disciplina disponível neste curso.</small>
 					</div>
 				</div>
-
-				<div class="justify-content-center text-center mt-4 mb-2">
+				<div class="d-flex justify-content-center mt-4 mb-2">
 					<input id="lista_btn" type="submit" value="Listar" name="btn_listar" class="btn btn-success" disabled />
 				</div>
 			</form>
@@ -134,15 +131,31 @@
 					@else
 						<p class="text-center alert alert-light">Nenhuma questão para mostrar.</p>
 					@endif
-					<hr class="my-4">
-					<div class="text-center justify-content-center">
-						<button id="btn_importar" type="submit" class="btn btn-success mr-3" disabled {{($questaos->count() == 0) ? 'hidden' : ''}} onclick={!! !$disc_existe ? '\'return confirm("Será criada uma nova disciplina para seu curso, deseja prosseguir?")\'' : ''!!}>Importar</button>
-						<a class="btn btn-light mr-3" href="{{route('import_qst')}}" {{($questaos->count() == 0) ? 'hidden' : ''}}>Limpar</a>
+					<div {{($questaos->count() == 0) ? 'hidden' : ''}}> 
+						<hr class="my-4">
+						<div class="d-flex justify-content-center my-2">
+							<div class="col-md-4 text-center">
+								<label for="disciplina_dst_id">Importar para:</label>
+								<select id='disciplina_dst_id' name="disciplina_dst_id" class="form-control {{ $errors->has('disciplina_dst_id') ? ' is-invalid' : '' }}" required autofocus>
+									@foreach ($disciplinas as $disciplina)
+										<option rel="{{$disciplina->curso->id}}" value="{{$disciplina->id}}" {{old('disciplina') == $disciplina->id ? 'selected' : '' }}>
+											{{$disciplina->nome}} - {{$disciplina->curso->curso_nome}} 
+										</option>
+									@endforeach
+								</select>
+							</div>
+						</div>
+						<div>
+							<div class="d-flex justify-content-center">
+								<button id="btn_importar" type="submit" class="btn btn-success m-2" disabled>Importar</button>
+								<a class="btn btn-secondary m-2" href="{{route('import_qst')}}">Limpar</a>
+							</div>
+						</div>
 					</div>
 				</form>			
 			</div>
 			<div class="card-footer">
-				<small class="text-muted">Marque as questões que deseja importar para seu curso, e clique no botão Importar para finalizar. Para limpar a lista clique em Limpar.</small>
+				<small class="text-muted">Marque as questões, escolha a disciplina do seu curso para onde deseja importá-las e clique no botão Importar para finalizar. Para limpar a lista clique em Limpar.</small>
 			</div>
 		</div>
 	</div>
@@ -152,8 +165,9 @@
 		// Estabelece o comportamento de dependência entre os dois select boxes
 		var $select1 = $('#curso_id'),
 			$select2 = $('#disciplina_id'),
+			$select3 = $('#disciplina_dst_id'),
 			$options = $select2.find('option');
-			
+		
 		$select1.on('change', function() {
 			$select2.html( 
 				$options.filter('[rel="' + this.value + '"]')
@@ -171,6 +185,10 @@
 				$('#lista_btn').prop('disabled', false);
 			};
 		}).trigger('change');
+
+		$select3.html( 
+			$options.filter('[rel="' + {{Auth::user()->curso->id}} + '"]')
+		);
 
 		$(document).ready(function() {
 			$('#tabela_dados').DataTable({
