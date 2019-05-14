@@ -22,7 +22,12 @@
 						<th>
 							<div class="dropdown show">
 								Disciplinas
-								<a style="color: inherit;" class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<a style="color: inherit;" class="dropdown-toggle nounderline" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									@foreach($disciplinas as $disciplina)
+										@if($disciplina->questaos->count())
+											{!! Request::is('listar/questoes/disciplina/'.$disciplina->id) ? '('.$disciplina->nome.')' : '' !!} 
+										@endif
+									@endforeach
 								</a>
 								<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 									<a class="dropdown-item {{Request::is('listar/questao') ? 'font-weight-bold' : ''}}" href="{{route('list_qst')}}">
@@ -117,5 +122,11 @@
 		});
 		$('[rel="tooltip"]').tooltip();
 	</script>
+
+	<style type="text/css">
+		.nounderline {
+			text-decoration: none !important
+		}
+	</style>
 
 @stop

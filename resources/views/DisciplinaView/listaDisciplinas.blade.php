@@ -24,9 +24,10 @@
 					@foreach ($disciplinas as $disciplina)
 						<tr>
 							<td style="">{{$disciplina->nome}}</td>
-							<td> 
-								<a href="{{route('edit_disciplina',['id'=>$disciplina->id])}}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
-								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_disciplina',['id'=>$disciplina->id])}}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+							<td>
+								<a href="{{route('list_qst_disciplina', ['id'=>$disciplina->id])}}" class="btn btn-info" data-placement="bottom" rel="tooltip" title="Ver questões"><i class="fa fa-eye"></i></a>
+								<a href="{{route('edit_disciplina',['id'=>$disciplina->id])}}" class="btn btn-primary" data-placement="bottom" rel="tooltip" title="Editar"><i class="fa fa-pencil"></i></a>
+								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_disciplina',['id'=>$disciplina->id])}}" class="btn btn-danger" data-placement="bottom" rel="tooltip" title="Excluir"><i class="fa fa-trash"></i></a>
 							</td>
 						</tr>
 					@endforeach
@@ -41,5 +42,9 @@
 		</div>
 
 	</div>
+
+	<script type="text/javascript">
+		$('[rel="tooltip"]').tooltip();
+	</script>
 
 @stop
