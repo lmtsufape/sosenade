@@ -67,12 +67,15 @@ class Usuariocontroller extends Controller{
 
 	public function cadastrar(){
 		// $this->authorize('adcionar', \SimuladoENADE\Usuario::class); 
+		$unidades = \SimuladoENADE\UnidadeAcademica::all();
 		$user = \Auth::user()->tipousuario_id;      
 		$cursos = \SimuladoENADE\Curso::all();
 		$tipos_usuario = \SimuladoENADE\Tipousuario::all(); // Tem q retirar aluno, pois está em outra tabela
 
 		if($user == 4)
-			return view('/UsuarioView/cadastrarUsuario',['cursos' => $cursos, 'tipos_usuario' => $tipos_usuario]);
+			return view('/UsuarioView/cadastrarUsuario',['cursos' => $cursos,
+				'unidades' => $unidades,
+				'tipos_usuario' => $tipos_usuario]);
 		elseif($user == 2){
 			return view('/UsuarioView/cadastrarProfessor',['cursos' => $cursos, 'tipos_usuario' => $tipos_usuario]);
 		}
