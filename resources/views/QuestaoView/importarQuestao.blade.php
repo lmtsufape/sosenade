@@ -44,7 +44,7 @@
 						<label for="disciplina_id">Disciplinas:</label>
 						<select id='disciplina_id' name="disciplina_id" class="form-control{{ $errors->has('disciplina_id') ? ' is-invalid' : '' }}" required autofocus>
 							@foreach ($disciplinas as $disciplina)
-								<option rel="{{$disciplina->curso_id}}" value="{{$disciplina->id}}" {{old('disciplina') == $disciplina->id ? 'selected' : '' }}>
+								<option rel="{{$disciplina->curso->id}}" value="{{$disciplina->id}}" {{old('disciplina') == $disciplina->id ? 'selected' : '' }}>
 									{{$disciplina->nome}} 
 								</option>
 							@endforeach

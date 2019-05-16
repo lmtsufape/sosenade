@@ -92,10 +92,10 @@
 										</td>
 										<td>{{$qst->questao->dificuldade}}</td>
 										<td id="disciplina">{{$qst->questao->disciplina->nome}}</td>
-										<td>
-											<a class="icons btn btn-info" data-toggle="modal" href="#modal_{{$qst->questao->id}}" data-placement="bottom" rel="tooltip" title="Visualizar"><i class="fa fa-eye"></i></a>
-											<a href="{{route('edit_qst', ['id'=>$qst->questao->id])}}" class="btn btn-primary" data-placement="bottom" rel="tooltip" title="Editar"><i class="fa fa-pencil"></i></a>
-											<a onclick="return confirm('Você tem certeza que deseja remover?')" href="{{route('remove_qst_simulado', ['sim_qst_id'=>$qst->id])}}" class="btn btn-danger" data-placement="bottom" rel="tooltip" title="Excluir"><i class="fa fa-trash"></i></a>
+										<td class = "btn-group">
+											<a class="icons btn btn-sm btn-info" data-toggle="modal" href="#modal_{{$qst->questao->id}}" data-placement="bottom" rel="tooltip" title="Visualizar"><i class="fa fa-eye"></i></a>
+											<a href="{{route('edit_qst', ['id'=>$qst->questao->id])}}" class="btn btn-sm btn-primary" data-placement="bottom" rel="tooltip" title="Editar"><i class="fa fa-pencil"></i></a>
+											<a onclick="return confirm('Você tem certeza que deseja remover?')" href="{{route('remove_qst_simulado', ['sim_qst_id'=>$qst->id])}}" class="btn btn-sm btn-danger" data-placement="bottom" rel="tooltip" title="Excluir"><i class="fa fa-trash"></i></a>
 										</td>
 									</tr>
 
