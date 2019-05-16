@@ -114,4 +114,11 @@
 			</div>
 		</div>
 	</div>
+
+	<style type="text/css">
+		.custom-file-label::after{
+		    content:"Procurar";
+		}
+	</style>
+
 @stop
