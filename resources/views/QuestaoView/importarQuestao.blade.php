@@ -41,6 +41,7 @@
 					</div>
 
 					<div class="col-md-4 text-center">
+							{{dd($disciplinas)}}
 						<label for="disciplina_id">Disciplinas:</label>
 						<select id='disciplina_id' name="disciplina_id" class="form-control{{ $errors->has('disciplina_id') ? ' is-invalid' : '' }}" required autofocus>
 							@foreach ($disciplinas as $disciplina)
