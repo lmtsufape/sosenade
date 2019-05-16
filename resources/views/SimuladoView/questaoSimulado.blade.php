@@ -32,7 +32,7 @@
 						<label class="list-group-item" for="radiod">{!! nl2br($questao['alternativa_d'])!!}</label>
 
 						<input type="radio" name="alternativa" id="radioe" value="4" />
-						<label class="list-group-item" for="radioe">{ !! nl2br($questao['alternativa_e'])!!}</label>
+						<label class="list-group-item" for="radioe">{!! nl2br($questao['alternativa_e'])!!}</label>
 					</div>
 					<div class="col-md-12 mt-4 text-center">
 						<button onclick="atLeastOneRadio()" id="confirmar-btn" type="submit" class="btn btn-success pull-center" data-container="body" data-toggle="popover" data-placement="right" data-content="Selecione uma alternativa para prosseguir.">Próxima</button>
