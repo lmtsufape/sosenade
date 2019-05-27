@@ -1,6 +1,6 @@
 var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
 $('#dp1').datepicker({
-	format:'dd-mm-yyyy',
+	format:'dd/mm/yyyy',
 	uiLibrary: 'bootstrap4',
 	minDate: today,
 	maxDate: function () {
@@ -9,7 +9,7 @@ $('#dp1').datepicker({
 });
 
 $('#dp2').datepicker({
-	format:'dd-mm-yyyy',
+	format:'dd/mm/yyyy',
 	uiLibrary: 'bootstrap4',
 	minDate: function () {
 		if ($('#dp1').val()){
