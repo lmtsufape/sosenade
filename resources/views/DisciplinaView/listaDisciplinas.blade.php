@@ -4,7 +4,7 @@
 
 	<div class="shadow p-4 bg-white rounded container-fluid" style="overflow-x: auto;">
 	    
-		<h1 class="text-center">Disciplinas/Conteúdos Cadastradas</h1>
+		<h1 class="text-center">Disciplinas/Conteúdos Cadastrados</h1>
 		<h2 class="text-center">
 			@if (Auth::guard('aluno')->user())
 				{{Auth::guard('aluno')->user()->curso->curso_nome}}

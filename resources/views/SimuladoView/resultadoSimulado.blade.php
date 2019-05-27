@@ -24,7 +24,7 @@
 						</td>
 						<td style="vertical-align:middle;">
 							<!-- O enunciado tem que levar a uma explicação da resposta da questão -->
-							{{preg_replace('/<[^>]*>|[&;]/', '', $questao->enunciado) }}
+							{{ str_limit(preg_replace('/<[^>]*>|[&;]|nbsp/', '', preg_replace(array('/nbsp/','/<(.*?)>/'), ' ', $questao->enunciado)), $limit = 180, $end = '...') }}
 						</td>  
 						<td style="vertical-align:middle; text-align: center; width: 40%">
 							@if($questao->alternativa_questao == $questao->alternativa_correta)

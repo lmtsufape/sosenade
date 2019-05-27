@@ -37,7 +37,7 @@ class DisciplinaController extends Controller {
 	public function editar(Request $request){ 		
 		$disciplina = \SimuladoENADE\Disciplina::find($request->id);
 		$cursos = \SimuladoENADE\Curso::all();
-		return view('/DisciplinaView/editarDisciplinas', ['disciplina' => $disciplina], ['cursos' => $cursos]);
+		return view('/DisciplinaView/editarDisciplinas', ['disciplina' => $disciplina]);
 	}
 
 	public function atualizar(Request $request){
@@ -45,6 +45,10 @@ class DisciplinaController extends Controller {
 			DisciplinaValidator::Validate($request->all());
 			$disciplina = \SimuladoENADE\Disciplina::find($request->id);
 			$disciplina->fill($request->all());
+
+			$curso_id = \Auth::user()->curso_id;
+			$disciplina->curso_id = $curso_id;
+
 			$disciplina->update();
 			return redirect("listar/disciplina");
 		}
