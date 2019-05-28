@@ -7,7 +7,7 @@
 
 		<div class="form-row justify-content-center row">
 	    	<div class="form-group col-md-6">
-		      	<label for="tipo_ciclo">Ano do ciclo</label>
+		      	<label for="tipo_ciclo">Ano do Ciclo</label>
 		      	<input type="text" name="tipo_ciclo" id="tipo_ciclo" placeholder="Digite aqui o ano do novo ciclo" class="form-control{{ $errors->has('tipo_ciclo') ? ' is-invalid' : '' }}" value="{{ old('tipo_ciclo') }}" required autofocus>
 		    	@if ($errors->has('tipo_ciclo'))
 			    	<span class = "invalid-feedback" role="alert">

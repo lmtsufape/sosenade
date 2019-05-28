@@ -15,6 +15,7 @@
 						<th>CPF</th>
 						<th>E-mail</th>
 						<th>Curso</th>
+						<th>Unidade</th>
 						<th style="width: 7%">Opções</th>
 					</tr>
 				</thead>
@@ -26,6 +27,7 @@
 							<td>{{$usuario->cpf}}</td>
 							<td>{{$usuario->email}}</td>
 							<td>{{$usuario->curso_nome}}</td>
+							<td>{{$usuario->curso->unidade->nome}}</td>
 							<td class="btn-group">
 								<a href="{{route('edit_usuario',['id'=>$usuario->userid])}}" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
 								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_usuario',['id'=>$usuario->userid])}}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
@@ -50,7 +52,7 @@
 		$(document).ready(function() {
 			$('#tabela_dados').DataTable({
 				"columnDefs": [
-					{ "orderable": false, "targets": 5 }
+					{ "orderable": false, "targets": 6 }
 				],
 				"language": {
 					"url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"

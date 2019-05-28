@@ -5,7 +5,7 @@
 	<form class="shadow p-3 bg-white rounded" action= "{{route('add_curso')}}" method="post">
 		<h1 class="text-center"> Cadastrar Curso </h1><br>
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
-		<div class="form-group justify-content-center row">
+		<div class="form-row col-md-12 justify-content-center">
 			<div class="form-group col-md-4">
 				<label for="curso_nome">Nome do Curso</label>
 				<input type="text" class="form-control{{ $errors->has('curso_nome') ? ' is-invalid' : '' }}"  name="curso_nome" id="curso_nome" placeholder="Digite o nome do curso aqui" value="{{ old('curso_nome') }}" required autofocus>
@@ -30,7 +30,9 @@
 					</span>
 				@endif
 			</div>
-			
+		</div>
+
+		<div class="form-row col-md-12 justify-content-center">
 			<div class="form-group col-md-4">
 				<label for="unidade_id">Unidade</label>
 				<select class="form-control{{ $errors->has('unidade_id') ? ' is-invalid' : '' }}" name="unidade_id" required autofocus>
