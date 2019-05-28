@@ -16,44 +16,48 @@
 				@endif
 			</div>
 		 	
-			<div class="form-group col-md-4">
-				<label for="cpf">CPF</label>
-				<input type="text" id="cpf" name="cpf" placeholder="xxx.xxx.xxx-xx" class="form-control{{ $errors->has('cpf') ? ' is-invalid' : '' }} cpf" value="{{ old('cpf') }}" required autofocus>
-				@if ($errors->has('cpf'))
-					<span class = "invalid-feedback" role="alert">
-						{{$errors->first('cpf')}}
-					</span>
-				@endif
+		 	<div class="form-row col-md-12 justify-content-center">
+		 		<div class="form-group col-md-4">
+					<label for="email">E-mail</label>
+					<input type="text" id="email" name="email" placeholder="exemplo@exemplo.com" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" required autofocus>
+					@if ($errors->has('email'))
+						<span class = "invalid-feedback" role="alert">
+							{{$errors->first('email')}}
+						</span>
+					@endif
+				</div>
+		 		
+				<div class="form-group col-md-4">
+					<label for="cpf">CPF</label>
+					<input type="text" id="cpf" name="cpf" placeholder="xxx.xxx.xxx-xx" class="form-control{{ $errors->has('cpf') ? ' is-invalid' : '' }} cpf" value="{{ old('cpf') }}" required autofocus>
+					@if ($errors->has('cpf'))
+						<span class = "invalid-feedback" role="alert">
+							{{$errors->first('cpf')}}
+						</span>
+					@endif
+				</div>
 			</div>
 
-			<div class="form-group col-md-4">
-				<label for="email">E-mail</label>
-				<input type="text" id="email" name="email" placeholder="exemplo@exemplo.com" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" required autofocus>
-				@if ($errors->has('email'))
-					<span class = "invalid-feedback" role="alert">
-						{{$errors->first('email')}}
-					</span>
-				@endif
-			</div>
+			<div class="form-row col-md-12 justify-content-center">
+				<div class="form-group col-md-4">
+					<label for="password">Senha</label>
+					<input type="password" id="password" name="password" placeholder="Senha" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" value="{{ old('password') }}" required autofocus>
+					@if ($errors->has('password'))
+						<span class = "invalid-feedback" role="alert">
+							{{$errors->first('password')}}
+						</span>
+					@endif
+				</div>
 
-			<div class="form-group col-md-4">
-				<label for="password">Senha</label>
-				<input type="password" id="password" name="password" placeholder="Senha" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" value="{{ old('password') }}" required autofocus>
-				@if ($errors->has('password'))
-					<span class = "invalid-feedback" role="alert">
-						{{$errors->first('password')}}
-					</span>
-				@endif
-			</div>
-
-			<div class="form-group col-md-4">
-				<label for="password_confirmation">Confirmar Senha</label>
-				<input type="password" id="password_confirmation" name="password_confirmation" placeholder="Confirmar Senha" class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" value="{{ old('password_confirmation') }}" required autofocus>
-				@if ($errors->has('password_confirmation'))
-					<span class = "invalid-feedback" role="alert">
-						{{$errors->first('password_confirmation')}}
-					</span>
-				@endif
+				<div class="form-group col-md-4">
+					<label for="password_confirmation">Confirmar Senha</label>
+					<input type="password" id="password_confirmation" name="password_confirmation" placeholder="Confirmar Senha" class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" value="{{ old('password_confirmation') }}" required autofocus>
+					@if ($errors->has('password_confirmation'))
+						<span class = "invalid-feedback" role="alert">
+							{{$errors->first('password_confirmation')}}
+						</span>
+					@endif
+				</div>
 			</div>
 
 			<div class="form-group col-md-2">
@@ -79,7 +83,7 @@
 				<select name="curso_id" class="form-control{{ $errors->has('curso_id') ? ' is-invalid' : '' }}" required autofocus>
 					@foreach ($cursos as $curso)
 							<option value="{{$curso->id}}" {{old('curso') == $curso->id ? 'selected' : '' }}>
-								{{$curso->curso_nome}} {{$curso->unidade->nome}}
+								{{$curso->curso_nome}} ({{$curso->unidade->nome}})
 							</option>
 						
 					@endforeach
@@ -90,7 +94,6 @@
 					</span>
 				@endif
 			</div>
-
 		</div>
 
 		<div class="col-md-12 text-center">
