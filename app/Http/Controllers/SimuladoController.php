@@ -28,6 +28,8 @@ class SimuladoController extends Controller{
 			$simulado->curso_id = $curso_id;
 			$simulado->usuario_id = $user_id;
 
+			dd($request->all());
+
 			// Completa as datas seguindo o fomarto de data do BD
 			(empty($request->data_inicio_simulado) ? null : $request['data_inicio_simulado'] .= ' 00:00:00');
 			(empty($request->data_fim_simulado) ? null : $request['data_fim_simulado'] .= ' 00:00:00');

@@ -1,23 +1,47 @@
-var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
-$('#dp1').datepicker({
-	format:'dd/mm/yyyy',
-	uiLibrary: 'bootstrap4',
-	minDate: today,
-	maxDate: function () {
-		return $('#dp2').val();
-	}
-});
-
-$('#dp2').datepicker({
-	format:'dd/mm/yyyy',
-	uiLibrary: 'bootstrap4',
-	minDate: function () {
-		if ($('#dp1').val()){
-			return $('#dp1').val();
-		} else{
-			return today;
-		}
-	}
+$(function() {
+	$('input[name="periodo"]').daterangepicker({
+		minDate: moment().startOf('hour').add(1, 'hour'),
+		opens: "center",
+		drops: "up",
+		"timePicker": true,
+		"timePicker24Hour": true,
+		"locale": {
+			format: 'DD/MM/YYYY HH:mm',
+			"separator": " - ",
+			"applyLabel": "Ok",
+			"cancelLabel": "Cancelar",
+			"fromLabel": "De",
+			"toLabel": "Até",
+			"customRangeLabel": "Custom",
+			"weekLabel": "S",
+			"daysOfWeek": [
+				"Dom",
+				"Seg",
+				"Ter",
+				"Qua",
+				"Qui",
+				"Sex",
+				"Sab"
+			],
+			"monthNames": [
+				"Janeiro",
+				"Fevereiro",
+				"Março",
+				"Abril",
+				"Maio",
+				"Junho",
+				"Julho",
+				"Agosto",
+				"Setembro",
+				"Outubro",
+				"Novembro",
+				"Dezembro"
+			],
+			"firstDay": 1
+		},
+	}, function(start, end, label) {
+		console.log('Novo período selecionado: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (período predefinido: ' + label + ')');
+	});
 });
 
 $( document ).ready(function() {
@@ -31,13 +55,10 @@ $('#toggle-btn').change(function() {
 function hide_show_datepicker() {
 	if($('#toggle-btn').prop("checked") == true){
 		$("#datas").show();
-		$("#dp1").attr("required", "required");
-		$("#dp2").attr("required", "required");
+		$("#periodo").attr("required", "required");
 	} else if($('#toggle-btn').prop("checked") == false) {
 		$("#datas").hide();
-		$("#dp1").val('');
-		$("#dp1").removeAttr('required');
-		$("#dp2").val('');
-		$("#dp2").removeAttr('required');
+		$("#periodo").val('');
+		$("#periodo").removeAttr('required');
 	}
 }

@@ -25,9 +25,10 @@
 <!-- corrige bug com toolbar para tabelas do summernote -->
 <style type="text/css">	body .popover{ display:none } </style>
 
-<!-- include datepicker css/js -->
-<script src="https://unpkg.com/gijgo@1.9.11/js/gijgo.min.js" type="text/javascript"></script>
-<link href="https://unpkg.com/gijgo@1.9.11/css/gijgo.min.css" type="text/css" rel="stylesheet">
+<!-- include datetimepicker css/js -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
 <!-- include toggle button css/js -->
 <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.4.0/css/bootstrap4-toggle.min.css" type="text/css" rel="stylesheet">
