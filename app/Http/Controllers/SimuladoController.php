@@ -28,13 +28,26 @@ class SimuladoController extends Controller{
 			$simulado->curso_id = $curso_id;
 			$simulado->usuario_id = $user_id;
 
-			// Completa as datas seguindo o fomarto de data do BD
-			(empty($request->data_inicio_simulado) ? null : $request['data_inicio_simulado'] .= ' 00:00:00');
-			(empty($request->data_fim_simulado) ? null : $request['data_fim_simulado'] .= ' 00:00:00');
+			// caso o simulado seja agendado
+			if($request->periodo){
+				// Divide e completa as datas seguindo o fomarto de data do BD
+				$data_inicio_simulado = (explode(" - ",$request->periodo)[0] .= ':00');
+				$data_fim_simulado = (explode(" - ",$request->periodo)[1] .= ':00');
 
-			$simulado->data_inicio_simulado = (empty($request->data_inicio_simulado) ? null : date('Y-m-d H:i:s',strtotime($request->data_inicio_simulado)));
-			$simulado->data_fim_simulado = (empty($request->data_fim_simulado) ? null : date('Y-m-d H:i:s',strtotime($request->data_fim_simulado)));
+				// converte para data
+				$data_inicio_simulado = date('Y-m-d H:i:s',strtotime(str_replace("/","-",$data_inicio_simulado)));
+				$data_fim_simulado = date('Y-m-d H:i:s',strtotime(str_replace("/","-",$data_fim_simulado)));
+
+				// adiciona as caracteristicas no simulado
+				$simulado->data_inicio_simulado = $data_inicio_simulado;
+				$simulado->data_fim_simulado = $data_fim_simulado;
+			} else {
+				$simulado->data_inicio_simulado = null;
+				$simulado->data_fim_simulado = null;
+			}
+			
 			$simulado->save();
+
 			return redirect()->route('set_simulado', ['id' => $simulado->id]);
 		
 		} catch(ValidationException $ex){
@@ -84,15 +97,27 @@ class SimuladoController extends Controller{
 
 			$simulado = \SimuladoENADE\Simulado::find($request->id);
 			$simulado->fill($request->all());
+			
+			// caso o simulado seja agendado
+			if($request->periodo){
+				// Divide e completa as datas seguindo o fomarto de data do BD
+				$data_inicio_simulado = (explode(" - ",$request->periodo)[0] .= ':00');
+				$data_fim_simulado = (explode(" - ",$request->periodo)[1] .= ':00');
 
-			// Completa as datas seguindo o fomarto de data do BD
-			(empty($request->data_inicio_simulado) ? null : $request['data_inicio_simulado'] .= ' 00:00:00');
-			(empty($request->data_fim_simulado) ? null : $request['data_fim_simulado'] .= ' 00:00:00');
+				// converte para data
+				$data_inicio_simulado = date('Y-m-d H:i:s',strtotime(str_replace("/","-",$data_inicio_simulado)));
+				$data_fim_simulado = date('Y-m-d H:i:s',strtotime(str_replace("/","-",$data_fim_simulado)));
 
-			$simulado->data_inicio_simulado = (empty($request->data_inicio_simulado) ? null : date('Y-m-d H:i:s',strtotime($request->data_inicio_simulado)));
-			$simulado->data_fim_simulado = (empty($request->data_fim_simulado) ? null : date('Y-m-d H:i:s',strtotime($request->data_fim_simulado)));
+				// adiciona as caracteristicas no simulado
+				$simulado->data_inicio_simulado = $data_inicio_simulado;
+				$simulado->data_fim_simulado = $data_fim_simulado;
+			} else {
+				$simulado->data_inicio_simulado = null;
+				$simulado->data_fim_simulado = null;
+			}
 
 			$simulado->update();
+			
 			return redirect("listar/simulado");
 
 		} catch(ValidationException $ex){

@@ -2,7 +2,7 @@
 @section('titulo','Cadastrar Simulado')
 @section('content')
 
-	<form class="shadow p-3 bg-white rounded" action= "{{route('add_simulado')}}" method="post">
+	<form class="shadow p-5 bg-white rounded" action= "{{route('add_simulado')}}" method="post">
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
 		
 		<h1 class="text-center"> Cadastrar Simulado </h1>
@@ -31,11 +31,9 @@
 		</div>
 
 		<div class="form-group justify-content-center row" id="datas">
-			<div class="col-md-3">
-				<input type="text" name="data_inicio_simulado" class="date" id="dp1" width="230px" required autofocus placeholder="De">
-			</div>
-			<div class="col-md-3">
-				<input type="text" name="data_fim_simulado" class="date" id="dp2" width="230px" required autofocus placeholder="Até">
+			<div class="col-md-4">
+				<label for="periodo">Selecione o período</label>
+				<input type="text" name="periodo" class="form-control w-100 text-center" id='periodo' />
 			</div>
 		</div>	
 

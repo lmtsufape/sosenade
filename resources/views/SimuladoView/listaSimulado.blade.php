@@ -46,11 +46,11 @@
 									</span>
 								@elseif($simulado->data_fim_simulado->isPast())
 									<span class="text-danger">
-										Expirado em {{$simulado->data_fim_simulado->format('d/m')}}
+										Expirado em {{$simulado->data_fim_simulado->format('d/m H:i')}}
 									</span>
 								@else
 									<span class="text-success">
-										Agendado ({{$simulado->data_inicio_simulado->format('d/m')}} - {{$simulado->data_fim_simulado->format('d/m')}})
+										Agendado ({{$simulado->data_inicio_simulado->format('d/m H:i')}} - {{$simulado->data_fim_simulado->format('d/m H:i')}})
 									</span>
 								@endif
 							</td>
