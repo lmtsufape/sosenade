@@ -47,9 +47,6 @@ class QuestaoSimuladoController extends Controller{
             
             MontarSimuladoValidator::Validate(count($vetor), $request->numero);            
 
-            if(($cont + $request->numero) > 30)
-                return redirect()->route('list_disciplina');
-
             shuffle($vetor); 
             $row = [];
 
