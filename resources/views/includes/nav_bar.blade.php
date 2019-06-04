@@ -116,6 +116,15 @@
 					</li>
 				@endcan
 
+
+				@can('view_coordenadorGeral', Auth::user())
+					<li class="nav-item">
+						<a class="nav-link" href="{{route('geral_cursosCG')}}" role="button" aria-haspopup="true" aria-expanded="false">
+							Visão Geral do Sistema
+						</a>
+					</li>
+				@endcan
+
 				@if(Auth::guard('aluno')->check())
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

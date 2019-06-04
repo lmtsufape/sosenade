@@ -67,8 +67,25 @@ Route::middleware('auth')->group(function(){
 
 	});
 
-	Route::group(['middleware' => ['professor.auth' OR 'coordenador.auth' OR 'adm.auth']], function() {
+	Route::middleware('coordenadorGeral.auth')->group(function(){ 
 
+		Route::get('/listar/coordenacaoGeral', 'UsuarioController@listar')->name('list_professor');
+		Route::get('/cadastrar/coordenacaoGeral', 'UsuarioController@cadastrar')->name('new_coordenacaoGeral');
+		Route::post('/adicionar/coordenacaoGeral', 'UsuarioController@adicionar')->name('add_coordenacaoGeral');
+		Route::get('/editar/coordenacaoGeral/{id}', 'UsuarioController@editar')->name('edit_coordenacaoGeral');
+		Route::post('/atualizar/coordenacaoGeral', 'UsuarioController@atualizar')->name('update_coordenacaoGeral');
+		Route::get('/remover/coordenacaoGeral/{id}', 'UsuarioController@remover')->name('delete_coordenacaoGeral');
+		Route::get('/relatorio/cursosCG', 'RelatorioController@relatorioGeralCursos')->name('geral_cursosCG');
+
+
+
+
+	});
+
+
+
+	Route::group(['middleware' => ['professor.auth' OR 'coordenador.auth' OR 'adm.auth' OR 'coordenadorGeral.auth']], function() {
+		Route::post('/atualizar/professor', 'UsuarioController@atualizar')->name('update_professor');
 		Route::get('/editar/usuario/{id}', 'UsuarioController@editar')->name('edit_usuario');
 		Route::post('/alterarSenha/', 'UsuarioController@editarSenha')->name('alterar_senha');
 

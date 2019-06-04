@@ -56,13 +56,37 @@ class Usuariocontroller extends Controller{
 				return redirect("/listar/professor");
 			}
 
+			//Coordenação Geral
+			elseif ($user == 5) {
+				$inf_array = $request->all();
+				$inf_array["curso_id"] = \Auth::user()->curso_id; // Pega o curso do usuario que está cadastrando.
+				$inf_array["tipousuario_id"] = 5; // Coordenador só pode cadastrar professor aqui!
+				UsuarioValidator::Validate($inf_array);
+				$new_user = new \SimuladoENADE\Usuario();
+				$new_user->fill($inf_array);
+				$new_user->password = Hash::make($request->password);
+				$new_user->save();
+		  
+				if(false){
+					Mail::to($request->email)->send(new emailConfirmacao());
+				}
+				return redirect("listar/coordenacaoGeral");
+				# code...
+			}
+
 		} catch(ValidationException $ex){
 			$user =  \Auth::user()->tipousuario_id;
 			if($user == 4)
 				return redirect("/cadastrar/usuario")->withErrors($ex->getValidator())->withInput();
 			elseif($user == 2)
 				return redirect("/cadastrar/professor")->withErrors($ex->getValidator())->withInput();
+			elseif($user == 5)
+				return redirect("/cadastrar/coordenacaoGeral")->withErrors($ex->getValidator())->withInput();
+
+		
+
 		}
+			
 	}
 
 	public function cadastrar(){
@@ -78,6 +102,10 @@ class Usuariocontroller extends Controller{
 				'tipos_usuario' => $tipos_usuario]);
 		elseif($user == 2){
 			return view('/UsuarioView/cadastrarProfessor',['cursos' => $cursos, 'tipos_usuario' => $tipos_usuario]);
+		}
+		elseif($user == 5){
+			return view('/UsuarioView/cadastrarCoordenacaoGeral',['cursos' => $cursos, 'tipos_usuario' => $tipos_usuario]);
+
 		}
 		
 	}
@@ -113,6 +141,19 @@ class Usuariocontroller extends Controller{
 			return view('/UsuarioView/ListaProfessor',['usuarios' => $usuarios]); 
 			
 		}
+		//CoordenacaoGeral
+		 elseif($tipo_usuario == 5){
+
+			// Apenas usuarios do tipo 5 (CoordenacaoGeral) e do mesmo curso do coord
+			$usuarios = \SimuladoENADE\Usuario::where('curso_id', '=', $curso_id)
+				->where('unidade_id','=','curso.unidade_id') // apenas professores
+				->orderBy('nome')
+				->get();
+
+			return view('/UsuarioView/ListaProfessor',['usuarios' => $usuarios]); 
+			
+		}
+
 
 	}
 
@@ -183,6 +224,23 @@ class Usuariocontroller extends Controller{
 				return redirect()->back()->with('success', true)->with('message','Alterações efetuadas.');
 
 			}
+			 elseif($user == 5){
+
+				$inf_array = $request->all();
+				$inf_array["curso_id"] = \Auth::user()->curso_id;
+
+				$usuario = \SimuladoENADE\Usuario::find($request->id);
+				$inf_array["password"] = $usuario->password;
+				$inf_array["password_confirmation"] = $usuario->password;
+				$inf_array["tipousuario_id"] = $usuario->tipousuario_id;  
+				
+				UsuarioValidator::Validate($inf_array);
+
+				$usuario->fill($inf_array);
+				$usuario->update();
+				return redirect()->back()->with('success', true)->with('message','Alterações efetuadas.');
+
+			}
 		}
 		catch(ValidationException $ex){
 			dd($ex->getValidator());
@@ -200,6 +258,9 @@ class Usuariocontroller extends Controller{
 			return redirect("/listar/usuario");
 		}elseif($user == 2){
 			return redirect("/listar/professor");
+		}
+		elseif($user == 5){
+			return redirect("/listar/coordenacaoGeral");	
 		}
 	}
 }
