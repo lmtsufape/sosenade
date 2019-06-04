@@ -54,7 +54,14 @@ class UsuarioPolicy
             return false;
         }
     }
-
+    public function view_coordenadorGeral(Usuario $user){
+        if($user->tipousuario->id === 5){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
     /*public function simuladoAuth(Usuario $user){
         if($user->tipousuario->id === 4){
             return true;

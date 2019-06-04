@@ -80,8 +80,19 @@ class RelatorioController extends Controller {
 	public function relatorioGeralCursos(){
 		$cursos = \SimuladoENADE\Curso::orderBy('curso_nome')->get();
 		$unidades = \SimuladoENADE\UnidadeAcademica::all();
+		$user =  \Auth::user()->tipousuario_id;
+		if($user == 4){
+			return view('/RelatoriosView/VisaoGeral',['cursos' => $cursos, 'unidades' => $unidades, ]);
+		}
+		elseif($user == 5){
+			$unidade = \Auth::user()->curso->unidade;
+			$cursos = $unidade->cursos;
 
-		return view('/RelatoriosView/VisaoGeral',['cursos' => $cursos, 'unidades' => $unidades]);
+			return view('/RelatoriosView/visaoCoordenacaoGeral',['cursos' => $cursos, 'unidade' => $unidade, ]);
+			//dd($unidades);
+		}
+
+		
 	}
 
 	public function relatorioSimulados(){
