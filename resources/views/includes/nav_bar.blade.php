@@ -143,8 +143,11 @@
 					<a id="navbarDropdown" class="nav-link dropdown-toggle font-weight-bold" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						@if (Auth::guard('aluno')->user())
 							{{Auth::guard('aluno')->user()->nome}} (Aluno) - {{Auth::guard('aluno')->user()->curso->curso_nome}}
+						@elseif ((Auth::user()->tipousuario->id == 5))
+							{{Auth::user()->nome}} ({{Auth::user()->tipousuario->tipo}}) - {{Auth::user()->curso->unidade->nome}}
 						@elseif (Auth::user() && !(Auth::user()->tipousuario->id == 4))
 							{{Auth::user()->nome}} ({{Auth::user()->tipousuario->tipo}}) - {{Auth::user()->curso->curso_nome}}
+
 						@else
 							{{Auth::user()->nome}} ({{Auth::user()->tipousuario->tipo}})
 						@endif
