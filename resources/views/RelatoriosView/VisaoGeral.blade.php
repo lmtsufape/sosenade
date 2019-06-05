@@ -6,7 +6,6 @@
 	
 		<h1 class="text-center">Visão Geral do Sistema</h1>
 		<h3 class="text-center">{{$cursos->count()}} curso(s) em {{count($unidades)}} unidade(s) acadêmica(s)</h3><br>
-
 		<h4 class="text-left" style="font-weight: bold"> Unidades: </h4>
 		<div id="accordion_uni">
 			@foreach($unidades as $unidade)
