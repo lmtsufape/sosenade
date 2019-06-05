@@ -84,8 +84,6 @@
 							<a class="dropdown-item" href="{{route('new_qst')}}">Cadastrar</a>
 							<a class="dropdown-item" href="{{route('list_qst')}}">Listar</a>
 							<a class="dropdown-item" href="{{route('import_qst')}}">Importar Questões</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="{{route('qst_por_disciplina')}}">Relatório de Questões</a>
 						</div>
 					</li>
 					
@@ -99,6 +97,7 @@
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="{{route('desempenho_alunos')}}">Desempenho por Aluno</a>
 							<a class="dropdown-item" href="{{route('relatorio_disciplinas')}}">Desempenho por Disciplinas</a>
+							<a class="dropdown-item" href="{{route('qst_por_disciplina')}}">Desempenho por Questões</a>
 							<a class="dropdown-item" href="{{route('relatorio_simulados')}}">Desempenho por Simulado</a>
 						</div>
 					</li>
