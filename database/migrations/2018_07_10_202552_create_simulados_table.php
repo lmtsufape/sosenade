@@ -22,8 +22,9 @@ class CreateSimuladosTable extends Migration
             $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('set null');
             
             #Datas que seram usadas, para realização de simulados com marcaão no inicio e fim de cada simulado que será criado
-            $table->date('data_inicio_simulado')->nullable();
-            $table->date('data_fim_simulado')->nullable();
+            $table->timestamp('data_inicio_simulado')->nullable();
+            $table->timestamp('data_fim_simulado')->nullable();
+            
             ##Saber quando se foi realizado o simulado
             $table->timestamps();
         });
