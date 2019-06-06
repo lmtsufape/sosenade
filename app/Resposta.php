@@ -10,8 +10,13 @@ class Resposta extends Model
     public function aluno(){
     	return $this->belongsTo('SimuladoENADE\Aluno');
     }
+    
     public function questao(){
     	return $this->belongsTo('SimuladoENADE\Questao');
+    }
+
+    public function simulado(){
+        return $this->belongsTo('SimuladoENADE\Simulado');
     }
 
     protected $fillable = ['questao_id','aluno_id','alternativa_questao'];
