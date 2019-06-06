@@ -45,7 +45,7 @@
 						</a>
 					</div>
 					<div class="d-flex align-items-center flex-row-reverse">
-						<a href="http://lmts.uag.ufrpe.br/" style="max-height: 20%; max-width: 20%">
+						<a href="http://lmts.uag.ufrpe.br/" style="max-height: 35%; max-width: 35%">
 							<img src="{{asset('images/lmts3.png')}}" class="float-right img-fluid px-1">
 						</a>
 						<img src="{{asset('images/separador.png')}}" class="float-right px-1" style="max-height: 3%; max-width: 3%">
@@ -84,7 +84,7 @@
 								<!-- Authentication Links -->
 								@guest
 									<li class="nav-item">
-										<a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+										<a class="nav-link" href="#"><i class="fa fa-question-circle fa-lg"></i></a>
 									</li>
 								@else
 									<li class="nav-item dropdown">
