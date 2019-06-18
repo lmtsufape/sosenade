@@ -1,6 +1,6 @@
 $(function() {
 	$('input[name="periodo"]').daterangepicker({
-		minDate: moment().startOf('hour').add(1, 'hour'),
+		minDate: moment().startOf('hour'),
 		opens: "center",
 		drops: "up",
 		"timePicker": true,
