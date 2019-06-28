@@ -67,7 +67,7 @@
 				<nav class="navbar navbar-dark navbar-expand-lg" style="background-color: #1B2E4F; border-color: #d3e0e9" role="navigation">
 					<div class="container">
 						<a class="navbar-brand" href="{{ url('/') }}">
-							S.O.S Enade
+							S.O.S. Enade
 						</a>
 						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
 							<span class="navbar-toggler-icon"></span>
