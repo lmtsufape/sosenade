@@ -82,10 +82,11 @@
 				<label for="curso_id">Curso</label>
 				<select name="curso_id" class="form-control{{ $errors->has('curso_id') ? ' is-invalid' : '' }}" required autofocus>
 					@foreach ($cursos as $curso)
+						@if($curso->curso_nome != "Curso Teste")
 							<option value="{{$curso->id}}" {{old('curso') == $curso->id ? 'selected' : '' }}>
 								{{$curso->curso_nome}} ({{$curso->unidade->nome}})
 							</option>
-						
+						@endif
 					@endforeach
 				</select>
 				@if ($errors->has('curso_id'))
