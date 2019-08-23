@@ -16,15 +16,17 @@
 				</thead>
 				<tbody>
 					@foreach ($cursos as $curso)
-						<tr>
-							<td>{{$curso->curso_nome}}</td>
-							<td>{{$curso->tipo_ciclo}}</td>
-							<td>{{$curso->unidade->nome}}</td>
-							<td class="btn-group">
-								<a href="{{route('edit_curso',['id'=>$curso->curso_id])}}" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
-								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_curso',['id'=>$curso->curso_id])}}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
-							</td>
-						</tr>
+						@if($curso->curso_nome != "Curso Teste")
+                            <tr>
+                                <td>{{$curso->curso_nome}}</td>
+                                <td>{{$curso->tipo_ciclo}}</td>
+                                <td>{{$curso->unidade->nome}}</td>
+                                <td class="btn-group">
+                                    <a href="{{route('edit_curso',['id'=>$curso->curso_id])}}" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
+                                    <a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_curso',['id'=>$curso->curso_id])}}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        @endif
 					@endforeach
 				</tbody>
 			</table>
