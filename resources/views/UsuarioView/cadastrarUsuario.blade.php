@@ -2,6 +2,7 @@
 @section('titulo','Cadastrar Usuário')
 @section('content')
 	<form class="shadow p-3 bg-white rounded" action= "{{route('add_usuario')}}" method="post">
+		<input type="hidden" name="id" value="-1">
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
 		<h1 class="text-center"> Cadastrar Usuário </h1><br>	
 

@@ -19,20 +19,21 @@
 				<div class="card-body">
 					<h5 class="card-title">Selecione a resposta correta:</h5>
 					<div class="list-group container">
+
 						<input type="radio" name="alternativa" id="radioa" value="0" required autofocus />
-						<label class="list-group-item" for="radioa">{!! nl2br($questao['alternativa_a'])!!}</label>
+						<label class="list-group-item" for="radioa">A - {!! nl2br($questao['alternativa_a'])!!}</label>
 
 						<input type="radio" name="alternativa" id="radiob" value="1" />
-						<label class="list-group-item" for="radiob">{!!nl2br($questao['alternativa_b'])!!}</label>
+						<label class="list-group-item" for="radiob">B - {!!nl2br($questao['alternativa_b'])!!}</label>
 
 						<input type="radio" name="alternativa" id="radioc" value="2" />
-						<label class="list-group-item" for="radioc">{!! nl2br($questao['alternativa_c'])!!}</label>
+						<label class="list-group-item" for="radioc">C - {!! nl2br($questao['alternativa_c'])!!}</label>
 
 						<input type="radio" name="alternativa" id="radiod" value="3" />
-						<label class="list-group-item" for="radiod">{!! nl2br($questao['alternativa_d'])!!}</label>
+						<label class="list-group-item" for="radiod">D - {!! nl2br($questao['alternativa_d'])!!}</label>
 
 						<input type="radio" name="alternativa" id="radioe" value="4" />
-						<label class="list-group-item" for="radioe">{!! nl2br($questao['alternativa_e'])!!}</label>
+						<label class="list-group-item" for="radioe">E - {!! nl2br($questao['alternativa_e'])!!}</label>
 					</div>
 					<div class="col-md-12 mt-4 text-center">
 						<button onclick="atLeastOneRadio()" id="confirmar-btn" type="submit" class="btn btn-success pull-center" data-container="body" data-toggle="popover" data-placement="right" data-content="Selecione uma alternativa para prosseguir.">Próxima</button>
