@@ -27,6 +27,7 @@
 					<div class="list-group list-group-flush">
 						<br>
 						<form action="{{route('add_aluno')}}" method="post">
+							<input type="hidden" name="id" value="-1">
 							<input type="hidden" name="_token" value="{{csrf_token()}}">
 							<div class="form-group justify-content-center row" id="cadastrar">
 								<div class="form-group col-md-8">

@@ -35,7 +35,8 @@ class Aluno extends Authenticatable{
     	'required' => 'O campo :attribute deve ser preenchido na forma correta',
         'cpf.min' => 'O :attribute deve conter no minimo 14 caracteres',
         'password.min' => 'A senha deve ter no minimo 8 caracteres',
-        'email.email' => "O email deve ser um email valido",
+        'email.email' => "O email deve ser um email valido", 
+        'unique' => "O :attribute já esta cadastrado no sistema!!",
         'password.confirmed' => "As senhas devem ser identicas"
     ];
 }

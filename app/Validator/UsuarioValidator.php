@@ -8,7 +8,13 @@ class UsuarioValidator
     {
 
     	$validator = \Validator::make($dados,
-    								 Usuario::$rules,
+    								 [      
+                                    'nome'  => 'required',
+                                    'cpf' => 'required|min:14|unique:usuarios,cpf,'.$dados['id'],
+                                    'password' => 'required|min:8|confirmed',
+                                    'email' => 'required|email|unique:usuarios,email,'.$dados['id'],
+                                    'tipousuario_id' => 'required',
+                                    'curso_id'  => 'required'],
     								 Usuario::$messages);
     	if(!$validator->errors()->isEmpty()){
     		throw new ValidationException($validator, "Erro ao validar um aluno");
