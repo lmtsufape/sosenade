@@ -20,7 +20,7 @@ class CreateSimuladosTable extends Migration
             $table->integer('usuario_id')->unsigned()->nullable();
             $table->foreign('curso_id')->references('id')->on('cursos')->onDelete('set null');
             $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('set null');
-            
+            $table->boolean('simulado_hora_aluno');
             #Datas que seram usadas, para realização de simulados com marcaão no inicio e fim de cada simulado que será criado
             $table->timestamp('data_inicio_simulado')->nullable();
             $table->timestamp('data_fim_simulado')->nullable();

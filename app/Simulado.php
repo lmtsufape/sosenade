@@ -21,7 +21,9 @@ class Simulado extends Model
 
     public function simulados_alunos(){
         return $this->hasMany('\SimuladoENADE\SimuladoAluno', 'simulado_id', 'id');
-    }    
+    }  
+    
+
 
     protected $fillable = ['descricao_simulado','usuario_id','curso_id'];
     

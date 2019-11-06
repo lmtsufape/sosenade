@@ -29,6 +29,8 @@ class SimuladoController extends Controller{
 			$simulado->usuario_id = $user_id;
 
 			// caso o simulado seja agendado
+			$horaAluno = $request->simulado_hora_aluno;
+			//dd($horaAluno);
 			if($request->periodo){
 				// Divide e completa as datas seguindo o fomarto de data do BD
 				$data_inicio_simulado = (explode(" - ",$request->periodo)[0] .= ':00');
@@ -41,11 +43,23 @@ class SimuladoController extends Controller{
 				// adiciona as caracteristicas no simulado
 				$simulado->data_inicio_simulado = $data_inicio_simulado;
 				$simulado->data_fim_simulado = $data_fim_simulado;
+
+
+				if($horaAluno){
+
+					$simulado->simulado_hora_aluno = TRUE;
+				}
+				else{
+
+					$simulado->simulado_hora_aluno = FALSE;
+				}
+
 			} else {
 				$simulado->data_inicio_simulado = null;
 				$simulado->data_fim_simulado = null;
 			}
 			
+			//dd($simulado);
 			$simulado->save();
 
 			return redirect()->route('set_simulado', ['id' => $simulado->id]);
@@ -97,6 +111,7 @@ class SimuladoController extends Controller{
 
 			$simulado = \SimuladoENADE\Simulado::find($request->id);
 			$simulado->fill($request->all());
+			$horaAluno = $request->simulado_hora_aluno;
 			
 			// caso o simulado seja agendado
 			if($request->periodo){
@@ -111,6 +126,15 @@ class SimuladoController extends Controller{
 				// adiciona as caracteristicas no simulado
 				$simulado->data_inicio_simulado = $data_inicio_simulado;
 				$simulado->data_fim_simulado = $data_fim_simulado;
+
+				if($horaAluno){
+
+					$simulado->simulado_hora_aluno = TRUE;
+				}
+				else{
+
+					$simulado->simulado_hora_aluno = FALSE;
+				}
 			} else {
 				$simulado->data_inicio_simulado = null;
 				$simulado->data_fim_simulado = null;
@@ -153,33 +177,104 @@ class SimuladoController extends Controller{
 		
 		$simulado = \SimuladoENADE\Simulado::find($request->id);
 		$questaos_nao_respondidas = self::getQuestoes($simulado);
+
+		$resposta = new \SimuladoENADE\Resposta();
+		$user_id = \Auth::guard('aluno')->user()->id;
+		
+		//$teste = $request->simulado_id;
+		//dd($simulado->id);
+		$simuladoHora = \SimuladoENADE\SimuladoHora::where('simulado_horas.aluno_id', "=", $user_id)->where('simulado_horas.simulado_id', '=', $simulado->id)->get();
+		//dd($simuladoHora[0]);
+		if(empty($simuladoHora[0])){
+			$simuladoHora = new \SimuladoENADE\SimuladoHora();
+			$simuladoHora->fill($request->all());
+			$simuladoHora->aluno_id = $user_id;	
+			$dateTime = date_default_timezone_set('America/Sao_Paulo');
+			$dataLocal = date('d/m/Y H:i:s', time());
+			$dataFinal = date('d/m/Y H:i:s', time());
+			$simuladoHora->simulado_id = $simulado->id;	
+			$hora_inicio_simulado = date('Y-m-d H:i:s',strtotime(str_replace("/","-",$dataLocal)));
+			$hora_fim_simulado = date('Y-m-d H:i:s',strtotime(str_replace("/","-",$dataFinal)));
+			$hora_fim_simulado = date('Y-m-d H:i:s', strtotime('+ 240 minute', strtotime($hora_fim_simulado)));
+			$simuladoHora->hora_inicio_simulado = $hora_inicio_simulado;
+			$simuladoHora->hora_fim_simulado = $hora_fim_simulado;
+			$simuladoHora->save();
+		//dd($simuladoHora);
+		}
 		
 		if (empty($questaos_nao_respondidas))
-			return redirect('/resultado/simulado/'.$request->id);
-
+		return redirect('/resultado/simulado/'.$request->id);
+		
 	    return view('/SimuladoView/startSimulado', ['simulado'=>$simulado, 'questaos'=>$questaos_nao_respondidas]);
 	}
    
    	// Salva a resposta da questão no BD
 	public function responder(Request $request){
 
-		try{
+		$simulado = \SimuladoENADE\Simulado::find($request->simulado_id);
+		$user_id = \Auth::guard('aluno')->user()->id;
+		//$resposta = \SimuladoENADE\Resposta::all();
 
-			$user_id = \Auth::guard('aluno')->user()->id;
-			$qst_alt_correta = \SimuladoENADE\Questao::find($request->questao_id)->alternativa_correta;
-	  
-			$resposta = new \SimuladoENADE\Resposta();
-			$resposta->questao_id = $request->questao_id;
-			$resposta->alternativa_questao = $request->alternativa;
-			$resposta->acertou = ($request->alternativa == $qst_alt_correta);
-			$resposta->aluno_id = $user_id;
-			$resposta->simulado_id = $request->simulado_id;
-			$resposta->save();
 
-			return redirect('/questao/simulado/'.$request->simulado_id);
+		//dd($questoes_respondidas_aluno);
+		$simuladoHora = \SimuladoENADE\SimuladoHora::where('simulado_horas.aluno_id', "=", $user_id)->where('simulado_horas.simulado_id', '=', $request->simulado_id)->get();
+		$simuladoHora = date('Y-m-d H:i:s',strtotime(str_replace("/","-",$simuladoHora[0]->hora_fim_simulado)));
+		//	dd($simuladoHora);
+		$dateTime = date_default_timezone_set('America/Sao_Paulo');
+		$dataLocal = date('d/m/Y H:i:s', time());
+		$hora_atual_simulado = date('Y-m-d H:i:s',strtotime(str_replace("/","-",$dataLocal)));
+		
+		
+		if($hora_atual_simulado > $simuladoHora && $simulado->simulado_hora_aluno == true){
 
-		} catch(ValidationException $ex){
+			//dd("aqui");
 			
+			$questoes_respondidas_aluno = \DB::table("respostas")->where(
+				[['aluno_id', '=', $user_id], ['simulado_id', '=', $simulado->id]]
+				)->pluck('questao_id');
+				
+				//$questaoSimulado = \SimuladoENADE\QuestaoSimulado::all();
+				$questaoSimulado = \SimuladoENADE\QuestaoSimulado::where('simulado_id','=', $request->simulado_id)->get();
+				//dd($questaoSimulado[0]->questao_id);
+			//$i = 0;
+			foreach($questaoSimulado as $questao){
+				if(!$questoes_respondidas_aluno->contains($questao->questao_id)) {
+					//dd($questao->questao_id);
+					$resposta = new \SimuladoENADE\Resposta();
+					//$resposta->fill($request->all());
+					$resposta->questao_id = $questao->questao_id;
+					$resposta->aluno_id = $user_id;
+					$resposta->acertou = FALSE;
+					$resposta->alternativa_questao = 6;
+					$resposta->simulado_id = $request->simulado_id;
+					//++$i;
+					$resposta->save();
+					//dd($resposta);
+				}
+			}
+
+		return redirect('/resultado/simulado/'.$request->simulado_id);			
+		}
+		
+		else{
+			try{
+
+				$user_id = \Auth::guard('aluno')->user()->id;
+				$qst_alt_correta = \SimuladoENADE\Questao::find($request->questao_id)->alternativa_correta;
+		
+				$resposta = new \SimuladoENADE\Resposta();
+				$resposta->questao_id = $request->questao_id;
+				$resposta->alternativa_questao = $request->alternativa;
+				$resposta->acertou = ($request->alternativa == $qst_alt_correta);
+				$resposta->aluno_id = $user_id;
+				$resposta->simulado_id = $request->simulado_id;
+				$resposta->save();
+
+				return redirect('/questao/simulado/'.$request->simulado_id);
+
+			} catch(ValidationException $ex){
+				
+			}
 		}
 	
 	}
@@ -225,6 +320,8 @@ class SimuladoController extends Controller{
 		//Id do usuário
 		$user_id = \Auth::guard('aluno')->user()->id;
 
+		//dd($resquest->id);
+
 		$questaos = \DB::table('questao_simulados')
 			->join('respostas', 'respostas.questao_id','=','questao_simulados.questao_id')
 			->join('questaos', 'questaos.id','=','questao_simulados.questao_id')
@@ -232,14 +329,23 @@ class SimuladoController extends Controller{
 					 ['questao_simulados.simulado_id','=',$request->id],
 					 ['respostas.simulado_id','=',$request->id]])
 			->get()->toArray();
+		
+
+		//dd($questaos);
 	  
 		$certas = 0;
 		$total = count($questaos);
-
-		foreach ($questaos as $questao)			
-			if($questao->alternativa_questao == $questao->alternativa_correta)
+	
+		foreach ($questaos as $questao){			
+			if($questao->alternativa_questao == $questao->alternativa_correta){
 				$certas += 1;
+			}
+			else{
 
+			}
+		}
+			
+		//dd($total);
 		$resultado = ($certas*100)/$total;
 		$resultado = round($resultado, 0);
 

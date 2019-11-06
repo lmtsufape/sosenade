@@ -1,10 +1,10 @@
-al<?php
+<?php
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRespostasTable extends Migration
+class CreateSimuladoHorasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateRespostasTable extends Migration
      */
     public function up()
     {
-        Schema::create('respostas', function (Blueprint $table) {
+        Schema::create('simulado_horas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('questao_id')->unsigned();
+            $table->integer('simulado_id')->unsigned();
             $table->integer('aluno_id')->unsigned();
-            $table->boolean('acertou')->default(0);
-            $table->string('alternativa_questao');
-            $table->foreign('questao_id')->references('id')->on('questaos')->onDelete('cascade');
             $table->foreign('aluno_id')->references('id')->on('alunos')->onDelete('cascade');
-         //$table->foreign('simulado_id')->references('id')->on('simulados')->onDelete('cascade');
+            $table->foreign('simulado_id')->references('id')->on('simulados')->onDelete('cascade');
+            $table->timestamp('hora_inicio_simulado')->nullable();
+            $table->timestamp('hora_fim_simulado')->nullable();
             $table->timestamps();
         });
     }
@@ -33,6 +32,6 @@ class CreateRespostasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('respostas');
+        Schema::dropIfExists('simulado_horas');
     }
 }

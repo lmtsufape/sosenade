@@ -23,6 +23,9 @@ class Aluno extends Authenticatable{
         return $this->hasMany('SimuladoENADE\Resposta');
     }
 
+ 
+
+
     public static $rules = [
     	'nome'  => 'required|',
     	'cpf' => 'required|min:14',

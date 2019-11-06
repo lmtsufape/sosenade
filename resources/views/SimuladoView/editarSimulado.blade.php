@@ -37,6 +37,11 @@
 				<label for="periodo">Selecione o período</label>
 				<input type="text" name="periodo" class="form-control w-100 text-center" id='periodo' />
 			</div>
+
+			<div class="col-md-2">
+					<label for="simulado_hora_aluno">4hrs por simulado</label>
+					<input name="simulado_hora_aluno" id="toggle-btn" type="checkbox" data-onstyle="danger" data-offstyle="outline-dark" data-on="4hrs" data-off="Sem limite" data-toggle="toggle" checked >
+			</div>
 		</div>	
 
 		<div class="form-group justify-content-center row">
