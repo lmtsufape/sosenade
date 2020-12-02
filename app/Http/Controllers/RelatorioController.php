@@ -48,9 +48,9 @@ class RelatorioController extends Controller {
 		    			['questao_id', '=', $qst_simulado->questao->id]])
 						->first();
 
-					$resum_aluno[$i]['simulados'][$resultado_simulado->simulado->descricao_simulado]['disciplinas'][$qst_simulado->questao->disciplina->nome]['nome'] = $qst_simulado->questao->disciplina->nome;
-					$resum_aluno[$i]['simulados'][$resultado_simulado->simulado->descricao_simulado]['disciplinas'][$qst_simulado->questao->disciplina->nome]['media'] = 0;
-					$resum_aluno[$i]['simulados'][$resultado_simulado->simulado->descricao_simulado]['disciplinas'][$qst_simulado->questao->disciplina->nome]['qsts'][] = $resposta->acertou;
+					$resum_aluno[$i]['simulados'][$resultado_simulado->simulado->descricao_simulado]['disciplinas'][$qst_simulado->questao->disciplina['nome']]['nome'] = $qst_simulado->questao->disciplina['nome'];
+					$resum_aluno[$i]['simulados'][$resultado_simulado->simulado->descricao_simulado]['disciplinas'][$qst_simulado->questao->disciplina['nome']]['media'] = 0;
+					$resum_aluno[$i]['simulados'][$resultado_simulado->simulado->descricao_simulado]['disciplinas'][$qst_simulado->questao->disciplina['nome']]['qsts'][] = $resposta->acertou;
 				}
 
 				foreach ($resum_aluno[$i]['simulados'][$resultado_simulado->simulado->descricao_simulado]['disciplinas'] as $disciplina) {
@@ -130,17 +130,17 @@ class RelatorioController extends Controller {
 		$cont_respostas = array();
 		$acertos = array();
 		foreach ($respostas as $resposta) {
-			if(!array_key_exists($resposta->questao->disciplina->nome, $acertos)){
-				$acertos[$resposta->questao->disciplina->nome] = 0;
-				$cont_respostas[$resposta->questao->disciplina->nome] = 0;
+			if(!array_key_exists($resposta->questao->disciplina['nome'], $acertos)){
+				$acertos[$resposta->questao->disciplina['nome']] = 0;
+				$cont_respostas[$resposta->questao->disciplina['nome']] = 0;
 			}
-			$acertos[$resposta->questao->disciplina->nome] += $resposta->acertou ? 1 : 0;
-			$cont_respostas[$resposta->questao->disciplina->nome] += 1;
+			$acertos[$resposta->questao->disciplina['nome']] += $resposta->acertou ? 1 : 0;
+			$cont_respostas[$resposta->questao->disciplina['nome']] += 1;
 		}
 
 		$medias = array();
 		foreach ($respostas as $resposta) {
-			$medias[$resposta->questao->disciplina->nome] = round($acertos[$resposta->questao->disciplina->nome]/$cont_respostas[$resposta->questao->disciplina->nome]*100, 2);
+			$medias[$resposta->questao->disciplina['nome']] = round($acertos[$resposta->questao->disciplina['nome']]/$cont_respostas[$resposta->questao->disciplina['nome']	]*100, 2);
 		}
 
 		$date = date('d/m/Y');

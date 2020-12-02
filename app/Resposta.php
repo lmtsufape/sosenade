@@ -19,6 +19,10 @@ class Resposta extends Model
         return $this->belongsTo('SimuladoENADE\Simulado');
     }
 
+    public function disciplina(){
+        return $this->belongsTo('SimuladoENADE\Disciplina', 'id');
+    }
+
     protected $fillable = ['questao_id','aluno_id','alternativa_questao'];
 
 
