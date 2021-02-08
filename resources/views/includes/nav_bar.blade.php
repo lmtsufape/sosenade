@@ -124,6 +124,18 @@
 					</li>
 				@endcan
 
+				@can('view_administrador_sistema', Auth::user())
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Instituições
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="{{-- --}}">Cadastrar</a>
+							<a class="dropdown-item" href="{{-- --}}">Listar</a>
+						</div>
+					</li>
+				@endcan
+
 				@if(Auth::guard('aluno')->check())
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
