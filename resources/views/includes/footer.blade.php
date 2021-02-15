@@ -8,6 +8,9 @@ padding-bottom: 40px; position:absolute; bottom:100; width:100%; ">
                     <div class="col-sm-12" style="font-family:arial; ">
                         <a href="" style="text-decoration: none; color:black">Início</a>  ●
                         <a href="" style="text-decoration: none; color:black">Sobre</a>
+                        @auth
+                        ● <a href="" style="text-decoration: none; color:black">Olá, {{ $nome }}</a>
+                        @endauth
                         <hr style="width: 80%; border: 0; height: 1px; background: #333; background-image: linear-gradient(to right, #ccc, #333, #ccc);">
                     </div>
                 </div>
