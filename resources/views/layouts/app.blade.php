@@ -69,6 +69,7 @@
 						<a href="{{ (Auth::guard('aluno')->user()) ? route('home_aluno') : route('home') }}" style="max-height: 45%; max-width: 45%">
 							<img src="{{asset('1.png')}}" style="width: 20%" class="img-fluid float-left">
 						</a>
+
 						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
 							<span class="navbar-toggler-icon"></span>
 						</button>
@@ -79,13 +80,19 @@
 
 							</ul>
 
+
+
 							<!-- Right Side Of Navbar -->
 							<ul class="navbar-nav ml-auto">
 								<!-- Authentication Links -->
 								@guest
-									<li class="nav-item">
-										<a class="nav-link" href="#"><i class="fa fa-question-circle fa-lg"></i></a>
-									</li>
+                                <div style="display: inline-block; margin-right: 30px">
+                                    <a href="" style="text-decoration: none; color:black;">Início</a>
+                                </div>
+                                <div style="display: inline-block;">
+                                    <a href="" style="text-decoration: none; color:black;">Sobre</a>
+                                </div>
+
 								@else
 									<li class="nav-item dropdown">
 										<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
