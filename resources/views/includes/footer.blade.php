@@ -1,5 +1,5 @@
 <div class="" style="background-color: white; width: 100%; color:black; margin-top:1.5rem;
-padding-bottom: 40px; position:absolute; bottom:100; width:100%; ">
+padding-bottom: 20px; position:absolute; bottom:100; width:100%; ">
     <div class="container-fluid pb-0 mb-0 justify-content-center text-black ">
         <div class="row justify-content-center"
              style="padding: 10px;">
@@ -22,6 +22,7 @@ padding-bottom: 40px; position:absolute; bottom:100; width:100%; ">
                                         <a class="dropdown-item" href="{{route('list_qst')}}">Questões cadastradas</a>
                                     </div>
                                 </div>
+                                @endif
                                 &nbsp;&nbsp;● &nbsp;&nbsp;
                                 <div class="dropdown show" style="display: inline">
                                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;">
@@ -54,9 +55,6 @@ padding-bottom: 40px; position:absolute; bottom:100; width:100%; ">
                                         </form>
                                     </div>
                                 </div>
-			                @elseif (Auth::user())
-				                {{Auth::user()->curso->curso_nome}}
-			                @endif
                         @endauth
 
                         <hr style="width: 80%; border: 0; height: 1px; background: #333; background-image: linear-gradient(to right, #ccc, #333, #ccc);">
