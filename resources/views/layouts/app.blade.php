@@ -21,7 +21,7 @@
 			@endif
 		</title>
 	</head>
-	
+
 	<body class="position-relative" style="background: #EEE; min-height: 100vh; padding-bottom: 60px">
 		<!-- Barra Brasil -->
 		<div id="barra-brasil" style="background:#7F7F7F; height: 20px; padding:0 0 0 10px; display:block;">
@@ -35,7 +35,7 @@
 			</ul>
 		</div>
 
-		<!-- Barra de Logos -->
+		{{-- <!-- Barra de Logos -->
 		<div id="barra-logos" class="py-3 bg-white">
 			<div class="container px-4">
 				<div class="d-flex align-items-center">
@@ -59,15 +59,15 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> --}}
 
 		<div id="app">
 			<!-- Barra da tela de Login -->
 			@if(!Auth::guard('aluno')->check() && !Auth::check())
-				<nav class="navbar navbar-dark navbar-expand-lg" style="background-color: #1B2E4F; border-color: #d3e0e9" role="navigation">
+				<nav class="navbar navbar-dark navbar-expand-lg" style="background-color: white; border-color: #d3e0e9" role="navigation">
 					<div class="container">
-						<a class="navbar-brand" href="{{ url('/') }}">
-							S.O.S. Enade
+						<a href="{{ (Auth::guard('aluno')->user()) ? route('home_aluno') : route('home') }}" style="max-height: 45%; max-width: 45%">
+							<img src="{{asset('1.png')}}" style="width: 20%" class="img-fluid float-left">
 						</a>
 						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
 							<span class="navbar-toggler-icon"></span>
