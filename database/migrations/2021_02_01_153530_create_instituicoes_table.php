@@ -19,7 +19,7 @@ class CreateInstituicoesTable extends Migration
             $table->string('cnpj')->unique();
             $table->string('usuario_responsavel');
             $table->string('email')->unique();
-            $table->string('senha');
+            $table->string('password');
             $table->integer('tipousuario_id')->unsigned()->nullable();
             $table->foreign('tipousuario_id')->references('id')->on('tipousuarios');
             $table->timestamps();
