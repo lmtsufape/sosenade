@@ -11,35 +11,40 @@ padding-bottom: 40px; position:absolute; bottom:100; width:100%; ">
                         <a href="" style="text-decoration: none; color:black">Sobre</a>
                         @endguest
                         @auth
-                        <div class="dropdown show" style="display: inline">
-                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;">
-                                Questões
-                            </a>
+                            @if (Auth::user()->tipousuario_id == 4)
+                                <div class="dropdown show" style="display: inline">
+                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;">
+                                        Questões
+                                    </a>
 
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="{{route('new_qst')}}">Cadastrar</a>
-                                <a class="dropdown-item" href="{{route('list_qst')}}">Questões cadastradas</a>
-                            </div>
-                        </div>
-                        &nbsp;&nbsp;● &nbsp;&nbsp;
-                        <div class="dropdown show" style="display: inline">
-                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;">
-                                Olá, <b>{{ $nome }}</b>
-                            </a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="{{route('new_qst')}}">Cadastrar</a>
+                                        <a class="dropdown-item" href="{{route('list_qst')}}">Questões cadastradas</a>
+                                    </div>
+                                </div>
+                                &nbsp;&nbsp;● &nbsp;&nbsp;
+                                <div class="dropdown show" style="display: inline">
+                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;">
+                                         Olá, {{--<b>{{ $nome }}</b> --}}
+                                    </a>
 
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="{{(Auth::guard('aluno')->user()) ? route('edit_perfil_aluno') : route('edit_usuario', ['id' => Auth::user()->id])}}">
-                                    Meu Perfil
-                                </a>
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            </div>
-                        </div>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="{{(Auth::guard('aluno')->user()) ? route('edit_perfil_aluno') : route('edit_usuario', ['id' => Auth::user()->id])}}">
+                                            Meu Perfil
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </div>
+			                @elseif (Auth::user())
+				                {{Auth::user()->curso->curso_nome}}
+			                @endif
                         @endauth
+
                         <hr style="width: 80%; border: 0; height: 1px; background: #333; background-image: linear-gradient(to right, #ccc, #333, #ccc);">
                     </div>
                 </div>
