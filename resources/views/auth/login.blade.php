@@ -1,7 +1,10 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="container-fluid" style="width: 75%; height: 500px; background-color: white; margin-top: 20px;padding: 0 20px 20 0; border-radius: 15px; overflow: hidden;">
+<div class="container-fluid" style="width: 75%; height: 500px; background-color: white; margin-top: 20px;padding: 0 20px 20 0; border-radius: 15px;
+overflow: hidden; box-shadow: -1px 4px 17px -5px rgba(0,0,0,0.64);
+-webkit-box-shadow: -1px 4px 17px -5px rgba(0,0,0,0.64);
+-moz-box-shadow: -1px 4px 17px -5px rgba(0,0,0,0.64);">
     <div class="container-fluid">
         <div class="row" style="padding: 0px">
             <div class="col-sm-6 " style="margin-right: 30px; margin-left: -15px; padding: 0px;">
