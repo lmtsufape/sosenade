@@ -156,6 +156,7 @@ Auth::routes();
 
 
 Route::view('cadastrarInstituicao', 'InstituicaoView.cadastrarInstituicao');
+Route::view('listarInstituicao', 'InstituicaoView.listaInstituicao');
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
