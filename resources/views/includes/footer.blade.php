@@ -25,7 +25,21 @@ padding-bottom: 40px; position:absolute; bottom:100; width:100%; ">
                                 &nbsp;&nbsp;● &nbsp;&nbsp;
                                 <div class="dropdown show" style="display: inline">
                                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;">
-                                         Olá, {{--<b>{{ $nome }}</b> --}}
+                                        Olá, <b>
+                                        @if (Auth::guard('aluno')->user())
+                                            {{Auth::guard('aluno')->user()->nome}} (Aluno) {{-- - {{Auth::guard('aluno')->user()->curso->curso_nome}} --}}
+                                        @elseif ((Auth::user()->tipousuario->id == 6))
+                                            {{Auth::user()->nome}}
+                                        @elseif ((Auth::user()->tipousuario->id == 5))
+                                            {{Auth::user()->nome}} {{--({{Auth::user()->tipousuario->tipo}}) - {{Auth::user()->curso->unidade->nome}} --}}
+                                        @elseif (Auth::user() && !(Auth::user()->tipousuario->id == 4))
+                                            {{Auth::user()->nome}} {{--({{Auth::user()->tipousuario->tipo}}) - {{Auth::user()->curso->curso_nome}} --}}
+
+                                        @else
+                                            {{Auth::user()->nome}}
+                                        @endif
+                                        </b>
+                                        <span class="caret"></span>
                                     </a>
 
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
