@@ -6,12 +6,12 @@ padding-bottom: 20px; position:absolute; bottom:100; width:100%; ">
             <div class="col-sm-12" align="center">
                 <div class="row justify-content-center" style="margin-top:15px;">
                     <div class="col-sm-12" style="font-family:arial; ">
-                        <a href="" style="text-decoration: none; color:black">Início</a>&nbsp;&nbsp;&nbsp;●&nbsp;&nbsp;
+                        <a href="/" style="text-decoration: none; color:black">Início</a>&nbsp;&nbsp;&nbsp;●&nbsp;&nbsp;
                         @guest
                         <a href="" style="text-decoration: none; color:black">Sobre</a>
                         @endguest
                         @auth
-                            @if (Auth::user()->tipousuario_id == 4)
+                            @if (Auth::user()->tipousuario_id == 3)
                                 <div class="dropdown show" style="display: inline">
                                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;">
                                         Questões
