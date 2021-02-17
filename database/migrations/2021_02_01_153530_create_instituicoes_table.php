@@ -23,6 +23,7 @@ class CreateInstituicoesTable extends Migration
             $table->integer('tipousuario_id')->unsigned()->nullable();
             $table->foreign('tipousuario_id')->references('id')->on('tipousuarios');
             $table->timestamps();
+            $table->rememberToken();
         });
     }
 
