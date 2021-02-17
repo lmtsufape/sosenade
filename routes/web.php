@@ -26,9 +26,9 @@ Route::middleware('auth')->group(function(){
 	Route::get('/home','UsuarioController@home');
 
 	Route::get('/listar/simulado', 'SimuladoController@listar')->name('list_simulado');
-		
+
 	Route::middleware('coordenador.auth')->group(function(){
-			
+
 		Route::get('/listar/disciplina','DisciplinaController@listar')->name('list_disciplina');
 		Route::get('/cadastrar/disciplina','DisciplinaController@cadastrar')->name('new_disciplina');
 		Route::post('/adicionar/disciplina','DisciplinaController@adicionar')->name('add_disciplina');
@@ -67,7 +67,7 @@ Route::middleware('auth')->group(function(){
 
 	});
 
-	Route::middleware('coordenadorGeral.auth')->group(function(){ 
+	Route::middleware('coordenadorGeral.auth')->group(function(){
 
 		// Route::get('/listar/coordenacaoGeral', 'UsuarioController@listar')->name('list_professor');
 		Route::get('/cadastrar/coordenacaoGeral', 'UsuarioController@cadastrar')->name('new_coordenacaoGeral');
@@ -141,18 +141,22 @@ Route::middleware('aluno.auth')->group(function(){
 
 	Route::get('/listaSimuladoAluno/simulado', 'SimuladoController@listaSimuladoAluno')->name('list_simulado_aluno');
 	Route::get('/listaSimuladoAluno/simuladoFeitos', 'SimuladoController@listaSimuladoAlunoFeitos')->name('list_simulado_feitos');
-	
+
 	Route::get('/questao/simulado/{id}', 'SimuladoController@questao')->name('qst_simulado');
 	Route::post('/responder/simulado/', 'SimuladoController@responder')->name('answ_qst_simulado');
 	Route::get('/resultado/simulado/{id}', 'SimuladoController@resultado')->name('result_simulado');
 	Route::get('/startSimulado/{id}', 'SimuladoController@startSimulado')->name('startSimulado');
 
-	Route::get('/editarPerfil', 'AlunoController@editarPerfil')->name('edit_perfil_aluno');	
+	Route::get('/editarPerfil', 'AlunoController@editarPerfil')->name('edit_perfil_aluno');
 	Route::post('/alterarSenhaAluno', 'AlunoController@editarSenha')->name('alterar_senha_aluno');
 
 });
 
 Auth::routes();
+
+
+Route::view('cadastrarInstituicao', 'InstituicaoView.cadastrarInstituicao');
+Route::view('listarInstituicao', 'InstituicaoView.listaInstituicao');
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
