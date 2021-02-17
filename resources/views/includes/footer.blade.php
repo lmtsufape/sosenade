@@ -16,6 +16,7 @@ padding-bottom: 20px; position:absolute; bottom:100; width:100%; ">
                                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;">
                                         Questões
                                     </a>
+                                    &nbsp;&nbsp;● &nbsp;&nbsp;
 
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                         <a class="dropdown-item" href="{{route('new_qst')}}">Cadastrar</a>
@@ -23,7 +24,6 @@ padding-bottom: 20px; position:absolute; bottom:100; width:100%; ">
                                     </div>
                                 </div>
                                 @endif
-                                &nbsp;&nbsp;● &nbsp;&nbsp;
                                 <div class="dropdown show" style="display: inline">
                                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;">
                                         Olá, <b>
