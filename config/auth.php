@@ -48,6 +48,11 @@ return [
 
         ],
 
+        'instituicao' => [
+            'driver' => 'session',
+            'provider' => 'instituicoes',
+        ],
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -83,7 +88,12 @@ return [
             'driver' => 'eloquent',
             'model' =>  SimuladoENADE\Aluno::class,
 
-        ]
+        ],
+
+        'instituicoes' => [
+            'driver' => 'eloquent',
+            'model' => SimuladoENADE\Instituicao::class,
+        ],
        
          //'users' => [
            //     'driver' => 'eloquent',
