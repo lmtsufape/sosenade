@@ -19,16 +19,6 @@
 				@endif
 			</div>
 
-            <div class="form-group col-md-8">
-				<label for="nome">Usuário responsável</label>
-				<input type="text" name="usuarioResp" id="usuarioResp" placeholder="Usuario responsável" class="form-control{{ $errors->has('nome') ? ' is-invalid' : '' }}" value="{{ old('nome') }}" required autofocus>
-				@if ($errors->has('usuarioResp'))
-					<span class = "invalid-feedback" role="alert">
-						{{$errors->first('usuarioResp')}}
-					</span>
-				@endif
-			</div>
-
 			<div class="form-row col-md-12 justify-content-center">
 				<div class="form-group col-md-4">
 					<label for="email">E-mail</label>
