@@ -120,7 +120,7 @@ box-shadow: 0px 4px 10px -5px rgba(0,0,0,0.64);" role="navigation">
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="{{route('new_qst')}}">Cadastrar</a>
-							<a class="dropdown-item" href="{{route('list_qst')}}">Listar</a>
+							<a class="dropdown-item" href="{{route('list_qst')}}">Questões cadastradas</a>
 						</div>
 					</li>
 				@endcan
