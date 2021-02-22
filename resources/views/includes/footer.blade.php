@@ -63,7 +63,7 @@ padding-bottom: 20px; position:absolute; bottom:100; width:100%; ">
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-sm-4" align="center">
+            <div class="col-sm-3" align="center">
                 <div class="row justify-content-center" style="margin-top:1.2rem;">
                     <div class="col-sm-12" id="" style="font-weight:bold; font-family:arial;">
                         Desenvolvido por
@@ -76,10 +76,10 @@ padding-bottom: 20px; position:absolute; bottom:100; width:100%; ">
 
                 </div>
             </div>
-            <div class="col-sm-4" align="center">
+            <div class="col-sm-5" align="center">
                 <div class="row justify-content-center" style="margin-top:1.2rem;">
                     <div class="col-sm-12" id="" style="font-weight:bold; font-family:arial">
-                        Apoio
+                        Parceria
                     </div>
                     <div style="margin: 3px;">
                         <a href="http://lmts.uag.ufrpe.br/" target="blank">
@@ -89,17 +89,17 @@ padding-bottom: 20px; position:absolute; bottom:100; width:100%; ">
                     <div style="margin: 3px; margin-top:1.8rem;">
                         <p style="display: inline">Universidade Federal do<br> Agreste de Pernambuco</p>
                     </div>
-                    <div style="margin:3px; ">
+                    <div style="margin:20px 3px; ">
                         <a href="http://lmts.uag.ufrpe.br/" target="blank">
-                            <img style="height: 100px" src="{{ asset('\images\logo_ufrpe.png') }}">
+                            <img style="height: 65px" src="{{ asset('\images\logo_upe.png') }}">
                         </a>
                     </div>
                     <div style="margin:3px; margin-top:1.8rem;">
-                        <p style="display: inline">Universidade Federal<br> Rural de Pernambuco</p>
+                        <p style="display: inline">Universidade de Pernambuco<br> Campus Garanhuns</p>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4" align="center">
+            <div class="col-sm-3" align="center">
                 <div class="row justify-content-center" style=" margin-top:1.2rem;">
                     <div class="col-sm-12" id="" style="font-weight:bold; font-family:arial;">
                         Redes sociais
