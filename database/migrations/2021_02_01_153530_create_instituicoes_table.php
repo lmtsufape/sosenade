@@ -17,7 +17,6 @@ class CreateInstituicoesTable extends Migration
             $table->increments('id');
             $table->string('nome');
             $table->string('cnpj')->unique();
-            $table->string('usuario_responsavel');
             $table->string('email')->unique();
             $table->string('password');
             $table->integer('tipousuario_id')->unsigned()->nullable();
