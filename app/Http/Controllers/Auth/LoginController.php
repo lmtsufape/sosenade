@@ -52,6 +52,8 @@ class LoginController extends Controller
 
             if(Auth::guard('aluno')->attempt($cred))
                 return redirect ("/alunohome");
+            else if(Auth::guard('instituicao')->attempt($cred))
+                return redirect ("/instituicaohome");
             else
                 return redirect("/login")->with('fail', true)->with('message','Não foi possível efetuar login, e-mail ou senha incorreta.');
         }
