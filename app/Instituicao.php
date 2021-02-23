@@ -3,13 +3,14 @@
 namespace SimuladoENADE;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Instituicao extends Model
+class Instituicao extends Authenticatable
 {
     protected $table = 'instituicoes';
     
-    public $fillable = ['nome', 'cnpj', 'usuario_responsavel', 'email', 'password', 'tipousuario_id'];
-
+    public $fillable = ['nome', 'cnpj', 'email', 'password', 'tipousuario_id'];
+    protected $hidden = ['password', 'remember_token'];
 
     public static $rules = 
     [
@@ -19,5 +20,4 @@ class Instituicao extends Model
     public static $messages = [
 
     ];
-    // ['nome'=>'UPE', 'cnpj'=>'11.022.597/0001-91', 'usuario_responsavel'=>'Mark', 'email'=>'upe@institucional.br', 'password'=>'123456789', 'tipousuario_id'=>4];
 }
