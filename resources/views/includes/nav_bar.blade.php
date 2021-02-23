@@ -55,6 +55,54 @@ box-shadow: 0px 4px 10px -5px rgba(0,0,0,0.64);" role="navigation">
 					</li>
 				@endcan
 
+				@if(Auth::guard('instituicao')->check())
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Unidades
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="{{-- --}}">Cadastrar</a>
+							<a class="dropdown-item" href="{{-- --}}">Listar</a>
+						</div>
+					</li>
+
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Cursos
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="{{route('new_curso')}}">Cadastrar</a>
+							<a class="dropdown-item" href="{{route('list_curso')}}">Listar</a>
+						</div>
+					</li>
+
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Usuários
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="{{route('new_usuario')}}">Cadastrar</a>
+							<a class="dropdown-item" href="{{route('list_usuario')}}">Listar</a>
+						</div>
+					</li>
+
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Ciclos
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="{{route('new_ciclo')}}">Cadastrar</a>
+							<a class="dropdown-item" href="{{route('list_ciclo')}}">Listar</a>
+						</div>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="{{route('geral_cursos')}}" role="button" aria-haspopup="true" aria-expanded="false">
+							Visão Geral do Sistema
+						</a>
+					</li>
+				@endif
+
 				@can('view_coordenador', Auth::user())
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -161,6 +209,8 @@ box-shadow: 0px 4px 10px -5px rgba(0,0,0,0.64);" role="navigation">
                         Olá, <b>
                             @if (Auth::guard('aluno')->user())
                                 {{Auth::guard('aluno')->user()->nome}} (Aluno) {{-- - {{Auth::guard('aluno')->user()->curso->curso_nome}} --}}
+							@elseif (Auth::guard('instituicao')->user())
+								{{Auth::guard('instituicao')->user()->nome}} (Instituição)
                             @elseif ((Auth::user()->tipousuario->id == 6))
                                 {{Auth::user()->nome}}
                             @elseif ((Auth::user()->tipousuario->id == 5))
@@ -174,7 +224,15 @@ box-shadow: 0px 4px 10px -5px rgba(0,0,0,0.64);" role="navigation">
 						<span class="caret"></span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="{{(Auth::guard('aluno')->user()) ? route('edit_perfil_aluno') : route('edit_usuario', ['id' => Auth::user()->id])}}">
+
+						@if(Auth::guard('aluno')->user())
+							<a class="dropdown-item" href="{{ route('edit_perfil_aluno') }}">
+						@elseif(Auth::guard('instituicao')->user())
+							<a class="dropdown-item" href="{{-- --}}"> // route('edit_perfil_instituicao')
+						@else
+							<a class="dropdown-item" href="{{ route('edit_usuario', ['id' => Auth::user()->id]) }}">
+						@endif
+
 							Meu Perfil
 						</a>
 						<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
