@@ -135,5 +135,6 @@
 			</div>
 		</form>
 	</div>
+</div>
 
 @stop
