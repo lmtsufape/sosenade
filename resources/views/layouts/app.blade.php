@@ -35,32 +35,6 @@
 			</ul>
 		</div>
 
-		{{-- <!-- Barra de Logos -->
-		<div id="barra-logos" class="py-3 bg-white">
-			<div class="container px-4">
-				<div class="d-flex align-items-center">
-					<div class="d-flex align-items-center flex-row">
-						<a href="{{ (Auth::guard('aluno')->user()) ? route('home_aluno') : route('home') }}" style="max-height: 45%; max-width: 45%">
-							<img src="{{asset('1.png')}}" class="img-fluid float-left">
-						</a>
-					</div>
-					<div class="d-flex align-items-center flex-row-reverse">
-						<a href="http://lmts.uag.ufrpe.br/" style="max-height: 35%; max-width: 35%">
-							<img src="{{asset('images/lmts3.png')}}" class="float-right img-fluid px-1">
-						</a>
-						<img src="{{asset('images/separador.png')}}" class="float-right px-1" style="max-height: 3%; max-width: 3%">
-						<a href="http://ww3.uag.ufrpe.br/" style="max-height: 12%; max-width: 12%">
-							<img src="{{asset('images/uag.png')}}" class="float-right img-fluid px-1">
-						</a>
-						<img src="{{asset('images/separador.png')}}" class="float-right px-1" style="max-height: 3%; max-width: 3%">
-						<a href="http://www.ufrpe.br/" style=" max-height: 12%; max-width: 12%">
-							<img src="{{asset('images/ufrpe.png')}}" class="float-right img-fluid px-1">
-						</a>
-					</div>
-				</div>
-			</div>
-		</div> --}}
-
 		<div id="app">
 			<!-- Barra da tela de Login -->
 			@if(!Auth::guard('aluno')->check() && !Auth::guard('instituicao')->check() && !Auth::check())
@@ -89,7 +63,7 @@
 								<!-- Authentication Links -->
 								@guest
                                 <div style="display: inline-block; margin-right: 30px">
-                                    <a href="" style="text-decoration: none; color:black;">Início</a>
+                                    <a href="/" style="text-decoration: none; color:black;">Início</a>
                                 </div>
                                 <div style="display: inline-block;">
                                     <a href="" style="text-decoration: none; color:black;">Sobre</a>
