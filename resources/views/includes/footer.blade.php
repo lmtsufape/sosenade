@@ -6,16 +6,17 @@ padding-bottom: 20px; position:absolute; bottom:100; width:100%; ">
             <div class="col-sm-12" align="center">
                 <div class="row justify-content-center" style="margin-top:15px;">
                     <div class="col-sm-12" style="font-family:arial; ">
-                        <a href="" style="text-decoration: none; color:black">Início</a>&nbsp;&nbsp;&nbsp;●&nbsp;&nbsp;
+                        <a href="/" style="text-decoration: none; color:black">Início</a>&nbsp;&nbsp;&nbsp;●&nbsp;&nbsp;
                         @guest
                         <a href="" style="text-decoration: none; color:black">Sobre</a>
                         @endguest
                         @auth
-                            @if (Auth::user()->tipousuario_id == 4)
+                            @if (Auth::user()->tipousuario_id == 3)
                                 <div class="dropdown show" style="display: inline">
                                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;">
                                         Questões
                                     </a>
+                                    &nbsp;&nbsp;● &nbsp;&nbsp;
 
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                         <a class="dropdown-item" href="{{route('new_qst')}}">Cadastrar</a>
@@ -23,7 +24,6 @@ padding-bottom: 20px; position:absolute; bottom:100; width:100%; ">
                                     </div>
                                 </div>
                                 @endif
-                                &nbsp;&nbsp;● &nbsp;&nbsp;
                                 <div class="dropdown show" style="display: inline">
                                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;">
                                         Olá, <b>
@@ -63,7 +63,7 @@ padding-bottom: 20px; position:absolute; bottom:100; width:100%; ">
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-sm-4" align="center">
+            <div class="col-sm-3" align="center">
                 <div class="row justify-content-center" style="margin-top:1.2rem;">
                     <div class="col-sm-12" id="" style="font-weight:bold; font-family:arial;">
                         Desenvolvido por
@@ -76,10 +76,10 @@ padding-bottom: 20px; position:absolute; bottom:100; width:100%; ">
 
                 </div>
             </div>
-            <div class="col-sm-4" align="center">
+            <div class="col-sm-5" align="center">
                 <div class="row justify-content-center" style="margin-top:1.2rem;">
                     <div class="col-sm-12" id="" style="font-weight:bold; font-family:arial">
-                        Apoio
+                        Parceria
                     </div>
                     <div style="margin: 3px;">
                         <a href="http://lmts.uag.ufrpe.br/" target="blank">
@@ -89,17 +89,17 @@ padding-bottom: 20px; position:absolute; bottom:100; width:100%; ">
                     <div style="margin: 3px; margin-top:1.8rem;">
                         <p style="display: inline">Universidade Federal do<br> Agreste de Pernambuco</p>
                     </div>
-                    <div style="margin:3px; ">
+                    <div style="margin:20px 3px; ">
                         <a href="http://lmts.uag.ufrpe.br/" target="blank">
-                            <img style="height: 100px" src="{{ asset('\images\logo_ufrpe.png') }}">
+                            <img style="height: 65px" src="{{ asset('\images\logo_upe.png') }}">
                         </a>
                     </div>
                     <div style="margin:3px; margin-top:1.8rem;">
-                        <p style="display: inline">Universidade Federal<br> Rural de Pernambuco</p>
+                        <p style="display: inline">Universidade de Pernambuco<br> Campus Garanhuns</p>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4" align="center">
+            <div class="col-sm-3" align="center">
                 <div class="row justify-content-center" style=" margin-top:1.2rem;">
                     <div class="col-sm-12" id="" style="font-weight:bold; font-family:arial;">
                         Redes sociais
