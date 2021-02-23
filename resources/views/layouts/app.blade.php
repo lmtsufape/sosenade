@@ -14,7 +14,7 @@
 
 		@include('includes.head')
 		<title>
-			@if(!Auth::guard('aluno')->check() && !Auth::check())
+			@if(!Auth::guard('aluno')->check() && !Auth::guard('instituicao')->check() && !Auth::check())
 				Entrar | S.O.S Enade
 			@else
 				@yield('titulo') | S.O.S Enade
@@ -63,7 +63,7 @@
 
 		<div id="app">
 			<!-- Barra da tela de Login -->
-			@if(!Auth::guard('aluno')->check() && !Auth::check())
+			@if(!Auth::guard('aluno')->check() && !Auth::guard('instituicao')->check() && !Auth::check())
 				<nav class="navbar navbar-dark navbar-expand-lg" style="background-color: white; border-color: #d3e0e9;
                  box-shadow: 0px 4px 10px -5px rgba(0,0,0,0.64);
                 " role="navigation">

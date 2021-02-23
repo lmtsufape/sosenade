@@ -7,7 +7,17 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<!-- Left Side Of Navbar -->
 			<ul class="navbar-nav mr-auto">
-				@can('create', Auth::user()) 
+			@if(Auth::guard('instituicao')->check())
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Unidades
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="{{-- --}}">Cadastrar</a>
+							<a class="dropdown-item" href="{{-- --}}">Listar</a>
+						</div>
+					</li>
+
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							Cursos
@@ -43,7 +53,7 @@
 							Visão Geral do Sistema
 						</a>
 					</li>
-				@endcan
+				@endif
 
 				@can('view_coordenador', Auth::user())
 					<li class="nav-item dropdown">
@@ -154,6 +164,8 @@
 					<a id="navbarDropdown" class="nav-link dropdown-toggle font-weight-bold" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						@if (Auth::guard('aluno')->user())
 							{{Auth::guard('aluno')->user()->nome}} (Aluno) - {{Auth::guard('aluno')->user()->curso->curso_nome}}
+						@elseif (Auth::guard('instituicao')->user())
+							{{Auth::guard('instituicao')->user()->nome}} (Instituição)
 						@elseif ((Auth::user()->tipousuario->id == 5))
 							{{Auth::user()->nome}} ({{Auth::user()->tipousuario->tipo}}) - {{Auth::user()->curso->unidade->nome}}
 						@elseif (Auth::user() && !(Auth::user()->tipousuario->id == 4))
@@ -165,7 +177,15 @@
 						<span class="caret"></span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="{{(Auth::guard('aluno')->user()) ? route('edit_perfil_aluno') : route('edit_usuario', ['id' => Auth::user()->id])}}">
+
+						@if(Auth::guard('aluno')->user())
+							<a class="dropdown-item" href="{{ route('edit_perfil_aluno') }}">
+						@elseif(Auth::guard('instituicao')->user())
+							<a class="dropdown-item" href="{{-- --}}"> // route('edit_perfil_instituicao')
+						@else
+							<a class="dropdown-item" href="{{ route('edit_usuario', ['id' => Auth::user()->id]) }}">
+						@endif
+
 							Meu Perfil
 						</a>
 						<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
