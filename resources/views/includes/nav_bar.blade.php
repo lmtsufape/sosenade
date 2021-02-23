@@ -2,7 +2,7 @@
 box-shadow: 0px 4px 10px -5px rgba(0,0,0,0.64);" role="navigation">
 	<div class="container">
 		<a href="{{ (Auth::guard('aluno')->user()) ? route('home_aluno') : route('home') }}" style="max-height: 45%; max-width: 45%">
-			<img src="{{asset('1.png')}}" style="width: 20%" class="img-fluid float-left">
+			<img src="{{asset('1.png')}}" style="width: 90px" class="img-fluid float-left">
 		</a>
 
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -16,7 +16,7 @@ box-shadow: 0px 4px 10px -5px rgba(0,0,0,0.64);" role="navigation">
 
 			<!-- Right Side Of Navbar -->
 			<ul class="navbar-nav ml-auto">
-                <a class="navbar-brand" href="{{(Auth::guard('aluno')->user() == null) ? route('home') : route('home_aluno')}}">Início</a>
+                <a class="nav-link" href="{{(Auth::guard('aluno')->user() == null) ? route('home') : route('home_aluno')}}">Início</a>
                 @can('create', Auth::user())
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -141,7 +141,7 @@ box-shadow: 0px 4px 10px -5px rgba(0,0,0,0.64);" role="navigation">
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="{{-- --}}">Cadastrar</a>
-							<a class="dropdown-item" href="{{-- --}}">Listar</a>
+							<a class="dropdown-item" href="{{-- --}}">Instituições cadastradas</a>
 						</div>
 					</li>
 				@endcan
@@ -157,7 +157,7 @@ box-shadow: 0px 4px 10px -5px rgba(0,0,0,0.64);" role="navigation">
 					</li>
 				@endif
 				<li class="nav-item dropdown" style="list-style-type: none">
-					<a id="navbarDropdown" class="nav-link dropdown-toggle font-weight-bold" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Olá, <b>
                             @if (Auth::guard('aluno')->user())
                                 {{Auth::guard('aluno')->user()->nome}} (Aluno) {{-- - {{Auth::guard('aluno')->user()->curso->curso_nome}} --}}
