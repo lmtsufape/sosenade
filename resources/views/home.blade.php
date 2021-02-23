@@ -10,7 +10,7 @@
 				<h3 class="lead">Você está logado como {{$tipo}}.</h3>
 				<h3 class="lead">{{$curso}} - {{$unidade}}</h3>
 			@elseif(Auth::guard('instituicao')->check())
-				<h3 class="lead">Você está logado como {{$tipo}} - {{$instituicao}}.</h3>
+				<h3 class="lead">Você está logado como {{$tipo}} - {{$nome}}.</h3>
 			@elseif(Auth::guard()->user()->tipousuario_id < 4)
 				<h3 class="lead">Você está logado como {{$tipo}}.</h3>
 				<h3 class="lead">{{$curso}} - {{$unidade}}</h3>
