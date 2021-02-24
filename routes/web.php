@@ -178,6 +178,13 @@ Route::middleware('instituicao.auth')->group(function(){
 	Route::post('/atualizar/ciclo', 'CicloController@atualizar')->name('update_ciclo');
 	Route::get('/remover/ciclo/{id}', 'CicloController@remover')->name('delete_ciclo');
 
+	Route::get('/listar/unidade', 'UnidadeAcademicaController@listar')->name('list_unidade');
+	Route::get('/cadastrar/unidade', 'nidadeAcademicaController@cadastrar')->name('new_unidade');
+	Route::post('/adicionar/unidade', 'nidadeAcademicaController@adicionar')->name('add_unidade');
+	Route::get('/editar/unidade/{id}', 'nidadeAcademicaController@editar')->name('edit_unidade');
+	Route::post('/atualizar/unidade', 'nidadeAcademicaController@atualizar')->name('update_unidade');
+	Route::get('/remover/unidade/{id}', 'nidadeAcademicaController@remover')->name('delete_unidade');
+
 	Route::get('/relatorio/cursos', 'RelatorioController@relatorioGeralCursos')->name('geral_cursos');
 });
 
