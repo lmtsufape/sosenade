@@ -3,6 +3,8 @@
 namespace SimuladoENADE\Http\Controllers;
 
 use Illuminate\Http\Request;
+use SimuladoENADE\Validator\UnidadeAcademicaValidator;
+use SimuladoENADE\Validator\ValidationException;
 
 class UnidadeAcademicaController extends Controller
 {
@@ -14,19 +16,19 @@ class UnidadeAcademicaController extends Controller
         dd(['new'=>'Cadastrar Unidade']);
     }
 
-    public function adicionar() {
+    public function adicionar(Request $request) {
 
     }
 
-    public function editar() {
+    public function editar(Request $request) {
 
     }
 
-    public function atualizar() {
+    public function atualizar(Request $request) {
 
     }
 
-    public function remover() {
+    public function remover(Request $request) {
 
     }
 }
