@@ -16,7 +16,7 @@ box-shadow: 0px 4px 10px -5px rgba(0,0,0,0.64);" role="navigation">
 
 			<!-- Right Side Of Navbar -->
 			<ul class="navbar-nav ml-auto">
-                <a class="nav-link" href="{{(Auth::guard('aluno')->user() == null) ? route('home') : route('home_aluno')}}">Início</a>
+                <!-- <a class="nav-link" href="{{(Auth::guard('aluno')->user() == null) ? route('home') : route('home_aluno')}}">Início</a>
                 @can('create', Auth::user())
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -53,7 +53,9 @@ box-shadow: 0px 4px 10px -5px rgba(0,0,0,0.64);" role="navigation">
 							Visão Geral do Sistema
 						</a>
 					</li>
-				@endcan
+				@endcan --> 
+
+				<!-- View Acima Referente a antigo Admistrador do Sistema, Responsabilidade passada para Instituicao -->
 
 				@if(Auth::guard('instituicao')->check())
 					<li class="nav-item dropdown">
@@ -203,6 +205,7 @@ box-shadow: 0px 4px 10px -5px rgba(0,0,0,0.64);" role="navigation">
 						</div>
 					</li>
 				@endif
+
 				<li class="nav-item dropdown" style="list-style-type: none">
 					<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Olá, <b>
