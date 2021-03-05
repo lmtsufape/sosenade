@@ -24,10 +24,10 @@ class Cursocontroller extends Controller
         }
     }
 
-	 public function cadastrar() {
+	public function cadastrar() {
 
         $auth = \Auth::guard('instituicao')->user();
-        $ciclos = \SimuladoENADE\Ciclo::where('instituicao_id', $auth->id)->get();
+        $ciclos = \SimuladoENADE\Ciclo::all();
         $unidadeAcademicas = \SimuladoENADE\UnidadeAcademica::where('instituicao_id', $auth->id)->get();
 
         return view('/CursoView/cadastrarCursos', ['ciclos' => $ciclos, 'unidade_academicas' => $unidadeAcademicas]);
@@ -37,9 +37,11 @@ class Cursocontroller extends Controller
 
         $auth = \Auth::guard('instituicao')->user();
 
+        $unidades_ids = \SimuladoENADE\UnidadeAcademica::queryToArrayIds( \SimuladoENADE\UnidadeAcademica::where('instituicao_id', $auth->id)->get() );
+
 		$cursos =\SimuladoENADE\Curso::select('*', \DB::raw('cursos.id as curso_id'))
+            ->whereIn('unidade_id', $unidades_ids)
             ->join('ciclos', 'cursos.ciclo_id', '=', 'ciclos.id')
-            ->where('instituicao_id', $auth->id)
             ->orderBy('curso_nome')
             ->get();
 
@@ -52,7 +54,7 @@ class Cursocontroller extends Controller
         $auth = \Auth::guard('instituicao')->user();
 
         $curso = \SimuladoENADE\Curso::find($request->id);
-        $ciclos = \SimuladoENADE\Ciclo::where('instituicao_id', $auth->id)->get();
+        $ciclos = \SimuladoENADE\Ciclo::all();
         $unidadeAcademicas = \SimuladoENADE\UnidadeAcademica::where('instituicao_id', $auth->id)->get();
 
  		return view('/CursoView/editarCursos', ['ciclos' => $ciclos,'unidade_academicas' => $unidadeAcademicas,'curso' => $curso, ]);
