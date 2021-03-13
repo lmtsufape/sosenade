@@ -66,6 +66,7 @@ class Kernel extends HttpKernel
         'adm.auth'=>\SimuladoENADE\Http\Middleware\AdministradorMiddleware::class,
         'coordenadorGeral.auth'=>\SimuladoENADE\Http\Middleware\CoordenacaoGeralMiddleware::class,
         'instituicao.auth' => \SimuladoENADE\Http\Middleware\InstituicaoMiddleware::class,
+        'admGeral.auth' => \SimuladoENADE\Http\Middleware\AdministradorGeralMiddleware::class
     ];
 
     /**
