@@ -180,8 +180,8 @@ box-shadow: 0px 4px 10px -5px rgba(0,0,0,0.64);" role="navigation">
 							Instituições
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="{{-- --}}">Cadastrar</a>
-							<a class="dropdown-item" href="{{-- --}}">Listar</a>
+							<a class="dropdown-item" href="{{route('new_instituicao')}}">Cadastrar</a>
+							<a class="dropdown-item" href="{{route('list_instituicao')}}">Listar</a>
 						</div>
 					</li>
 					<li class="nav-item dropdown">
