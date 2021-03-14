@@ -11,25 +11,23 @@
 		 		<thead>
 					<tr>
 						<th>Nome</th>
-						<th>Usuário responsável</th>
 						<th>E-mail</th>
 						<th>CNPJ</th>
 						<th style="width: 7%">Opções</th>
 					</tr>
 				</thead>
 				<tbody>
-					{{-- @foreach() --}}
+					@foreach($instituicoes as $instituicao)
 						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>{{ $instituicao->nome }}</td>
+							<td>{{ $instituicao->email }}</td>
+							<td>{{ $instituicao->cnpj }}</td>
 							<td class="btn-group">
-								<a href=""><i class="fa fa-pencil"></i></a>
-								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+								<a href="{{route('edit_instituicao',['id'=>$instituicao->id])}}" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
+								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{ route('delete_instituicao', ['id'=>$instituicao->id]) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
 							</td>
 						</tr>
-					{{-- @endforeach --}}
+					@endforeach
 				</tbody>
 			</table>
 		{{-- @else
@@ -39,7 +37,7 @@
 		<hr class="star-light">
 
 		<div class="justify-content-center text-center">
-			<a class="btn btn-primary " href="{{}}"> Inserir nova </a><br><br>
+			<a class="btn btn-primary " href="{{route('new_instituicao')}}"> Inserir nova </a><br><br>
 		</div>
 
 	</div>

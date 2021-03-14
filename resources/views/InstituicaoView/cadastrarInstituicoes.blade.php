@@ -1,7 +1,8 @@
 @extends('layouts.app')
 @section('titulo','Cadastrar Instituição')
 @section('content')
-	<form class="shadow p-3 bg-white rounded" action= "" method="post">
+	<form class="shadow p-3 bg-white rounded" action="{{ route('add_instituicao') }}" method="post">
+	
 		<input type="hidden" name="id" value="-1">
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
 
@@ -31,9 +32,9 @@
 			  	</div>
 
 				<div class="form-group col-md-4">
-					<label for="cpf">CNPJ</label>
-					<input type="text" id="cnpj" name="cnpf" placeholder="00.000.000/0000-00" class="form-control{{ $errors->has('cpf') ? ' is-invalid' : '' }} cpf" value="{{ old('cpf') }}" required autofocus>
-					@if ($errors->has('cnpf'))
+					<label for="cnpj">CNPJ</label>
+					<input type="text" id="cnpj" name="cnpj" placeholder="00.000.000/0000-00" class="form-control{{ $errors->has('cnpj') ? ' is-invalid' : '' }} cnpj" value="{{ old('cnpj') }}" required autofocus>
+					@if ($errors->has('cnpj'))
 						<span class = "invalid-feedback" role="alert">
 							{{$errors->first('cnpj')}}
 						</span>
