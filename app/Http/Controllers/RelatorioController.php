@@ -94,7 +94,7 @@ class RelatorioController extends Controller {
 
 			return view('/RelatoriosView/VisaoGeral', ['cursos' => $cursos, 'unidades' => $unidades]);
 
-		} elseif($user == 5){ // Coordenador de Curso
+		} elseif($user == 5){ // Coordenador Geral
 
 			$unidade = \Auth::user()->curso->unidade;
 			$cursos = $unidade->cursos;
