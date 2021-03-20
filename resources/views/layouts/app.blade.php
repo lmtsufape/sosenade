@@ -12,6 +12,9 @@
 		<link rel="dns-prefetch" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
+
+        <link href="{{ asset('css/questoes.css') }}" rel="stylesheet">
+
 		@include('includes.head')
 		<title>
 			@if(!Auth::guard('aluno')->check() && !Auth::guard('instituicao')->check() && !Auth::check())

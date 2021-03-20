@@ -70,7 +70,7 @@ padding-bottom: 20px; position:absolute; bottom:100; width:100%; ">
                     </div>
                     <div style="margin:3px; margin-top:1.4rem;">
                         <a href="http://lmts.uag.ufrpe.br/" target="blank">
-                            <img src="{{ asset('\images\logo_lmts_colorido.png') }}" style="height: 80px">
+                            <img src="{{ asset('images\logo_lmts_colorido.png') }}" style="height: 80px">
                         </a>
                     </div>
 
@@ -83,7 +83,7 @@ padding-bottom: 20px; position:absolute; bottom:100; width:100%; ">
                     </div>
                     <div style="margin: 3px;">
                         <a href="http://lmts.uag.ufrpe.br/" target="blank">
-                            <img style="height: 100px" src="{{ asset('\images\logo_ufape_preto.png') }}">
+                            <img style="height: 100px" src="{{ asset('images\logo_ufape_preto.png') }}">
                         </a>
                     </div>
                     <div style="margin: 3px; margin-top:1.8rem;">
@@ -91,7 +91,7 @@ padding-bottom: 20px; position:absolute; bottom:100; width:100%; ">
                     </div>
                     <div style="margin:20px 3px; ">
                         <a href="http://lmts.uag.ufrpe.br/" target="blank">
-                            <img style="height: 65px" src="{{ asset('\images\logo_upe.png') }}">
+                            <img style="height: 65px" src="{{ asset('images\logo_upe.png') }}">
                         </a>
                     </div>
                     <div style="margin:3px; margin-top:1.8rem;">
@@ -106,17 +106,17 @@ padding-bottom: 20px; position:absolute; bottom:100; width:100%; ">
                     </div>
                     <div style="margin:3px;  margin-top:2.4rem;">
                         <a href="" target="blank">
-                            <img style="height: 30px" src="{{ asset('\images\logo_facebook_preto.png') }}">
+                            <img style="height: 30px" src="{{ asset('images\logo_facebook_preto.png') }}">
                         </a>
                     </div>
                     <div style="margin:3px; margin-top:2.4rem;">
                         <a href="" target="blank">
-                            <img style="height: 30px" src="{{ asset('\images\logo_instagram_preto.png') }}">
+                            <img style="height: 30px" src="{{ asset('images\logo_instagram_preto.png') }}">
                         </a>
                     </div>
                     <div style="margin:3px; margin-top:2.4rem;">
                         <a href="" target="blank">
-                            <img style="height: 30px" src="{{ asset('\images\logo_twitter_preto.png') }}">
+                            <img style="height: 30px" src="{{ asset('images\logo_twitter_preto.png') }}">
                         </a>
                     </div>
                 </div>
