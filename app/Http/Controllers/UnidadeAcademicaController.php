@@ -15,13 +15,11 @@ class UnidadeAcademicaController extends Controller
 
         $unidades = \SimuladoENADE\UnidadeAcademica::where('instituicao_id', $auth->id)->get();
 
-        dd($unidades);
-        // return view('/path/nomeView', ['unidades' => $unidades]);
+        return view('/UnidadeView/listarUnidade', ['unidades' => $unidades, 'instituicao' => $auth]);
     }
 
     public function cadastrar() {
-        dd('View Cadastro');
-        // return view('/path/nomeView');
+        return view('/UnidadeView/cadastrarUnidade');
     }
 
     public function adicionar(Request $request) {
@@ -31,19 +29,19 @@ class UnidadeAcademicaController extends Controller
             UnidadeAcademicaValidator::Validate($request->all());
 
             $unidade = new \SimuladoENADE\UnidadeAcademica();
-            $unidade->fill($request->all());
-            $unidade->instituicao_id = $auth_id;
+            $unidade->nome = strtoupper($request->nome);
+            $unidade->instituicao_id = $auth->id;
             $unidade->save();
 
-            return redirect('/cadastrar/unidade');
+            return redirect('listar/unidade');
         }catch(ValidatorException $ex){
-            redirect('/cadastrar/unidade')->withErrors($ex->getValidator())->withInput();
+            redirect('cadastrar/unidade')->withErrors($ex->getValidator())->withInput();
         }
     }
 
     public function editar(Request $request) {
         $unidade = \SimuladoENADE\UnidadeAcademica::find($request->id);
-        // return view('/path/nomeView', ['unidade' => $unidade]);
+        return view('/UnidadeView/editarUnidade', ['unidade' => $unidade]);
     }
 
     public function atualizar(Request $request) {
@@ -53,13 +51,13 @@ class UnidadeAcademicaController extends Controller
             UnidadeAcademicaValidator::Validate($request->all());
 
             $unidade = \SimuladoENADE\UnidadeAcademica::find($request->id);
-            $unidade->fill($request->all());
-            $unidade->instituicao_id = $auth_id;
+            $unidade->nome = strtoupper($request->nome);
+            $unidade->instituicao_id = $auth->id;
             $unidade->update();
 
-            return redirect('/listar/unidade');
+            return redirect('listar/unidade');
         }catch(ValidatorException $ex){
-            redirect('/editar/unidade')->withErrors($ex->getValidator())->withInput();
+            redirect('editar/unidade')->withErrors($ex->getValidator())->withInput();
         }
     }
 
