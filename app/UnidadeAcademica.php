@@ -11,11 +11,11 @@ class UnidadeAcademica extends Model
     protected $fillable = ['nome', 'instituicao_id'];
 
     public static $rules = [
-
+        'nome' => 'required',
     ];
 
     public static $messages = [
-
+        'required' => 'O campo :attribute deve ser preenchido na forma correta',
     ];
 
     public static function queryToStringIds($values) {
