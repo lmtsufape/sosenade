@@ -62,15 +62,6 @@ class UsuarioPolicy
             return false;
         }
     }
-
-    public function view_administrador_sistema(Usuario $user){
-        if($user->tipousuario->id === 6){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
     /*public function simuladoAuth(Usuario $user){
         if($user->tipousuario->id === 4){
             return true;

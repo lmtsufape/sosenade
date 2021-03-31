@@ -16,7 +16,6 @@ class TipousuarioSeeder extends Seeder
     	DB::table('tipousuarios')->insert(['tipo' => 'Professor']);
         DB::table('tipousuarios')->insert(['tipo' => 'Administrador']);
         DB::table('tipousuarios')->insert(['tipo' => 'Coordenação Geral']);
-        DB::table('tipousuarios')->insert(['tipo' => 'Administração Geral']);
         //
     }
 }

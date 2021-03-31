@@ -1,70 +1,55 @@
 @extends('layouts.app')
 @section('titulo','Cadastrar Simulado')
 @section('content')
-    <div class="shadow p-3 bg-white" style="border-radius: 10px; width: 80%; margin-left: auto; margin-right: auto">
-        <div class="row"
-             style="background: #1B2E4F; margin-top: -15px; margin-bottom:  30px; border-radius: 10px 10px 0 0; color: white">
-            <div class="col" align="left">
-                <h1 style="margin-left: 15px; margin-top: 15px"> Cadastrar Simulado</h1>
-                <p style="color: #606f7b; margin-left: 15px; margin-top: -5px">
-                    <a href="{{route('home')}}" style="color: inherit;">Inicio</a> >
-                    Cadastrar Aluno
-                </p>
-            </div>
-        </div>
-        <form action="{{route('add_simulado')}}" method="post">
-            <input type="hidden" name="_token" value="{{csrf_token()}}">
 
-
-            <div class="form-group justify-content-center row">
-                <div class="col-md-8">
-                    <label for="descricao_simulado">Título</label>
-                    <input type="text" class="form-control{{ $errors->has('descricao_simulado') ? ' is-invalid' : '' }}"
-                           name="descricao_simulado" id="descricao_simulado"
-                           placeholder="Escreva aqui o título do simulado" value="{{ old('descricao_simulado') }}"
-                           required autofocus>
-                    @if ($errors->has('descricao_simulado'))
-                        <span class="invalid-feedback" role="alert">
+	<form class="shadow p-5 bg-white rounded" action= "{{route('add_simulado')}}" method="post">
+		<input type="hidden" name="_token" value="{{csrf_token()}}">
+		
+		<h1 class="text-center"> Cadastrar Simulado </h1>
+		<h2 class="text-center">
+			@if (Auth::guard('aluno')->user())
+				{{Auth::guard('aluno')->user()->curso->curso_nome}}
+			@elseif (Auth::user())
+				{{Auth::user()->curso->curso_nome}}
+			@endif
+		</h2><br>	
+	
+		<div class="form-group justify-content-center row">
+			<div class="col-md-6">
+				<label for="descricao_simulado">Título</label>
+				<input type="text" class="form-control{{ $errors->has('descricao_simulado') ? ' is-invalid' : '' }}"  name="descricao_simulado" id="descricao_simulado" placeholder="Escreva aqui o título do simulado" value="{{ old('descricao_simulado') }}" required autofocus>
+				@if ($errors->has('descricao_simulado'))
+					<span class = "invalid-feedback" role="alert">
 						{{$errors->first('descricao_simulado')}}
 					</span>
-                    @endif
-                </div>
+				@endif
+			</div> 
+			<div class="col-md-2">
+				<label for="descricao_simulado">Disponibilidade</label>
+				<input name="disponibilidade" id="toggle-btn" type="checkbox" data-onstyle="success" data-offstyle="outline-dark" data-on="Disponível" data-off="Oculto" data-toggle="toggle" checked >
+			</div>
+		</div>
 
-            </div>
+		<div class="form-group justify-content-center row" id="datas">
+			<div class="col-md-4">
+				<label for="periodo">Selecione o período</label>
+				<input type="text" name="periodo" class="form-control w-100 text-center" id='periodo' />
+			</div>
 
-            <div class="form-group justify-content-center row" id="datas">
-                <div class="col-md-8">
-                    <label for="periodo">Selecione o período</label>
-                    <input type="text" name="periodo" class="form-control w-100 text-center" id='periodo'/>
-                </div>
+			<div class="col-md-2">
+					<label for="simulado_hora_aluno">4hrs por simulado</label>
+					<input name="simulado_hora_aluno" id="toggle-btn" type="checkbox" data-onstyle="danger" data-offstyle="outline-dark" data-on="4hrs" data-off="Sem limite" data-toggle="toggle" checked >
+			</div>
+		</div>	
 
+		<div class="form-group justify-content-center row">
+			<div class="col-md-2 text-center">
+				<button type="submit" name="cadastrar" class="btn btn-primary btn-block">Continuar</button>
+			</div>
+		</div>
 
-            </div>
-            <div class="form-group justify-content-center row">
-                <div class="col-md-3">
-                    <label for="descricao_simulado">Disponibilidade</label><br>
-                    <input name="disponibilidade" id="toggle-btn" type="checkbox" data-onstyle="success"
-                           data-offstyle="outline-dark" data-on="Disponível" data-off="Oculto" data-toggle="toggle"
-                           checked>
-                </div>
-                <div class="col-md-3">
-                    <label for="simulado_hora_aluno">4hrs por simulado</label><br>
-                    <input name="simulado_hora_aluno" id="toggle-btn" type="checkbox" data-onstyle="danger"
-                           data-offstyle="outline-dark" data-on="4hrs" data-off="Sem limite" data-toggle="toggle"
-                           checked>
-                </div>
-            </div>
+	</form>
 
-            <hr style="width: 67%">
-            <div class="row" style="margin-left: 60%; margin-top: -15px">
-                <div class="text-center my-3" id="btn_cadastrar">
-                    <button type="submit" name="cadastrar" class="btn btn-primary" style="width: 200px">Continuar</button>
-                </div>
-            </div>
-
-        </form>
-    </div>
-
-    <!-- Script do DatePicker no footer.blade -->
+	<!-- Script do DatePicker no footer.blade -->
 
 @stop
