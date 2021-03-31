@@ -6,7 +6,7 @@
         <div class="row"
              style="background: #1B2E4F; margin-top: -15px; margin-bottom:  30px; border-radius: 10px 10px 0 0; color: white">
             <div class="col" align="left">
-                <h1 style="margin-left: 15px; margin-top: 15px"> Editar Disciplina </h1>
+                <h1 style="margin-left: 15px; margin-top: 15px"> Editar Questão </h1>
                 <p style="color: #606f7b; margin-left: 15px; margin-top: -5px">
                     <a href="{{route('home')}}" style="color: inherit;">Inicio</a> > <a href="{{route("list_qst")}}"
                                                                                         style="color: inherit;"> Listar
