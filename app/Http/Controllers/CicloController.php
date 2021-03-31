@@ -55,5 +55,4 @@ class Ciclocontroller extends Controller
 		return redirect("listar\ciclo");
 	}
 
-
 }

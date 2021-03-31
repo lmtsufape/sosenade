@@ -5,10 +5,10 @@ namespace SimuladoENADE\Http\Controllers;
 use Illuminate\Http\Request;
 use SimuladoENADE\Validator\CursoValidator;
 use SimuladoENADE\Validator\ValidationException;
+use Illuminate\Support\Facades\DB;
 
 class Cursocontroller extends Controller
 {
-    //
     
     public function adicionar (Request $request) {
     	try{
@@ -24,24 +24,39 @@ class Cursocontroller extends Controller
         }
     }
 
-	 public function cadastrar() {
-    	$ciclos = \SimuladoENADE\Ciclo::all();
-        $unidadeAcademicas = \SimuladoENADE\UnidadeAcademica::all();
+	public function cadastrar() {
+
+        $auth = \Auth::guard('instituicao')->user();
+        $ciclos = \SimuladoENADE\Ciclo::all();
+        $unidadeAcademicas = \SimuladoENADE\UnidadeAcademica::where('instituicao_id', $auth->id)->get();
+
         return view('/CursoView/cadastrarCursos', ['ciclos' => $ciclos, 'unidade_academicas' => $unidadeAcademicas]);
     }
 
 	public function listar(){
 
+        $auth = \Auth::guard('instituicao')->user();
+
+        $unidades_ids = \SimuladoENADE\UnidadeAcademica::queryToArrayIds( \SimuladoENADE\UnidadeAcademica::where('instituicao_id', $auth->id)->get() );
+
 		$cursos =\SimuladoENADE\Curso::select('*', \DB::raw('cursos.id as curso_id'))
-            ->join('ciclos', 'cursos.ciclo_id', '=', 'ciclos.id')->orderBy('curso_nome')->get();
+            ->whereIn('unidade_id', $unidades_ids)
+            ->join('ciclos', 'cursos.ciclo_id', '=', 'ciclos.id')
+            ->orderBy('curso_nome')
+            ->get();
 
 		return view('/CursoView/listaCursos', ['cursos' => $cursos]);
 
  	}
+     
  	public function editar(Request $request){ 	
+        
+        $auth = \Auth::guard('instituicao')->user();
+
+        $curso = \SimuladoENADE\Curso::find($request->id);
         $ciclos = \SimuladoENADE\Ciclo::all();
-        $unidadeAcademicas = \SimuladoENADE\UnidadeAcademica::all();
- 		$curso = \SimuladoENADE\Curso::find($request->id);
+        $unidadeAcademicas = \SimuladoENADE\UnidadeAcademica::where('instituicao_id', $auth->id)->get();
+
  		return view('/CursoView/editarCursos', ['ciclos' => $ciclos,'unidade_academicas' => $unidadeAcademicas,'curso' => $curso, ]);
  	}	
     
@@ -66,5 +81,4 @@ class Cursocontroller extends Controller
     	return redirect("/listar/curso");
     }
     
-    	
 }
