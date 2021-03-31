@@ -33,7 +33,7 @@
                 </div>
 
             </div>
-            <hr style="width: 67%;">
+            <hr style="width: 67%; margin-top: 30%">
             <div class="row" style="margin-left: 60%; margin-top: -15px">
                 <div class="text-center my-3" id="btn_cadastrar">
                     <button type="submit" name="cadastrar" class="btn btn-primary" style="width: 200px">Salvar
