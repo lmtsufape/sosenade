@@ -4,8 +4,13 @@
     <div class="shadow p-3 bg-white" style="border-radius: 10px">
         <div class="row"
              style="background: #1B2E4F; margin-top: -15px; margin-bottom:  30px; border-radius: 10px 10px 0 0; color: white">
-            <h1 style="margin: 15px">Cadastrar nova questão</h1>
-            {{-- <p><a href="">Inicio</a> > <a href="">Olá, fulano</a> > <a href=""></a>Meu Perfil</p> --}}
+            <div class="col" align="left">
+                <h1 style="margin-left: 15px; margin-top: 15px">Cadastrar Nova Questão</h1>
+                <p style="color: #606f7b; margin-left: 15px; margin-top: -5px">
+                    <a href="{{route('home')}}" style="color: inherit;">Inicio</a> >
+                    Cadastrar Questão
+                </p>
+            </div>
         </div>
         <form action="{{route('add_qst')}}" method="post">
             <input type="hidden" name="_token" value="{{csrf_token()}}">
