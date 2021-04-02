@@ -1,43 +1,33 @@
 @extends('layouts.app')
 @section('titulo','Cadastrar Questão')
 @section('content')
-    <div class="shadow p-3 bg-white" style="border-radius: 10px">
-        <div class="row"
-             style="background: #1B2E4F; margin-top: -15px; margin-bottom:  30px; border-radius: 10px 10px 0 0; color: white">
-            <div class="col" align="left">
-                <h1 style="margin-left: 15px; margin-top: 15px">Cadastrar Nova Questão</h1>
-                <p style="color: #606f7b; margin-left: 15px; margin-top: -5px">
-                    <a href="{{route('home')}}" style="color: inherit;">Inicio</a> >
-                    Cadastrar Questão
-                </p>
-            </div>
-        </div>
-        <form action="{{route('add_qst')}}" method="post">
-            <input type="hidden" name="_token" value="{{csrf_token()}}">
-            <div class="form-group row justify-content-center">
-                <div class="form-group col-md-2"
-                     style="background: #24509D; color: white; border-radius: 10px; padding: 5px">
-                    <h1>1º</h1>
-                    <small>Selecione a disciplina/conteúdo abrangido na questão e o nível de dificuldade da
-                        mesma.</small>
-                </div>
-                <div class="form-group col-md-9">
-                    <div class="card">
-                        <div class="card-header" style="background: #1B2E4F; color:white">
-                            <h5 class="card-title">Classificação da Questão</h5>
-                        </div>
-                        <div class="card-body row justify-content-center">
-                            <div class="col-md-4 text-center">
-                                <label for="dificuldade">Disciplina</label>
-                                <select name="disciplina_id"
-                                        class="form-control{{ $errors->has('disciplina_id') ? ' is-invalid' : '' }}"
-                                        required autofocus>
-                                    <option selected hidden value="">Selecione a disciplina</option>
-                                    @foreach ($disciplinas as $disciplina)
-                                        <option value="{{$disciplina->id}}">{{$disciplina->nome}} </option>
-                                    @endforeach
-                                </select>
-                            </div>
+    <div class="shadow p-3 bg-white rounded">
+		<h1 class="text-center"> Cadastrar Nova Questão </h1>
+		<h2 class="text-center">
+			@if (Auth::guard('aluno')->user())
+				{{Auth::guard('aluno')->user()->curso->curso_nome}}
+			@elseif (Auth::user())
+				{{Auth::user()->curso->curso_nome}}
+			@endif
+		</h2><br>
+		<form action= "{{route('add_qst')}}" method="post">
+			<input type="hidden" name="_token" value="{{csrf_token()}}">
+			
+			<div class="card">
+				<div class="card-header">
+					<h5 class="card-title">Classificação da Questão</h5>
+				</div>
+				<div class="card-body row justify-content-center">
+					<div class="col-md-4 text-center">
+						<label for="dificuldade">Disciplina</label>
+						<select name="disciplina_id" class="form-control{{ $errors->has('disciplina_id') ? ' is-invalid' : '' }}" required autofocus>
+							<option selected hidden value="">Selecione a disciplina</option>
+							@foreach ($disciplinas as $disciplina)
+								<option value="{{$disciplina->id}}">{{$disciplina->nome}} </option>
+							@endforeach
+						</select>
+					</div>
+
 					<div class="col-md-4 text-center">
 						<label for="dificuldade">Dificuldade</label>
 						<select name="dificuldade" class="form-control{{ $errors->has('dificuldade') ? ' is-invalid' : '' }}" required autofocus>
