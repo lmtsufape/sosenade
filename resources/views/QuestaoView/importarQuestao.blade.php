@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('titulo','Importar Questão')
 @section('content')
-
+	
 	@if(Session::has('success'))
 		<div class="alert alert-success">
 			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>{{ Session::get('message', '') }}
@@ -12,20 +12,18 @@
 		</div>
 	@endif
 
-    <div class="shadow p-3 bg-white" style="border-radius: 10px">
-        <div class="row"
-             style="background: #1B2E4F; margin-top: -15px; margin-bottom:  30px; border-radius: 10px 10px 0 0; color: white">
-            <div class="col" align="left">
-                <h1 style="margin-left: 15px; margin-top: 15px"> Importar Questões </h1>
-                <p style="color: #606f7b; margin-left: 15px; margin-top: -5px">
-                    <a href="{{route('home')}}" style="color: inherit;">Inicio</a> >
-                    Importar Questões
-                </p>
-            </div>
-        </div>
+	<div class="shadow p-3 bg-white rounded">
+		<h1 class="text-center">Importar Questões</h1>
+		<h2 class="text-center mb-4">
+			@if (Auth::guard('aluno')->user())
+				{{Auth::guard('aluno')->user()->curso->curso_nome}}
+			@elseif (Auth::user())
+				{{Auth::user()->curso->curso_nome}}
+			@endif
+		</h2>
 
 		<div class="card">
-			<div class="card-header" style="background: #1B2E4F; color: white">
+			<div class="card-header">
 				<h5 class="card-title">Listar Questões Por Curso</h5>
 			</div>
 			<form class="card-body" action="{{route('listar_import_qst')}}" method="post">
@@ -36,7 +34,7 @@
 						<select id='curso_id' name="curso_id" class="form-control{{ $errors->has('curso_id') ? ' is-invalid' : '' }}" required autofocus>
 							@foreach ($cursos as $curso)
 								<option value="{{$curso->id}}" {{old('curso') == $curso->id ? 'selected' : '' }}>
-									{{$curso->curso_nome}} - {{$curso->unidade->nome}}
+									{{$curso->curso_nome}} - {{$curso->unidade->nome}} 
 								</option>
 							@endforeach
 						</select>
@@ -47,7 +45,7 @@
 						<select id='disciplina_id' name="disciplina_id" class="form-control{{ $errors->has('disciplina_id') ? ' is-invalid' : '' }}" required autofocus>
 							@foreach ($disciplinas as $disciplina)
 								<option rel="{{$disciplina->curso->id}}" value="{{$disciplina->id}}" {{old('disciplina') == $disciplina->id ? 'selected' : '' }}>
-									{{$disciplina->nome}}
+									{{$disciplina->nome}} 
 								</option>
 							@endforeach
 						</select>
@@ -63,7 +61,7 @@
 			</div>
 		</div>
 		<div class="card my-3">
-			<div class="card-header" style="background: #1B2E4F; color: white">
+			<div class="card-header">
 				<h5 class="card-title">Questões Disponíveis {{($questaos->count() == 0) ? '' : ' - '.$questaos[0]->disciplina->nome}}</h5>
 			</div>
 			<div class="card-body">
@@ -133,7 +131,7 @@
 					@else
 						<p class="text-center alert alert-light">Nenhuma questão para mostrar.</p>
 					@endif
-					<div {{($questaos->count() == 0) ? 'hidden' : ''}}>
+					<div {{($questaos->count() == 0) ? 'hidden' : ''}}> 
 						<hr class="my-4">
 						<div class="d-flex justify-content-center my-2">
 							<div class="col-md-4 text-center">
@@ -141,7 +139,7 @@
 								<select id='disciplina_dst_id' name="disciplina_dst_id" class="form-control {{ $errors->has('disciplina_dst_id') ? ' is-invalid' : '' }}" required autofocus>
 									@foreach ($disciplinas as $disciplina)
 										<option rel="{{$disciplina->curso->id}}" value="{{$disciplina->id}}" {{old('disciplina') == $disciplina->id ? 'selected' : '' }}>
-											{{$disciplina->nome}} - {{$disciplina->curso->curso_nome}}
+											{{$disciplina->nome}} - {{$disciplina->curso->curso_nome}} 
 										</option>
 									@endforeach
 								</select>
@@ -154,7 +152,7 @@
 							</div>
 						</div>
 					</div>
-				</form>
+				</form>			
 			</div>
 			<div class="card-footer">
 				<small class="text-muted">Marque as questões, escolha a disciplina do seu curso para onde deseja importá-las e clique no botão Importar para finalizar. Para limpar a lista clique em Limpar.</small>
@@ -169,9 +167,9 @@
 			$select2 = $('#disciplina_id'),
 			$select3 = $('#disciplina_dst_id'),
 			$options = $select2.find('option');
-
+		
 		$select1.on('change', function() {
-			$select2.html(
+			$select2.html( 
 				$options.filter('[rel="' + this.value + '"]')
 			);
 			if($options.filter('[rel="' + this.value + '"]').length == 0) {
@@ -188,7 +186,7 @@
 			};
 		}).trigger('change');
 
-		$select3.html(
+		$select3.html( 
 			$options.filter('[rel="' + {{Auth::user()->curso->id}} + '"]')
 		);
 
@@ -212,7 +210,7 @@
 			});
 
 		});
-
+		
 		$('[rel="tooltip"]').tooltip();
 	</script>
 @stop
