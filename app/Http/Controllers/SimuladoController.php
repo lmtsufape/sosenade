@@ -33,7 +33,6 @@ class SimuladoController extends Controller{
 			//dd($horaAluno);
 			if($request->periodo){
 				// Divide e completa as datas seguindo o fomarto de data do BD
-
 				$data_inicio_simulado = (explode(" - ",$request->periodo)[0] .= ':00');
 				$data_fim_simulado = (explode(" - ",$request->periodo)[1] .= ':00');
 
@@ -45,6 +44,7 @@ class SimuladoController extends Controller{
 				$simulado->data_inicio_simulado = $data_inicio_simulado;
 				$simulado->data_fim_simulado = $data_fim_simulado;
 
+
 				if($horaAluno){
 
 					$simulado->simulado_hora_aluno = TRUE;
@@ -55,21 +55,11 @@ class SimuladoController extends Controller{
 				}
 
 			} else {
-
 				$simulado->data_inicio_simulado = null;
 				$simulado->data_fim_simulado = null;
-
-				if($horaAluno){
-
-					$simulado->simulado_hora_aluno = TRUE;
-				}
-				else{
-
-					$simulado->simulado_hora_aluno = FALSE;
-				}
-				
 			}
 			
+			//dd($simulado);
 			$simulado->save();
 
 			return redirect()->route('set_simulado', ['id' => $simulado->id]);

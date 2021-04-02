@@ -77,31 +77,22 @@ class RelatorioController extends Controller {
 		return $pdf->stream($filename.'.pdf');
 	}
 	
-	public function relatorioGeralCursos(){ // Corrigido
-
-		if(\Auth::guard('instituicao')->check()) {
-			$auth = \Auth::guard('instituicao')->user();
-			$user = $auth->tipousuario_id;
-		} else {
-			$user = \Auth::user()->tipousuario_id;
+	public function relatorioGeralCursos(){
+		$cursos = \SimuladoENADE\Curso::orderBy('curso_nome')->get();
+		$unidades = \SimuladoENADE\UnidadeAcademica::all();
+		$user =  \Auth::user()->tipousuario_id;
+		if($user == 4){
+			return view('/RelatoriosView/VisaoGeral',['cursos' => $cursos, 'unidades' => $unidades, ]);
 		}
-
-		if($user == 4){ // Instituicao / Administrador
-
-			$unidades = \SimuladoENADE\UnidadeAcademica::where('instituicao_id', $auth->id)->get();
-			$unidades_id = \SimuladoENADE\UnidadeAcademica::queryToArrayIds($unidades);
-			$cursos = \SimuladoENADE\Curso::whereIn('unidade_id', $unidades_id)->orderBy('curso_nome')->get();
-
-			return view('/RelatoriosView/VisaoGeral', ['cursos' => $cursos, 'unidades' => $unidades]);
-
-		} elseif($user == 5){ // Coordenador Geral
-
+		elseif($user == 5){
 			$unidade = \Auth::user()->curso->unidade;
 			$cursos = $unidade->cursos;
 
-			return view('/RelatoriosView/visaoCoordenacaoGeral',['cursos' => $cursos, 'unidade' => $unidade]);
+			return view('/RelatoriosView/visaoCoordenacaoGeral',['cursos' => $cursos, 'unidade' => $unidade, ]);
+			//dd($unidades);
 		}
 
+		
 	}
 
 	public function relatorioSimulados(){
