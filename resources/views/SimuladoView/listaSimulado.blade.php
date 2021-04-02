@@ -2,113 +2,80 @@
 @section('titulo','Simulados Cadastrado')
 @section('content')
 
-    <div class="shadow p-3 bg-white" style="border-radius: 10px">
-        <div class="row"
-             style="background: #1B2E4F; margin-top: -15px; margin-bottom:  30px; border-radius: 10px 10px 0 0; color: white">
-            <div class="col-sm">
-                <h1 style="margin-left: 15px; margin-top: 15px">Simulados Cadastrados</h1>
-                <p style="color: #606f7b; margin-left: 15px; margin-top: -5px">
-                    <a href="{{route('home')}}" style="color: inherit;">Inicio</a> >
-                    Simulados Cadastrados
-                </p>
-            </div>
+    <div class="shadow p-4 bg-white rounded container-fluid" style="overflow-x: auto;">
+    
+		<h1 class="text-center">Simulados Cadastrados</h1>
+		<h2 class="text-center">
+			@if (Auth::guard('aluno')->user())
+				{{Auth::guard('aluno')->user()->curso->curso_nome}}
+			@elseif (Auth::user())
+				{{Auth::user()->curso->curso_nome}}
+			@endif
+		</h2><br>
 
-            <div class="col-sm" style="margin-top: 30px; margin-right: 20px">
-                <a class="btn btn-primary" href="{{route('new_simulado')}}" style="float: right;"> Cadastrar Simulado</a><br>
-            </div>
-            {{-- <p><a href="">Inicio</a> > <a href="">Olá, fulano</a> > <a href=""></a>Meu Perfil</p> --}}
-        </div>
-
-        @if(!$simulados->isEmpty())
-            <table class="table table-hover" id="tabela_dados" style="border-style: groove; border-color: #6cb2eb">
-                <thead>
-                <tr class="header" style="background: #1B2E4F; color: white">
-                    <th>Descrição (Nº de Questôes)</th>
-                    <th>Criado por</th>
-                    <th class="text-center">Status</th>
-                    <th class="text-center" style="width: 15%">Opções</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach ($simulados as $simulado)
-                    <tr>
-                        <td>
-                            {{$simulado->descricao_simulado}}
-                            @if($simulado->questaos_count == 0)
-                                <span class="badge badge-danger badge-pill">
+		@if(!$simulados->isEmpty())
+			<table class="table table-hover">
+		 		<thead>
+					<tr>
+						<th>Descrição (Nº de Questôes)</th>
+						<th>Criado por</th>
+						<th>Status</th>
+						<th style="width: 15%">Opções</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach ($simulados as $simulado)
+						<tr>
+							<td>
+								{{$simulado->descricao_simulado}}
+								@if($simulado->questaos_count == 0)
+									<span class="badge badge-danger badge-pill">
 										0
 									</span>
-                            @else
-                                <span class="badge badge-primary badge-pill">
+								@else
+									<span class="badge badge-primary badge-pill">
 										{{$simulado->questaos_count}}
 									</span>
-                            @endif
-                        </td>
-                        <td>{{$simulado->nome}}</td>
-                        <td class="text-center">
-                            @if($simulado->data_inicio_simulado == null)
-                                <span>
+								@endif
+							</td>
+							<td>{{$simulado->nome}}</td>
+							<td>
+								@if($simulado->data_inicio_simulado == null)
+									<span>
 										Não agendado
 									</span>
-                            @elseif($simulado->data_fim_simulado->isPast())
-                                <span class="text-danger">
-										Expirado <br> {{$simulado->data_fim_simulado->format('d/m H:i')}}
+								@elseif($simulado->data_fim_simulado->isPast())
+									<span class="text-danger">
+										Expirado em {{$simulado->data_fim_simulado->format('d/m H:i')}}
 									</span>
-                            @else
-                                <span class="text-success">
-										Agendado<br> ({{$simulado->data_inicio_simulado->format('d/m H:i')}} - {{$simulado->data_fim_simulado->format('d/m H:i')}})
+								@else
+									<span class="text-success">
+										Agendado ({{$simulado->data_inicio_simulado->format('d/m H:i')}} - {{$simulado->data_fim_simulado->format('d/m H:i')}})
 									</span>
-                            @endif
-                        </td>
-                        <td>
-                            <a href="{{route('set_simulado', ['id'=>$simulado->sim_id])}}" class="btn btn-secondary"
-                               data-placement="bottom" rel="tooltip" title="Montar"><i class="fa fa-gear"></i></a>
-                            <a href="{{route('edit_simulado', ['id'=>$simulado->sim_id])}}" class="btn btn-primary"
-                               data-placement="bottom" rel="tooltip" title="Editar"><i class="fa fa-pencil"></i></a>
-                            <a onclick="return confirm('Você tem certeza que deseja excluir?')"
-                               href="{{route('delete_simulado', ['id'=>$simulado->sim_id])}}" class="btn btn-danger"
-                               data-placement="bottom" rel="tooltip" title="Excluir"><i class="fa fa-trash"></i></a>
-                        </td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-        @else
-            <p class="text-center alert alert-light">Não existem simulados cadastrados até o momento.</p>
-        @endif
+								@endif
+							</td>
+							<td>
+								<a href="{{route('set_simulado', ['id'=>$simulado->sim_id])}}" class="btn btn-secondary" data-placement="bottom" rel="tooltip" title="Montar"><i class="fa fa-gear"></i></a>
+								<a href="{{route('edit_simulado', ['id'=>$simulado->sim_id])}}" class="btn btn-primary" data-placement="bottom" rel="tooltip" title="Editar"><i class="fa fa-pencil"></i></a>
+								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_simulado', ['id'=>$simulado->sim_id])}}" class="btn btn-danger" data-placement="bottom" rel="tooltip" title="Excluir"><i class="fa fa-trash"></i></a>
+							</td>
+						</tr>
+					@endforeach
+				</tbody>
+			</table>
+		@else
+			<p class="text-center alert alert-light">Não existem simulados cadastrados até o momento.</p>
+		@endif
+	  
+		<div class="col-md-12 text-center">
+			<br><a class="btn btn-primary" href="{{route('new_simulado')}}">Adicionar um simulado</a><br>
+		</div>
 
-        <hr>
-        <p>Legenda:</p>
-        <a class="btn btn-secondary"
-           data-placement="bottom" rel="tooltip" title="Montar" style="color: white"><i class="fa fa-gear"></i></a>
-        Montar Simulado
-        <a class="btn btn-primary"
-           data-placement="bottom" rel="tooltip" title="Editar" style="color: white; margin-left: 5px"><i
-                class="fa fa-pencil"></i></a>
-        Editar Simulado
-        <a class="btn btn-danger"
-           data-placement="bottom" rel="tooltip" title="Excluir" style="color: white; margin-left: 5px"><i
-                class="fa fa-trash"></i></a>
-        Deletar Simulado
+	</div>
 
-    </div>
-
-    <!-- Ativa todos os tooltips da pagina -->
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#tabela_dados').DataTable({
-                "order": [
-                    [0, "asc"]
-                ],
-                "columnDefs": [
-                    {"orderable": false, "targets": [1,2,3]}
-                ],
-                "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
-                }
-            });
-        });
-        $('[rel="tooltip"]').tooltip();
-    </script>
+	<!-- Ativa todos os tooltips da pagina -->
+	<script type="text/javascript"> 
+		$('[rel="tooltip"]').tooltip(); 
+	</script>
 
 @stop

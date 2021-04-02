@@ -12,19 +12,16 @@
 		<link rel="dns-prefetch" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
-
-        <link href="{{ asset('css/questoes.css') }}" rel="stylesheet">
-
 		@include('includes.head')
 		<title>
-			@if(!Auth::guard('aluno')->check() && !Auth::guard('instituicao')->check() && !Auth::check())
+			@if(!Auth::guard('aluno')->check() && !Auth::check())
 				Entrar | S.O.S Enade
 			@else
 				@yield('titulo') | S.O.S Enade
 			@endif
 		</title>
 	</head>
-
+	
 	<body class="position-relative" style="background: #EEE; min-height: 100vh; padding-bottom: 60px">
 		<!-- Barra Brasil -->
 		<div id="barra-brasil" style="background:#7F7F7F; height: 20px; padding:0 0 0 10px; display:block;">
@@ -38,17 +35,40 @@
 			</ul>
 		</div>
 
+		<!-- Barra de Logos -->
+		<div id="barra-logos" class="py-3 bg-white">
+			<div class="container px-4">
+				<div class="d-flex align-items-center">
+					<div class="d-flex align-items-center flex-row">
+						<a href="{{ (Auth::guard('aluno')->user()) ? route('home_aluno') : route('home') }}" style="max-height: 45%; max-width: 45%">
+							<img src="{{asset('1.png')}}" class="img-fluid float-left">
+						</a>
+					</div>
+					<div class="d-flex align-items-center flex-row-reverse">
+						<a href="http://lmts.uag.ufrpe.br/" style="max-height: 35%; max-width: 35%">
+							<img src="{{asset('images/lmts3.png')}}" class="float-right img-fluid px-1">
+						</a>
+						<img src="{{asset('images/separador.png')}}" class="float-right px-1" style="max-height: 3%; max-width: 3%">
+						<a href="http://ww3.uag.ufrpe.br/" style="max-height: 12%; max-width: 12%">
+							<img src="{{asset('images/uag.png')}}" class="float-right img-fluid px-1">
+						</a>
+						<img src="{{asset('images/separador.png')}}" class="float-right px-1" style="max-height: 3%; max-width: 3%">
+						<a href="http://www.ufrpe.br/" style=" max-height: 12%; max-width: 12%">
+							<img src="{{asset('images/ufrpe.png')}}" class="float-right img-fluid px-1">
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<div id="app">
 			<!-- Barra da tela de Login -->
-			@if(!Auth::guard('aluno')->check() && !Auth::guard('instituicao')->check() && !Auth::check())
-				<nav class="navbar navbar-dark navbar-expand-lg" style="background-color: white; border-color: #d3e0e9;
-                 box-shadow: 0px 4px 10px -5px rgba(0,0,0,0.64);
-                " role="navigation">
+			@if(!Auth::guard('aluno')->check() && !Auth::check())
+				<nav class="navbar navbar-dark navbar-expand-lg" style="background-color: #1B2E4F; border-color: #d3e0e9" role="navigation">
 					<div class="container">
-						<a href="{{ (Auth::guard('aluno')->user()) ? route('home_aluno') : route('home') }}" style="max-height: 45%; max-width: 45%">
-							<img src="{{asset('1.png')}}" style="width: 20%" class="img-fluid float-left">
+						<a class="navbar-brand" href="{{ url('/') }}">
+							S.O.S. Enade
 						</a>
-
 						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
 							<span class="navbar-toggler-icon"></span>
 						</button>
@@ -59,19 +79,13 @@
 
 							</ul>
 
-
-
 							<!-- Right Side Of Navbar -->
 							<ul class="navbar-nav ml-auto">
 								<!-- Authentication Links -->
 								@guest
-                                <div style="display: inline-block; margin-right: 30px">
-                                    <a href="/" style="text-decoration: none; color:black;">Início</a>
-                                </div>
-                                <div style="display: inline-block;">
-                                    <a href="" style="text-decoration: none; color:black;">Sobre</a>
-                                </div>
-
+									<li class="nav-item">
+										<a class="nav-link" href="#"><i class="fa fa-question-circle fa-lg"></i></a>
+									</li>
 								@else
 									<li class="nav-item dropdown">
 										<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

@@ -38,205 +38,102 @@
                                     @endforeach
                                 </select>
                             </div>
+					<div class="col-md-4 text-center">
+						<label for="dificuldade">Dificuldade</label>
+						<select name="dificuldade" class="form-control{{ $errors->has('dificuldade') ? ' is-invalid' : '' }}" required autofocus>
+							<option selected hidden value="">Selecione o nível</option>
+							<option value="1">Fácil</option>
+							<option value="2">Médio</option>
+							<option value="3">Difícil</option>
+						</select>
+					</div>
+				</div>
+				<div class="card-footer">
+					<small class="text-muted">Selecione a disciplina/conteúdo abrangido na questão e o nível de dificuldade da mesma.</small>
+				</div>
+			</div>
 
-                            <div class="col-md-4 text-center">
-                                <label for="dificuldade">Dificuldade</label>
-                                <select name="dificuldade"
-                                        class="form-control{{ $errors->has('dificuldade') ? ' is-invalid' : '' }}"
-                                        required autofocus>
-                                    <option selected hidden value="">Selecione o nível</option>
-                                    <option value="1">Fácil</option>
-                                    <option value="2">Médio</option>
-                                    <option value="3">Difícil</option>
-                                </select>
-                            </div>
-                        </div>
+			<div class="card my-3">
+				<div class="card-header">
+					<h5 class="card-title">Enunciado</h5>
+				</div>
+				<div class="card-body">
+					<textarea class="form-control summernote" name="enunciado" id="enunciado"></textarea>
+				</div>
+				<div class="card-footer">
+					<small class="text-muted">Digite o enunciado da questão no campo acima.</small>
+				</div>
+			</div>
 
-                    </div>
-                </div>
-            </div>
-            <div class="form-group row justify-content-center">
-                <div class="form-group col-md-2"
-                     style="background: #24509D; color: white; border-radius: 10px; padding: 5px">
-                    <h1>2º</h1>
-                    <small>Digite o enunciado da questão no campo ao lado.</small>
-                </div>
-                <div class="form-group col-md-9">
-                    <div class="card my-3">
-                        <div class="card-header" style="background: #1B2E4F; color:white">
-                            <h5 class="card-title">Enunciado</h5>
-                        </div>
-                        <div class="card-body">
-                            <textarea class="form-control summernote" name="enunciado" id="enunciado"></textarea>
-                        </div>
-                    </div>
-                </div>
-            </div>
+			<div class="card">
+				<div class="card-header">
+					<h5 class="card-title">Alternativas</h5>
+				</div>
+				<div class="card-body">
+					<table class="table">
+						<tbody>
+							<tr>
+								<td style="border: 0px; width: 1%; vertical-align:middle;">A.</td>
+								<td style="border: 0px">
+									<textarea class="form-control summernote_alt" type="alternativa1" id="alternativa1" name="alternativa[]" placeholder="Escreva aqui a alternativa" required autofocus></textarea>
+								</td>
+							</tr>
+							<tr>  
+								<td style="border: 0px; width: 1%; vertical-align:middle;">B.</td>
+								<td style="border: 0px">
+									<textarea class="form-control summernote_alt" type="alternativa2" id="alternativa2" name="alternativa[]" placeholder="Escreva aqui a alternativa" required autofocus></textarea>
+								</td>
+							</tr>
+							<tr>  
+								<td style="border: 0px; width: 1%; vertical-align:middle;">C.</td>
+								<td style="border: 0px">
+									<textarea class="form-control summernote_alt" type="alternativa3" id="alternativa3" name="alternativa[]" placeholder="Escreva aqui a alternativa" required autofocus></textarea>
+								</td>
+							</tr>
+							<tr>  
+								<td style="border: 0px; width: 1%; vertical-align:middle;">D.</td>
+								<td style="border: 0px">
+									<textarea class="form-control summernote_alt" type="alternativa4" id="alternativa4" name="alternativa[]" placeholder="Escreva aqui a alternativa" required autofocus></textarea>
+								</td>
+							</tr>
+							<tr>  
+								<td style="border: 0px; width: 1%; vertical-align:middle;">E.</td>
+								<td style="border: 0px">
+									<textarea class="form-control summernote_alt" type="alternativa5" id="alternativa5" name="alternativa[]" placeholder="Escreva aqui a alternativa" required autofocus></textarea>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="wrapper text-center my-3">
+						<span style="font-weight: bold">Alternativa correta:&nbsp</span>
+						<div class="btn-group btn-group-toggle" data-toggle="buttons">
+							<label class="btn btn-info">
+								<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="0" required> A
+							</label>
+							<label class="btn btn-info">
+								<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="1" required> B
+							</label>
+							<label class="btn btn-info">
+								<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="2" required> C
+							</label>
+							<label class="btn btn-info">
+								<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="3" required> D
+							</label>
+							<label class="btn btn-info">
+								<input type="radio" class="alt_buttons" name="alternativa_correta" id="alternativa_correta" value="4" required> E
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="card-footer">
+					<small class="text-muted">Preencha os campos acima com as alternativas correspondentes e marque a letra da alternativa correta</small>
+				</div>
+			</div>
 
-            <div class="form-group row justify-content-center">
-                <div class="form-group col-md-2"
-                     style="background: #24509D; color: white; border-radius: 10px; padding: 5px">
-                    <h1>3º</h1>
-                    <small>Preencha os campos ao lado com as alternativas correspondentes e marque a letra da
-                        alternativa correta</small>
-                </div>
-                <div class="form-group col-md-9">
-                    <div class="card">
-                        <div class="card-header" style="background: #1B2E4F; color:white">
-                            <h5 class="card-title">Alternativas</h5>
-                        </div>
-                        <div class="card-body">
-                            <table class="table">
-                                <tbody>
-                                <tr>
-                                    <td style="border: 0px; width: 1%; vertical-align:middle;">
-                                        <div class="letraCirculo">A</div>
-                                        <br>
-                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                            <label id="check1" class="btn" style="border-radius: 50%; padding: 0">
-                                                <input type="radio" class="alt_buttons" name="alternativa_correta"
-                                                       id="alternativa_correta1" value="0" required>
-                                                <img id="img1" src="{{asset('images/logo_check_cinza.png')}}">
-                                            </label>
-                                        </div>
-                                    </td>
+			<div class="row justify-content-center my-4">
+				<button type="submit" name="editar" class="btn btn-primary center-block">Salvar alterações</button>
+			</div>
+		</form>
+	</div>
 
-                                    <td style="border: 0px">
-                                        <textarea class="form-control summernote_alt" type="alternativa1"
-                                                  id="alternativa1" name="alternativa[]"
-                                                  placeholder="Escreva aqui a alternativa" required
-                                                  autofocus></textarea>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 0px; width: 1%; vertical-align:middle;">
-                                        <div class="letraCirculo">B</div>
-                                        <br>
-                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                            <label id="check2" class="btn" style="border-radius: 50%; padding: 0px">
-                                                <input type="radio" class="alt_buttons" name="alternativa_correta"
-                                                       id="alternativa_correta" value="1" required>
-                                                <img id="img2" src="{{asset('images/logo_check_cinza.png')}}">
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td style="border: 0px">
-                                        <textarea class="form-control summernote_alt" type="alternativa2"
-                                                  id="alternativa2" name="alternativa[]"
-                                                  placeholder="Escreva aqui a alternativa" required
-                                                  autofocus></textarea>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 0px; width: 1%; vertical-align:middle;">
-                                        <div class="letraCirculo">C</div>
-                                        <br>
-                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                            <label id="check3" class="btn" style="border-radius: 50%; padding: 0px">
-                                                <input type="radio" class="alt_buttons" name="alternativa_correta"
-                                                       id="alternativa_correta" value="2" required>
-                                                <img id="img3" src="{{asset('images/logo_check_cinza.png')}}">
-
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td style="border: 0px">
-                                        <textarea class="form-control summernote_alt" type="alternativa3"
-                                                  id="alternativa3" name="alternativa[]"
-                                                  placeholder="Escreva aqui a alternativa" required
-                                                  autofocus></textarea>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 0px; width: 1%; vertical-align:middle;">
-                                        <div class="letraCirculo">D</div>
-                                        <br>
-                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                            <label id="check4" class="btn" style="border-radius: 50%; padding: 0px">
-                                                <input type="radio" class="alt_buttons" name="alternativa_correta"
-                                                       id="alternativa_correta" value="3" required>
-                                                <img id="img4" src="{{asset('images/logo_check_cinza.png')}}">
-
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td style="border: 0px">
-                                        <textarea class="form-control summernote_alt" type="alternativa4"
-                                                  id="alternativa4" name="alternativa[]"
-                                                  placeholder="Escreva aqui a alternativa" required
-                                                  autofocus></textarea>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 0px; width: 1%; vertical-align:middle;">
-                                        <div class="letraCirculo">E</div>
-                                        <br>
-                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                            <label id="check5" class="btn" style="border-radius: 50%; padding: 0px">
-                                                <input type="radio" class="alt_buttons" name="alternativa_correta"
-                                                       id="alternativa_correta" value="4" required>
-                                                <img id="img5" src="{{asset('images/logo_check_cinza.png')}}">
-
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td style="border: 0px">
-                                        <textarea class="form-control summernote_alt" type="alternativa5"
-                                                  id="alternativa5" name="alternativa[]"
-                                                  placeholder="Escreva aqui a alternativa" required
-                                                  autofocus></textarea>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr style="width: 95%">
-            <div class="row" style="margin-left: 85%">
-                <button type="submit" name="editar" class="btn btn-primary center-block">Salvar alterações</button>
-            </div>
-        </form>
-    </div>
-
-
-
-    <script type="text/javascript">
-        $('#check1').click(function () {
-            $('#img1').attr('src', "{{asset('images/logo_check_verde.png')}}")
-            $('#img2').attr('src', "{{asset('images/logo_check_cinza.png')}}")
-            $('#img3').attr('src', "{{asset('images/logo_check_cinza.png')}}")
-            $('#img4').attr('src', "{{asset('images/logo_check_cinza.png')}}")
-            $('#img5').attr('src', "{{asset('images/logo_check_cinza.png')}}")
-        })
-        $('#check2').click(function () {
-            $('#img2').attr('src', "{{asset('images/logo_check_verde.png')}}")
-            $('#img1').attr('src', "{{asset('images/logo_check_cinza.png')}}")
-            $('#img3').attr('src', "{{asset('images/logo_check_cinza.png')}}")
-            $('#img4').attr('src', "{{asset('images/logo_check_cinza.png')}}")
-            $('#img5').attr('src', "{{asset('images/logo_check_cinza.png')}}")
-        })
-        $('#check3').click(function () {
-            $('#img3').attr('src', "{{asset('images/logo_check_verde.png')}}")
-            $('#img2').attr('src', "{{asset('images/logo_check_cinza.png')}}")
-            $('#img1').attr('src', "{{asset('images/logo_check_cinza.png')}}")
-            $('#img4').attr('src', "{{asset('images/logo_check_cinza.png')}}")
-            $('#img5').attr('src', "{{asset('images/logo_check_cinza.png')}}")
-        })
-        $('#check4').click(function () {
-            $('#img4').attr('src', "{{asset('images/logo_check_verde.png')}}")
-            $('#img2').attr('src', "{{asset('images/logo_check_cinza.png')}}")
-            $('#img3').attr('src', "{{asset('images/logo_check_cinza.png')}}")
-            $('#img1').attr('src', "{{asset('images/logo_check_cinza.png')}}")
-            $('#img5').attr('src', "{{asset('images/logo_check_cinza.png')}}")
-        })
-        $('#check5').click(function () {
-            $('#img5').attr('src', "{{asset('images/logo_check_verde.png')}}")
-            $('#img2').attr('src', "{{asset('images/logo_check_cinza.png')}}")
-            $('#img3').attr('src', "{{asset('images/logo_check_cinza.png')}}")
-            $('#img4').attr('src', "{{asset('images/logo_check_cinza.png')}}")
-            $('#img1').attr('src', "{{asset('images/logo_check_cinza.png')}}")
-        })
-    </script>
 @stop

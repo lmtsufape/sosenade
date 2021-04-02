@@ -20,8 +20,8 @@ public function run()
         //}
 
 
-        //Criação de Adm geral da UFAPE
-        DB::table('usuarios')->insert(['nome' => 'ufap', 'cpf' => '12345678901', 'password' => $password, 'remember_token' =>$remember_token, 'email' => 'lmts@ufrpe.br', 'tipousuario_id' => 4, 'curso_id' => 1]);
+        //Criação de Adm geral do sistema
+        DB::table('usuarios')->insert(['nome' => 'LMTS', 'cpf' => '12345678901', 'password' => $password, 'remember_token' =>$remember_token, 'email' => 'lmts@ufrpe.br', 'tipousuario_id' => 4, 'curso_id' => 1]);
 
 
         //Criação de Coordenador do primeiro curso
@@ -30,9 +30,6 @@ public function run()
         //Criação de professor
 
         DB::table('usuarios')->insert(['nome' => 'Professor', 'cpf' => '02345678913', 'password' => $senhap, 'remember_token' =>$remember_token, 'email' => 'professor-teste@ufrpe.br', 'tipousuario_id' => 3, 'curso_id' => 1]);
-
-        //Criação do adm geral do sistema
-        DB::table('usuarios')->insert(['nome' => 'LMTS', 'cpf' => '12345678901', 'password' => $password, 'remember_token' =>$remember_token, 'email' => 'admingeral@ufape.br', 'tipousuario_id' => 6, 'curso_id' => 1]);
 
     }
 }
