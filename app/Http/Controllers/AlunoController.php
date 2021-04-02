@@ -55,7 +55,8 @@ class AlunoController extends Controller{
 			dd("Arquivo vazio");  
 		} else {
 
-			$csv_data = array_slice($data, 0, count($data));
+			// $csv_data = array_slice($data, 0, count($data));
+			$csv_data = array_slice($data, 1, count($data)); // Lista da segunda linha do array adiante
 			foreach ($csv_data as $input) {
 
 				if($input[0] and $input[1] and $input[2] and $input[3]){
