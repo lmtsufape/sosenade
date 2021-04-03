@@ -10,7 +10,7 @@ class Ciclo extends Model{
     	return $this->hasMany('SimuladoENADE\Curso');
     }
     
-    protected $fillable = ['tipo_ciclo'];
+    protected $fillable = ['tipo_ciclo', 'instituicao_id'];
 
     public static $rules = [
     	'tipo_ciclo' => 'required|min:5'

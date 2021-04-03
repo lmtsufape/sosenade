@@ -27,7 +27,7 @@ class Cursocontroller extends Controller
 	public function cadastrar() {
 
         $auth = \Auth::guard('instituicao')->user();
-        $ciclos = \SimuladoENADE\Ciclo::all();
+        $ciclos = \SimuladoENADE\Ciclo::where('instituicao_id', $auth->id)->get();
         $unidadeAcademicas = \SimuladoENADE\UnidadeAcademica::where('instituicao_id', $auth->id)->get();
 
         return view('/CursoView/cadastrarCursos', ['ciclos' => $ciclos, 'unidade_academicas' => $unidadeAcademicas]);
@@ -54,7 +54,7 @@ class Cursocontroller extends Controller
         $auth = \Auth::guard('instituicao')->user();
 
         $curso = \SimuladoENADE\Curso::find($request->id);
-        $ciclos = \SimuladoENADE\Ciclo::all();
+        $ciclos = \SimuladoENADE\Ciclo::where('instituicao_id', $auth->id)->get();
         $unidadeAcademicas = \SimuladoENADE\UnidadeAcademica::where('instituicao_id', $auth->id)->get();
 
  		return view('/CursoView/editarCursos', ['ciclos' => $ciclos,'unidade_academicas' => $unidadeAcademicas,'curso' => $curso, ]);
