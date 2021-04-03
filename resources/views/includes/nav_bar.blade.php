@@ -69,6 +69,16 @@ box-shadow: 0px 4px 10px -5px rgba(0,0,0,0.64);" role="navigation">
 					</li>
 
 					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Ciclos
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="{{route('new_ciclo')}}">Cadastrar</a>
+							<a class="dropdown-item" href="{{route('list_ciclo')}}">Listar</a>
+						</div>
+					</li>
+
+					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							Cursos
 						</a>
@@ -182,15 +192,6 @@ box-shadow: 0px 4px 10px -5px rgba(0,0,0,0.64);" role="navigation">
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="{{route('new_instituicao')}}">Cadastrar</a>
 							<a class="dropdown-item" href="{{route('list_instituicao')}}">Listar</a>
-						</div>
-					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Ciclos
-						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="{{route('new_ciclo')}}">Cadastrar</a>
-							<a class="dropdown-item" href="{{route('list_ciclo')}}">Listar</a>
 						</div>
 					</li>
 				@endcan

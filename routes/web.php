@@ -163,13 +163,6 @@ Route::middleware('admGeral.auth')->group(function(){
 	Route::post('/atualizar/instituicao', 'InstituicaoController@atualizar')->name('update_instituicao');
 	Route::get('/remover/instituicao/{id}', 'InstituicaoController@remover')->name('delete_instituicao');
 
-	Route::get('/listar/ciclo', 'CicloController@listar')->name('list_ciclo');
-	Route::get('/cadastrar/ciclo', 'CicloController@cadastrar')->name('new_ciclo');
-	Route::post('/adicionar/ciclo', 'CicloController@adicionar')->name('add_ciclo');
-	Route::get('/editar/ciclo/{id}', 'CicloController@editar')->name('edit_ciclo');
-	Route::post('/atualizar/ciclo', 'CicloController@atualizar')->name('update_ciclo');
-	Route::get('/remover/ciclo/{id}', 'CicloController@remover')->name('delete_ciclo');
-
 });
 
 Route::middleware('instituicao.auth')->group(function(){
@@ -196,6 +189,13 @@ Route::middleware('instituicao.auth')->group(function(){
 	Route::get('/editar/unidade/{id}', 'UnidadeAcademicaController@editar')->name('edit_unidade');
 	Route::post('/atualizar/unidade', 'UnidadeAcademicaController@atualizar')->name('update_unidade');
 	Route::get('/remover/unidade/{id}', 'UnidadeAcademicaController@remover')->name('delete_unidade');
+
+	Route::get('/listar/ciclo', 'CicloController@listar')->name('list_ciclo');
+	Route::get('/cadastrar/ciclo', 'CicloController@cadastrar')->name('new_ciclo');
+	Route::post('/adicionar/ciclo', 'CicloController@adicionar')->name('add_ciclo');
+	Route::get('/editar/ciclo/{id}', 'CicloController@editar')->name('edit_ciclo');
+	Route::post('/atualizar/ciclo', 'CicloController@atualizar')->name('update_ciclo');
+	Route::get('/remover/ciclo/{id}', 'CicloController@remover')->name('delete_ciclo');
 
 	Route::get('/relatorio/cursos', 'RelatorioController@relatorioGeralCursos')->name('geral_cursos');
 });

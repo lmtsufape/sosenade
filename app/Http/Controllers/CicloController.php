@@ -12,10 +12,12 @@ class Ciclocontroller extends Controller
     //
 	public function adicionar(Request $request){
     	try{
+			$user = \Auth::guard('instituicao')->user();
         	CicloValidator::Validate($request->all());
 
         	$ciclo = new \SimuladoENADE\Ciclo();
         	$ciclo->fill($request->all());
+			$ciclo->instituicao_id = $user->id;
         	$ciclo->save();
         	return redirect("listar/ciclo");
     	}
@@ -28,7 +30,8 @@ class Ciclocontroller extends Controller
     	return view('/CicloView/cadastrarCiclo');
 	}
 	public function listar(){
-		$ciclos = \SimuladoENADE\Ciclo::all();
+		$user = \Auth::guard('instituicao')->user();
+		$ciclos = \SimuladoENADE\Ciclo::where('instituicao_id', $user->id)->get();
 		return view('/CicloView/listaCiclo', ['ciclos' => $ciclos]);
 	}
 	public function editar(Request $request){
@@ -37,10 +40,12 @@ class Ciclocontroller extends Controller
 	}
 	public function atualizar(Request $request){
 		try{
+			$user = \Auth::guard('instituicao')->user();
         	CicloValidator::Validate($request->all());
 
 			$ciclo = \SimuladoENADE\Ciclo::find($request->id);
         	$ciclo->fill($request->all());
+			$ciclo->instituicao_id = $user->id;
         	$ciclo->update();
         	return redirect("listar/ciclo");
     	}
