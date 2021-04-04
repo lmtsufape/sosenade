@@ -47,7 +47,7 @@ class Usuariocontroller extends Controller{
 					Mail::to($request->email)->send(new emailConfirmacao());
 				}
 
-				return redirect("/listar/usuario");
+				return redirect("/listar/usuario")->with('success', 'Cadastro realizado com sucesso!');;;
 
 			} elseif($user == 2){ // Coordenação de Curso
 
@@ -64,7 +64,7 @@ class Usuariocontroller extends Controller{
 					Mail::to($request->email)->send(new emailConfirmacao());
 				}
 
-				return redirect("/listar/professor");
+				return redirect("/listar/professor")->with('success', 'Cadastro realizado com sucesso!');;;
 
 			} elseif ($user == 5) { // Coordenação Geral
 
@@ -80,7 +80,7 @@ class Usuariocontroller extends Controller{
 				if(false){
 					Mail::to($request->email)->send(new emailConfirmacao());
 				}
-				return redirect("listar/coordenacaoGeral");
+				return redirect("listar/coordenacaoGeral")->with('success', 'Cadastro realizado com sucesso!');;;
 				# code...
 
 			}
@@ -310,9 +310,9 @@ class Usuariocontroller extends Controller{
 		if($user == 4){ // Instituicao / Administrador
 			return redirect("/listar/usuario");
 		} elseif($user == 2){ // Coordenador
-			return redirect("/listar/professor");
+			return redirect("/listar/professor")->with('success', 'Usuário removido com sucesso!');
 		} elseif($user == 5){ // Coordenador Geral
-			return redirect("/listar/coordenacaoGeral");	
+			return redirect("/listar/coordenacaoGeral")->with('success', 'Usuário removido com sucesso!');
 		}
 	}
 

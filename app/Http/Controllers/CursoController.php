@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use SimuladoENADE\Validator\CursoValidator;
 use SimuladoENADE\Validator\ValidationException;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\QueryException;
+
 
 class Cursocontroller extends Controller
 {
