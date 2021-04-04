@@ -6,6 +6,16 @@
 
 		<h1 class="text-center">Instituições Cadastradas</h1><br>
 
+		@if (session('success'))
+			<div class="alert alert-success">
+				{{ session('success') }}
+			</div>
+		@elseif (session('fail'))
+			<div class="alert alert-danger">
+				{{ session('fail') }}
+			</div>
+		@endif
+
 		{{-- @if(!$usuarios->isEmpty()) --}}
 			<table id="tabela_dados" class="table table-hover">
 		 		<thead>
