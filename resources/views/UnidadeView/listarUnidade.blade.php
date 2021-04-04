@@ -4,7 +4,7 @@
 
     <div class="shadow p-4 bg-white rounded container-fluid" style="overflow-x: auto;">
 
-		<h1 class="text-center">Instituições Cadastradas</h1><br>
+		<h1 class="text-center">Unidades Cadastradas</h1><br>
 
 		@if (session('success'))
 			<div class="alert alert-success">
