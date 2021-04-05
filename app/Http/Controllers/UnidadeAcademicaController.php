@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use SimuladoENADE\Validator\UnidadeAcademicaValidator;
 use SimuladoENADE\Validator\ValidationException;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\QueryException;
 
 class UnidadeAcademicaController extends Controller
 {
@@ -33,7 +34,7 @@ class UnidadeAcademicaController extends Controller
             $unidade->instituicao_id = $auth->id;
             $unidade->save();
 
-            return redirect('listar/unidade');
+            return redirect('listar/unidade')->with('success', 'Cadastro realizado com sucesso!');;
         }catch(ValidatorException $ex){
             redirect('cadastrar/unidade')->withErrors($ex->getValidator())->withInput();
         }
@@ -55,15 +56,22 @@ class UnidadeAcademicaController extends Controller
             $unidade->instituicao_id = $auth->id;
             $unidade->update();
 
-            return redirect('listar/unidade');
+            return redirect('listar/unidade')->with('success', 'As alterações foram salvas!');
         }catch(ValidatorException $ex){
             redirect('editar/unidade')->withErrors($ex->getValidator())->withInput();
         }
     }
 
     public function remover(Request $request) {
+        
         $unidade = \SimuladoENADE\UnidadeAcademica::find($request->id);
-        $unidade->delete();
-        return redirect('/listar/unidade');
+        $unidade_nome = $unidade->nome;
+
+        try {
+            $unidade->delete();
+            return redirect('/listar/unidade')->with('success', 'A unidade '.$unidade_nome.' foi removida com sucesso!');
+        } catch(QueryException $ex) {
+            return redirect('/listar/unidade')->with('fail', 'A unidade '.$unidade_nome.' não pode ser removida!');
+        }
     }
 }

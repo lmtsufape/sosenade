@@ -67,7 +67,7 @@
 								</div>
                                 <div class="form-group col-md-5">
                                     <label for="vinculo" style="float: left;">Vínculo</label>
-                                    <input type="text" id="vinculo" name="vinculo" placeholder="Vínculo" class="form-control{{ $errors->has('vinculo') ? ' is-invalid' : '' }} vinculo" value="" disabled>
+                                    <input type="text" id="vinculo" name="vinculo" placeholder="Vínculo" class="form-control{{ $errors->has('vinculo') ? ' is-invalid' : '' }} vinculo" value="{{ $user_vinculo->tipo }}" disabled>
                                     @if ($errors->has('vinculo'))
                                         <span class = "invalid-feedback" role="alert">
                                             {{$errors->first('vinculo')}}
@@ -75,7 +75,7 @@
                                     @endif
 
                                     <label for="curso" style="float: left;">Curso</label>
-                                    <input type="text" id="curso" name="curso" placeholder="Curso" class="form-control{{ $errors->has('curso') ? ' is-invalid' : '' }} curso" value="" disabled>
+                                    <input type="text" id="curso" name="curso" placeholder="Curso" class="form-control{{ $errors->has('curso') ? ' is-invalid' : '' }} curso" value="{{ $user_curso->curso_nome }}" disabled>
                                     @if ($errors->has('curso'))
                                         <span class = "invalid-feedback" role="alert">
                                             {{$errors->first('curso')}}
@@ -83,7 +83,7 @@
                                     @endif
 
                                     <label for="instituicao" style="float: left;">Instituição</label>
-                                    <input type="text" id="instituicao" name="instituicao" placeholder="Instituição" class="form-control{{ $errors->has('instituicao') ? ' is-invalid' : '' }} instituicao" value="" disabled>
+                                    <input type="text" id="instituicao" name="instituicao" placeholder="Instituição" class="form-control{{ $errors->has('instituicao') ? ' is-invalid' : '' }} instituicao" value="{{ $user_instituicao->nome }}" disabled>
                                     @if ($errors->has('instituicao'))
                                         <span class = "invalid-feedback" role="alert">
                                             {{$errors->first('instituicao')}}

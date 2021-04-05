@@ -4,6 +4,7 @@ namespace SimuladoENADE\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\QueryException;
 
 use SimuladoENADE\Validator\InstituicaoValidator;
 use SimuladoENADE\Validator\ValidationException;
@@ -36,7 +37,7 @@ class InstituicaoController extends Controller
             $instituicao->fill($request->all());
             $instituicao->password = Hash::make($request->password);
             $instituicao->save();
-            return redirect("/listar/instituicao");
+            return redirect("/listar/instituicao")->with('success', 'Cadastro realizado com sucesso!');
         }
         catch(ValidationException $ex){
             return redirect("cadastrar/instituicao")->withErrors($ex->getValidator())->withInput();
@@ -63,7 +64,7 @@ class InstituicaoController extends Controller
             $instituicao->fill($data);
             $instituicao->update();
 
-            return redirect("/listar/instituicao");
+            return redirect("/listar/instituicao")->with('success', 'As alterações foram salvas!');
         }
         catch(ValidationException $ex){
             return redirect("editar/instituicao")->withErrors($ex->getValidator())->withInput();
@@ -72,7 +73,14 @@ class InstituicaoController extends Controller
 
     public function remover(Request $request) {
         $instituicao = \SimuladoENADE\Instituicao::find($request->id);
-        $instituicao->delete();
-        return redirect("/listar/instituicao");
+        $instituicao_nome = $instituicao->nome;
+
+        try { 
+            $instituicao->delete();
+            return redirect("/listar/instituicao")->with('success', 'A instituição '.$instituicao_nome.' foi removida com sucesso!');
+        } catch(QueryException $ex) {
+            return redirect("/listar/instituicao")->with('fail', 'A instituição '.$instituicao_nome.' não pode ser removida!');
+        }
+
     }
 }

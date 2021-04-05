@@ -15,9 +15,18 @@
             <div class="col-sm" style="margin-top: 30px; margin-right: 20px">
                 <a class="btn btn-primary" href="{{route('new_aluno')}}" style="float: right;"> Cadastrar Aluno </a><br>
             </div>
-
-
         </div>
+
+        @if (session('success'))
+			<div class="alert alert-success">
+				{{ session('success') }}
+			</div>
+		@elseif (session('fail'))
+			<div class="alert alert-danger">
+				{{ session('fail') }}
+			</div>
+		@endif
+
         @if(!$alunos->isEmpty())
             <table id="tabela_dados" class="table table-hover" style="border-style: groove; border-color: #6cb2eb">
                 <thead>

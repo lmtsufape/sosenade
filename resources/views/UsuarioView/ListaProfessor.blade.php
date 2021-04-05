@@ -19,6 +19,16 @@
 
         </div>
 
+		@if (session('success'))
+			<div class="alert alert-success">
+				{{ session('success') }}
+			</div>
+		@elseif (session('fail'))
+			<div class="alert alert-danger">
+				{{ session('fail') }}
+			</div>
+		@endif
+
 		@if(!$usuarios->isEmpty())
             <table class="table table-hover" id="tabela_dados" style="border-style: groove; border-color: #6cb2eb">
 		 		<thead>
