@@ -32,7 +32,7 @@ class AlunoController extends Controller{
 			$aluno->curso_id = $curso_id;
 			$aluno->password = Hash::make($request->password);
 			$aluno->save();
-			return redirect("listar/aluno");
+			return redirect("listar/aluno")->with('success', 'Cadastro realizado com sucesso!');;;
 
 		} catch(ValidationException $ex) {
 			return redirect("cadastrar/aluno")->withErrors($ex->getValidator())->withInput();
@@ -134,7 +134,8 @@ class AlunoController extends Controller{
 
 	public function remover(Request $request){
 		$aluno = \SimuladoENADE\Aluno::find($request->id);
+		$aluno_nome = $aluno->nome;
 		$aluno->delete();
-		return redirect('\listar\aluno');
+		return redirect('\listar\aluno')->with('success', 'Aluno removido com sucesso!');
 	}
 }
