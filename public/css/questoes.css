@@ -11,6 +11,31 @@
     color: white;
 }
 
+.listaHeader {
+    background: #1B2E4F !important;
+    color: white;
+}
+
+.headerLateral {
+    background: #24509D;
+    color: white;
+    border-radius: 10px;
+    padding: 5px;
+    text-align: left;
+}
+
+.titleHeader{
+    background: #1B2E4F;
+    margin-top: -15px;
+    margin-bottom:  30px;
+    border-radius: 10px 10px 0 0;
+    color: white;
+}
+.tabelaBorder{
+    border-style: groove;
+    border-color: #6cb2eb;
+}
+
 .btnCircle {
     border-radius: 50%;
     background-color: red;
