@@ -134,7 +134,6 @@ class AlunoController extends Controller{
 
 	public function remover(Request $request){
 		$aluno = \SimuladoENADE\Aluno::find($request->id);
-		$aluno_nome = $aluno->nome;
 		$aluno->delete();
 		return redirect('\listar\aluno')->with('success', 'Aluno removido com sucesso!');
 	}
