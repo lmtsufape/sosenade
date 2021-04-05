@@ -187,6 +187,8 @@ class Usuariocontroller extends Controller{
 
 	public function editar(Request $request) {
 
+		$usuario = \SimuladoENADE\Usuario::find($request->id);
+
 		if(\Auth::guard('instituicao')->check()) {
 			$auth = \Auth::guard('instituicao')->user();
 			$user = $auth->tipousuario_id;
@@ -199,14 +201,17 @@ class Usuariocontroller extends Controller{
 			$user = $auth->tipousuario_id;
 			$cursos = \SimuladoENADE\Curso::all();
 			$tipos_usuario = \SimuladoENADE\Tipousuario::where('tipo', 'NOT LIKE', 'Admin%')->get();
-		}
 
-		$usuario = \SimuladoENADE\Usuario::find($request->id);
+			$user_curso = \SimuladoENADE\Curso::find($usuario->curso_id);
+			$unidade_academica = \SimuladoENADE\UnidadeAcademica::find($user_curso->unidade_id); // instancia auxiliar refatorada para achar instituicao
+			$user_vinculo = \SimuladoENADE\Tipousuario::find($usuario->tipousuario_id);
+			$user_instituicao = \SimuladoENADE\Instituicao::find( $unidade_academica->instituicao_id );
+		}
 
 		if($user == 4){ // Instituicao / Administrador
 			return view('/UsuarioView/editarPerfilAdm', ['usuario'=> $usuario, 'cursos' => $cursos, 'tipos_usuario' => $tipos_usuario]);
 		} else { // Geral
-			return view('/UsuarioView/editarPerfilGeral', ['usuario'=> $usuario, 'cursos' => $cursos, 'tipos_usuario' => $tipos_usuario]);
+			return view('/UsuarioView/editarPerfilGeral', ['usuario'=> $usuario, 'cursos' => $cursos, 'tipos_usuario' => $tipos_usuario, 'user_curso' => $user_curso, 'user_vinculo' => $user_vinculo, 'user_instituicao' => $user_instituicao]);
 		}    
 	}
 
@@ -240,7 +245,7 @@ class Usuariocontroller extends Controller{
 			} else {
 				$user = \Auth::user()->tipousuario_id;
 			}
-			
+
 			if($user == 4){ // Instituicao / Administrador
 
 				$inf_array = $request->all();
@@ -269,7 +274,8 @@ class Usuariocontroller extends Controller{
 
 				$usuario->fill($inf_array);
 				$usuario->update();
-				return redirect()->back()->with('success', true)->with('message','Alterações efetuadas.');
+				return redirect("listar/professor")->with('success', 'As alterações foram salvas!');
+				// return redirect()->back()->with('success', true)->with('message','Alterações efetuadas.');
 
 			} elseif($user == 5){ // Coordenação Geral
 
@@ -287,7 +293,24 @@ class Usuariocontroller extends Controller{
 				$usuario->update();
 				return redirect()->back()->with('success', true)->with('message','Alterações efetuadas.');
 
+			} elseif($user = 6) { // Administrador Geral
+
+				$inf_array = $request->all();
+				$inf_array["curso_id"] = \Auth::user()->curso_id;
+
+				$usuario = \SimuladoENADE\Usuario::find($request->id);
+				$inf_array["password"] = $usuario->password;
+				$inf_array["password_confirmation"] = $usuario->password;
+				$inf_array["tipousuario_id"] = $usuario->tipousuario_id;  
+				
+				UsuarioValidator::Validate($inf_array);
+
+				$usuario->fill($inf_array);
+				$usuario->update();
+				return redirect()->back()->with('success', true)->with('message','Alterações efetuadas.');
+
 			}
+			
 		}
 		catch(ValidationException $ex){
 			dd($ex->getValidator());
@@ -310,7 +333,7 @@ class Usuariocontroller extends Controller{
 		if($user == 4){ // Instituicao / Administrador
 			return redirect("/listar/usuario");
 		} elseif($user == 2){ // Coordenador
-			return redirect("/listar/professor")->with('success', 'Usuário removido com sucesso!');
+			return redirect("/listar/professor")->with('success', 'Professor removido com sucesso!');
 		} elseif($user == 5){ // Coordenador Geral
 			return redirect("/listar/coordenacaoGeral")->with('success', 'Usuário removido com sucesso!');
 		}
