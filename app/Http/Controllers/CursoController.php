@@ -19,7 +19,7 @@ class Cursocontroller extends Controller
             $curso = new \SimuladoENADE\Curso();
             $curso->fill($request->all());
             $curso->save();
-            return redirect("listar/curso")->with('success', 'Cadastro realizado com sucesso!');;;
+            return redirect("listar/curso")->with('success', \SimuladoENADE\FlashMessage::cadastroSuccess());
         }
         catch(ValidationException $ex){
             return redirect("cadastrar/curso")->withErrors($ex->getValidator())->withInput();
@@ -70,7 +70,7 @@ class Cursocontroller extends Controller
             $curso = \SimuladoENADE\Curso::find($request->id);
             $curso->fill($request->all());
             $curso->update();
-            return redirect("listar/curso")->with('success', 'As alterações foram salvas!');;
+            return redirect("listar/curso")->with('success', \SimuladoENADE\FlashMessage::alteracoesSuccess());
         }
         catch(ValidationException $ex){
             return redirect("editar/curso")->withErrors($ex->getValidator())->withInput();
@@ -83,9 +83,9 @@ class Cursocontroller extends Controller
 
         try {
             $curso->delete();
-    	    return redirect("/listar/curso")->with('success', 'O curso '.$curso_nome.' foi removido com sucesso!');;
+    	    return redirect("/listar/curso")->with('success', \SimuladoENADE\FlashMessage::removeCursoSuccess($curso_nome));
         } catch(QueryException $ex) {
-            return redirect("/listar/curso")->with('fail', 'O curso '.$curso_nome.' não pode ser removido!');;
+            return redirect("/listar/curso")->with('fail', \SimuladoENADE\FlashMessage::removeCursoFail($curso_nome));
         }
 
     }

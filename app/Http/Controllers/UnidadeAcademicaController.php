@@ -34,7 +34,7 @@ class UnidadeAcademicaController extends Controller
             $unidade->instituicao_id = $auth->id;
             $unidade->save();
 
-            return redirect('listar/unidade')->with('success', 'Cadastro realizado com sucesso!');;
+            return redirect('listar/unidade')->with('success', \SimuladoENADE\FlashMessage::cadastroSuccess());
         }catch(ValidatorException $ex){
             redirect('cadastrar/unidade')->withErrors($ex->getValidator())->withInput();
         }
@@ -56,7 +56,7 @@ class UnidadeAcademicaController extends Controller
             $unidade->instituicao_id = $auth->id;
             $unidade->update();
 
-            return redirect('listar/unidade')->with('success', 'As alterações foram salvas!');
+            return redirect('listar/unidade')->with('success', \SimuladoENADE\FlashMessage::alteracoesSuccess());
         }catch(ValidatorException $ex){
             redirect('editar/unidade')->withErrors($ex->getValidator())->withInput();
         }
@@ -69,9 +69,9 @@ class UnidadeAcademicaController extends Controller
 
         try {
             $unidade->delete();
-            return redirect('/listar/unidade')->with('success', 'A unidade '.$unidade_nome.' foi removida com sucesso!');
+            return redirect('/listar/unidade')->with('success', \SimuladoENADE\FlashMessage::removeUnidadeSuccess($unidade_nome));
         } catch(QueryException $ex) {
-            return redirect('/listar/unidade')->with('fail', 'A unidade '.$unidade_nome.' não pode ser removida!');
+            return redirect('/listar/unidade')->with('fail', \SimuladoENADE\FlashMessage::removeUnidadeFail($unidade_nome));
         }
     }
 }

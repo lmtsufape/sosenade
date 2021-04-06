@@ -4,6 +4,7 @@ namespace SimuladoENADE\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\QueryException;
 use SimuladoENADE\Validator\DisciplinaValidator;
 use SimuladoENADE\Validator\ValidationException;
 
@@ -16,7 +17,7 @@ class DisciplinaController extends Controller {
 			$disciplina->fill($request->all());
 			$disciplina->curso_id = $curso_id;
 			$disciplina->save();
-			return redirect("listar/disciplina");
+			return redirect("listar/disciplina")->with('success', \SimuladoENADE\FlashMessage::cadastroSuccess());
 		}
 		catch(ValidationException $ex){
 			return redirect("cadastrar/disciplina")->withErrors($ex->getValidator())->withInput();
@@ -50,7 +51,7 @@ class DisciplinaController extends Controller {
 			$disciplina->curso_id = $curso_id;
 
 			$disciplina->update();
-			return redirect("listar/disciplina");
+			return redirect("listar/disciplina")->with('success', \SimuladoENADE\FlashMessage::alteracoesSuccess());
 		}
 		catch(ValidationException $ex){
 			return redirect("editar/disciplina")->withErrors($ex->getValidator())->withInput();
@@ -59,7 +60,14 @@ class DisciplinaController extends Controller {
 	
 	public function remover(Request $request){
 		$disciplina = \SimuladoENADE\Disciplina::find($request->id);
-		$disciplina->delete();
-		return redirect("/listar/disciplina");
+		$disciplina_nome = $disciplina->nome;
+
+		try {
+			$disciplina->delete();
+			return redirect("/listar/disciplina")->with('success', \SimuladoENADE\FlashMessage::removeDisciplinaSuccess($disciplina_nome));
+		} catch(QueryException $ex) {
+			return redirect("/listar/disciplina")->with('fail', \SimuladoENADE\FlashMessage::removeDisciplinaFail($disciplina_nome));
+		}
+		
 	}
 }

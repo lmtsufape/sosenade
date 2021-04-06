@@ -32,7 +32,7 @@ class AlunoController extends Controller{
 			$aluno->curso_id = $curso_id;
 			$aluno->password = Hash::make($request->password);
 			$aluno->save();
-			return redirect("listar/aluno")->with('success', 'Cadastro realizado com sucesso!');;;
+			return redirect("listar/aluno")->with('success', \SimuladoENADE\FlashMessage::cadastroSuccess());
 
 		} catch(ValidationException $ex) {
 			return redirect("cadastrar/aluno")->withErrors($ex->getValidator())->withInput();
@@ -117,7 +117,7 @@ class AlunoController extends Controller{
 		$usuario->password = Hash::make($request->password);
 		$usuario->save();
 
-		return redirect()->back()->with('success', true)->with('message','Senha alterada com sucesso!');
+		return redirect()->back()->with('success', true)->with('message', \SimuladoENADE\FlashMessage::senhaAlteradaSuccess());
 	}
 
 	public function atualizar(Request $request){
@@ -126,7 +126,7 @@ class AlunoController extends Controller{
 			$aluno = \SimuladoENADE\Aluno::find($request->id);    
 			$aluno->fill($request->all());
 			$aluno->update();
-			return redirect()->back()->with('success', true)->with('message','Alterações efetuadas.');
+			return redirect()->back()->with('success', true)->with('message', \SimuladoENADE\FlashMessage::alteracoesSuccess());
 		} catch(ValidationException $ex){
 			return redirect("editar/aluno/".$request->id)->withErrors($ex->getValidator())->withInput();
 		}
@@ -135,6 +135,6 @@ class AlunoController extends Controller{
 	public function remover(Request $request){
 		$aluno = \SimuladoENADE\Aluno::find($request->id);
 		$aluno->delete();
-		return redirect('\listar\aluno')->with('success', 'Aluno removido com sucesso!');
+		return redirect('\listar\aluno')->with('success', \SimuladoENADE\FlashMessage::removeAlunoSuccess());
 	}
 }

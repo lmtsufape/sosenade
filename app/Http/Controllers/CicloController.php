@@ -20,7 +20,7 @@ class Ciclocontroller extends Controller
         	$ciclo->fill($request->all());
 			$ciclo->instituicao_id = $user->id;
         	$ciclo->save();
-        	return redirect("listar/ciclo")->with('success', 'Cadastro realizado com sucesso!');
+        	return redirect("listar/ciclo")->with('success', \SimuladoENADE\FlashMessage::cadastroSuccess());
     	}
     	catch(ValidationException $ex){
         	return redirect("cadastrar/ciclo")->withErrors($ex->getValidator())->withInput();
@@ -48,7 +48,7 @@ class Ciclocontroller extends Controller
         	$ciclo->fill($request->all());
 			$ciclo->instituicao_id = $user->id;
         	$ciclo->update();
-        	return redirect("listar/ciclo")->with('success', 'As alterações foram salvas!');;
+        	return redirect("listar/ciclo")->with('success', \SimuladoENADE\FlashMessage::alteracoesSuccess());
     	}
     	catch(ValidationException $ex){
         	return redirect("editar/ciclo")->withErrors($ex->getValidator())->withInput();
@@ -61,9 +61,9 @@ class Ciclocontroller extends Controller
 
 		try {
 			$ciclo->delete();
-			return redirect("listar\ciclo")->with('success', 'O ciclo '.$ciclo_nome.' foi removido com sucesso!');
+			return redirect("listar\ciclo")->with('success', \SimuladoENADE\FlashMessage::removeCicloSuccess($ciclo_nome));
 		} catch(QueryException $ex) {
-			return redirect("listar\ciclo")->with('fail', 'O ciclo '.$ciclo_nome.' não pode ser removido!');
+			return redirect("listar\ciclo")->with('fail', \SimuladoENADE\FlashMessage::removeCicloFail($ciclo_nome));
 		}
 
 	}

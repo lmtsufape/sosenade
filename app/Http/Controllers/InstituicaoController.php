@@ -37,7 +37,7 @@ class InstituicaoController extends Controller
             $instituicao->fill($request->all());
             $instituicao->password = Hash::make($request->password);
             $instituicao->save();
-            return redirect("/listar/instituicao")->with('success', 'Cadastro realizado com sucesso!');
+            return redirect("/listar/instituicao")->with('success', \SimuladoENADE\FlashMessage::cadastroSuccess());
         }
         catch(ValidationException $ex){
             return redirect("cadastrar/instituicao")->withErrors($ex->getValidator())->withInput();
@@ -64,7 +64,7 @@ class InstituicaoController extends Controller
             $instituicao->fill($data);
             $instituicao->update();
 
-            return redirect("/listar/instituicao")->with('success', 'As alterações foram salvas!');
+            return redirect("/listar/instituicao")->with('success', \SimuladoENADE\FlashMessage::alteracoesSuccess());
         }
         catch(ValidationException $ex){
             return redirect("editar/instituicao")->withErrors($ex->getValidator())->withInput();
@@ -77,9 +77,9 @@ class InstituicaoController extends Controller
 
         try { 
             $instituicao->delete();
-            return redirect("/listar/instituicao")->with('success', 'A instituição '.$instituicao_nome.' foi removida com sucesso!');
+            return redirect("/listar/instituicao")->with('success', \SimuladoENADE\FlashMessage::removeInstituicaoSuccess($instituicao_nome));
         } catch(QueryException $ex) {
-            return redirect("/listar/instituicao")->with('fail', 'A instituição '.$instituicao_nome.' não pode ser removida!');
+            return redirect("/listar/instituicao")->with('fail', \SimuladoENADE\FlashMessage::removeInstituicaoFail($instituicao_nome));
         }
 
     }
