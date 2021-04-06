@@ -195,7 +195,7 @@
             </div>
             <hr style="width: 95%">
             <div class="row" style="margin-left: 85%">
-                <button type="submit" name="editar" class="btn btn-primary center-block">Salvar alterações</button>
+                <button type="submit" name="editar" class="btn btn-primary center-block">Salvar Questão</button>
             </div>
         </form>
     </div>
