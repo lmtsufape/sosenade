@@ -6,7 +6,7 @@
             <div class="col" align="left">
                 <h1 style="margin-left: 15px; margin-top: 15px">Montar Simulado - {{$titulo_simulado}}</h1>
                 <p style="color: #606f7b; margin-left: 15px; margin-top: -5px">
-                    <a href="{{route('home')}}" style="color: inherit;">Inicio</a> >
+                    <a href="{{route('home')}}" style="color: inherit;">Início</a> >
                     <a href="{{route('list_simulado')}}" style="color: inherit;">Lista de Simulados</a> >
                     Montar Simulado - {{$titulo_simulado}}
                 </p>
@@ -46,6 +46,7 @@
                                 <select name="disciplina_id"
                                         class="form-control{{ $errors->has('disciplina_id') ? ' is-invalid' : '' }}"
                                         required autofocus>
+                                    <option value="" selected hidden style="text-align: center">Selecione a Disciplina</option>
                                     @foreach ($disciplinas as $disciplina)
                                         <option
                                             value="{{$disciplina->id}}" {{ old('disciplina') == $disciplina->id ? 'selected' : '' }} >{{$disciplina->nome}} </option>
@@ -58,11 +59,12 @@
                                 @endif
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="col-md-4 text-center">
                                 <label for="dificuldade">Dificuldade</label>
                                 <select name="dificuldade"
                                         class="form-control{{ $errors->has('dificuldade') ? ' is-invalid' : '' }}"
                                         required autofocus>
+                                    <option value="" selected hidden style="text-align: center">Selecione a Dificuldade</option>
                                     <option value="1" {{ old('dificuldade') == 1 ? 'selected' : '' }} >Fácil
                                     </option>
                                     <option value="2" {{ old('dificuldade') == 2 ? 'selected' : '' }} >Médio
@@ -235,7 +237,6 @@
             </div>
         </div>
     </div>
-
 
     <script type="text/javascript">
         $(document).ready(function () {

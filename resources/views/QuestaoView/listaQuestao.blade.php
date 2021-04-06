@@ -7,15 +7,13 @@
              style="background: #1B2E4F; margin-top: -15px; margin-bottom:  30px; border-radius: 10px 10px 0 0; color: white">
             <div class="col-sm">
                 <h1 style="margin-left: 15px; margin-top: 15px">Questões Cadastradas</h1>
-                <p style="color: #606f7b; margin-left: 15px; margin-top: -5px"><a href="{{route('home')}}"
-                                                                                  style="color: inherit;">Inicio</a> >
-                    Questões Cadastradas</p>
+                <p style="color: #606f7b; margin-left: 15px; margin-top: -5px"><a href="{{route('home')}}" style="color: inherit;">Início</a>
+                    > Questões Cadastradas</p>
             </div>
 
             <div class="col-sm" style="margin-top: 30px; margin-right: 20px">
                 <a class="btn btn-primary" href="{{route('new_qst')}}" style="float: right;"> Criar questão</a><br>
             </div>
-            {{-- <p><a href="">Inicio</a> > <a href="">Olá, fulano</a> > <a href=""></a>Meu Perfil</p> --}}
         </div>
 
         @if(!$questaos->isEmpty())
@@ -130,10 +128,12 @@
            data-placement="bottom" rel="tooltip" title="Visualizar" style="color: white"><i class="fa fa-eye"></i></a>
         Mostrar Questão
         <a class="btn btn-primary"
-           data-placement="bottom" rel="tooltip" title="Editar" style="color: white; margin-left: 5px"><i class="fa fa-pencil"></i></a>
+           data-placement="bottom" rel="tooltip" title="Editar" style="color: white; margin-left: 5px"><i
+                class="fa fa-pencil"></i></a>
         Editar Questão
         <a class="btn btn-danger"
-           data-placement="bottom" rel="tooltip" title="Excluir" style="color: white; margin-left: 5px"><i class="fa fa-trash"></i></a>
+           data-placement="bottom" rel="tooltip" title="Excluir" style="color: white; margin-left: 5px"><i
+                class="fa fa-trash"></i></a>
         Deletar Questão
 
         <script type="text/javascript">

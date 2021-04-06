@@ -8,7 +8,7 @@
             <div class="col-sm">
                 <h1 style="margin-left: 15px; margin-top: 15px">Disciplinas/Conteúdos Cadastrados</h1>
                 <p style="color: #606f7b; margin-left: 15px; margin-top: -5px">
-                    <a href="{{route('home')}}" style="color: inherit;">Inicio</a> >
+                    <a href="{{route('home')}}" style="color: inherit;">Início</a> >
                     Questões Cadastradas
                 </p>
             </div>
@@ -17,7 +17,6 @@
                 <a class="btn btn-primary" href="{{route('new_disciplina')}}" style="float: right;"> Cadastrar
                     Disciplina</a><br>
             </div>
-            {{-- <p><a href="">Inicio</a> > <a href="">Olá, fulano</a> > <a href=""></a>Meu Perfil</p> --}}
         </div>
         @if(!$disciplinas->isEmpty())
             <table class="table table-hover" id="tabela_dados" style="border-style: groove; border-color: #6cb2eb">
