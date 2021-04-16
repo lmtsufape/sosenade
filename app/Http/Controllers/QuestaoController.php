@@ -4,6 +4,7 @@ namespace SimuladoENADE\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\QueryException;
 use SimuladoENADE\Validator\QuestaoValidator;
 use SimuladoENADE\Validator\ValidationException;
 
@@ -28,7 +29,7 @@ class QuestaoController extends Controller {
 
 			$questao->save();
 
-			return redirect("listar/questao");
+			return redirect("listar/questao")->with('success', \SimuladoENADE\FlashMessage::cadastroSuccess());
 
 		} catch(ValidationException $ex){
 			return redirect("cadastrar/questao")->withErrors($ex->getValidator())->withInput();
@@ -102,7 +103,7 @@ class QuestaoController extends Controller {
 
 			$questao->update();
 
-			return \Redirect::intended('/');
+			return \Redirect::intended('/')->with('success', \SimuladoENADE\FlashMessage::alteracoesSuccess());;
 
 		}catch(ValidationException $ex){
 			return redirect("editar/questao")->withErrors($ex->getValidator())->withInput();
@@ -111,8 +112,13 @@ class QuestaoController extends Controller {
 
 	public function remover(Request $request){
 		$questao = \SimuladoENADE\Questao::find($request->id);
-		$questao->delete();
-		return redirect('\listar\questao');
+
+		try {
+			$questao->delete();
+			return redirect('\listar\questao')->with('success', \SimuladoENADE\FlashMessage::removeQuestaoSuccess());
+		} catch(QueryException $ex) {
+			return redirect('\listar\questao')->with('fail', \SimuladoENADE\FlashMessage::removeQuestaoFail());
+		}
 	}
 
 	public function importarQuestao(Request $request){

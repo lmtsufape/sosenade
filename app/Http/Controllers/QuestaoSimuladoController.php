@@ -31,6 +31,7 @@ class QuestaoSimuladoController extends Controller{
             $cont = count($num_questao);
             $vetor = [];
 
+            // Add questões novas ao simulado e ignora as já adicionadas
             for ($i=0; $i < $countQuestao; $i++) { 
                 $f = False;
                 for ($j=0; $j < $cont ; $j++) { 
@@ -45,13 +46,17 @@ class QuestaoSimuladoController extends Controller{
                 }
             }
             
-            MontarSimuladoValidator::Validate(count($vetor), $request->numero);            
+            // MontarSimuladoValidator::Validate(count($vetor), $request->numero);
+            $vetor_size = count($vetor);
 
             shuffle($vetor); 
             $row = [];
 
             # Cria as relações entre as qsts e o simulado
-            for($i = 0; $i < $request->numero; $i++){
+            // for($i = 0; $i < $request->numero; $i++){
+            
+            // Add as novas questões no simulado
+            for($i = 0; $i < $vetor_size; $i++){
                 $row = $vetor[$i];
                 $questao = new \SimuladoENADE\QuestaoSimulado();
                 $questao->questao_id = $row['id'];

@@ -47,7 +47,7 @@ class Usuariocontroller extends Controller{
 					Mail::to($request->email)->send(new emailConfirmacao());
 				}
 
-				return redirect("/listar/usuario")->with('success', 'Cadastro realizado com sucesso!');;;
+				return redirect("/listar/usuario")->with('success', \SimuladoENADE\FlashMessage::cadastroSuccess());
 
 			} elseif($user == 2){ // Coordenação de Curso
 
@@ -64,7 +64,7 @@ class Usuariocontroller extends Controller{
 					Mail::to($request->email)->send(new emailConfirmacao());
 				}
 
-				return redirect("/listar/professor")->with('success', 'Cadastro realizado com sucesso!');;;
+				return redirect("/listar/professor")->with('success', \SimuladoENADE\FlashMessage::cadastroSuccess());
 
 			} elseif ($user == 5) { // Coordenação Geral
 
@@ -80,7 +80,7 @@ class Usuariocontroller extends Controller{
 				if(false){
 					Mail::to($request->email)->send(new emailConfirmacao());
 				}
-				return redirect("listar/coordenacaoGeral")->with('success', 'Cadastro realizado com sucesso!');;;
+				return redirect("listar/coordenacaoGeral")->with('success', \SimuladoENADE\FlashMessage::cadastroSuccess());
 				# code...
 
 			}
@@ -274,7 +274,7 @@ class Usuariocontroller extends Controller{
 
 				$usuario->fill($inf_array);
 				$usuario->update();
-				return redirect("listar/professor")->with('success', 'As alterações foram salvas!');
+				return redirect("listar/professor")->with('success', \SimuladoENADE\FlashMessage::alteracoesSuccess());
 				// return redirect()->back()->with('success', true)->with('message','Alterações efetuadas.');
 
 			} elseif($user == 5){ // Coordenação Geral
@@ -291,7 +291,7 @@ class Usuariocontroller extends Controller{
 
 				$usuario->fill($inf_array);
 				$usuario->update();
-				return redirect()->back()->with('success', true)->with('message','Alterações efetuadas.');
+				return redirect()->back()->with('success', true)->with('message', \SimuladoENADE\FlashMessage::alteracoesSuccess());
 
 			} elseif($user = 6) { // Administrador Geral
 
@@ -307,7 +307,7 @@ class Usuariocontroller extends Controller{
 
 				$usuario->fill($inf_array);
 				$usuario->update();
-				return redirect()->back()->with('success', true)->with('message','Alterações efetuadas.');
+				return redirect()->back()->with('success', true)->with('message', \SimuladoENADE\FlashMessage::alteracoesSuccess());
 
 			}
 			
@@ -333,9 +333,9 @@ class Usuariocontroller extends Controller{
 		if($user == 4){ // Instituicao / Administrador
 			return redirect("/listar/usuario");
 		} elseif($user == 2){ // Coordenador
-			return redirect("/listar/professor")->with('success', 'Professor removido com sucesso!');
+			return redirect("/listar/professor")->with('success', \SimuladoENADE\FlashMessage::removeProfessorSuccess());
 		} elseif($user == 5){ // Coordenador Geral
-			return redirect("/listar/coordenacaoGeral")->with('success', 'Usuário removido com sucesso!');
+			return redirect("/listar/coordenacaoGeral")->with('success', \SimuladoENADE\FlashMessage::removeUsuarioSuccess());
 		}
 	}
 
