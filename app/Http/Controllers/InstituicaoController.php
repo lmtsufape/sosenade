@@ -5,6 +5,7 @@ namespace SimuladoENADE\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Validator;
 
 use SimuladoENADE\Validator\InstituicaoValidator;
 use SimuladoENADE\Validator\ValidationException;
@@ -20,8 +21,7 @@ class InstituicaoController extends Controller
 
     public function listar() {
         $instituicoes = \SimuladoENADE\Instituicao::all();
-
-        return view('InstituicaoView\listarInstituicoes', ['instituicoes' => $instituicoes]);
+        return view('InstituicaoView/listarInstituicoes', ['instituicoes' => $instituicoes]);
     }
 
     public function cadastrar() {
@@ -49,6 +49,40 @@ class InstituicaoController extends Controller
         return view('InstituicaoView/editarInstituicoes', ['instituicao' => $instituicao]);
     }
 
+    public function editarPerfil(Request $request) {
+        $instituicao = \Auth::guard('instituicao')->user();
+        $user_vinculo = \SimuladoENADE\Tipousuario::find($instituicao->tipousuario_id);
+        $user_instituicao = $instituicao->nome;
+        return view('InstituicaoView/editarPerfil', ['instituicao' => $instituicao, 'user_vinculo' => $user_vinculo, 'user_instituicao' => $user_instituicao]);
+    }
+
+    public function editarSenha(Request $request) {
+
+		$instituicao = \SimuladoENADE\Instituicao::find($request->id);
+
+		if (!(Hash::check($request->old_password, $instituicao->password)))
+			return redirect()->back()->with('fail', true)->with('message','Senha incorreta! Alterações não efetuadas.')->with('senha', true);
+
+		$validator = Validator::make(
+            $request->all(),
+            [
+			    'password' => 'min:6|max:16|required_with:password_confirmation',
+			    'password_confirmation' => 'required_with:password|same:password'
+			],
+            [
+                'min' => 'A senha deve conter no mínimo 6 caracteres',
+                'same' => 'A nova senha e a confirmação da senha devem ser iguais'
+            ]);
+
+		if($validator->fails())
+			return redirect()->back()->withErrors($validator->errors())->withInput()->with('senha', true);
+
+		$instituicao->password = Hash::make($request->password);
+		$instituicao->save();
+
+		return redirect()->back()->with('success', true)->with('message', \SimuladoENADE\FlashMessage::senhaAlteradaSuccess());
+	}
+
     public function atualizar(Request $request) {
         try{
 
@@ -64,10 +98,19 @@ class InstituicaoController extends Controller
             $instituicao->fill($data);
             $instituicao->update();
 
-            return redirect("/listar/instituicao")->with('success', \SimuladoENADE\FlashMessage::alteracoesSuccess());
+            if(\Auth::guard('instituicao')->check()) {
+                return redirect()->back()->with('success', true)->with('message', \SimuladoENADE\FlashMessage::alteracoesSuccess());
+            } else {
+                return redirect("/listar/instituicao")->with('success', \SimuladoENADE\FlashMessage::alteracoesSuccess());
+            }
         }
         catch(ValidationException $ex){
-            return redirect("editar/instituicao")->withErrors($ex->getValidator())->withInput();
+
+            if(\Auth::guard('instituicao')->check()) {
+                return redirect()->back()->withErrors($ex->getValidator())->withInput();
+            } else {
+                return redirect("editar/instituicao")->withErrors($ex->getValidator())->withInput();
+            }
         }
     }
 

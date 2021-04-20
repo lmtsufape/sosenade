@@ -16,7 +16,7 @@
 			</div>
 		@endif
 
-		{{-- @if(!$usuarios->isEmpty()) --}}
+		@if(!$instituicoes->isEmpty())
 			<table id="tabela_dados" class="table table-hover">
 		 		<thead>
 					<tr>
@@ -40,9 +40,9 @@
 					@endforeach
 				</tbody>
 			</table>
-		{{-- @else
+		@else
 			<p class="text-center alert alert-light">Não existem Instituições cadastradas até o momento.</p>
-		@endif --}}
+		@endif
 
 		<hr class="star-light">
 

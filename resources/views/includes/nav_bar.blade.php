@@ -231,7 +231,7 @@ box-shadow: 0px 4px 10px -5px rgba(0,0,0,0.64);" role="navigation">
 						@if(Auth::guard('aluno')->user())
 							<a class="dropdown-item" href="{{ route('edit_perfil_aluno') }}">
 						@elseif(Auth::guard('instituicao')->user())
-							<a class="dropdown-item" href="{{-- --}}"> // route('edit_perfil_instituicao')
+							<a class="dropdown-item" href="{{ route('edit_perfil_instituicao') }}">
 						@else
 							<a class="dropdown-item" href="{{ route('edit_usuario', ['id' => Auth::user()->id]) }}">
 						@endif
