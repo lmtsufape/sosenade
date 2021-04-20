@@ -1,9 +1,20 @@
 <nav class="navbar navbar-light navbar-expand-lg" style="background-color: white; border-color: #d3e0e9;
 box-shadow: 0px 4px 10px -5px rgba(0,0,0,0.64);" role="navigation">
 	<div class="container">
-		<a href="{{ (Auth::guard('aluno')->user()) ? route('home_aluno') : route('home') }}" style="max-height: 45%; max-width: 45%">
-			<img src="{{asset('1.png')}}" style="width: 90px" class="img-fluid float-left">
-		</a>
+
+		@if(\Auth::guard('aluno')->user())
+			<a href="{{ route('home_aluno') }}" style="max-height: 45%; max-width: 45%">
+				<img src="{{asset('1.png')}}" style="width: 90px" class="img-fluid float-left">
+			</a>
+		@elseif(\Auth::guard('instituicao')->user())
+			<a href="{{ route('home_instituicao') }}" style="max-height: 45%; max-width: 45%">
+				<img src="{{asset('1.png')}}" style="width: 90px" class="img-fluid float-left">
+			</a>
+		@else
+			<a href="{{ route('home') }}" style="max-height: 45%; max-width: 45%">
+				<img src="{{asset('1.png')}}" style="width: 90px" class="img-fluid float-left">
+			</a>
+		@endif
 
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
 			<span class="navbar-toggler-icon"></span>
