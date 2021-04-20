@@ -5,6 +5,7 @@ namespace SimuladoENADE\Http\Controllers;
 use Illuminate\Http\Request;
 use SimuladoENADE\Validator\AlunoValidator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Validator;
 use SimuladoENADE\Validator\ValidationException;
 use SimuladoENADE\Validator\CsvImportRequest;
@@ -51,32 +52,41 @@ class AlunoController extends Controller{
 		$path = $request->file('csv_file')->getRealPath();
 		$data = array_map('str_getcsv', file($path));
 
-		if(!$data){ 
-			dd("Arquivo vazio");  
+		$dados_duplicados = '';
+		$count_line = count($data);
+
+		if(!$data || $count_line <= 1){ 
+			return redirect('cadastrar/aluno')->with('fail', \SimuladoENADE\FlashMessage::importAlunoFail());
 		} else {
 
-			// $csv_data = array_slice($data, 0, count($data));
 			$csv_data = array_slice($data, 1, count($data)); // Lista da segunda linha do array adiante
 			foreach ($csv_data as $input) {
+				
+				try {
 
-				if($input[0] and $input[1] and $input[2] and $input[3]){
+					if($input[0] and $input[1] and $input[2] and $input[3]){
 
-					$curso_id = \Auth::user()->curso_id;
-					$aluno = new \SimuladoENADE\Aluno();
-					$aluno->nome = $input[0];
-					$aluno->cpf = $input[1];
-					$aluno->email = $input[2];
+						$curso_id = \Auth::user()->curso_id;
+						$aluno = new \SimuladoENADE\Aluno();
+						$aluno->nome = $input[0];
+						$aluno->cpf = $input[1];
+						$aluno->email = $input[2];
 
-					$aluno->curso_id = $curso_id;
-					$aluno->password = Hash::make($input[3]);
-					$aluno->save();
-	
-				}
-				else{
-					##Relatar uma view de erro para algum campo vazio
+						$aluno->curso_id = $curso_id;
+						$aluno->password = Hash::make($input[3]);
+						$aluno->save();
+		
+					}
+					else{
+						##Relatar uma view de erro para algum campo vazio
+					}
+
+				} catch(QueryException $ex) {
+					$dados_duplicados = 'Existe dados de alunos já cadastrados no seu arquivo de importação. Os dados já cadastrados não serão alterados!';
 				}
 			}
-			return redirect('listar/aluno');
+
+			return redirect('listar/aluno')->with('success', \SimuladoENADE\FlashMessage::importAlunoSuccess($dados_duplicados));
 		}
 	}
 
