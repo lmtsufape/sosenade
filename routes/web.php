@@ -168,6 +168,9 @@ Route::middleware('admGeral.auth')->group(function(){
 Route::middleware('instituicao.auth')->group(function(){
 
 	Route::get('/instituicaohome', 'InstituicaoController@home')->name('home_instituicao');
+	Route::post('/atualizar/instituicao', 'InstituicaoController@atualizar')->name('update_instituicao');
+	Route::get('/editarPerfilInstituicao', 'InstituicaoController@editarPerfil')->name('edit_perfil_instituicao');
+	Route::post('/alterarSenhaInstituicao', 'InstituicaoController@editarSenha')->name('alterar_senha_instituicao');
 
 	Route::get('/listar/curso','CursoController@listar')->name('list_curso');
 	Route::get('/cadastrar/curso', 'CursoController@cadastrar')->name('new_curso');
