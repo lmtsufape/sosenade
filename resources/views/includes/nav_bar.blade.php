@@ -53,7 +53,7 @@ box-shadow: 0px 4px 10px -5px rgba(0,0,0,0.64);" role="navigation">
 							Visão Geral do Sistema
 						</a>
 					</li>
-				@endcan --> 
+				@endcan -->
 
 				<!-- View Acima Referente a antigo Admistrador do Sistema, Responsabilidade passada para Instituicao -->
 
@@ -239,7 +239,7 @@ box-shadow: 0px 4px 10px -5px rgba(0,0,0,0.64);" role="navigation">
 							Meu Perfil
 						</a>
 						<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-							{{ __('Logout') }}
+							{{ __('Sair') }}
 						</a>
 						<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 							@csrf

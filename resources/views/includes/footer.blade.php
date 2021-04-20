@@ -83,19 +83,13 @@ padding-bottom: 20px; position:absolute; bottom:100; width:100%; ">
                     </div>
                     <div style="margin: 3px;">
                         <a href="http://lmts.uag.ufrpe.br/" target="blank">
-                            <img style="height: 100px" src="{{ asset('images\logo_ufape_preto.png') }}">
+                            <img style="height: 100px" src="{{ asset('images\Logo_UFAPE_Colorida_com_Lettering.png') }}">
                         </a>
-                    </div>
-                    <div style="margin: 3px; margin-top:1.8rem;">
-                        <p style="display: inline">Universidade Federal do<br> Agreste de Pernambuco</p>
                     </div>
                     <div style="margin:20px 3px; ">
                         <a href="http://lmts.uag.ufrpe.br/" target="blank">
                             <img style="height: 65px" src="{{ asset('images\logo_upe.png') }}">
                         </a>
-                    </div>
-                    <div style="margin:3px; margin-top:1.8rem;">
-                        <p style="display: inline">Universidade de Pernambuco<br> Campus Garanhuns</p>
                     </div>
                 </div>
             </div>

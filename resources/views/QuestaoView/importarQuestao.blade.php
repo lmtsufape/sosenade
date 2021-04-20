@@ -18,7 +18,7 @@
             <div class="col" align="left">
                 <h1 style="margin-left: 15px; margin-top: 15px"> Importar Questões </h1>
                 <p style="color: #606f7b; margin-left: 15px; margin-top: -5px">
-                    <a href="{{route('home')}}" style="color: inherit;">Inicio</a> >
+                    <a href="{{route('home')}}" style="color: inherit;">Início</a> >
                     Importar Questões
                 </p>
             </div>

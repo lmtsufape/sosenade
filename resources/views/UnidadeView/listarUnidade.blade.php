@@ -2,62 +2,82 @@
 @section('titulo','Instituições Cadastradas')
 @section('content')
 
-    <div class="shadow p-4 bg-white rounded container-fluid" style="overflow-x: auto;">
+    <div class="shadow p-3 bg-white" style="border-radius: 10px">
+        <div class="row"
+             style="background: #1B2E4F; margin-top: -15px; margin-bottom:  30px; border-radius: 10px 10px 0 0; color: white">
+            <div class="col-sm">
+                <h1 style="margin-left: 15px; margin-top: 15px">Unidades Cadastradas</h1>
+                <p style="color: #606f7b; margin-left: 15px; margin-top: -5px">
+                    <a href="{{route('home')}}" style="color: inherit;">Inicio</a> >
+                    Unidades Cadastradas
+                </p>
+            </div>
+            <div class="col-sm" style="margin-top: 30px; margin-right: 20px">
+                <a class="btn btn-primary" href="{{route('new_unidade')}}" style="float: right;"> Inserir
+                    Unidade</a><br>
+            </div>
 
-		<h1 class="text-center">Unidades Cadastradas</h1><br>
+        </div>
 
-		@if (session('success'))
-			<div class="alert alert-success">
-				{{ session('success') }}
-			</div>
-		@elseif (session('fail'))
-			<div class="alert alert-danger">
-				{{ session('fail') }}
-			</div>
-		@endif
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @elseif (session('fail'))
+            <div class="alert alert-danger">
+                {{ session('fail') }}
+            </div>
+        @endif
 
-		@if(!$unidades->isEmpty())
-			<table id="tabela_dados" class="table table-hover">
-		 		<thead>
-					<tr>
-						<th>Nome</th>
-					</tr>
-				</thead>
-				<tbody>
-					@foreach($unidades as $unidade)
-						<tr>
-							<td>{{ ($instituicao->nome. ' - ' .$unidade->nome) }}</td>
-							<td class="btn-group">
-								<a href="{{route('edit_unidade', ['id'=>$unidade->id])}}" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
-								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{ route('delete_unidade', ['id'=>$unidade->id]) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
-							</td>
-						</tr>
-					@endforeach
-				</tbody>
-			</table>
-		@else
-			<p class="text-center alert alert-light">Não existem Unidades cadastradas até o momento.</p>
-		@endif
+        @if(!$unidades->isEmpty())
+            <table id="tabela_dados" class="table table-hover" style="border-style: groove; border-color: #6cb2eb">
+                <thead>
+                <tr class="header" style="background: #1B2E4F; color: white">
+                    <th>Nome</th>
+                    <th style="width: 10%">Opções</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($unidades as $unidade)
+                    <tr>
+                        <td class="align-middle">{{ ($instituicao->nome. ' - ' .$unidade->nome) }}</td>
+                        <td>
+                            <a href="{{route('edit_unidade',['id'=>$unidade->id])}}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+                            <a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_unidade',['id'=>$unidade->id])}}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        @else
+            <p class="text-center alert alert-light">Não existem Unidades cadastradas até o momento.</p>
+        @endif
 
-		<hr class="star-light">
+        <hr>
 
-		<div class="justify-content-center text-center">
-			<a class="btn btn-primary " href="{{route('new_unidade')}}"> Inserir nova </a><br><br>
-		</div>
+        <p>Legenda:</p>
+        <a class="btn btn-primary"
+           data-placement="bottom" rel="tooltip" title="Editar" style="color: white; margin-left: 5px"><i
+                class="fa fa-pencil"></i></a>
+        Editar Curso
+        <a class="btn btn-danger"
+           data-placement="bottom" rel="tooltip" title="Excluir" style="color: white; margin-left: 5px"><i
+                class="fa fa-trash"></i></a>
+        Deletar Curso
 
-	</div>
+    </div>
 
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#tabela_dados').DataTable({
-				"columnDefs": [
-					{ "orderable": false, "targets": 6 }
-				],
-				"language": {
-					"url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
-				}
-			});
-		} );
-	</script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tabela_dados').DataTable({
+                "columnDefs": [
+                    {"orderable": false, "targets": 1}
+                ],
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+                }
+            });
+        });
+    </script>
 
 @stop
