@@ -1,11 +1,23 @@
 @extends('layouts.app')
 @section('titulo','Usuários Cadastrados')
 @section('content')
+    <div class="shadow p-3 bg-white" style="border-radius: 10px">
+        <div class="row"
+             style="background: #1B2E4F; margin-top: -15px; margin-bottom:  30px; border-radius: 10px 10px 0 0; color: white">
+            <div class="col-sm">
+                <h1 style="margin-left: 15px; margin-top: 15px">Usuários Cadastrados</h1>
+                <p style="color: #606f7b; margin-left: 15px; margin-top: -5px">
+                    <a href="{{route('home')}}" style="color: inherit;">Inicio</a> >
+                    Usuários Cadastrados
+                </p>
+            </div>
+            <div class="col-sm" style="margin-top: 30px; margin-right: 20px">
+                <a class="btn btn-primary" href="{{route('new_usuario')}}" style="float: right;"> Inserir
+                    Usuário</a><br>
+            </div>
 
-    <div class="shadow p-4 bg-white rounded container-fluid" style="overflow-x: auto;">
-	
-		<h1 class="text-center">Usuários Cadastrados</h1><br>
-		
+        </div>
+
 		@if (session('success'))
 			<div class="alert alert-success">
 				{{ session('success') }}
@@ -17,16 +29,16 @@
 		@endif
 
 		@if(!$usuarios->isEmpty())
-			<table id="tabela_dados" class="table table-hover">
+			<table id="tabela_dados" class="table table-hover" style="border-style: groove; border-color: #6cb2eb">
 		 		<thead>
-					<tr>
+					<tr class="header" style="background: #1B2E4F; color: white">
 						<th>Nome</th>
 						<th>Tipo de usuário</th>
 						<th>CPF</th>
 						<th>E-mail</th>
 						<th>Curso</th>
 						<th>Unidade</th>
-						<th style="width: 7%">Opções</th>
+						<th style="width: 10%">Opções</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -38,9 +50,9 @@
 							<td>{{$usuario->email}}</td>
 							<td>{{$usuario->curso_nome}}</td>
 							<td>{{$usuario->curso->unidade->nome}}</td>
-							<td class="btn-group">
-								<a href="{{route('edit_usuario',['id'=>$usuario->userid])}}" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
-								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_usuario',['id'=>$usuario->userid])}}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+							<td>
+								<a href="{{route('edit_usuario',['id'=>$usuario->userid])}}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_usuario',['id'=>$usuario->userid])}}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
 							</td>
 						</tr>
 					@endforeach
@@ -50,11 +62,17 @@
 			<p class="text-center alert alert-light">Não existem usuários cadastrados até o momento.</p>
 		@endif
 
-		<hr class="star-light">
+        <hr>
 
-		<div class="justify-content-center text-center">
-			<a class="btn btn-primary " href="{{route('new_usuario')}}"> Inserir novo </a><br><br>
-		</div>
+        <p>Legenda:</p>
+        <a class="btn btn-primary"
+           data-placement="bottom" rel="tooltip" title="Editar" style="color: white; margin-left: 5px"><i
+                class="fa fa-pencil"></i></a>
+        Editar Curso
+        <a class="btn btn-danger"
+           data-placement="bottom" rel="tooltip" title="Excluir" style="color: white; margin-left: 5px"><i
+                class="fa fa-trash"></i></a>
+        Deletar Curso
 
 	</div>
 
