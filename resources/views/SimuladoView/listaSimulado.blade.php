@@ -8,15 +8,15 @@
             <div class="col-sm">
                 <h1 style="margin-left: 15px; margin-top: 15px">Simulados Cadastrados</h1>
                 <p style="color: #606f7b; margin-left: 15px; margin-top: -5px">
-                    <a href="{{route('home')}}" style="color: inherit;">Inicio</a> >
+                    <a href="{{route('home')}}" style="color: inherit;">Início</a> >
                     Simulados Cadastrados
                 </p>
             </div>
 
             <div class="col-sm" style="margin-top: 30px; margin-right: 20px">
-                <a class="btn btn-primary" href="{{route('new_simulado')}}" style="float: right;"> Cadastrar Simulado</a><br>
+                <a class="btn btn-primary" href="{{route('new_simulado')}}" style="float: right;"> Cadastrar
+                    Simulado</a><br>
             </div>
-            {{-- <p><a href="">Inicio</a> > <a href="">Olá, fulano</a> > <a href=""></a>Meu Perfil</p> --}}
         </div>
 
         @if(!$simulados->isEmpty())
@@ -101,7 +101,7 @@
                     [0, "asc"]
                 ],
                 "columnDefs": [
-                    {"orderable": false, "targets": [1,2,3]}
+                    {"orderable": false, "targets": [1, 2, 3]}
                 ],
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
