@@ -12,6 +12,17 @@
                 </p>
             </div>
         </div>
+
+        @if (session('success'))
+			<div class="alert alert-success">
+				{{ session('success') }}
+			</div>
+		@elseif (session('fail'))
+			<div class="alert alert-danger">
+				{{ session('fail') }}
+			</div>
+		@endif
+
         <div class="card" id="body-tabs">
             <div class="card-header">
                 <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
