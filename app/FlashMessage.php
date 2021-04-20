@@ -78,6 +78,13 @@ class FlashMessage extends Model
         return 'A questão não pode ser removida! Remova as dependências (Simulados) vinculadas antes!';
     }
 
+    public static function importAlunoSuccess($dados_duplicados) {
+        return 'Alunos importados com sucesso! '.$dados_duplicados;
+    }
+
+    public static function importAlunoFail() {
+        return 'Arquivo vazio! Verifique se existe registros de alunos no seu documento!';
+    }
     /*
         \SimuladoENADE\FlashMessage::cadastroSuccess()
         \SimuladoENADE\FlashMessage::alteracoesSuccess()
@@ -105,6 +112,9 @@ class FlashMessage extends Model
 
         \SimuladoENADE\FlashMessage::removeQuestaoSuccess()
         \SimuladoENADE\FlashMessage::removeQuestaoFail()
+
+        \SimuladoENADE\FlashMessage::importAlunoSuccess($dados_duplicados)
+        \SimuladoENADE\FlashMessage::importAlunoFail()
 
     */
 }
