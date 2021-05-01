@@ -4,7 +4,7 @@ namespace SimuladoENADE;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TipoUsuario extends Model
+class Tipousuario extends Model
 {
     //
    
