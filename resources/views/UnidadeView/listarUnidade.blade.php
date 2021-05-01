@@ -59,11 +59,11 @@
         <a class="btn btn-primary"
            data-placement="bottom" rel="tooltip" title="Editar" style="color: white; margin-left: 5px"><i
                 class="fa fa-pencil"></i></a>
-        Editar Curso
+        Editar Unidade
         <a class="btn btn-danger"
            data-placement="bottom" rel="tooltip" title="Excluir" style="color: white; margin-left: 5px"><i
                 class="fa fa-trash"></i></a>
-        Deletar Curso
+        Deletar Unidade
 
     </div>
 
