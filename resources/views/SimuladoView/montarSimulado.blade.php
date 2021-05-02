@@ -250,6 +250,12 @@
         </div>
     </div>
 
+    <style>
+        label{
+            font-weight: bold;
+        }
+    </style>
+
     <script type="text/javascript">
         $(document).ready(function () {
             $('#tabela_dados1').DataTable({

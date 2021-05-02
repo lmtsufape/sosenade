@@ -18,8 +18,8 @@
                 <div class="form-group col-md-2"
                      style="background: #24509D; color: white; border-radius: 10px; padding: 5px">
                     <h1>1º</h1>
-                    <small>Selecione a disciplina/conteúdo abrangido na questão e o nível de dificuldade da
-                        mesma.</small>
+                    Selecione a disciplina/conteúdo abrangido na questão e o nível de dificuldade da
+                        mesma.
                 </div>
                 <div class="form-group col-md-9">
                     <div class="card">
@@ -59,7 +59,7 @@
                 <div class="form-group col-md-2"
                      style="background: #24509D; color: white; border-radius: 10px; padding: 5px">
                     <h1>2º</h1>
-                    <small>Digite o enunciado da questão no campo ao lado.</small>
+                    Digite o enunciado da questão no campo ao lado.
                 </div>
                 <div class="form-group col-md-9">
                     <div class="card my-3">
@@ -77,8 +77,8 @@
                 <div class="form-group col-md-2"
                      style="background: #24509D; color: white; border-radius: 10px; padding: 5px">
                     <h1>3º</h1>
-                    <small>Preencha os campos ao lado com as alternativas correspondentes e marque a letra da
-                        alternativa correta</small>
+                    Preencha os campos ao lado com as alternativas correspondentes e marque a letra da
+                        alternativa correta
                 </div>
                 <div class="form-group col-md-9">
                     <div class="card">
@@ -93,10 +93,10 @@
                                         <div class="letraCirculo">A</div>
                                         <br>
                                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                            <label id="check1" class="btn" style="border-radius: 50%; padding: 0">
+                                            <label id="check1" class="btn" style="border-radius: 50%; padding: 0px">
                                                 <input type="radio" class="alt_buttons" name="alternativa_correta"
                                                        id="alternativa_correta1" value="0" required>
-                                                <img id="img1" src="{{asset('images/logo_check_cinza.png')}}">
+                                                <img id="img1" src="{{asset('images/logo_check_cinza.png')}}" width="68" height="68">
                                             </label>
                                         </div>
                                     </td>
@@ -116,7 +116,7 @@
                                             <label id="check2" class="btn" style="border-radius: 50%; padding: 0px">
                                                 <input type="radio" class="alt_buttons" name="alternativa_correta"
                                                        id="alternativa_correta" value="1" required>
-                                                <img id="img2" src="{{asset('images/logo_check_cinza.png')}}">
+                                                <img id="img2" src="{{asset('images/logo_check_cinza.png')}}" width="68" height="68">
                                             </label>
                                         </div>
                                     </td>
@@ -135,7 +135,7 @@
                                             <label id="check3" class="btn" style="border-radius: 50%; padding: 0px">
                                                 <input type="radio" class="alt_buttons" name="alternativa_correta"
                                                        id="alternativa_correta" value="2" required>
-                                                <img id="img3" src="{{asset('images/logo_check_cinza.png')}}">
+                                                <img id="img3" src="{{asset('images/logo_check_cinza.png')}}" width="68" height="68">
 
                                             </label>
                                         </div>
@@ -155,7 +155,7 @@
                                             <label id="check4" class="btn" style="border-radius: 50%; padding: 0px">
                                                 <input type="radio" class="alt_buttons" name="alternativa_correta"
                                                        id="alternativa_correta" value="3" required>
-                                                <img id="img4" src="{{asset('images/logo_check_cinza.png')}}">
+                                                <img id="img4" src="{{asset('images/logo_check_cinza.png')}}" width="68" height="68">
 
                                             </label>
                                         </div>
@@ -175,7 +175,7 @@
                                             <label id="check5" class="btn" style="border-radius: 50%; padding: 0px">
                                                 <input type="radio" class="alt_buttons" name="alternativa_correta"
                                                        id="alternativa_correta" value="4" required>
-                                                <img id="img5" src="{{asset('images/logo_check_cinza.png')}}">
+                                                <img id="img5" src="{{asset('images/logo_check_cinza.png')}}" width="68" height="68">
 
                                             </label>
                                         </div>
@@ -201,6 +201,11 @@
     </div>
 
 
+    <style>
+        label{
+            font-weight: bold;
+        }
+    </style>
 
     <script type="text/javascript">
         $('#check1').click(function () {

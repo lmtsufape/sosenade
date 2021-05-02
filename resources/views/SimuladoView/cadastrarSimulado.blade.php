@@ -67,4 +67,10 @@
 
     <!-- Script do DatePicker no footer.blade -->
 
+    <style>
+        label{
+            font-weight: bold;
+        }
+    </style>
+
 @stop
