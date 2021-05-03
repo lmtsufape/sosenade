@@ -13,7 +13,7 @@
                 </p>
             </div>
             <div class="col-sm" style="margin-top: 30px; margin-right: 20px">
-                <a class="btn btn-primary" href="{{route('new_aluno')}}" style="float: right;"> Cadastrar Aluno </a><br>
+                <a class="btn btn-primary" href="{{route('new_aluno')}}" style="float: right;"> Inserir Aluno </a><br>
             </div>
         </div>
 
