@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\QueryException;
 use SimuladoENADE\Validator\QuestaoValidator;
 use SimuladoENADE\Validator\ValidationException;
+use Illuminate\Support\Facades\Response;
 
 class QuestaoController extends Controller {
 	public function adicionar(Request $request){
@@ -159,6 +160,11 @@ class QuestaoController extends Controller {
 
 		return redirect()->route('import_qst')->with('success', true)->with('message', $mensagem);
 
+	}
+
+	public function getQuestaoJSON($id) {
+		$questao = \SimuladoENADE\Questao::find($id);
+		return Response::json($questao);
 	}
 
 }
