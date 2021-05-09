@@ -22,10 +22,12 @@ class DatabaseSeeder extends Seeder
         // $this->call(UsuarioSeeder::class);
 	    // $this->call(AlunoSeeder::class);
 
-        $this->call(AddTipousuarioSeeder::class);
-        $this->call(UpdateLMTSSeeder::class);
-        $this->call(InstituicaoSeeder::class);
-        $this->call(UpdateUnidadeAcademicasSeeder::class);
-        $this->call(UpdateCicloSeeder::class);
+        // $this->call(AddTipousuarioSeeder::class);
+        // $this->call(UpdateLMTSSeeder::class);
+        // $this->call(InstituicaoSeeder::class);
+        // $this->call(UpdateUnidadeAcademicasSeeder::class);
+        // $this->call(UpdateCicloSeeder::class);
+
+        $this->call(UsuarioSeeder::class);
     }
 }
