@@ -161,10 +161,5 @@ class QuestaoController extends Controller {
 		return redirect()->route('import_qst')->with('success', true)->with('message', $mensagem);
 
 	}
-
-	public function getQuestaoJSON($id) {
-		$questao = \SimuladoENADE\Questao::find($id);
-		return Response::json($questao);
-	}
-
+	
 }

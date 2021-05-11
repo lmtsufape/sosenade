@@ -101,9 +101,6 @@ Route::middleware('auth')->group(function(){
 		Route::post('/importarQuestao/listando', 'QuestaoController@importarQuestao')->name('listar_import_qst');
 		Route::post('/importarQuestao/importando', 'QuestaoController@importandoQuestoes')->name('import_qst_post');
 
-		// Retorna uma questao em formato JSON
-		Route::get('/getQuestao/{id}', 'QuestaoController@getQuestaoJSON');
-
 	});
 
 	// Route::middleware('adm.auth')->group(function(){
