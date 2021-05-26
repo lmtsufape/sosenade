@@ -34,4 +34,16 @@ class Resposta extends Model
     	'alternativa_questao.max' => 'o campo aceita apenas uma alternativa'
 
     ];
+
+    public static function findResposta($respostas, $questao_id) {
+
+        foreach ($respostas as $resposta) {
+
+            if($resposta['questao_id'] == $questao_id) {
+                return $resposta;
+            }
+
+        }
+
+    }
 }
