@@ -51,4 +51,14 @@ class Questao extends Model {
         return null;
     }
 
+    public static function queryToArrayIds($values) {
+        
+        $array = [];
+
+        foreach($values as $value)
+            array_push($array, $value->id);
+        
+        return $array;
+    }
+    
 }
