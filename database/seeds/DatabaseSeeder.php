@@ -28,6 +28,8 @@ class DatabaseSeeder extends Seeder
         // $this->call(UpdateUnidadeAcademicasSeeder::class);
         // $this->call(UpdateCicloSeeder::class);
 
-        $this->call(UsuarioSeeder::class);
+        // $this->call(UsuarioSeeder::class);
+
+        $this->call(DisciplinaUPESeeder::class);
     }
 }
