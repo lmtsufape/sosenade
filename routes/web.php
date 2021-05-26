@@ -148,6 +148,10 @@ Route::middleware('aluno.auth')->group(function(){
 	Route::post('/responder/simulado/', 'SimuladoController@responder')->name('answ_qst_simulado');
 	Route::get('/resultado/simulado/{id}', 'SimuladoController@resultado')->name('result_simulado');
 	Route::get('/startSimulado/{id}', 'SimuladoController@startSimulado')->name('startSimulado');
+	
+	Route::get('/editar/respostasSimulado/{id}', 'SimuladoController@editarRespostasSimulado')->name('list_edit_answ');
+	Route::get('/editar/resposta/{id}', 'SimuladoController@editarResposta')->name('edit_answ');
+	Route::post('/editar/atualizarRespostaSimulado/', 'SimuladoController@updateRespostaSimulado')->name('update_answ');
 
 	Route::get('/editarPerfil', 'AlunoController@editarPerfil')->name('edit_perfil_aluno');
 	Route::post('/alterarSenhaAluno', 'AlunoController@editarSenha')->name('alterar_senha_aluno');
