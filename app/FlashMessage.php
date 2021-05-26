@@ -85,6 +85,10 @@ class FlashMessage extends Model
     public static function importAlunoFail() {
         return 'Arquivo vazio! Verifique se existe registros de alunos no seu documento!';
     }
+
+    public static function updateRespostaSuccess() {
+        return 'Resposta salva com sucesso!';
+    }
     /*
         \SimuladoENADE\FlashMessage::cadastroSuccess()
         \SimuladoENADE\FlashMessage::alteracoesSuccess()
@@ -115,6 +119,8 @@ class FlashMessage extends Model
 
         \SimuladoENADE\FlashMessage::importAlunoSuccess($dados_duplicados)
         \SimuladoENADE\FlashMessage::importAlunoFail()
+
+        \SimuladoENADE\FlashMessage::updateRespostaSuccess()
 
     */
 }
