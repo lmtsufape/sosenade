@@ -40,7 +40,7 @@ class QuestaoController extends Controller {
 	public function cadastrar(){
 		$cursos = \SimuladoENADE\Curso::all();
 		#dd($cursos);
-		$disciplinas = \SimuladoENADE\Disciplina::where('curso_id', '=', \Auth::user()->curso_id)->get(); 
+		$disciplinas = \SimuladoENADE\Disciplina::where('curso_id', '=', \Auth::user()->curso_id)->orderBy('nome')->get(); 
 		return view('/QuestaoView/cadastrarQuestao', ['disciplinas' => $disciplinas, 'cursos' => $cursos]); 
 	}
 	
@@ -123,8 +123,8 @@ class QuestaoController extends Controller {
 	}
 
 	public function importarQuestao(Request $request){
-		$cursos = \SimuladoENADE\Curso::where('id', '!=', \Auth::user()->curso_id)->get();
-		$disciplinas = \SimuladoENADE\Disciplina::all();
+		$cursos = \SimuladoENADE\Curso::where('id', '!=', \Auth::user()->curso_id)->orderBy('curso_nome')->get();
+		$disciplinas = \SimuladoENADE\Disciplina::orderBy('nome')->get();
 		$questaos = collect();
 		$existe_no_curso = true;
 		
