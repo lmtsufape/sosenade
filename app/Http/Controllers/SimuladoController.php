@@ -309,6 +309,25 @@ class SimuladoController extends Controller{
 		
 	}
 
+	// Retorna questões respondidas pelo usuário no simulado ()
+	public function getQuestoesEdit($simulado){
+		
+		//Id do usuário
+		$user_id = \Auth::guard('aluno')->user()->id;
+		
+		$questaos = \DB::table('questao_simulados')
+		   ->whereIn('questao_id', function($query) use ($user_id, $simulado){ // Linha baixo lista todos os ids das questões de um simulado feito por um aluno
+			   $query->select('questao_id')->from('respostas')->where('respostas.aluno_id','=',$user_id)->where('simulado_id', '=', $simulado->id);
+			})
+			->where('simulado_id', '=', $simulado->id)
+			->join('questaos', 'questao_simulados.questao_id', '=', 'questaos.id')
+			->select('questaos.*', 'disciplinas.nome AS nome_disciplina')
+			->join('disciplinas', 'questaos.disciplina_id', '=', 'disciplinas.id')
+			->get()->toArray();
+		
+		return $questaos;		
+	}
+
 	// Leva a página de solução da primeira questão achada não respondida no simulado
 	public function questao(Request $request){
 
@@ -317,12 +336,119 @@ class SimuladoController extends Controller{
 		$questaos = self::getQuestoes($simulado);
 
 		if (empty($questaos))
-			return redirect('/resultado/simulado/'.$request->id);
+
+			// retorno para a página de revisão
+			return view('/SimuladoView/revisarSimulado', ['simulado_id' => $request->id]);
+
+			// return redirect('/resultado/simulado/'.$request->id);
 
 		$array = (array) $questaos[0];
 		
 		return view('/SimuladoView/questaoSimulado',['questao'=> $array, 'simulado_id'=>$simulado->id]);
 
+	}
+
+	// Retorna view com uma lista de respostas das questões respondidas pelos alunos
+	public function editarRespostasSimulado(Request $request) {
+
+		$user_id = \Auth::guard('aluno')->user()->id;
+		$simulado = \SimuladoENADE\Simulado::find($request->id);
+
+		$ids_questoes = \SimuladoENADE\Questao::queryToArrayIds(self::getQuestoesEdit($simulado));
+		$questoes = \SimuladoENADE\Questao::whereIn('id', $ids_questoes)->get();
+
+		$disciplinas = \SimuladoENADE\Disciplina::where('curso_id', '=', \Auth::guard('aluno')->user()->curso_id)->get();
+
+		$respostas = 
+				\SimuladoENADE\Resposta::whereIn('questao_id', $ids_questoes)
+										->where('simulado_id', $simulado->id)
+										->where('aluno_id', $user_id)
+										->get();
+
+		$resposta_questao = new \SimuladoENADE\Resposta();
+		$disciplina = new \SimuladoENADE\Disciplina();
+		
+
+		$simulado_aluno = 
+					\SimuladoENADE\SimuladoAluno::where('aluno_id', $user_id)
+													->where('simulado_id', $simulado->id)
+													->get();
+		
+		// Se aluno não respondeu simulado, permitir visuzalizar respostas para edição
+		if(!$simulado_aluno->isEmpty()) {
+
+			$resultado = 
+					\SimuladoENADE\SimuladoAluno::where('aluno_id', $user_id)
+													->where('simulado_id', $simulado->id)
+													->value('media');
+
+			$questaos = \DB::table('questao_simulados')
+				->join('respostas', 'respostas.questao_id','=','questao_simulados.questao_id')
+				->join('questaos', 'questaos.id','=','questao_simulados.questao_id')
+				->where([['respostas.aluno_id', '=', $user_id], 
+						['questao_simulados.simulado_id','=',$request->id],
+						['respostas.simulado_id','=',$request->id]])
+				->get()->toArray();
+
+			$total = count($questaos);
+
+			return view('/SimuladoView/resultadoSimulado',['resultado' => $resultado, 'total'=>$total, 'questaos' => $questaos]);
+		} else {
+			return view('/SimuladoView/editarRespostasSimulado', ['simulado' => $simulado, 'resposta_questao' => $resposta_questao, 'questaos' => $questoes, 'respostas' => $respostas, 'disciplina' => $disciplina, 'disciplinas' => $disciplinas]);
+		}
+		
+	}
+
+	// Troca para view de questão com alternativas marcadas antes
+	public function editarResposta(Request $request) {
+
+		$resposta = \SimuladoENADE\Resposta::find($request->id);
+		$questao = \SimuladoENADE\Questao::find($resposta->questao_id);
+		$simulado = \SimuladoENADE\Simulado::find($resposta->simulado_id);
+
+		$user_id = \Auth::guard('aluno')->user()->id;
+
+		$simulado_aluno = 
+					\SimuladoENADE\SimuladoAluno::where('aluno_id', $user_id)
+													->where('simulado_id', $simulado->id)
+													->get();
+
+		// Se aluno não respondeu simulado, permitir editar resposta
+		if(!$simulado_aluno->isEmpty()) {	
+
+			$resultado = 
+						\SimuladoENADE\SimuladoAluno::where('aluno_id', $user_id)
+														->where('simulado_id', $simulado->id)
+														->value('media');
+														
+			$questaos = \DB::table('questao_simulados')
+					->join('respostas', 'respostas.questao_id','=','questao_simulados.questao_id')
+					->join('questaos', 'questaos.id','=','questao_simulados.questao_id')
+					->where([['respostas.aluno_id', '=', $user_id], 
+							['questao_simulados.simulado_id','=',$simulado->id],
+							['respostas.simulado_id','=',$simulado->id]])
+					->get()->toArray();
+
+			$total = count($questaos);
+ 
+			return view('/SimuladoView/resultadoSimulado',['resultado' => $resultado, 'total'=>$total, 'questaos' => $questaos]);
+		} else {
+			return view('/SimuladoView/editarResposta', ['simulado' => $simulado, 'resposta' => $resposta, 'questao' => $questao]);
+		}
+	}
+
+	// Atualiza resposta da questao
+	public function updateRespostaSimulado(Request $request) {
+
+		$simulado = \SimuladoENADE\Simulado::find($request->simulado_id);
+		$resposta = \SimuladoENADE\Resposta::find($request->resposta_id);
+		
+		$alternativa_questao = $request->alternativa;
+
+		$resposta->alternativa_questao = $alternativa_questao;
+		$resposta->update();
+		
+		return redirect('/editar/respostasSimulado/'.$simulado->id)->with('success', \SimuladoENADE\FlashMessage::updateRespostaSuccess());
 	}
 
 	public function resultado(Request $request){
