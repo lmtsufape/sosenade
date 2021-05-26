@@ -12,7 +12,7 @@ class QuestaoSimuladoController extends Controller{
     public function montar(Request $request){
         $curso = \Auth::user()->curso_id;
         $simulado = \SimuladoENADE\Simulado::find($request->id);
-        $disciplinas = \SimuladoENADE\Disciplina::where('curso_id', '=', $curso)->get();
+        $disciplinas = \SimuladoENADE\Disciplina::where('curso_id', '=', $curso)->orderBy('nome')->get();
         $questaos = \SimuladoENADE\QuestaoSimulado::where('simulado_id', '=', $request->id)->get();
 
         return view('/SimuladoView/montarSimulado', ['disciplinas' => $disciplinas, 'questaos' => $questaos, 'simulado_id'=> $request->id, 'titulo_simulado' => $simulado->descricao_simulado]);
