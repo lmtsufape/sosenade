@@ -36,7 +36,11 @@
 						<label class="list-group-item" for="radioe">E - {!! nl2br($questao['alternativa_e'])!!}</label>
 					</div>
 					<div class="col-md-12 mt-4 text-center">
-						<button onclick="atLeastOneRadio()" id="confirmar-btn" type="submit" class="btn btn-success pull-center" data-container="body" data-toggle="popover" data-placement="right" data-content="Selecione uma alternativa para prosseguir.">Próxima</button>
+						@if('estando na pos 0, não mostrar' != 0)
+							<button class="btn btn-success pull-center"> << Anterior </button>
+						@endif
+						
+						<button onclick="atLeastOneRadio()" id="confirmar-btn" type="submit" class="btn btn-success pull-center" data-container="body" data-toggle="popover" data-placement="right" data-content="Selecione uma alternativa para prosseguir.">Próxima >></button>
 					</div>
 				</div>
 			</div>
