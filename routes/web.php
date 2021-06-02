@@ -10,6 +10,9 @@ use App\Simulado;
 use App\Instituicao;
 use App\UnidadeAcademica;
 use App\Http\Middleware\AdministradorMiddleware;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +24,8 @@ use App\Http\Middleware\AdministradorMiddleware;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/sobre', 'UsuarioController@sobre')->name('sobre');
 
 Route::middleware('auth')->group(function(){
 
@@ -148,7 +153,7 @@ Route::middleware('aluno.auth')->group(function(){
 	Route::post('/responder/simulado/', 'SimuladoController@responder')->name('answ_qst_simulado');
 	Route::get('/resultado/simulado/{id}', 'SimuladoController@resultado')->name('result_simulado');
 	Route::get('/startSimulado/{id}', 'SimuladoController@startSimulado')->name('startSimulado');
-	
+
 	Route::get('/editar/respostasSimulado/{id}', 'SimuladoController@editarRespostasSimulado')->name('list_edit_answ');
 	Route::get('/editar/resposta/{id}', 'SimuladoController@editarResposta')->name('edit_answ');
 	Route::post('/editar/atualizarRespostaSimulado/', 'SimuladoController@updateRespostaSimulado')->name('update_answ');

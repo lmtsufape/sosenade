@@ -9,7 +9,7 @@ overflow: hidden; box-shadow: -1px 4px 17px -5px rgba(0,0,0,0.64);
         <div class="row" style="padding: 0px">
             <div class="col-sm-6 " style="margin-right: 30px; margin-left: -15px; padding: 0px;">
                 <div style="width: 100%; height: 100%; overflow: hidden;">
-                    <img src="/images/bibliotecas.png" alt="">
+                    <img src="{{asset('images/bibliotecas.png')}}" alt="">
                 </div>
             </div>
             <div class="col-sm-6" style="margin-right: -100px">
@@ -26,7 +26,7 @@ overflow: hidden; box-shadow: -1px 4px 17px -5px rgba(0,0,0,0.64);
                     @csrf
                     <div class="form-group col-md-11">
                         <label for="email" class="control-label"
-                               style="font-family: 'Segoe UI'; color: #black; font-weight: bold; font-size: 20px">E-mail</label>
+                               style="font-family: 'Segoe UI'; color: black; font-weight: bold; font-size: 20px">E-mail</label>
                         <input id="email" type="email" name="email"
                                class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
                                value="{{ old('email') }}"
@@ -40,7 +40,7 @@ overflow: hidden; box-shadow: -1px 4px 17px -5px rgba(0,0,0,0.64);
                     </div>
                     <div class="form-group col-md-11">
                         <label for="password" class="control-label"
-                               style="font-family: 'Segoe UI'; color: #black; font-weight: bold; font-size: 20px">Senha</label>
+                               style="font-family: 'Segoe UI'; color: black; font-weight: bold; font-size: 20px">Senha</label>
                         <input id="password" type="password" name="password"
                                class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
                                style="padding: 0; color: black; border-radius: 0; box-shadow: none; border: none; border-bottom: 1px solid"
