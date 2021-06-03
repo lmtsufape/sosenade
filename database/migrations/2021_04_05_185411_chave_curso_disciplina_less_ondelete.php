@@ -27,8 +27,7 @@ class ChaveCursoDisciplinaLessOndelete extends Migration
     public function down()
     {
         Schema::table('disciplinas', function (Blueprint $table) {
-            $table->dropForeign('disciplinas_curso_id_foreign');
-            $table->foreign('curso_id')->references('id')->on('cursos');
+            
         });
     }
 }

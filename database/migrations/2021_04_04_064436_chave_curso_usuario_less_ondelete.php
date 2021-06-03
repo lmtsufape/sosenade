@@ -27,8 +27,7 @@ class ChaveCursoUsuarioLessOndelete extends Migration
     public function down()
     {      
         Schema::table('usuarios', function (Blueprint $table) {
-            $table->dropForeign('usuarios_curso_id_foreign');
-            $table->foreign('curso_id')->references('id')->on('cursos');
+            
         });
     }
 }
