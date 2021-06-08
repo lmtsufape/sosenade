@@ -13,7 +13,11 @@ class Disciplina extends Model
     
     public function questaos(){
         return $this->hasMany('\SimuladoENADE\Questao', 'disciplina_id', 'id');
-    } 
+    }
+    
+    public function questao_discursivas(){
+        return $this->hasMany('\SimuladoENADE\QuestaoDiscursiva', 'disciplina_id', 'id');
+    }
 
     public function questaos_facil(){
         return $this->questaos()->where([
