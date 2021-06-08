@@ -67,6 +67,8 @@ Route::middleware('auth')->group(function(){
 		Route::get('/relatorio/relatorioSimulados', 'RelatorioController@relatorioSimulados')->name('relatorio_simulados');
 		Route::get('/relatorio/relatorioDisciplina', 'RelatorioController@relatorioDisciplina')->name('relatorio_disciplinas');
 
+		// Route::get('/removerQuestaoSimulado/{sim_qst_id}', 'QuestaoDiscursivaSimuladoController@removerQuestao')->name('remove_qst_simulado_disc');
+
 	});
 
 	Route::middleware('coordenadorGeral.auth')->group(function(){
@@ -101,6 +103,16 @@ Route::middleware('auth')->group(function(){
 		Route::post('/importarQuestao/listando', 'QuestaoController@importarQuestao')->name('listar_import_qst');
 		Route::post('/importarQuestao/importando', 'QuestaoController@importandoQuestoes')->name('import_qst_post');
 
+		Route::get('/editar/questaoDiscursiva/{id}', 'QuestaoDiscursivaController@editar')->name('edit_qst_disc');
+		Route::post('/atualizar/questaoDiscursiva', 'QuestaoDiscursivaController@atualizar')->name('update_qst_disc');
+		Route::get('/remover/questaoDiscursiva/{id}', 'QuestaoDiscursivaController@remover')->name('delete_qst_disc');
+		Route::get('/listar/questoesDiscursivas/disciplina/{id}', 'QuestaoDiscursivaController@listarQstDisciplina')->name('list_qst_disc_disciplina');
+		Route::post('/adicionar/questaoDiscursiva', 'QuestaoDiscursivaController@adicionar')->name('add_qst_disc');
+
+		Route::get('/importarQuestaoDiscursiva/', 'QuestaoDiscursivaController@importarQuestao')->name('import_qst_disc');
+		Route::post('/importarQuestaoDiscursiva/listando', 'QuestaoDiscursivaController@importarQuestao')->name('listar_import_qst_disc');
+		Route::post('/importarQuestaoDiscursiva/importando', 'QuestaoDiscursivaController@importandoQuestoes')->name('import_qst_disc_post');
+	
 	});
 
 	// Route::middleware('adm.auth')->group(function(){
