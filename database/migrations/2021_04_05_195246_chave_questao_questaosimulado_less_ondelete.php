@@ -27,8 +27,7 @@ class ChaveQuestaoQuestaosimuladoLessOndelete extends Migration
     public function down()
     {
         Schema::table('questao_simulados', function (Blueprint $table) {
-            $table->dropForeign('questao_simulados_questao_id_foreign');
-            $table->foreign('questao_id')->references('id')->on('questaos');
+            
         });
     }
 }
