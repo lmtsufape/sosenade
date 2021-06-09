@@ -69,7 +69,7 @@
                                     <a href="/" style="text-decoration: none; color:black;">Início</a>
                                 </div>
                                 <div style="display: inline-block;">
-                                    <a href="" style="text-decoration: none; color:black;">Sobre</a>
+                                    <a href="{{route('sobre')}}" style="text-decoration: none; color:black;">Sobre</a>
                                 </div>
 
 								@else

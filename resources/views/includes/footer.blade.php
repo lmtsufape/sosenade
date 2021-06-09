@@ -8,7 +8,7 @@ padding-bottom: 20px; position:absolute; bottom:100; width:100%; ">
                     <div class="col-sm-12" style="font-family:arial; ">
                         <a href="/" style="text-decoration: none; color:black">Início</a>&nbsp;&nbsp;&nbsp;●&nbsp;&nbsp;
                         @guest
-                        <a href="" style="text-decoration: none; color:black">Sobre</a>
+                        <a href="{{route('sobre')}}" style="text-decoration: none; color:black">Sobre</a>
                         @endguest
                         @auth
                             @if (Auth::user()->tipousuario_id == 3)
@@ -82,12 +82,12 @@ padding-bottom: 20px; position:absolute; bottom:100; width:100%; ">
                         Parceria
                     </div>
                     <div style="margin: 3px;">
-                        <a href="http://lmts.uag.ufrpe.br/" target="blank">
+                        <a href="http://ufape.edu.br/" target="blank">
                             <img style="height: 100px" src="{{ asset('images\Logo_UFAPE_Colorida_com_Lettering.png') }}">
                         </a>
                     </div>
                     <div style="margin:20px 3px; ">
-                        <a href="http://lmts.uag.ufrpe.br/" target="blank">
+                        <a href="http://www.upe.br/" target="blank">
                             <img style="height: 65px" src="{{ asset('images\logo_upe.png') }}">
                         </a>
                     </div>
@@ -99,17 +99,17 @@ padding-bottom: 20px; position:absolute; bottom:100; width:100%; ">
                         Redes sociais
                     </div>
                     <div style="margin:3px;  margin-top:2.4rem;">
-                        <a href="" target="blank">
+                        <a href="https://www.facebook.com/LMTSUFAPE" target="blank">
                             <img style="height: 30px" src="{{ asset('images\logo_facebook_preto.png') }}">
                         </a>
                     </div>
                     <div style="margin:3px; margin-top:2.4rem;">
-                        <a href="" target="blank">
+                        <a href="https://www.instagram.com/lmts_ufape/" target="blank">
                             <img style="height: 30px" src="{{ asset('images\logo_instagram_preto.png') }}">
                         </a>
                     </div>
                     <div style="margin:3px; margin-top:2.4rem;">
-                        <a href="" target="blank">
+                        <a href="https://twitter.com/lmtsufape" target="blank">
                             <img style="height: 30px" src="{{ asset('images\logo_twitter_preto.png') }}">
                         </a>
                     </div>
