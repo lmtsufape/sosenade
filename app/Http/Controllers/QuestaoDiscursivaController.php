@@ -1,0 +1,127 @@
+<?php
+
+namespace SimuladoENADE\Http\Controllers;
+
+use Illuminate\Http\Request;
+use SimuladoENADE\Validator\ValidationException;
+
+use SimuladoENADE\QuestaoDiscursiva;
+use SimuladoENADE\Validator\QuestaoDiscursivaValidator;
+
+class QuestaoDiscursivaController extends Controller
+{
+    public function adicionar(Request $request) {
+        try {
+
+            QuestaoDiscursivaValidator::validate($request->all());
+            
+            $questao = new QuestaoDiscursiva();
+            $questao->enunciado = $request->enunciado;
+            $questao->dificuldade = $request->dificuldade;
+            $questao->disciplina_id = $request->disciplina_id;
+            $questao->save();
+
+            return redirect("listar/questao")->with('success', \SimuladoENADE\FlashMessage::cadastroSuccess());
+        } catch(ValidationException $ex) {
+            return redirect("cadastrar/questao")->withErrors($ex->getValidator())->withInput();
+        }
+    }
+
+    public function editar(Request $request) {
+        $questao_discursiva = \SimuladoENADE\QuestaoDiscursiva::find($request->id);
+		$disciplinas = \SimuladoENADE\Disciplina::where('curso_id', '=', \Auth::user()->curso_id)->get();
+
+		\Session::put('url.intended', \URL::previous());  // using the Facade
+		session()->put('url.intended', \URL::previous()); // using the L5 helper
+
+		return view('/QuestaoView/editarQuestaoDiscursiva', ['questao_discursiva' => $questao_discursiva], ['disciplinas'=>$disciplinas]);
+    }
+
+    public function atualizar(Request $request){
+		try{
+			QuestaoDiscursivaValidator::validate($request->all()); 
+
+			$questao_discursiva = QuestaoDiscursiva::find($request->id);
+            $questao_discursiva->enunciado = $request->enunciado;
+            $questao_discursiva->dificuldade = $request->dificuldade;
+            $questao_discursiva->disciplina_id = $request->disciplina_id;
+            
+            $questao_discursiva->update();
+
+			return \Redirect::intended('/')->with('success', \SimuladoENADE\FlashMessage::alteracoesSuccess());;
+
+		}catch(ValidationException $ex){
+			return redirect("editar/questao")->withErrors($ex->getValidator())->withInput();
+		}
+	}
+
+	public function importarQuestao(Request $request){
+		$cursos = \SimuladoENADE\Curso::where('id', '!=', \Auth::user()->curso_id)->orderBy('curso_nome')->get();
+		$disciplinas = \SimuladoENADE\Disciplina::orderBy('nome')->get();
+		$questoes_discursivas = collect();
+		$existe_no_curso = true;
+
+		if(!$request->all()){
+			return view('/QuestaoView/importarQuestaoDiscursiva', ['disciplinas' => $disciplinas, 'cursos' => $cursos, 'questoes_discursivas' => $questoes_discursivas, 'disc_existe' => $existe_no_curso]);
+		} elseif ($request->input('disciplina_id')) {
+			$questoes_discursivas = \SimuladoENADE\Disciplina::find($request->input('disciplina_id'))->questao_discursivas;
+			$condicoes = ['curso_id' => \Auth::user()->curso_id, 'nome' => \SimuladoENADE\Disciplina::find($request->input('disciplina_id'))->nome];
+			$existe_no_curso = \SimuladoENADE\Disciplina::where($condicoes)->first() ? true : false;
+			return view('/QuestaoView/importarQuestaoDiscursiva', ['disciplinas' => $disciplinas, 'cursos' => $cursos, 'questoes_discursivas' => $questoes_discursivas, 'disc_existe' => $existe_no_curso]);
+		} else {
+			return redirect()->back()->with('fail', true)->with('message','Ocorreu um erro. Por favor, selecione uma disciplina.');
+		}
+	}
+
+	public function importandoQuestoes(Request $request){
+
+		// As questões são replicadas e salvas na disciplina temporaria
+		foreach ($request->qsts as $qst_id) {
+
+			$questao = \SimuladoENADE\QuestaoDiscursiva::find($qst_id); // Encontra a qst a ser importada
+			
+			$nova_qst = $questao->replicate(); // Duplica criando um novo model
+			$nova_qst->disciplina_id = $request->disciplina_dst_id; // Altera a disciplna
+
+			$nova_qst->save(); // Salva a nova questão no bd
+		}
+
+		$disciplina_dest = \SimuladoENADE\Disciplina::find($request->input('disciplina_dst_id'));
+
+		$mensagem = 'Importação efetuada com sucesso! ';
+		$mensagem .= (count($request->qsts) == 1) ? count($request->qsts).' questão importada ' : 
+			count($request->qsts).' questões importadas ';
+		$mensagem .= 'para a disciplina "'.$disciplina_dest->nome.'"!';
+
+		return redirect()->route('import_qst')->with('success', true)->with('message', $mensagem);
+
+	}
+
+    public function listarQstDisciplina(Request $request){
+		$curso_id = \Auth::user()->curso_id;
+
+		$questaos = \SimuladoENADE\QuestaoDiscursiva::select('*', \DB::raw('questao_discursivas.id as qstid'))
+			->join('disciplinas', 'questao_discursivas.disciplina_id', '=', 'disciplinas.id')
+			->where('disciplina_id', '=', $request->id)
+			->orderBy('nome')
+			->orderBy('dificuldade')
+			->get();
+
+		$disciplinas = \SimuladoENADE\Disciplina::where('curso_id', '=', \Auth::user()->curso_id)->get();
+
+		return view('/QuestaoView/listaQuestao', ['questaos' => $questaos, 'disciplinas' => $disciplinas]);
+	}
+    
+    public function remover(Request $request) {
+
+        $questao_discursiva = \SimuladoENADE\QuestaoDiscursiva::find($request->id);
+        
+		try {
+			$questao_discursiva->delete();
+			return redirect('\listar\questao')->with('success', \SimuladoENADE\FlashMessage::removeQuestaoSuccess());
+		} catch(QueryException $ex) {
+			return redirect('\listar\questao')->with('fail', \SimuladoENADE\FlashMessage::removeQuestaoFail());
+		}
+    }
+
+}

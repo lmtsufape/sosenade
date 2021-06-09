@@ -163,7 +163,8 @@ box-shadow: 0px 4px 10px -5px rgba(0,0,0,0.64);" role="navigation">
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{route('new_qst')}}">Cadastrar</a>
                             <a class="dropdown-item" href="{{route('list_qst')}}">Listar</a>
-                            <a class="dropdown-item" href="{{route('import_qst')}}">Importar Questões</a>
+                            <a class="dropdown-item" href="{{route('import_qst')}}">Importar Questões Objetivas</a>
+                            <a class="dropdown-item" href="{{route('import_qst_disc')}}">Importar Questões Discursivas</a>
                         </div>
                     </li>
 
