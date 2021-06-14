@@ -11,7 +11,7 @@ class CursoSeeder extends Seeder
      */
     public function run()
     {
-        //for($i = 1; $i < 6; $i++){
+        for($i = 1; $i < 10; $i++){
         	DB::table('cursos')->insert(['ciclo_id'=> 1, 'curso_nome'=> "Ciência da Computação", 'unidade_id' => 2]);
 
             DB::table('cursos')->insert(['ciclo_id'=> 1, 'curso_nome'=> "Agronomia", 'unidade_id' => 2]);
@@ -23,6 +23,6 @@ class CursoSeeder extends Seeder
             DB::table('cursos')->insert(['ciclo_id'=> 1, 'curso_nome'=> "Eng de Pesca", 'unidade_id' => 2]);
         //}
             DB::table('cursos')->insert(['ciclo_id'=> 1, 'curso_nome'=> "Eng de Produção", 'unidade_id' => 3]);
-        //}
+        }
     }
 }
