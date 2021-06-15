@@ -197,6 +197,16 @@ box-shadow: 0px 4px 10px -5px rgba(0,0,0,0.64);" role="navigation">
                             <a class="dropdown-item" href="{{route('list_qst')}}">Questões cadastradas</a>
                         </div>
                     </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Simulados
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{route('listar_simulados_questoes_discursivas')}}">Corrigir respostas discursivas</a>
+                        </div>
+                    </li>
                 @endcan
 
 
