@@ -11,11 +11,11 @@ class QuestaoDiscursiva extends Model
     	return $this->belongsTo('SimuladoENADE\Disciplina');
     }
 
-    public function questao_discursiva_simulado(){
+    public function questao_simulado(){
         return $this->hasMany('\SimuladoENADE\QuestaoDiscursivaSimulado');
     }
 
-    public function respostas_discursivas(){
+    public function respostas(){
         return $this->hasMany('SimuladoENADE\RespostaDiscursiva');
     }
 
