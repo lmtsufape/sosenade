@@ -4,6 +4,8 @@
 
     use Carbon\Carbon;
     use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Auth;
+    use SimuladoENADE\SimuladoAluno;
     use SimuladoENADE\Validator\SimuladoValidator;
     use SimuladoENADE\Validator\MontarSimuladoValidator;
     use SimuladoENADE\Validator\ValidationException;
@@ -169,17 +171,25 @@
 		    $simulados_curso = \SimuladoENADE\Simulado::where('curso_id', '=', $curso_id)
 			                                          ->withCount('questaos')
 			                                          ->get();
-
 		    $simulados_disp = [];
 		    $simulados_feitos = [];
-		    foreach ($simulados_curso as $simulado) {
-			    $questaos_nao_respondidas = self::getQuestoes($simulado);
-			    if ($simulado->questaos_count != 0 && $simulado->data_inicio_simulado != null && $hoje->between($simulado->data_inicio_simulado, $simulado->data_fim_simulado))
-				    if (!empty($questaos_nao_respondidas))
-					    $simulados_disp[] = $simulado;
-				else if (empty($questaos_nao_respondidas))
-					$simulados_feitos[] = $simulado;
-		    }
+            //Usar para encontrar os simulados já realizados em caso de bug
+            //$simulados_aluno = \SimuladoENADE\SimuladoAluno::where('aluno_id', '=', \Auth::guard('aluno')->user()->id)->get();
+            //foreach ($simulados_aluno as $simulado2){
+            //    $simulados_feitos[] = Simulado::find($simulado2->simulado_id);
+            //}
+
+            foreach ($simulados_curso as $simulado) {
+                $questaos_nao_respondidas = self::getQuestoes($simulado);
+                if ($simulado->questaos_count != 0 && $simulado->data_inicio_simulado != null && $hoje->between($simulado->data_inicio_simulado, $simulado->data_fim_simulado) && !empty($questaos_nao_respondidas)) {
+                    $simulados_disp[] = $simulado;
+                } elseif($simulado->questaos_count != 0 && empty($questaos_nao_respondidas)){
+                    $simulados_feitos[] = $simulado;
+
+                }
+
+            }
+
 
 		    return view('/SimuladoView/listaSimuladoAluno', ['simulados' => $simulados_disp, 'simulados_feitos' => $simulados_feitos]);
 
