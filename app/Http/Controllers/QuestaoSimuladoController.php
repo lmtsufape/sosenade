@@ -24,8 +24,7 @@ class QuestaoSimuladoController extends Controller{
         $bool_simulado_montagem_automatica_discursiva = true;
         
 
-        return view('/SimuladoView/montarSimulado', ['disciplinas' => $disciplinas, 'questaos' => $questaos, 'questoes_discursivas' => $questoes_discursivas, 'questoes_externas_simulado' => $questoes_externas_simulado, 'simulado_id'=> $request->id, 'titulo_simulado' => $simulado->descricao_simulado, 'bool_simulado_montagem_automatica_objetiva' => $bool_simulado_montagem_automatica_objetiva, 
-                                                     'bool_simulado_montagem_automatica_discursiva' => $bool_simulado_montagem_automatica_discursiva, 'questoes_discursivas_externas_simulado' => $questoes_discursivas_externas_simulado]);
+        return view('/SimuladoView/montarSimulado', ['disciplinas' => $disciplinas, 'questaos' => $questaos, 'questoes_discursivas' => $questoes_discursivas, 'questoes_externas_simulado' => $questoes_externas_simulado, 'questoes_discursivas_externas_simulado' => $questoes_discursivas_externas_simulado, 'simulado_id'=> $request->id, 'titulo_simulado' => $simulado->descricao_simulado, 'bool_simulado_montagem_automatica_objetiva' => $bool_simulado_montagem_automatica_objetiva, 'bool_simulado_montagem_automatica_discursiva' => $bool_simulado_montagem_automatica_discursiva]);
     }
 
     // Relaciona questões (seguindo o filtro) ao simulado : Automatico
@@ -112,17 +111,17 @@ class QuestaoSimuladoController extends Controller{
                     $ids[] = $questaos[$i]['id'];    
                 }
             }
-            
-            $questoes_externas_simulado = \SimuladoENADE\Questao::whereIn('id', $ids)->get();
-            $questoes_discursivas_externas_simulado = \SimuladoENADE\QuestaoDiscursiva::whereIn('id', $ids)->get();
 
             $curso = \Auth::user()->curso_id;
             $simulado = \SimuladoENADE\Simulado::find($request->simulado_id);
             $disciplinas = \SimuladoENADE\Disciplina::where('curso_id', '=', $curso)->orderBy('nome')->get();
             $questaos = \SimuladoENADE\QuestaoSimulado::where('simulado_id', '=', $simulado->id)->get();
-            $questoes_discursivas = \SimuladoENADE\QuestaoDiscursivaSimulado::where('simulado_id', '=', $simulado->id)->get();
+            $questoes_externas_simulado = \SimuladoENADE\Questao::whereIn('id', $ids)->get();
 
-            return view('/SimuladoView/montarSimulado', ['disciplinas' => $disciplinas, 'questaos' => $questaos, 'questoes_discursivas' => $questoes_discursivas, 'questoes_externas_simulado' => $questoes_externas_simulado, 'simulado_id' => $request->simulado_id, 'titulo_simulado' => $simulado->descricao_simulado, 'bool_simulado_montagem_automatica_objetiva' => $bool_simulado_montagem_automatica_objetiva, 'bool_simulado_montagem_automatica_discursiva' => $bool_simulado_montagem_automatica_discursiva]);
+            $questoes_discursivas = \SimuladoENADE\QuestaoDiscursivaSimulado::where('simulado_id', '=', $simulado->id)->get();
+            $questoes_discursivas_externas_simulado = collect();
+
+            return view('/SimuladoView/montarSimulado', ['disciplinas' => $disciplinas, 'questaos' => $questaos, 'questoes_discursivas' => $questoes_discursivas, 'questoes_externas_simulado' => $questoes_externas_simulado, 'questoes_discursivas_externas_simulado' => $questoes_discursivas_externas_simulado, 'simulado_id' => $request->simulado_id, 'titulo_simulado' => $simulado->descricao_simulado, 'bool_simulado_montagem_automatica_objetiva' => $bool_simulado_montagem_automatica_objetiva, 'bool_simulado_montagem_automatica_discursiva' => $bool_simulado_montagem_automatica_discursiva]);
 
         }catch(ValidationException $ex){
             return redirect()->route('set_simulado', ['id' => $request->simulado_id])->withErrors($ex->getValidator())->withInput();
