@@ -65,8 +65,21 @@
 
 		    Route::get('/montarSimulado/{id}', 'QuestaoSimuladoController@montar')->name('set_simulado');
 		    Route::post('/cadastrarQuestaoSimulado/', 'QuestaoSimuladoController@cadastrarQuestao')->name('add_qst_simulado');
-		    Route::get('/removerQuestaoSimulado/{sim_qst_id}', 'QuestaoSimuladoController@removerQuestao')->name('remove_qst_simulado');
+			Route::post('/cadastrarQuestaoSimuladoManual/', 'QuestaoSimuladoController@cadastrarQuestaoManualmente')->name('add_qst_simulado_obj');
 
+			Route::post('/cadastrarQuestaoDiscursivaSimulado/', 'QuestaoDiscursivaSimuladoController@cadastrarQuestao')->name('add_qst_disc_simulado_auto');
+			Route::post('/cadastrarQuestaoDiscursivaSimuladoManual/', 'QuestaoDiscursivaSimuladoController@cadastrarQuestaoManualmente')->name('add_qst_disc_simulado_manual');
+
+			// Chamadas Assicronas - Jquery
+			Route::get('/addQuestaoSimulado/Async/', 'QuestaoSimuladoController@addQuestaoAsync');
+			Route::get('/removeQuestaoSimulado/Async/', 'QuestaoSimuladoController@removeQuestaoAsync');
+
+			Route::get('/addQuestaoDiscursivaSimulado/Async/', 'QuestaoDiscursivaSimuladoController@addQuestaoAsync');
+			Route::get('/removeQuestaoDiscursivaSimulado/Async/', 'QuestaoDiscursivaSimuladoController@removeQuestaoAsync');
+			// 
+
+		    Route::get('/removerQuestaoSimulado/{sim_qst_id}', 'QuestaoSimuladoController@removerQuestao')->name('remove_qst_simulado');
+			
 		    Route::get('/relatorio/QstDis', 'RelatorioController@questoesPorDisciplina')->name('qst_por_disciplina');
 		    Route::get('/relatorio/DesempenhoAlunos', 'RelatorioController@desempenhoAlunos')->name('desempenho_alunos');
 		    Route::get('/relatorio/relatorioSimulados', 'RelatorioController@relatorioSimulados')->name('relatorio_simulados');
