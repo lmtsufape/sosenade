@@ -3,6 +3,7 @@
 namespace SimuladoENADE\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use SimuladoENADE\NotaQuestaoDiscursiva;
 use SimuladoENADE\Validator\ValidationException;
 
@@ -138,13 +139,19 @@ class QuestaoDiscursivaController extends Controller
             array_push($id_simulados_com_respostas_discursivas, $id_simulado);
         }
 
-        $simulados_com_respostas_discursivas = Simulado::where('id', $id_simulados_com_respostas_discursivas)->get();
+        $simulados_com_respostas_discursivas = Simulado::where('id', $id_simulados_com_respostas_discursivas)
+                                             ->where('curso_id', Auth::user()->curso_id)
+                                             ->get();
+
         return view('ProfessorView/listar_simulados_questoes_discursivas', ["simulados" => $simulados_com_respostas_discursivas]);
     }
 
     public function litarRespostasSimulados($simulado_id) {
+        $simulado = Simulado::find($simulado_id);
 
-        // TODO: Filtrar apenas os simulados que o professor pode avaliar
+        if(!$simulado || $simulado->curso_id != Auth::user()->curso_id) {
+            return redirect()->back();
+        }
 
         $respostas_discursivas = RespostaDiscursiva::where('simulado_id', $simulado_id)->get();
         return view('ProfessorView/listar_questoes_discursivas_respondidas', ["respostas" => $respostas_discursivas, "simulado_id" => $simulado_id]);
@@ -152,7 +159,11 @@ class QuestaoDiscursivaController extends Controller
 
     public function avaliarRespostaSimulados($simulado_id, $resposta_id) {
 
-        // TODO: Filtrar apenas os simulados que o professor pode avaliar
+        $simulado = Simulado::find($simulado_id);
+        if(!$simulado || $simulado->curso_id != Auth::user()->curso_id) {
+            // TODO: Filtrar apenas as questoes que o professor pode avaliar
+            return redirect()->back();
+        }
 
         $resposta = RespostaDiscursiva::find($resposta_id);
         return view('ProfessorView/avaliar_questao_discursivas', ["resposta" => $resposta, "simulado_id" => $simulado_id]);
@@ -162,6 +173,7 @@ class QuestaoDiscursivaController extends Controller
         $request->validate([
             "nota" => "required",
             "comentario" => "required",
+            "resposta_discursiva_id" => "required|exists:resposta_discursivas,id",
         ]);
 
         $resposta = RespostaDiscursiva::find($request->resposta_discursiva_id);
@@ -176,7 +188,7 @@ class QuestaoDiscursivaController extends Controller
 
         $nota->nota = $request->nota;
         $nota->comentario = $request->comentario;
-        $nota->usuario_id = \Auth::id();
+        $nota->usuario_id = Auth::id();
 
         $nota->save();
 
