@@ -45,7 +45,7 @@
 					</div>
 					<div class="col-md-12 mt-4 text-center">
 						@if($questao["questao_ant"])
-							<button class="btn btn-success pull-center" onclick="document.getElementById('form_questao_anterior').submit()"> << Anterior </button>
+							<button type="button" class="btn btn-success pull-center" onclick="document.getElementById('form_questao_anterior').submit()"> << Anterior </button>
 						@endif
 
 						<button onclick="atLeastOneRadio()" id="confirmar-btn" type="submit" class="btn btn-success pull-center" data-container="body" data-toggle="popover" data-placement="right" data-content="Selecione uma alternativa para prosseguir.">Próxima >></button>

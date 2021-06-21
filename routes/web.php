@@ -183,6 +183,11 @@
     	Route::post('/questao/simulado/voltar', 'SimuladoController@voltar_questao')->name('voltar_qst_simulado');
         Route::post('/questao/simulado/voltar/salvar', 'SimuladoController@salvar_voltar_questao')->name('salvar_voltar_qst_simulado');
 
+
+        Route::post('/responder_discursiva/simulado/', 'SimuladoController@responder_discursiva')->name('answ_qst_discursiva_simulado');
+        Route::post('/questao_disc/simulado/voltar', 'SimuladoController@voltar_questao_discursiva')->name('voltar_qst_discursiva_simulado');
+        Route::post('/questao_disc/simulado/voltar/salvar', 'SimuladoController@salvar_voltar_questao_discursiva')->name('salvar_voltar_qst_discursiva_simulado');
+
 	    Route::post('/responder/simulado/', 'SimuladoController@responder')->name('answ_qst_simulado');
 	    Route::get('/resultado/simulado/{id}', 'SimuladoController@resultado')->name('result_simulado');
 	    Route::get('/startSimulado/{id}', 'SimuladoController@startSimulado')->name('startSimulado');
