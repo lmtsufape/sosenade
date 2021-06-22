@@ -15,8 +15,8 @@ class CreateQuestaoDiscursivaSimuladosTable extends Migration
     {
         Schema::create('questao_discursiva_simulados', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedBigInteger('simulado_id');
-            $table->unsignedBigInteger('questao_discursiva_id');
+            $table->unsignedInteger('simulado_id');
+            $table->unsignedInteger('questao_discursiva_id');
             $table->foreign('simulado_id')->references('id')->on('simulados');
             $table->foreign('questao_discursiva_id')->references('id')->on('questao_discursivas');
             $table->timestamps();

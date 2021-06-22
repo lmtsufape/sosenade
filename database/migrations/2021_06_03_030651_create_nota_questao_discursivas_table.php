@@ -17,8 +17,8 @@ class CreateNotaQuestaoDiscursivasTable extends Migration
             $table->increments('id');
             $table->longText('comentario');
             $table->float('nota');
-            $table->unsignedBigInteger('resposta_discursiva_id');
-            $table->unsignedBigInteger('usuario_id');
+            $table->unsignedInteger('resposta_discursiva_id');
+            $table->unsignedInteger('usuario_id');
             $table->foreign('resposta_discursiva_id')->references('id')->on('resposta_discursivas');
             $table->foreign('usuario_id')->references('id')->on('usuarios');
             $table->timestamps();

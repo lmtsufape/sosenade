@@ -10,10 +10,14 @@
     use SimuladoENADE\Validator\MontarSimuladoValidator;
     use SimuladoENADE\Validator\ValidationException;
     use Illuminate\Http\Resources\Json\Resource;
-    use SimuladoENADE\Http\Resources\User as UserResource;
+use Illuminate\Support\Collection;
+use SimuladoENADE\Http\Resources\User as UserResource;
     use SimuladoENADE\Questao;
-    use SimuladoENADE\Resposta;
-    use SimuladoENADE\Simulado;
+use SimuladoENADE\QuestaoDiscursiva;
+use SimuladoENADE\QuestaoDiscursivaSimulado;
+use SimuladoENADE\Resposta;
+use SimuladoENADE\RespostaDiscursiva;
+use SimuladoENADE\Simulado;
 
     class SimuladoController extends Controller{
 
@@ -171,6 +175,7 @@
 		    $simulados_curso = \SimuladoENADE\Simulado::where('curso_id', '=', $curso_id)
 			                                          ->withCount('questaos')
 			                                          ->get();
+
 		    $simulados_disp = [];
 		    $simulados_feitos = [];
             //Usar para encontrar os simulados já realizados em caso de bug
@@ -180,6 +185,7 @@
             //}
 
             foreach ($simulados_curso as $simulado) {
+                $simulado->questaos_count += QuestaoDiscursivaSimulado::where("simulado_id", $simulado->id)->get()->count();
                 $questaos_nao_respondidas = self::getQuestoes($simulado);
                 if ($simulado->questaos_count != 0 && $simulado->data_inicio_simulado != null && $hoje->between($simulado->data_inicio_simulado, $simulado->data_fim_simulado) && !empty($questaos_nao_respondidas)) {
                     $simulados_disp[] = $simulado;
@@ -200,7 +206,15 @@
 		    $simulado = \SimuladoENADE\Simulado::find($request->id);
 		    $questaos_nao_respondidas = self::getQuestoes($simulado);
 
-		    $resposta = new \SimuladoENADE\Resposta();
+
+            foreach($simulado->questaos_discursivas as $questao_discursiva) {
+                $questao_discursiva->nome_disciplina = $questao_discursiva->questao->disciplina->nome;
+                $questao_discursiva->dificuldade = $questao_discursiva->questao->dificuldade;
+                $questaos_nao_respondidas = array_prepend($questaos_nao_respondidas, $questao_discursiva);
+            }
+
+
+
 		    $user_id = \Auth::guard('aluno')->user()->id;
 
 		    //$teste = $request->simulado_id;
@@ -221,7 +235,7 @@
 			    $simuladoHora->hora_inicio_simulado = $hora_inicio_simulado;
 			    $simuladoHora->hora_fim_simulado = $hora_fim_simulado;
 			    $simuladoHora->save();
-		        //dd($simuladoHora);
+		        // dd($simuladoHora);
 		    }
 
 		    if (empty($questaos_nao_respondidas))
@@ -391,16 +405,66 @@
 
         }
 
+        public function questoes_discursivas_respondidas($simulado) {
+            $questoes_discursivas = array();
+            $questoes_discursivas_col = $simulado->questaos_discursivas;
+            foreach($questoes_discursivas_col as $questao) {
+                array_push($questoes_discursivas, $questao);
+            }
+            $respostas = RespostaDiscursiva::where("aluno_id", Auth::guard('aluno')->user()->id)->where("simulado_id", $simulado->id)->get();
+            $questoes_discursivas_respondidas = array();
+            foreach($respostas as $questao_discursiva_respondida) {
+                $questao = $questao_discursiva_respondida->questao_discursiva;
+                array_push($questoes_discursivas_respondidas, $questao);
+            }
+            return $questoes_discursivas_respondidas;
+        }
+
+        public function questoes_discursivas_nao_respondidas($simulado) {
+            $questoes_discursivas = array();
+            $questoes_discursivas_col = $simulado->questaos_discursivas;
+            foreach($questoes_discursivas_col as $questao) {
+                array_push($questoes_discursivas, $questao->questao);
+            }
+            $questoes_discursivas_respondidas = $this->questoes_discursivas_respondidas($simulado);
+            $questoes_discursivas_nao_respondidas = array_filter($questoes_discursivas, function($questao) use($questoes_discursivas_respondidas) {
+                foreach($questoes_discursivas_respondidas as $questao_respondida) {
+                    if($questao->id == $questao_respondida->id) {
+                        return false;
+                    }
+                }
+                return true;
+            });
+
+
+            return array_reverse($questoes_discursivas_nao_respondidas);
+        }
+
 	    // Leva a página de solução da primeira questão achada não respondida no simulado
 	    public function questao(Request $request){
 
 		    $simulado = \SimuladoENADE\Simulado::find($request->id);
 
+            $questoes_discursivas_nao_respondidas = new Collection(array_values($this->questoes_discursivas_nao_respondidas($simulado)));
+            if($questoes_discursivas_nao_respondidas->isNotEmpty()) {
+                $questao = $questoes_discursivas_nao_respondidas->first();
+                if(sizeof($this->questoes_discursivas_respondidas($simulado)) > 0) {
+                    $questao->questao_ant = true;
+                }
+
+                if($questoes_discursivas_nao_respondidas->count() == 1) {
+                    $questao->avisar_que_e_a_ultima_discurssiva = true;
+                }
+
+                $questao->corrente = true;
+                // TODO avisar na view que é a ultima
+                return view('/SimuladoView/questaoDiscursivaSimulado',['questao'=> $questao, 'simulado'=> $simulado]);
+            }
+
 		    $questaos = self::getQuestoes($simulado);
         	$questaos_respondidas = $this->getQuestoesEdit($simulado);
 
 		    if (empty($questaos))
-
 			    // retorno para a página de revisão
 			    return view('/SimuladoView/revisarSimulado', ['simulado_id' => $request->id]);
 
@@ -583,4 +647,102 @@
 		    return redirect('listar/simulado');
 
 	    }
+
+
+
+        public function responder_discursiva(Request $request) {
+
+            // TODO: verificar se ainda pode responder
+
+            $request->validate(
+                [
+                    "simulado_id" => "required|exists:simulados,id",
+                    "questao_id" => "required|exists:questao_discursivas,id",
+                    "resposta" => "required",
+                ]
+            );
+
+            $resposta = new RespostaDiscursiva;
+            $resposta->resposta_discursiva = $request->resposta;
+            $resposta->aluno_id = Auth::guard('aluno')->user()->id;
+            $resposta->simulado_id = $request->simulado_id;
+            $resposta->questao_discursiva_id = $request->questao_id;
+
+            $resposta->save();
+
+            return redirect()->route('qst_simulado', $request->simulado_id);
+        }
+
+        public function voltar_questao_discursiva(Request $request) {
+
+            $aluno_id = Auth::guard('aluno')->user()->id;
+            $questao_id = $request->questao_id;
+            $simulado_id = $request->simulado_id;
+            $simulado =  Simulado::find($simulado_id);
+
+            $respostas = RespostaDiscursiva::where("simulado_id", $simulado_id)
+                       ->where("aluno_id", $aluno_id)
+                       ->get()
+                       ->sortBy("created_at");
+
+            if($respostas->isEmpty()) {
+                return redirect()->route('qst_simulado', $simulado_id);
+            }
+
+
+            if($request->corrente) {
+                $resposta = $respostas->last();
+                $questao = $resposta->questao_discursiva;
+                $questao->corrente = false;
+                if($respostas->count() > 1) {
+                    $questao->questao_ant = true;
+                }
+                return view('/SimuladoView/questaoDiscursivaSimuladoEdit',['questao'=> $questao, 'simulado'=> $simulado, "resposta" => $resposta]);
+            }
+
+
+            $cont = 0;
+
+            foreach($respostas as $resposta) {
+                if($resposta->questao_discursiva->id == $questao_id && $cont != 0) {
+                    $resposta_anterior = $respostas[$cont - 1];
+
+                    $questao = $resposta_anterior->questao_discursiva;
+                    $questao->corrente = false;
+                    if($cont > 1) {
+                        $questao->questao_ant = true;
+                    }
+
+                    return view('/SimuladoView/questaoDiscursivaSimuladoEdit',['questao'=> $questao, 'simulado'=> $simulado, "resposta" => $resposta_anterior]);
+                }
+
+                $cont += 1;
+            }
+
+        }
+
+        public function salvar_voltar_questao_discursiva(Request $request) {
+
+            //TODO: verificar se o aluno ainda pode responder
+
+            $aluno_id = Auth::guard('aluno')->user()->id;
+            $questao_id = $request->questao_id;
+            $simulado_id = $request->simulado_id;
+
+            $resposta = RespostaDiscursiva::where("aluno_id", $aluno_id)
+                      ->where("simulado_id", $simulado_id)
+                      ->where("questao_discursiva_id", $questao_id)
+                      ->get()
+                      ->sortBy("created_at")
+                      ->last();
+
+            if($resposta) {
+                $resposta->resposta_discursiva = $request->resposta;
+                $resposta->save();
+            }
+
+            return redirect()->route('qst_simulado', $simulado_id);
+        }
+
+
     }

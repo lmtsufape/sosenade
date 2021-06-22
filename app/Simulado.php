@@ -14,19 +14,24 @@ class Simulado extends Model
     public function curso(){
     	return $this->belongsTo('SimuladoENADE\Curso');
     }
-    
+
     public function questaos(){
         return $this->hasMany('\SimuladoENADE\QuestaoSimulado', 'simulado_id', 'id');
     }
 
+    public function questaos_discursivas(){
+        return $this->hasMany('\SimuladoENADE\QuestaoDiscursivaSimulado', 'simulado_id', 'id');
+    }
+
+
     public function simulados_alunos(){
         return $this->hasMany('\SimuladoENADE\SimuladoAluno', 'simulado_id', 'id');
-    }  
-    
+    }
+
 
 
     protected $fillable = ['descricao_simulado','usuario_id','curso_id'];
-    
+
     protected $dates = ['data_inicio_simulado', 'data_fim_simulado'];
 
     public static $rules = [

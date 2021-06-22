@@ -14,7 +14,7 @@ class AddInstituicaoIdTableUnidadeAcademicas extends Migration
     public function up()
     {
         Schema::table('unidade_academicas', function (Blueprint $table) {
-            $table->unsignedBigInteger('instituicao_id')->nullable();
+            $table->unsignedInteger('instituicao_id')->nullable();
             $table->foreign('instituicao_id')->references('id')->on('instituicoes');
         });
     }
