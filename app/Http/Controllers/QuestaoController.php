@@ -70,8 +70,15 @@ class QuestaoController extends Controller {
 	public function listarQstDisciplina(Request $request){
 		$curso_id = \Auth::user()->curso_id;
 
-		$questaos =\SimuladoENADE\Questao::select('*', \DB::raw('questaos.id as qstid'))
+		$questaos = \SimuladoENADE\Questao::select('*', \DB::raw('questaos.id as qstid'))
 			->join('disciplinas', 'questaos.disciplina_id', '=', 'disciplinas.id')
+			->where('disciplina_id', '=', $request->id)
+			->orderBy('nome')
+			->orderBy('dificuldade')
+			->get();
+
+		$questoes_discursivas = \SimuladoENADE\QuestaoDiscursiva::select('*', \DB::raw('questao_discursivas.id as qstid'))
+			->join('disciplinas', 'questao_discursivas.disciplina_id', '=', 'disciplinas.id')
 			->where('disciplina_id', '=', $request->id)
 			->orderBy('nome')
 			->orderBy('dificuldade')
@@ -79,7 +86,7 @@ class QuestaoController extends Controller {
 
 		$disciplinas = \SimuladoENADE\Disciplina::where('curso_id', '=', \Auth::user()->curso_id)->get();
 
-		return view('/QuestaoView/listaQuestao', ['questaos' => $questaos, 'disciplinas' => $disciplinas]);
+		return view('/QuestaoView/listaQuestao', ['questaos' => $questaos, 'questoes_discursivas' => $questoes_discursivas, 'disciplinas' => $disciplinas]);
 	}
 
 	public function editar(Request $request){
