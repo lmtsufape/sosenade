@@ -10,14 +10,14 @@
     use SimuladoENADE\Validator\MontarSimuladoValidator;
     use SimuladoENADE\Validator\ValidationException;
     use Illuminate\Http\Resources\Json\Resource;
-use Illuminate\Support\Collection;
-use SimuladoENADE\Http\Resources\User as UserResource;
+    use Illuminate\Support\Collection;
+    use SimuladoENADE\Http\Resources\User as UserResource;
     use SimuladoENADE\Questao;
-use SimuladoENADE\QuestaoDiscursiva;
-use SimuladoENADE\QuestaoDiscursivaSimulado;
-use SimuladoENADE\Resposta;
-use SimuladoENADE\RespostaDiscursiva;
-use SimuladoENADE\Simulado;
+    use SimuladoENADE\QuestaoDiscursiva;
+    use SimuladoENADE\QuestaoDiscursivaSimulado;
+    use SimuladoENADE\Resposta;
+    use SimuladoENADE\RespostaDiscursiva;
+    use SimuladoENADE\Simulado;
 
     class SimuladoController extends Controller{
 
@@ -452,7 +452,7 @@ use SimuladoENADE\Simulado;
                     $questao->questao_ant = true;
                 }
 
-                if($questoes_discursivas_nao_respondidas->count() == 1) {
+                if(sizeof($this->questoes_discursivas_respondidas($simulado)) > 0 && $questoes_discursivas_nao_respondidas->count() == 1) {
                     $questao->avisar_que_e_a_ultima_discurssiva = true;
                 }
 
@@ -681,9 +681,9 @@ use SimuladoENADE\Simulado;
             $simulado =  Simulado::find($simulado_id);
 
             $respostas = RespostaDiscursiva::where("simulado_id", $simulado_id)
-                       ->where("aluno_id", $aluno_id)
-                       ->get()
-                       ->sortBy("created_at");
+                                           ->where("aluno_id", $aluno_id)
+                                           ->get()
+                                           ->sortBy("created_at");
 
             if($respostas->isEmpty()) {
                 return redirect()->route('qst_simulado', $simulado_id);
@@ -730,11 +730,11 @@ use SimuladoENADE\Simulado;
             $simulado_id = $request->simulado_id;
 
             $resposta = RespostaDiscursiva::where("aluno_id", $aluno_id)
-                      ->where("simulado_id", $simulado_id)
-                      ->where("questao_discursiva_id", $questao_id)
-                      ->get()
-                      ->sortBy("created_at")
-                      ->last();
+                                          ->where("simulado_id", $simulado_id)
+                                          ->where("questao_discursiva_id", $questao_id)
+                                          ->get()
+                                          ->sortBy("created_at")
+                                          ->last();
 
             if($resposta) {
                 $resposta->resposta_discursiva = $request->resposta;
