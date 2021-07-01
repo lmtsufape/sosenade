@@ -30,7 +30,7 @@
 					<h5 class="card-title">Escreva sua resposta:</h5>
 
 					<div class="list-group container">
-                        <textarea name="resposta" required rows="8">{{$resposta->resposta_discursiva}}</textarea>
+                        <textarea class="form-control summermote_alt" name="resposta" required rows="8">{{$resposta->resposta_discursiva}}</textarea>
 					</div>
 
 					<div class="col-md-12 mt-4 text-center">
