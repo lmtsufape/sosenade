@@ -32,7 +32,7 @@
 					<h5 class="card-title">Escreva sua resposta:</h5>
 
 					<div class="list-group container">
-                        <textarea name="resposta" required rows="8"></textarea>
+                        <textarea class="form-control summernote_alt" name="resposta" required rows="8"></textarea>
 					</div>
 
 					<div class="col-md-12 mt-4 text-center">
