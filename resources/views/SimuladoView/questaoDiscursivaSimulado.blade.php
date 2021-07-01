@@ -41,7 +41,15 @@
 						@endif
 
                         <!-- dar um jeito de voltar das objetivas pras dicursivas -->
-						<button onclick="return confirm('Esta é a ultima questão discursiva, você não vai poder rever elas depois. Tem certeza que deseja proseeguir para as questões objetivas?')" id="confirmar-btn" type="submit" class="btn btn-success pull-center" data-container="body" data-toggle="popover" data-placement="right">Próxima >></button>
+						<button id="confirmar-btn" type="submit" class="btn btn-success pull-center" data-container="body" data-toggle="popover" data-placement="right">Próxima >></button>
+
+                        @if($questao->avisar_que_e_a_ultima_discurssiva)
+                            <script>
+                                document.getElementById('confirmar-btn').onclick= function() {
+                                    return confirm('Esta é a ultima questão discursiva, você não vai poder rever elas depois. Tem certeza que deseja proseeguir para as questões objetivas?');}
+                            </script>
+                        @endif
+
 					</div>
 				</div>
 			</div>
