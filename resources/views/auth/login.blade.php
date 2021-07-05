@@ -57,7 +57,7 @@ overflow: hidden; box-shadow: -1px 4px 17px -5px rgba(0,0,0,0.64);
                                id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                         <label class="form-check-label" for="remember">
-                            {{ __('Lembrar E-mail e Senha') }}
+                            {{ __('Lembrar e-mail e senha') }}
                         </label>
                     </div>
                     <br>
