@@ -18,9 +18,6 @@
             <input type="hidden" name="id" value="-1">
             <input type="hidden" name="_token" value="{{csrf_token()}}">
 
-            <h1 class="text-center"> Cadastrar Unidade </h1>
-            <br>
-
             <div class="form-group justify-content-center row">
                 <div class="form-group col-md-8">
                     <label for="nome">Nome</label>
@@ -35,12 +32,14 @@
                 </div>
             </div>
 
-                <hr style="width: 67%;">
-                <div class="row" style="margin-left: 60%; margin-top: -15px">
-                    <div class="text-center my-3" id="btn_cadastrar">
-                        <button type="submit" name="cadastrar" class="btn btn-primary" style="width: 200px">Cadastrar Unidade</button>
-                    </div>
+            <hr style="width: 67%; margin-top: 30%">
+            <div class="row" style="margin-left: 60%; margin-top: -15px">
+                <div class="text-center my-3" id="btn_cadastrar">
+                    <button type="submit" name="cadastrar" class="btn btn-primary" style="width: 200px">Cadastrar
+                        Unidade
+                    </button>
                 </div>
+            </div>
 
         </form>
     </div>
