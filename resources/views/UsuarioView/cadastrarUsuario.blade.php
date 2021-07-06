@@ -83,52 +83,55 @@
                         @endif
                     </div>
                 </div>
-
-                <div class="form-group col-md-4">
-                    <label for="tipousuario_id">Tipo de usuário</label>
-                    <select name="tipousuario_id"
-                            class="form-control{{ $errors->has('tipousuario_id') ? ' is-invalid' : '' }}" required
-                            autofocus>
-                        @foreach ($tipos_usuario as $tipo_usuario)
-                            @if ($tipo_usuario->id != 1)
-                                <option
-                                    value="{{$tipo_usuario->id}}" {{old('tipousuario') == $tipo_usuario->id ? 'selected' : '' }}>
-                                    {{$tipo_usuario->tipo}}
-                                </option>
-                            @endif
-                        @endforeach
-                    </select>
-                    @if ($errors->has('tipo_usuario_id'))
-                        <span class="invalid-feedback" role="alert">
+                <div class="form-row col-md-12 justify-content-center">
+                    <div class="form-group col-md-4">
+                        <label for="tipousuario_id">Tipo de usuário</label>
+                        <select name="tipousuario_id"
+                                class="form-control{{ $errors->has('tipousuario_id') ? ' is-invalid' : '' }}" required
+                                autofocus>
+                            @foreach ($tipos_usuario as $tipo_usuario)
+                                @if ($tipo_usuario->id != 1)
+                                    <option
+                                        value="{{$tipo_usuario->id}}" {{old('tipousuario') == $tipo_usuario->id ? 'selected' : '' }}>
+                                        {{$tipo_usuario->tipo}}
+                                    </option>
+                                @endif
+                            @endforeach
+                        </select>
+                        @if ($errors->has('tipo_usuario_id'))
+                            <span class="invalid-feedback" role="alert">
 						{{$errors->first('tipo_usuario_id')}}
 					</span>
-                    @endif
-                </div>
+                        @endif
+                    </div>
 
-                <div class="form-group col-md-4">
-                    <label for="curso_id">Curso</label>
-                    <select name="curso_id" class="form-control{{ $errors->has('curso_id') ? ' is-invalid' : '' }}"
-                            required autofocus>
-                        @foreach ($cursos as $curso)
-                            @if($curso->curso_nome != "Curso Teste")
-                                <option value="{{$curso->id}}" {{old('curso') == $curso->id ? 'selected' : '' }}>
-                                    {{$curso->curso_nome}} ({{$curso->unidade->nome}})
-                                </option>
-                            @endif
-                        @endforeach
-                    </select>
-                    @if ($errors->has('curso_id'))
-                        <span class="invalid-feedback" role="alert">
+                    <div class="form-group col-md-4">
+                        <label for="curso_id">Curso</label>
+                        <select name="curso_id" class="form-control{{ $errors->has('curso_id') ? ' is-invalid' : '' }}"
+                                required autofocus>
+                            @foreach ($cursos as $curso)
+                                @if($curso->curso_nome != "Curso Teste")
+                                    <option value="{{$curso->id}}" {{old('curso') == $curso->id ? 'selected' : '' }}>
+                                        {{$curso->curso_nome}} ({{$curso->unidade->nome}})
+                                    </option>
+                                @endif
+                            @endforeach
+                        </select>
+                        @if ($errors->has('curso_id'))
+                            <span class="invalid-feedback" role="alert">
 						{{$errors->first('curso_id')}}
 					</span>
-                    @endif
+                        @endif
+                    </div>
                 </div>
             </div>
 
             <hr style="width: 67%;">
             <div class="row" style="margin-left: 60%; margin-top: -15px">
                 <div class="text-center my-3" id="btn_cadastrar">
-                    <button type="submit" name="cadastrar" class="btn btn-primary" style="width: 200px">Cadastrar Usuário</button>
+                    <button type="submit" name="cadastrar" class="btn btn-primary" style="width: 200px">Cadastrar
+                        Usuário
+                    </button>
                 </div>
             </div>
         </form>
