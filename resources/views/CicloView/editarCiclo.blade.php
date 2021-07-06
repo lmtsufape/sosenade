@@ -23,9 +23,11 @@
             <div class="form-row justify-content-center row">
                 <div class="form-group col-md-6">
                     <label for="tipo_ciclo">Ano do Ciclo:</label>
-                    <input type="text" name="tipo_ciclo" id="tipo_ciclo" placeholder="Nome"
+                    <input type="text" minlength="4" maxlength="4" name="tipo_ciclo" id="tipo_ciclo"
+                           placeholder="Digite aqui o ano do novo ciclo"
                            class="form-control{{ $errors->has('tipo_ciclo') ? ' is-invalid' : '' }}"
-                           value="{{$ciclo->tipo_ciclo}}" required autofocus>
+                           value="{{$ciclo->tipo_ciclo}}" onkeypress="return isNumber(event)" onpaste="return false;"
+                           required autofocus>
                     @if ($errors->has('tipo_ciclo'))
                         <span class="invalid-feedback" role="alert">
 			    		{{$errors->first('tipo_ciclo')}}
@@ -37,9 +39,22 @@
             <hr style="width: 67%">
             <div class="row" style="margin-left: 60%; margin-top: -15px">
                 <div class="text-center my-3" id="btn_cadastrar">
-                    <button type="submit" name="cadastrar" class="btn btn-primary" style="width: 200px">Salvar Alterações</button>
+                    <button type="submit" name="cadastrar" class="btn btn-primary" style="width: 200px">Salvar
+                        Alterações
+                    </button>
                 </div>
             </div>
         </form>
     </div>
+
+    <script type="text/javascript">
+        function isNumber(evt) {
+            evt = (evt) ? evt : window.event;
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if ((charCode > 31 && charCode < 48) || charCode > 57) {
+                return false;
+            }
+            return true;
+        }
+    </script>
 @stop
