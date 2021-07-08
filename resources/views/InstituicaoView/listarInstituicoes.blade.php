@@ -36,7 +36,7 @@
 						<th>Nome</th>
 						<th>E-mail</th>
 						<th>CNPJ</th>
-						<th style="width: 7%">Opções</th>
+						<th style="width: 10%">Opções</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -45,9 +45,11 @@
 							<td>{{ $instituicao->nome }}</td>
 							<td>{{ $instituicao->email }}</td>
 							<td>{{ $instituicao->cnpj }}</td>
-							<td class="btn-group">
-								<a href="{{route('edit_instituicao',['id'=>$instituicao->id])}}" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
-								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{ route('delete_instituicao', ['id'=>$instituicao->id]) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+							<td>
+								<a href="{{route('edit_instituicao',['id'=>$instituicao->id])}}" class="btn btn-primary"
+                                   rel="tooltip" data-placement="bottom"><i class="fa fa-pencil"></i></a>
+								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{ route('delete_instituicao', ['id'=>$instituicao->id]) }}" class="btn btn-danger"
+                                   rel="tooltip" data-placement="bottom"><i class="fa fa-trash"></i></a>
 							</td>
 						</tr>
 					@endforeach

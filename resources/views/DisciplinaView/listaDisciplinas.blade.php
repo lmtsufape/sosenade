@@ -28,7 +28,7 @@
 				{{ session('fail') }}
 			</div>
 		@endif
-        
+
         @if(!$disciplinas->isEmpty())
             <table class="table table-hover" id="tabela_dados" style="border-style: groove; border-color: #6cb2eb">
                 <thead>
@@ -76,6 +76,22 @@
 
     <script type="text/javascript">
         $('[rel="tooltip"]').tooltip();
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#tabela_dados').DataTable({
+                "order": [
+                    [0, "asc"]
+                ],
+                "columnDefs": [
+                    { "orderable": false, "targets": 1 }
+                ],
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+                }
+            });
+        } );
     </script>
 
 @stop
