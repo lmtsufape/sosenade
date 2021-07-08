@@ -11,7 +11,7 @@ use Illuminate\Database\QueryException;
 class UnidadeAcademicaController extends Controller
 {
     public function listar() {
-        
+
         $auth = \Auth::guard('instituicao')->user();
 
         $unidades = \SimuladoENADE\UnidadeAcademica::where('instituicao_id', $auth->id)->get();
@@ -30,7 +30,7 @@ class UnidadeAcademicaController extends Controller
             UnidadeAcademicaValidator::Validate($request->all());
 
             $unidade = new \SimuladoENADE\UnidadeAcademica();
-            $unidade->nome = strtoupper($request->nome);
+            $unidade->nome = $request->nome;
             $unidade->instituicao_id = $auth->id;
             $unidade->save();
 
@@ -52,7 +52,7 @@ class UnidadeAcademicaController extends Controller
             UnidadeAcademicaValidator::Validate($request->all());
 
             $unidade = \SimuladoENADE\UnidadeAcademica::find($request->id);
-            $unidade->nome = strtoupper($request->nome);
+            $unidade->nome = $request->nome;
             $unidade->instituicao_id = $auth->id;
             $unidade->update();
 
@@ -63,7 +63,7 @@ class UnidadeAcademicaController extends Controller
     }
 
     public function remover(Request $request) {
-        
+
         $unidade = \SimuladoENADE\UnidadeAcademica::find($request->id);
         $unidade_nome = $unidade->nome;
 
