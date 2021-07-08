@@ -219,7 +219,7 @@ box-shadow: 0px 4px 10px -5px rgba(0,0,0,0.64);" role="navigation">
                     </li>
                 @endcan
 
-                @can('view_administrador_sistema', Auth::user())
+                <!--@can('view_administrador_sistema', Auth::user())
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -230,7 +230,7 @@ box-shadow: 0px 4px 10px -5px rgba(0,0,0,0.64);" role="navigation">
                             <a class="dropdown-item" href="{{route('list_instituicao')}}">Listar</a>
                         </div>
                     </li>
-                @endcan
+                @endcan !-->
 
                 @if(Auth::guard('aluno')->check())
                     <li class="nav-item dropdown">

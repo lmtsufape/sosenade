@@ -44,13 +44,13 @@
 				<tbody>
 					@foreach($usuarios as $usuario)
 						<tr>
-							<td>{{$usuario->nome}}</td>
-							<td>{{$usuario->tipousuario->tipo}}</td>
-							<td>{{$usuario->cpf}}</td>
-							<td>{{$usuario->email}}</td>
-							<td>{{$usuario->curso_nome}}</td>
-							<td>{{$usuario->curso->unidade->nome}}</td>
-							<td>
+							<td class="align-middle">{{$usuario->nome}}</td>
+							<td class="align-middle">{{$usuario->tipousuario->tipo}}</td>
+							<td class="align-middle">{{$usuario->cpf}}</td>
+							<td class="align-middle">{{$usuario->email}}</td>
+							<td class="align-middle">{{$usuario->curso_nome}}</td>
+							<td class="align-middle">{{$usuario->curso->unidade->nome}}</td>
+							<td class="align-middle">
 								<a href="{{route('edit_usuario',['id'=>$usuario->userid])}}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
 								<a onclick="return confirm('Você tem certeza que deseja excluir?')" href="{{route('delete_usuario',['id'=>$usuario->userid])}}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
 							</td>
@@ -88,5 +88,19 @@
 			});
 		} );
 	</script>
+
+    <style>
+        th{
+            text-align: center;
+        }
+        td {
+            white-space: normal !important;
+            word-wrap: break-word;
+            text-align: center;
+        }
+        table {
+            table-layout: fixed;
+        }
+    </style>
 
 @stop

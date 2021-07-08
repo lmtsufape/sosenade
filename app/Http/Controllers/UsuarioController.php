@@ -21,7 +21,11 @@ class Usuariocontroller extends Controller{
 		$curso = \SimuladoENADE\Curso::find($user->curso_id);
 		$unidade = \SimuladoENADE\UnidadeAcademica::find($curso->unidade_id)->nome;
 		$tipo_usuario = \SimuladoENADE\Tipousuario::find($user->tipousuario_id)->tipo;
-		return view('home', ['nome' => $user->nome, 'curso' => $curso->curso_nome, 'unidade' => $unidade, 'tipo' => $tipo_usuario]);
+		if($user->tipousuario_id != 6) {
+            return view('home', ['nome' => $user->nome, 'curso' => $curso->curso_nome, 'unidade' => $unidade, 'tipo' => $tipo_usuario]);
+        } else {
+		    return redirect(route('list_instituicao'));
+        }
 	}
 
 	public function adicionar(Request $request){
