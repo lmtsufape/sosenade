@@ -7,7 +7,7 @@
             style="background: #1B2E4F; margin-top: -15px; margin-bottom:  30px; border-radius: 10px 10px 0 0; color: white">
             <div class="col-sm">
                 <h1 style="margin-left: 15px; margin-top: 15px">Resposta discursiva</h1>
-                <p style="color: #606f7b; margin-left: 15px; margin-top: -5px">
+                <p style="color: #9fcdff; margin-left: 15px; margin-top: -5px">
                     <a href="{{route('home')}}" style="color: inherit;">Início</a>
                     <a href="{{route('listar_simulados_questoes_discursivas')}}" style="color: inherit;">> Simulados com respostas discursivas</a>
                     <a href="{{route('ver_respostas_discursivas_simulado', $simulado_id)}}" style="color: inherit;">> Respostas discursivas</a>

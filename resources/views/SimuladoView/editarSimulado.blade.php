@@ -6,7 +6,7 @@
              style="background: #1B2E4F; margin-top: -15px; margin-bottom:  30px; border-radius: 10px 10px 0 0; color: white">
             <div class="col" align="left">
                 <h1 style="margin-left: 15px; margin-top: 15px"> Editar Simulado</h1>
-                <p style="color: #606f7b; margin-left: 15px; margin-top: -5px">
+                <p style="color: #9fcdff; margin-left: 15px; margin-top: -5px">
                     <a href="{{route('home')}}" style="color: inherit;">Início</a> >
                     <a href="{{route('list_simulado')}}" style="color: inherit;">Listar Simulados</a> >
                     Editar Simulado

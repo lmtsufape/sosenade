@@ -7,7 +7,7 @@
              style="background: #1B2E4F; margin-top: -15px; margin-bottom:  30px; border-radius: 10px 10px 0 0; color: white">
             <div class="col-sm">
                 <h1 style="margin-left: 15px; margin-top: 15px">Questões Respondidas</h1>
-                <p style="color: #606f7b; margin-left: 15px; margin-top: -5px"><a href="{{route('home')}}" style="color: inherit;">Início</a>
+                <p style="color: #9fcdff; margin-left: 15px; margin-top: -5px"><a href="{{route('home')}}" style="color: inherit;">Início</a>
                     > Questões Respondidas</p>
             </div>
         </div>
@@ -39,14 +39,14 @@
                 </thead>
                 <tbody>
                 @foreach($questaos as $questao)
-                    <tr> 
+                    <tr>
                         <th scope="row"> {{($loop->index + 1)}} </th>
                         <td class="align-middle" style="overflow: hidden; word-wrap: break-word; max-width: 38rem;">
                             {{ str_limit(preg_replace('/<[^>]*>|[&;]|nbsp/', '', preg_replace(array('/nbsp/','/<(.*?)>/'), ' ', $questao->enunciado)), $limit = 140, $end = '...') }}
                         </td>
                         <td class="align-middle">{{$questao->dificuldade}}</td>
                         <td class="align-middle" id="disciplina">{{$disciplina::find($questao->disciplina_id)->nome}}</td>
-                        
+
                         <td class="align-middle">
                             <div style="text-align: center;">
                                 <a class="icons btn btn-info" href="#modal_{{$questao->id}}" data-toggle="modal"

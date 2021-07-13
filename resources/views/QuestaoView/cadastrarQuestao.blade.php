@@ -6,7 +6,7 @@
              style="background: #1B2E4F; margin-top: -15px; margin-bottom:  30px; border-radius: 10px 10px 0 0; color: white">
             <div class="col" align="left">
                 <h1 style="margin-left: 15px; margin-top: 15px">Cadastrar Nova Questão</h1>
-                <p style="color: #606f7b; margin-left: 15px; margin-top: -5px">
+                <p style="color: #9fcdff; margin-left: 15px; margin-top: -5px">
                     <a href="{{route('home')}}" style="color: inherit;">Início</a> >
                     Cadastrar Questão
                 </p>
@@ -33,7 +33,7 @@
                 <div class="tab-pane fade show active" id="cadastrar_questao_objetiva" role="tabpanel" aria-labelledby="cadastrar-questao-objetiva-tab">
                     <div class="list-group list-group-flush">
                         <br>
-                        
+
                         <form action="{{route('add_qst')}}" method="post">
                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="form-group row justify-content-center">
@@ -223,7 +223,7 @@
 
                     </div>
                 </div>
-         
+
                 <div class="tab-pane fade" id="cadastrar_questao_discursiva" role="tabpanel" aria-labelledby="cadastrar-questao-discursiva-tab">
                     <div class="list-group list-group-flush">
                         <br>
@@ -296,7 +296,7 @@
 
                     </div>
                 </div>
-         
+
             </div>
         </div>
 
