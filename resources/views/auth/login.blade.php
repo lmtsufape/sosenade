@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('titulo', 'Login')
 @section('content')
 
 <div class="container-fluid" style="width: 75%; height: 570px; background-color: white; margin-top: 20px;padding: 0 20px 20 0; border-radius: 15px;

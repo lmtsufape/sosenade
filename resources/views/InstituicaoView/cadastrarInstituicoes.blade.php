@@ -6,7 +6,7 @@
              style="background: #1B2E4F; margin-top: -15px; margin-bottom:  30px; border-radius: 10px 10px 0 0; color: white">
             <div class="col" align="left">
                 <h1 style="margin-left: 15px; margin-top: 15px"> Cadastro de Instituição</h1>
-                <p style="color: #606f7b; margin-left: 15px; margin-top: -5px">
+                <p style="color: #9fcdff; margin-left: 15px; margin-top: -5px">
                     <a href="{{route('home')}}" style="color: inherit;">Inicio</a> >
                     Cadastrar Instituição
                 </p>
@@ -62,6 +62,7 @@
                         <input type="password" id="password" name="password" placeholder="Senha"
                                class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
                                value="{{ old('password') }}" required autofocus>
+                        <span style="color: #7F7F7F; font-size: 12px">A senha deve possuir no minimo 8 caracteres.</span>
                         @if ($errors->has('password'))
                             <span class="invalid-feedback" role="alert">
 							{{$errors->first('password')}}

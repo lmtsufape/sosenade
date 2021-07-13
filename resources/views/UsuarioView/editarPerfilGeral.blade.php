@@ -78,37 +78,39 @@
 											</span>
                                     @endif
                                 </div>
-                                <div class="form-group col-md-5">
-                                    <label for="vinculo" style="float: left;">Vínculo</label>
-                                    <input type="text" id="vinculo" name="vinculo" placeholder="Vínculo"
-                                           class="form-control{{ $errors->has('vinculo') ? ' is-invalid' : '' }} vinculo"
-                                           value="" disabled>
-                                    @if ($errors->has('vinculo'))
-                                        <span class="invalid-feedback" role="alert">
+                                @if(!(\Illuminate\Support\Facades\Auth::user()->tipousuario_id == 6))
+                                    <div class="form-group col-md-5">
+                                        <label for="vinculo" style="float: left;">Vínculo</label>
+                                        <input type="text" id="vinculo" name="vinculo" placeholder="Vínculo"
+                                               class="form-control{{ $errors->has('vinculo') ? ' is-invalid' : '' }} vinculo"
+                                               value="" disabled>
+                                        @if ($errors->has('vinculo'))
+                                            <span class="invalid-feedback" role="alert">
                                             {{$errors->first('vinculo')}}
                                         </span>
-                                    @endif
+                                        @endif
 
-                                    <label for="curso" style="float: left;">Curso</label>
-                                    <input type="text" id="curso" name="curso" placeholder="Curso"
-                                           class="form-control{{ $errors->has('curso') ? ' is-invalid' : '' }} curso"
-                                           value="" disabled>
-                                    @if ($errors->has('curso'))
-                                        <span class="invalid-feedback" role="alert">
+                                        <label for="curso" style="float: left;">Curso</label>
+                                        <input type="text" id="curso" name="curso" placeholder="Curso"
+                                               class="form-control{{ $errors->has('curso') ? ' is-invalid' : '' }} curso"
+                                               value="" disabled>
+                                        @if ($errors->has('curso'))
+                                            <span class="invalid-feedback" role="alert">
                                             {{$errors->first('curso')}}
                                         </span>
-                                    @endif
+                                        @endif
 
-                                    <label for="instituicao" style="float: left;">Instituição</label>
-                                    <input type="text" id="instituicao" name="instituicao" placeholder="Instituição"
-                                           class="form-control{{ $errors->has('instituicao') ? ' is-invalid' : '' }} instituicao"
-                                           value="" disabled>
-                                    @if ($errors->has('instituicao'))
-                                        <span class="invalid-feedback" role="alert">
+                                        <label for="instituicao" style="float: left;">Instituição</label>
+                                        <input type="text" id="instituicao" name="instituicao" placeholder="Instituição"
+                                               class="form-control{{ $errors->has('instituicao') ? ' is-invalid' : '' }} instituicao"
+                                               value="" disabled>
+                                        @if ($errors->has('instituicao'))
+                                            <span class="invalid-feedback" role="alert">
                                             {{$errors->first('instituicao')}}
                                         </span>
-                                    @endif
-                                </div>
+                                        @endif
+                                    </div>
+                                @endif
                             </div>
                             <div class="col-md-12 text-center">
                                 <button type="submit" name="alterar" class="btn btn-primary">Salvar alterações</button>
@@ -171,4 +173,11 @@
             </div>
         </div>
     </div>
+
+    <style>
+        label {
+            margin-top: 10px;
+            margin-bottom: 0px;
+        }
+    </style>
 @stop
