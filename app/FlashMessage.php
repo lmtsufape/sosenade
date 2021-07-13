@@ -5,7 +5,7 @@ namespace SimuladoENADE;
 use Illuminate\Database\Eloquent\Model;
 
 class FlashMessage extends Model
-{   
+{
     public static function cadastroSuccess() {
         return 'Cadastro realizado com sucesso!';
     }
@@ -35,7 +35,7 @@ class FlashMessage extends Model
     }
 
     public static function removeInstituicaoFail($instituicao_nome) {
-        return 'A instituição '.$instituicao_nome.' não pode ser removida! Remova as dependências (Unidades Academicas) vinculadas antes!';
+        return 'A instituição '.$instituicao_nome.' não pode ser removida! Remova as dependências (Unidades Academicas) vinculadas anteriormente!';
     }
 
     public static function removeUnidadeSuccess($unidade_nome) {
@@ -43,7 +43,7 @@ class FlashMessage extends Model
     }
 
     public static function removeUnidadeFail($unidade_nome) {
-        return 'A unidade '.$unidade_nome.' não pode ser removida! Remova as dependências (Cursos) vinculadas antes!';
+        return 'A unidade '.$unidade_nome.' não pode ser removida! Remova as dependências (Cursos) vinculadas anteriormente!';
     }
 
     public static function removeCicloSuccess($ciclo_nome) {
@@ -51,7 +51,7 @@ class FlashMessage extends Model
     }
 
     public static function removeCicloFail($ciclo_nome) {
-        return 'O ciclo '.$ciclo_nome.' não pode ser removido! Remova as dependências (Cursos) vinculadas antes!';
+        return 'O ciclo '.$ciclo_nome.' não pode ser removido! Remova as dependências (Cursos) vinculadas anteriormente!';
     }
 
     public static function removeCursoSuccess($curso_nome) {
@@ -59,7 +59,7 @@ class FlashMessage extends Model
     }
 
     public static function removeCursoFail($curso_nome) {
-        return 'O curso '.$curso_nome.' não pode ser removido! Remova as dependências (Usuarios / Alunos / Disciplinas) vinculadas antes!';
+        return 'O curso '.$curso_nome.' não pode ser removido! Remova as dependências (Usuarios / Alunos / Disciplinas) vinculadas anteriormente!';
     }
 
     public static function removeDisciplinaSuccess($disciplina_nome) {
@@ -67,7 +67,7 @@ class FlashMessage extends Model
     }
 
     public static function removeDisciplinaFail($disciplina_nome) {
-        return 'A disciplina '.$disciplina_nome.' não pode ser removida! Remova as dependências (Questões) vinculadas antes!';
+        return 'A disciplina '.$disciplina_nome.' não pode ser removida! Remova as dependências (Questões) vinculadas anteriormente!';
     }
 
     public static function removeQuestaoSuccess() {
@@ -75,7 +75,7 @@ class FlashMessage extends Model
     }
 
     public static function removeQuestaoFail() {
-        return 'A questão não pode ser removida! Remova as dependências (Simulados) vinculadas antes!';
+        return 'A questão não pode ser removida! Remova as dependências (Simulados) vinculadas anteriormente!';
     }
 
     public static function importAlunoSuccess($dados_duplicados) {

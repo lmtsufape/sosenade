@@ -17,11 +17,7 @@
 
 		@include('includes.head')
 		<title>
-			@if(!Auth::guard('aluno')->check() && !Auth::guard('instituicao')->check() && !Auth::check())
-				Entrar | S.O.S Enade
-			@else
 				@yield('titulo') | S.O.S Enade
-			@endif
 		</title>
 	</head>
 

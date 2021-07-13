@@ -13,7 +13,7 @@ use SimuladoENADE\Validator\ValidationException;
 class InstituicaoController extends Controller
 {
     public function home() {
-        
+
         $user = \Auth::guard('instituicao')->user();
 
         return view('home', ['nome'=>$user['nome'], 'tipo'=>'Instituição']);
@@ -66,11 +66,11 @@ class InstituicaoController extends Controller
 		$validator = Validator::make(
             $request->all(),
             [
-			    'password' => 'min:6|max:16|required_with:password_confirmation',
+			    'password' => 'min:8|max:16|required_with:password_confirmation',
 			    'password_confirmation' => 'required_with:password|same:password'
 			],
             [
-                'min' => 'A senha deve conter no mínimo 6 caracteres',
+                'min' => 'A senha deve conter no mínimo 8 caracteres',
                 'same' => 'A nova senha e a confirmação da senha devem ser iguais'
             ]);
 
@@ -92,7 +92,7 @@ class InstituicaoController extends Controller
             $data['tipousuario_id'] = 4;
             $data['password'] = $instituicao->password;
             $data['password_confirmation'] = $instituicao->password;
-            
+
             InstituicaoValidator::Validate($data);
 
             $instituicao->fill($data);
@@ -118,7 +118,7 @@ class InstituicaoController extends Controller
         $instituicao = \SimuladoENADE\Instituicao::find($request->id);
         $instituicao_nome = $instituicao->nome;
 
-        try { 
+        try {
             $instituicao->delete();
             return redirect("/listar/instituicao")->with('success', \SimuladoENADE\FlashMessage::removeInstituicaoSuccess($instituicao_nome));
         } catch(QueryException $ex) {
