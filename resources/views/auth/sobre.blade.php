@@ -26,7 +26,7 @@ overflow: hidden; box-shadow: -1px 4px 17px -5px rgba(0,0,0,0.64);
                             <p><a href="http://www.lmts.uag.ufrpe.br/sites/ww4.deinfo.ufrpe.br/files/Concess%C3%A3o%20de%20Registro%20-%20S.O.S.%20Enade%20-%20Sistema%20de%20Organiza%C3%A7%C3%A3o%20de%20Simulados%20Enade.pdf">Número de registro</a></p>
                             <h2><strong>Código-fonte:</strong></h2>
                             <p><strong></strong></p>
-                            <!-- /.block --><!-- /.block --><p></p>
+                            <p></p>
                             <p><a href="https://github.com/lmts-ufape/sosenade" target="_blank">S.O.S Enade</a></p>
                             <h2><strong>Licença de uso:</strong></h2>
                             <p>Em definição.</p>
