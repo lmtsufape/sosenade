@@ -62,6 +62,7 @@
                         <input type="password" id="password" name="password" placeholder="Senha"
                                class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
                                value="{{ old('password') }}" required autofocus>
+                        <span style="color: #7F7F7F; font-size: 12px">A senha deve possuir no minimo 8 caracteres.</span>
                         @if ($errors->has('password'))
                             <span class="invalid-feedback" role="alert">
 							{{$errors->first('password')}}
