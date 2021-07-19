@@ -86,7 +86,7 @@
                                 @foreach($questaos as $questao)
                                     <tr>
                                         <td class="align-middle" style="overflow: hidden; word-wrap: break-word; max-width: 38rem;">
-                                            {{ str_limit(preg_replace('/<[^>]*>|[&;]|nbsp/', '', preg_replace(array('/nbsp/','/<(.*?)>/'), ' ', $questao->enunciado)), $limit = 80, $end = '...') }}
+                                            {{ str_limit(preg_replace('/<[^>]*>|[&;]|nbsp/', '', preg_replace(array('/nbsp/','/<(.*?)>/'), ' ', $questao->enunciado)), $limit = 240, $end = '...') }}
                                         </td>
                                         <td class="align-middle">{{$questao->dificuldade}}</td>
                                         <td class="align-middle" id="disciplina">{{$questao->nome}}</td>
