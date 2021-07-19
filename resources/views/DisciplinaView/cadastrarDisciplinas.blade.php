@@ -19,8 +19,8 @@
 
 		<div class="form-group justify-content-center row">
 			<div class="col-md-10">
-                <label for="nome">Nome da Disciplina/Conteudo</label>
-				<input type="text" name="nome" id="nome" placeholder="Digite o nome da disciplina/conteúdo aqui" class="form-control{{ $errors->has('nome') ? ' is-invalid' : '' }}" value="{{ old('nome') }}" required autofocus>
+                <label for="nome">Nome da Disciplina, Conteúdo ou Área</label>
+				<input type="text" name="nome" id="nome" placeholder="Digite o nome da disciplina, conteúdo ou área aqui" class="form-control{{ $errors->has('nome') ? ' is-invalid' : '' }}" value="{{ old('nome') }}" required autofocus>
 					@if ($errors->has('nome'))
 						<span class = "invalid-feedback" role="alert">
 							<strong>{{$errors->first('nome')}}</strong>
