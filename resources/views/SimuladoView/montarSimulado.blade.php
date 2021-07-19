@@ -22,7 +22,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="montar-simulado-questoes-discursivas-tab" data-toggle="tab" href="#montar-simulado-questoes-discursivas" role="tab"
-                           aria-controls="montar-simulado-questoes-discursivas" aria-selected="false">Questões Discursivas</a>
+                           aria-controls="montar-simulado-questoes-discursivas" aria-selected="false">Questões Discursivas</a> 
                     </li>
 
                     <ul class="nav ml-auto">
@@ -48,7 +48,7 @@
                     <div class="list-group list-group-flush">
                         <br>
 
-                            <form id="form_qst_objetivas" action="{{route('add_qst_simulado')}}" method="post">
+                            <form id="form_qst_objetivas" action="{{route('add_qst_simulado')}}" method="get">
 
                                 @if ($errors->any())
                                     <div class="alert alert-danger">
@@ -76,7 +76,7 @@
                                                 <div class="listaHeader card-header">
                                                     <h5 class="card-title">Procurar Questões</h5>
                                                 </div>
-
+                                                
                                                 <!-- Simulado Manual -->
                                                 <div id="container_requisicao_montagem_manual">
 
@@ -184,7 +184,7 @@
                                                                             class="btn btn-sm btn-primary" data-placement="bottom"
                                                                             rel="tooltip"
                                                                             title="Editar"><i class="fa fa-pencil"></i></a>
-
+                                                                            
                                                                             <!-- Button Add Questao -->
                                                                             <button class="btn btn-sm btn-secondary add_qst_obj_async" id="{{'btn_add_qst_obj_'.$qst->id}}" data-placement="bottom" rel="tooltip" title="Adicionar ao Simulado">
                                                                                 <i class="fa fa-angle-down"></i>
@@ -461,7 +461,7 @@
                     <div class="list-group list-group-flush">
                         <br>
 
-                            <form id="form_qst_discursivas" action="{{route('add_qst_disc_simulado_auto')}}" method="post">
+                            <form id="form_qst_discursivas" action="{{route('add_qst_disc_simulado_auto')}}" method="get">
 
                                 @if ($errors->any())
                                     <div class="alert alert-danger">
@@ -489,7 +489,7 @@
                                                 <div class="listaHeader card-header">
                                                     <h5 class="card-title">Procurar Questões</h5>
                                                 </div>
-
+                                                
                                                 <!-- Simulado Manual -->
                                                 <div id="container_requisicao_montagem_manual_disc">
 
@@ -580,7 +580,7 @@
                                                         </thead>
                                                         <tbody id="tbody_externa_disc">
 
-                                                        @if( !$questoes_discursivas_externas_simulado->isEmpty() )
+                                                        @if( !$questoes_discursivas_externas_simulado->isEmpty() ) 
                                                             @foreach($questoes_discursivas_externas_simulado as $qst)
                                                                     <tr id="questao_discursiva_{{$qst->id}}" class="questoes_externas_disc">
                                                                         <td style="overflow: hidden; word-wrap: break-word; max-width: 38rem;">
@@ -597,7 +597,7 @@
                                                                             class="btn btn-sm btn-primary" data-placement="bottom"
                                                                             rel="tooltip"
                                                                             title="Editar"><i class="fa fa-pencil"></i></a>
-
+                                                                            
                                                                             <!-- Button Add Questao -->
                                                                             <button class="btn btn-sm btn-secondary add_qst_disc_async" id="{{'btn_add_qst_disc_'.$qst->id}}" data-placement="bottom" rel="tooltip" title="Adicionar ao Simulado">
                                                                                 <i class="fa fa-angle-down"></i>
@@ -907,7 +907,7 @@
 
         // ---- Toogle Button / Tabs -------------------------------------------------------------
         $(document).ready(function() {
-
+            
             $('#montar-simulado-questoes-objetivas-tab').on('click', function() {
                 $('#switch_qst_objetivas').show()
                 $('#switch_qst_discursivas').hide()
@@ -976,7 +976,7 @@
                     $('.btn_hide_on_ready_disc').hide()
                     $('#bool_simulado_montagem_automatica_discursiva').val(Number(isChecked))
                 }
-
+                
             });
 
         });
@@ -1012,7 +1012,7 @@
             }
 
             if($('.questoes_simulado_obj').length > 0) {
-                $('#tabela_simulado').show()
+                $('#tabela_simulado').show()                
                 $('#questoes_obj_simulado_empty').hide()
             } else {
                 $('#tabela_simulado').show()
@@ -1056,7 +1056,7 @@
             }
 
             if($('.questoes_simulado_disc').length > 0) {
-                $('#tabela_simulado_disc').show()
+                $('#tabela_simulado_disc').show()                
                 $('#questoes_disc_simulado_empty').hide()
             } else {
                 $('#tabela_simulado_disc').show()
@@ -1094,7 +1094,7 @@
 
                 const btn_add_qst = $('#btn_add_qst_obj_'+id)
                 const btn_remove_qst = $('#btn_remove_qst_obj_'+id)
-
+                
                 const btn_add_qst_modal = $('#btn_add_qst_obj_modal_'+id)
                 const btn_remove_qst_modal = $('#btn_remove_qst_obj_modal_'+id)
 
@@ -1151,10 +1151,10 @@
                     });
                 }
             });
-
+            
             $('.remove_qst_obj_async').click(function() {
                 var isRemove = confirm('Você tem certeza que deseja remover essa questão do simulado?')
-
+                
                 const id = this.id.split('_').pop()
 
                 const btn_add_qst = $('#btn_add_qst_obj_'+id)
@@ -1170,7 +1170,7 @@
                 var tabela_simulado = $('#tbody_simulado_obj')
                 var data_table_empty = $('.dataTables_empty')
 
-
+                
                 // $('.questoes_simulado_obj').length
                 // alert($('.questoes_externas_obj'))
 
@@ -1206,7 +1206,7 @@
 
                                 data_table_empty.detach()
                                 tabela_externa.append(tr)
-
+                                
                                 alert('Questão removida com sucesso!')
                             }
 
@@ -1225,7 +1225,7 @@
             });
 
             $('.excluir_qst_obj_async').click(function() {
-
+                
                 var isDel = confirm('Você tem certeza que deseja remover?')
 
                 const id = this.id.split('_').pop()
@@ -1267,7 +1267,7 @@
                     });
                 }
             });
-
+            
             // ---------------------------------------------------------------------------------------
 
             // ---- Questoes Dicursivas --------------------------------------------------------------
@@ -1279,7 +1279,7 @@
 
                 const btn_add_qst = $('#btn_add_qst_disc_'+id)
                 const btn_remove_qst = $('#btn_remove_qst_disc_'+id)
-
+                
                 const btn_add_qst_modal = $('#btn_add_qst_disc_modal_'+id)
                 const btn_remove_qst_modal = $('#btn_remove_qst_disc_modal_'+id)
 
@@ -1387,7 +1387,7 @@
 
                                 data_table_empty.detach()
                                 tabela_externa.append(tr)
-
+                                
                                 alert('Questão removida com sucesso!')
                             }
 
@@ -1406,7 +1406,7 @@
             });
 
             $('.excluir_qst_disc_async').click(function() {
-
+                
                 var isDel = confirm('Você tem certeza que deseja remover?')
 
                 const id = this.id.split('_').pop()
@@ -1426,7 +1426,7 @@
                             $('#tipo_montagem_discursiva').prop('checked', true)
 
                             if(result) {
-
+                                
                                 tr.detach()
                                 modal.modal('hide')
 
