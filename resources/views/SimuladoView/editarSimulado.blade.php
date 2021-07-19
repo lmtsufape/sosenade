@@ -49,9 +49,9 @@
                            checked>
                 </div>
                 <div class="col-md-3">
-                    <label for="simulado_hora_aluno">4hrs por simulado</label><br>
+                    <label for="simulado_hora_aluno">Tempo de Prova</label><br>
                     <input name="simulado_hora_aluno" id="toggle-btn" type="checkbox" data-onstyle="danger"
-                           data-offstyle="outline-dark" data-on="4hrs" data-off="Sem limite" data-toggle="toggle"
+                           data-offstyle="outline-dark" data-on="4 horas" data-off="Sem limite" data-toggle="toggle"
                            checked>
                 </div>
             </div>

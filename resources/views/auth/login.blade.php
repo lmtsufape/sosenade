@@ -10,7 +10,7 @@ overflow: hidden; box-shadow: -1px 4px 17px -5px rgba(0,0,0,0.64);
         <div class="row" style="padding: 0px">
             <div class="col-sm-6 " style="margin-right: 30px; margin-left: -15px; padding: 0px;">
                 <div style="width: 100%; height: 100%; overflow: hidden;">
-                    <img src="{{asset('images/bibliotecas.png')}}" alt="">
+                    <img src="{{asset('images/bibliotecas.jpg')}}" alt="">
                 </div>
             </div>
             <div class="col-sm-6" style="margin-right: -100px">
