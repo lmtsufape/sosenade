@@ -64,11 +64,13 @@
 		    Route::get('/remover/simulado/{id}', 'SimuladoController@remover')->name('delete_simulado');
 
 		    Route::get('/montarSimulado/{id}', 'QuestaoSimuladoController@montar')->name('set_simulado');
-		    Route::post('/cadastrarQuestaoSimulado/', 'QuestaoSimuladoController@cadastrarQuestao')->name('add_qst_simulado');
-			Route::post('/cadastrarQuestaoSimuladoManual/', 'QuestaoSimuladoController@cadastrarQuestaoManualmente')->name('add_qst_simulado_obj');
+		    Route::get('/cadastrarQuestaoSimulado/', 'QuestaoSimuladoController@cadastrarQuestao')->name('add_qst_simulado');
+			Route::get('/cadastrarQuestaoSimuladoManual/', 'QuestaoSimuladoController@cadastrarQuestaoManualmente')->name('add_qst_simulado_obj');
 
-			Route::post('/cadastrarQuestaoDiscursivaSimulado/', 'QuestaoDiscursivaSimuladoController@cadastrarQuestao')->name('add_qst_disc_simulado_auto');
-			Route::post('/cadastrarQuestaoDiscursivaSimuladoManual/', 'QuestaoDiscursivaSimuladoController@cadastrarQuestaoManualmente')->name('add_qst_disc_simulado_manual');
+			Route::get('/cadastrarQuestaoDiscursivaSimulado/', 'QuestaoDiscursivaSimuladoController@cadastrarQuestao')->name('add_qst_disc_simulado_auto');
+			Route::get('/cadastrarQuestaoDiscursivaSimuladoManual/', 'QuestaoDiscursivaSimuladoController@cadastrarQuestaoManualmente')->name('add_qst_disc_simulado_manual');
+
+			Route::get('/download/csv', 'AlunoController@downloadModeloCSV')->name('csv_model_download');
 
 			// Chamadas Assicronas - Jquery
 			Route::get('/addQuestaoSimulado/Async/', 'QuestaoSimuladoController@addQuestaoAsync');
