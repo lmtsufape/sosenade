@@ -130,7 +130,7 @@ class QuestaoDiscursivaController extends Controller
 
     public function listarSimuladosRespostasDiscursivas() {
 
-        // TODO: Filtrar apenas os simulados que o professor pode avaliar
+        // TODO: Filtrar apenas os simulados que o professor pode 
 
         $respostas_discursivas_por_simulado = RespostaDiscursiva::all()->groupBy('simulado_id');
         $id_simulados_com_respostas_discursivas = [];
@@ -139,9 +139,7 @@ class QuestaoDiscursivaController extends Controller
             array_push($id_simulados_com_respostas_discursivas, $id_simulado);
         }
 
-        $simulados_com_respostas_discursivas = Simulado::where('id', $id_simulados_com_respostas_discursivas)
-                                             ->where('curso_id', Auth::user()->curso_id)
-                                             ->get();
+        $simulados_com_respostas_discursivas = Simulado::whereIn('id', $id_simulados_com_respostas_discursivas)->where('curso_id', Auth::user()->curso_id)->get();
 
         return view('ProfessorView/listar_simulados_questoes_discursivas', ["simulados" => $simulados_com_respostas_discursivas]);
     }
