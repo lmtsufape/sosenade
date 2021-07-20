@@ -176,10 +176,17 @@ box-shadow: 0px 4px 10px -5px rgba(0,0,0,0.64);" role="navigation">
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{route('new_simulado')}}">Cadastrar</a>
                             <a class="dropdown-item" href="{{route('list_simulado')}}">Listar</a>
-                            <div class="dropdown-divider"></div>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Relatórios
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{route('desempenho_alunos')}}">Desempenho por Aluno</a>
-                            <a class="dropdown-item" href="{{route('relatorio_disciplinas')}}">Desempenho por
-                                Disciplinas</a>
+                            <a class="dropdown-item" href="{{route('relatorio_disciplinas')}}">Desempenho por Disciplinas</a>
                             <a class="dropdown-item" href="{{route('qst_por_disciplina')}}">Desempenho por Questões</a>
                             <a class="dropdown-item" href="{{route('relatorio_simulados')}}">Desempenho por Simulado</a>
                         </div>
