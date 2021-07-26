@@ -40,7 +40,7 @@
                                 <div class="form-group col-md-2"
                                     style="background: #24509D; color: white; border-radius: 10px; padding: 5px">
                                     <h1>1º</h1>
-                                    Selecione a disciplina/conteúdo abrangido na questão e o nível de dificuldade da
+                                    Selecione a disciplina/conteúdo abordado na questão e o nível de dificuldade da
                                         mesma.
                                 </div>
                                 <div class="form-group col-md-9">
@@ -49,8 +49,8 @@
                                             <h5 class="card-title">Classificação da Questão</h5>
                                         </div>
                                         <div class="card-body row justify-content-center">
-                                            <div class="col-md-4 text-center">
-                                                <label for="dificuldade">Disciplina</label>
+                                            <div class="col-md-5 text-center">
+                                                <label for="disciplina_id">Nome da Disciplina, Conteúdo ou Área</label>
                                                 <select name="disciplina_id"
                                                         class="form-control{{ $errors->has('disciplina_id') ? ' is-invalid' : '' }}"
                                                         required autofocus>
@@ -61,7 +61,7 @@
                                                 </select>
                                             </div>
 
-                                            <div class="col-md-4 text-center">
+                                            <div class="col-md-5 text-center">
                                                 <label for="dificuldade">Dificuldade</label>
                                                 <select name="dificuldade"
                                                         class="form-control{{ $errors->has('dificuldade') ? ' is-invalid' : '' }}"
@@ -234,7 +234,7 @@
                                 <div class="form-group col-md-2"
                                     style="background: #24509D; color: white; border-radius: 10px; padding: 5px">
                                     <h1>1º</h1>
-                                    Selecione a disciplina/conteúdo abrangido na questão e o nível de dificuldade da
+                                    Selecione a disciplina/conteúdo abordado na questão e o nível de dificuldade da
                                         mesma.
                                 </div>
                                 <div class="form-group col-md-9">
@@ -243,8 +243,8 @@
                                             <h5 class="card-title">Classificação da Questão</h5>
                                         </div>
                                         <div class="card-body row justify-content-center">
-                                            <div class="col-md-4 text-center">
-                                                <label for="dificuldade">Disciplina</label>
+                                            <div class="col-md-5 text-center">
+                                                <label for="disciplina_id">Nome da Disciplina, Conteúdo ou Área</label>
                                                 <select name="disciplina_id"
                                                         class="form-control{{ $errors->has('disciplina_id') ? ' is-invalid' : '' }}"
                                                         required autofocus>
@@ -255,7 +255,7 @@
                                                 </select>
                                             </div>
 
-                                            <div class="col-md-4 text-center">
+                                            <div class="col-md-5 text-center">
                                                 <label for="dificuldade">Dificuldade</label>
                                                 <select name="dificuldade"
                                                         class="form-control{{ $errors->has('dificuldade') ? ' is-invalid' : '' }}"
