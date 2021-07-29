@@ -47,4 +47,15 @@ class Disciplina extends Model
     public static $messages = [
     	'required' => 'O campo :attribute deve ser preenchido na forma correta'
     ];
+
+    public static function queryToArrayIds($values) {
+        
+        $array = [];
+
+        foreach($values as $value)
+            array_push($array, $value->id);
+        
+        return $array;
+    }
+    
 }
