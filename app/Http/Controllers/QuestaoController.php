@@ -143,13 +143,32 @@ class QuestaoController extends Controller {
 		$questaos = collect();
 		$existe_no_curso = true;
 		
+		$list_cursos_id = DB::table('disciplinas')->pluck('curso_id')->toArray();
+		$list_cursos_id = array_unique($list_cursos_id);
+		
+		if(in_array( \Auth::user()->curso_id, $list_cursos_id )) {
+			$list_cursos_id = array_diff($list_cursos_id, array(\Auth::user()->curso_id));
+		}
+
 		if(!$request->all()){
-			return view('/QuestaoView/importarQuestao', ['disciplinas' => $disciplinas, 'cursos' => $cursos, 'questaos' => $questaos, 'disc_existe' => $existe_no_curso]);
+			return view('/QuestaoView/importarQuestao', ['disciplinas' => $disciplinas, 'cursos' => $cursos, 'questaos' => $questaos, 'disc_existe' => $existe_no_curso, 'list_cursos_id' => $list_cursos_id]);
 		} elseif ($request->input('disciplina_id')) {
-			$questaos = \SimuladoENADE\Disciplina::find($request->input('disciplina_id'))->questaos;
-			$condicoes = ['curso_id' => \Auth::user()->curso_id, 'nome' => \SimuladoENADE\Disciplina::find($request->input('disciplina_id'))->nome];
-			$existe_no_curso = \SimuladoENADE\Disciplina::where($condicoes)->first() ? true : false;
-			return view('/QuestaoView/importarQuestao', ['disciplinas' => $disciplinas, 'cursos' => $cursos, 'questaos' => $questaos, 'disc_existe' => $existe_no_curso]);
+			
+			if($request['disciplina_id'] == "all") {
+
+				$disciplinas_aux = \SimuladoENADE\Disciplina::where('curso_id', $request['curso_id'])->get();
+				$ids = \SimuladoENADE\Disciplina::queryToArrayIds($disciplinas_aux);
+				$questaos = \SimuladoENADE\Questao::whereIn('disciplina_id', $ids)->get();
+
+				$condicoes = ['curso_id' => \Auth::user()->curso_id];
+				$existe_no_curso = \SimuladoENADE\Disciplina::where($condicoes)->first() ? true : false;
+			} else {
+				$questaos = \SimuladoENADE\Disciplina::find($request->input('disciplina_id'))->questaos;
+				$condicoes = ['curso_id' => \Auth::user()->curso_id, 'nome' => \SimuladoENADE\Disciplina::find($request->input('disciplina_id'))->nome];
+				$existe_no_curso = \SimuladoENADE\Disciplina::where($condicoes)->first() ? true : false;
+			}
+			
+			return view('/QuestaoView/importarQuestao', ['disciplinas' => $disciplinas, 'cursos' => $cursos, 'questaos' => $questaos, 'disc_existe' => $existe_no_curso, 'list_cursos_id' => $list_cursos_id]);
 		} else {
 			return redirect()->back()->with('fail', true)->with('message','Ocorreu um erro. Por favor, selecione uma disciplina.');
 		}

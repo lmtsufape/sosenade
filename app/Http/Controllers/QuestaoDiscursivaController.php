@@ -3,6 +3,7 @@
 namespace SimuladoENADE\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use SimuladoENADE\NotaQuestaoDiscursiva;
 use SimuladoENADE\Validator\ValidationException;
@@ -65,13 +66,32 @@ class QuestaoDiscursivaController extends Controller
 		$questoes_discursivas = collect();
 		$existe_no_curso = true;
 
+        $list_cursos_id = DB::table('disciplinas')->pluck('curso_id')->toArray();
+		$list_cursos_id = array_unique($list_cursos_id);
+
+        if(in_array( \Auth::user()->curso_id, $list_cursos_id )) {
+			$list_cursos_id = array_diff($list_cursos_id, array(\Auth::user()->curso_id));
+		}
+
 		if(!$request->all()){
-			return view('/QuestaoView/importarQuestaoDiscursiva', ['disciplinas' => $disciplinas, 'cursos' => $cursos, 'questoes_discursivas' => $questoes_discursivas, 'disc_existe' => $existe_no_curso]);
+			return view('/QuestaoView/importarQuestaoDiscursiva', ['disciplinas' => $disciplinas, 'cursos' => $cursos, 'questoes_discursivas' => $questoes_discursivas, 'disc_existe' => $existe_no_curso, 'list_cursos_id' => $list_cursos_id]);
 		} elseif ($request->input('disciplina_id')) {
-			$questoes_discursivas = \SimuladoENADE\Disciplina::find($request->input('disciplina_id'))->questao_discursivas;
-			$condicoes = ['curso_id' => \Auth::user()->curso_id, 'nome' => \SimuladoENADE\Disciplina::find($request->input('disciplina_id'))->nome];
-			$existe_no_curso = \SimuladoENADE\Disciplina::where($condicoes)->first() ? true : false;
-			return view('/QuestaoView/importarQuestaoDiscursiva', ['disciplinas' => $disciplinas, 'cursos' => $cursos, 'questoes_discursivas' => $questoes_discursivas, 'disc_existe' => $existe_no_curso]);
+
+            if($request['disciplina_id'] == "all") {
+
+                $disciplinas_aux = \SimuladoENADE\Disciplina::where('curso_id', $request['curso_id'])->get();
+				$ids = \SimuladoENADE\Disciplina::queryToArrayIds($disciplinas_aux);
+				$questoes_discursivas = \SimuladoENADE\QuestaoDiscursiva::whereIn('disciplina_id', $ids)->get();
+
+				$condicoes = ['curso_id' => \Auth::user()->curso_id];
+				$existe_no_curso = \SimuladoENADE\Disciplina::where($condicoes)->first() ? true : false;
+            } else {
+                $questoes_discursivas = \SimuladoENADE\Disciplina::find($request->input('disciplina_id'))->questao_discursivas;
+			    $condicoes = ['curso_id' => \Auth::user()->curso_id, 'nome' => \SimuladoENADE\Disciplina::find($request->input('disciplina_id'))->nome];
+			    $existe_no_curso = \SimuladoENADE\Disciplina::where($condicoes)->first() ? true : false;
+            }
+
+			return view('/QuestaoView/importarQuestaoDiscursiva', ['disciplinas' => $disciplinas, 'cursos' => $cursos, 'questoes_discursivas' => $questoes_discursivas, 'disc_existe' => $existe_no_curso, 'list_cursos_id' => $list_cursos_id]);
 		} else {
 			return redirect()->back()->with('fail', true)->with('message','Ocorreu um erro. Por favor, selecione uma disciplina.');
 		}
@@ -130,7 +150,7 @@ class QuestaoDiscursivaController extends Controller
 
     public function listarSimuladosRespostasDiscursivas() {
 
-        // TODO: Filtrar apenas os simulados que o professor pode avaliar
+        // TODO: Filtrar apenas os simulados que o professor pode 
 
         $respostas_discursivas_por_simulado = RespostaDiscursiva::all()->groupBy('simulado_id');
         $id_simulados_com_respostas_discursivas = [];
@@ -139,9 +159,7 @@ class QuestaoDiscursivaController extends Controller
             array_push($id_simulados_com_respostas_discursivas, $id_simulado);
         }
 
-        $simulados_com_respostas_discursivas = Simulado::where('id', $id_simulados_com_respostas_discursivas)
-                                             ->where('curso_id', Auth::user()->curso_id)
-                                             ->get();
+        $simulados_com_respostas_discursivas = Simulado::whereIn('id', $id_simulados_com_respostas_discursivas)->where('curso_id', Auth::user()->curso_id)->get();
 
         return view('ProfessorView/listar_simulados_questoes_discursivas', ["simulados" => $simulados_com_respostas_discursivas]);
     }

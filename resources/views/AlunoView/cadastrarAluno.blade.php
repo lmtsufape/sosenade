@@ -122,8 +122,7 @@
                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="form-group justify-content-center row" id="cadastrar">
                                 <div class="form-group col-md-8 custom-file">
-                                    <input id="csv_file" type="file" class="form-control custom-control-input"
-                                           name="csv_file" required>
+                                    <input id="csv_file" type="file" class="form-control custom-control-input" name="csv_file" accept=".csv" required>
                                     <label class="custom-file-label" for="csv_file">Escolha o arquivo</label>
                                     @if ($errors->has('csv_file'))
                                         <span class="help-block">
@@ -132,12 +131,56 @@
                                     @endif
                                 </div>
                             </div>
-                            <hr style="width: 67%; margin-top: 30%">
+                            <hr style="width: 67%; margin-top: 4%">
                             <div class="row" style="margin-left: 60%; margin-top: -15px">
                                 <div class="text-center my-3" id="btn_cadastrar">
                                     <button type="submit" name="cadastrar" class="btn btn-primary" style="width: 200px">Importar</button>
+                                    <button class="btn btn-secondary" data-toggle="modal" data-target="#info-download"><i class="fa fa-info-circle"></i></button>
                                 </div>
                             </div>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="info-download" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel"> Instruções para importação </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        
+                                        <ol>
+                                            <li>
+                                                <p> Baixe o modelo de planilhas para o preenchimento dos dados dos alunos; </p> 
+                                                <a href="{{ route('csv_model_download') }}"> <p> Baixe Aqui! </p> </a>
+                                            </li>
+                                            <li> 
+                                                <p> Preencha os dados dos alunos nas colunas adequadas do documento; </p> 
+                                            </li>
+                                            
+                                            <li>
+                                                <p> No momento de salvar o documento, salve-o com o formato csv (.csv); </p>
+                                            </li>
+
+                                            <li>
+                                                <p> Procure o arquivo e selecione-o para importação; </p>
+                                            </li>
+
+                                            <li>
+                                                <p> Clique em importar! </p>
+                                            </li>
+                                        </ol>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal"> OK </button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- -- -->
                         </form>
                     </div>
                 </div>

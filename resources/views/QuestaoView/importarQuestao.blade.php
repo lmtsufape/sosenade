@@ -157,7 +157,7 @@
                                 autofocus>
                             @foreach ($cursos as $curso)
                                 <option value="{{$curso->id}}" {{old('curso') == $curso->id ? 'selected' : '' }}>
-                                    {{$curso->curso_nome}} - {{$curso->unidade->nome}}
+                                    {{$curso->curso_nome}} - {{$curso->unidade->instituicao->nome}} - {{$curso->unidade->nome}}
                                 </option>
                             @endforeach
                         </select>
@@ -168,9 +168,11 @@
                         <select id='disciplina_id' name="disciplina_id"
                                 class="form-control{{ $errors->has('disciplina_id') ? ' is-invalid' : '' }}" required
                                 autofocus>
+                            @foreach ($list_cursos_id as $curso_id)
+                                <option rel="{{$curso_id}}" value="all" selected> Tudo </option>
+                            @endforeach
                             @foreach ($disciplinas as $disciplina)
-                                <option rel="{{$disciplina->curso->id}}"
-                                        value="{{$disciplina->id}}" {{old('disciplina') == $disciplina->id ? 'selected' : '' }}>
+                                <option rel="{{$disciplina->curso->id}}" value="{{$disciplina->id}}">
                                     {{$disciplina->nome}}
                                 </option>
                             @endforeach
@@ -255,7 +257,7 @@
                         <!-- Modal -->
                             <div class="modal fade" id="modal_{{$qst->id}}" tabindex="-1" role="dialog"
                                  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title"
