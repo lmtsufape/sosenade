@@ -12,12 +12,13 @@ class DisciplinaUPESeeder extends Seeder
     public function run()
     {   
 
-        $matematica = 24;
-        $computacao = 25;
-        $geografia = 27;
-        $letras_portugues = 28;
-        $biologicas = 29;
-        $pedagogia = 30;
+        $matematica_garanhuns = 24;
+        $computacao_garanhuns = 25;
+        $historia_garanhuns = 26;
+        $geografia_garanhuns = 27;
+        $letras_portugues_garanhuns = 28;
+        $biologicas_garanhuns = 29;
+        $pedagogia_garanhuns = 30;
 
         $disciplinas_matematica = [
             'ANÁLISE MATEMÁTICA I',
@@ -266,30 +267,79 @@ class DisciplinaUPESeeder extends Seeder
             'EDUCAÇÃO E RELAÇÕES Étnico-Raciais',
             'RelaÇÕES interpessoais e dinÂmica de grupo'
         ];
+
+        $disciplinas_historia = [
+            'ANTIGUIDADE CLÁSSICA',
+            'ANTROPOLOGIA CULTURAL',
+            'ANTIGUIDADE PRÉ-CLÁSSICA',
+            'AVALIAÇÃO DA APRENDIZAGEM',
+            'ARQUEOLOGIA, PATRIMÔNIO E CULTURA',
+            'DIDÁTICA GERAL',
+            'EDUCAÇÃO INCLUSIVA',
+            'EDUCAÇÃO E CULTURA HISTÓRICA',
+            'EDUCAÇÃO E RELAÇÕES ÉTNICO-RACIAIS',
+            'EDUCAÇÃO PARA AS RELAÇÕES DE TRABALHO NO BRASIL',
+            'FILOSOFIA DA HISTÓRIA',
+            'FUNDAMENTOS FILOSÓFICOS DA EDUCAÇÃO',
+            'FUNDAMENTOS PSICOLÓGICOS DA EDUCAÇÃO',
+            'FUNDAMENTOS SOCIOLÓGICOS DA EDUCAÇÃO',
+            'FUNDAMENTOS ANTROPOLÓGICOS DA EDUCAÇÃO',
+            'HISTORIOGRAFIA',
+            'HISTÓRIA DA ÁFRICA',
+            'HISTÓRIA MODERNA I',
+            'HISTÓRIA MODERNA II',
+            'HISTÓRIA DO BRASIL I',
+            'HISTÓRIA DO BRASIL II',
+            'HISTÓRIA DO BRASIL III',
+            'HISTÓRIA DO BRASIL IV',
+            'HISTÓRIA DA AMÉRICA I',
+            'HISTÓRIA DA AMÉRICA II',
+            'HISTÓRIA CONTEMPORÂNEA I',
+            'HISTÓRIA CONTEMPORÂNEA II',
+            'HISTORIOGRAFIA DO NORDESTE',
+            'HISTÓRIA DO TEMPO PRESENTE',
+            'HISTÓRIA DA AMÉRICA INDÍGENA',
+            'HISTÓRIA MEDIEVAL I (ORIENTAL)',
+            'HISTÓRIA MEDIEVAL II (OCIDENTAL)',
+            'INTRODUÇÃO AOS ESTUDOS HISTÓRICOS',
+            'METODOLOGIA E PESQUISA EM HISTÓRIA',
+            'ORGANIZAÇÃO DA EDUCAÇÃO NACIONAL',
+            'TEORIA DA HISTÓRIA I',
+            'TEORIA DA HISTÓRIA II',
+            'TÓPICOS ESPECIAIS DE HISTÓRIA DE PERNAMBUCO',
+            'PRÉ-HISTÓRIA',
+            'PSICOLOGIA EVOLUTIVA',
+            'LIBRAS',
+            'LÍNGUA PORTUGUESA NA PRODUÇÃO DE CONHECIMENTOS'
+        ];
         
         foreach($disciplinas_matematica as $disciplina) {
-            DB::table('disciplinas')->insert(['nome' => strtoupper($disciplina), 'curso_id' => $matematica]);
+            // DB::table('disciplinas')->insert(['nome' => strtoupper($disciplina), 'curso_id' => $matematica_garanhuns]);
         }
 
         foreach($disciplinas_computacao as $disciplina) {
-            DB::table('disciplinas')->insert(['nome' => strtoupper($disciplina), 'curso_id' => $computacao]);
+            // DB::table('disciplinas')->insert(['nome' => strtoupper($disciplina), 'curso_id' => $computacao_garanhuns]);
         }
 
         foreach($disciplinas_geografia as $disciplina) {
-            DB::table('disciplinas')->insert(['nome' => strtoupper($disciplina), 'curso_id' => $geografia]);
+            // DB::table('disciplinas')->insert(['nome' => strtoupper($disciplina), 'curso_id' => $geografia_garanhuns]);
+        }
+
+        foreach($disciplinas_historia as $disciplina) {
+            DB::table('disciplinas')->insert(['nome' => strtoupper($disciplina), 'curso_id' => $historia_garanhuns]);
         }
 
         foreach($disciplinas_letras_portugues as $disciplina) {
-            DB::table('disciplinas')->insert(['nome' => strtoupper($disciplina), 'curso_id' => $letras_portugues]);
+            // DB::table('disciplinas')->insert(['nome' => strtoupper($disciplina), 'curso_id' => $letras_portugues_garanhuns]);
         }
 
         foreach($disciplinas_biologia as $disciplina) {
-            DB::table('disciplinas')->insert(['nome' => strtoupper($disciplina), 'curso_id' => $biologicas]);
+            // DB::table('disciplinas')->insert(['nome' => strtoupper($disciplina), 'curso_id' => $biologicas_garanhuns]);
         }
 
         foreach($disciplinas_pedagogia as $disciplina) {
-            DB::table('disciplinas')->insert(['nome' => strtoupper($disciplina), 'curso_id' => $pedagogia]);
+            // DB::table('disciplinas')->insert(['nome' => strtoupper($disciplina), 'curso_id' => $pedagogia_garanhuns]);
         }
-            
+        
     }
 }

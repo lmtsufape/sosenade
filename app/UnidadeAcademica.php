@@ -44,4 +44,8 @@ class UnidadeAcademica extends Model
     public function cursos(){
         return $this->hasMany('SimuladoENADE\Curso', 'unidade_id');
     }
+
+    public function instituicao() {
+        return $this->belongsTo('\SimuladoENADE\Instituicao', 'instituicao_id', 'id');
+    }
 }

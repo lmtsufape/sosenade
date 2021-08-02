@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Validator;
 use SimuladoENADE\Validator\ValidationException;
 use SimuladoENADE\Validator\CsvImportRequest;
 
+use Illuminate\Support\Facades\Storage;
+
 class AlunoController extends Controller{
 
 	public function home(){
@@ -64,7 +66,7 @@ class AlunoController extends Controller{
 				
 				try {
 
-					if($input[0] and $input[1] and $input[2] and $input[3]){
+					if($input[0] and $input[1] and $input[2]){
 
 						$curso_id = \Auth::user()->curso_id;
 						$aluno = new \SimuladoENADE\Aluno();
@@ -73,7 +75,7 @@ class AlunoController extends Controller{
 						$aluno->email = $input[2];
 
 						$aluno->curso_id = $curso_id;
-						$aluno->password = Hash::make($input[3]);
+						$aluno->password = Hash::make($input[1]);
 						$aluno->save();
 		
 					}
@@ -146,5 +148,9 @@ class AlunoController extends Controller{
 		$aluno = \SimuladoENADE\Aluno::find($request->id);
 		$aluno->delete();
 		return redirect('\listar\aluno')->with('success', \SimuladoENADE\FlashMessage::removeAlunoSuccess());
+	}
+
+	public function downloadModeloCSV(Request $request) {
+		return Storage::download('public/import_alunos.csv');
 	}
 }

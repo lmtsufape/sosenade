@@ -48,6 +48,7 @@
             <div class="tab-pane fade show active" id="listar_questao_objetiva" role="tabpanel" aria-labelledby="listar-questao-objetiva-tab">
                 <div class="list-group list-group-flush">
                         <br>
+                        
                         @if(!$questaos->isEmpty())
                             <table class="table table-hover" id="tabela_dados" style="border-style: groove; border-color: #6cb2eb">
                                 <thead>
@@ -87,9 +88,11 @@
                                     <tr>
                                         <td class="align-middle" style="overflow: hidden; word-wrap: break-word; max-width: 38rem;">
                                             {{ str_limit(preg_replace('/<[^>]*>|[&;]|nbsp/', '', preg_replace(array('/nbsp/','/<(.*?)>/'), ' ', $questao->enunciado)), $limit = 240, $end = '...') }}
+
                                         </td>
-                                        <td class="align-middle">{{$questao->dificuldade}}</td>
-                                        <td class="align-middle" id="disciplina">{{$questao->nome}}</td>
+                                        <td class="align-middle" href="#modal_{{$questao->qstid}}" data-toggle="modal" data-placement="bottom" rel="tooltip">{{$questao->dificuldade}}</td>
+                                        <td class="align-middle" href="#modal_{{$questao->qstid}}" data-toggle="modal" data-placement="bottom" rel="tooltip" id="disciplina">{{$questao->nome}}</td>
+
                                         <td class="align-middle">
                                             <a class="icons btn btn-info" href="#modal_{{$questao->qstid}}" data-toggle="modal"
                                             data-placement="bottom" rel="tooltip" title="Visualizar"><i class="fa fa-eye"></i></a>
@@ -172,7 +175,7 @@
                     </div>
 
                     <!-- Questoes Discursivas -->
-                    <div class="tab-pane fade" id="listar_questao_discursiva" role="tabpanel" aria-labelledby="listar-questao-discursiva-tab">
+                    <div class="tab-pane fade show active" id="listar_questao_discursiva" role="tabpanel" aria-labelledby="listar-questao-discursiva-tab">
                         <div class="list-group list-group-flush">
                         <br>
 
@@ -212,12 +215,14 @@
                                 </thead>
                                 <tbody>
                                 @foreach($questoes_discursivas as $questao_discursiva)
-                                    <tr>
-                                        <td class="align-middle" style="overflow: hidden; word-wrap: break-word; max-width: 38rem;">
+                                    <tr style="cursor: pointer">
+
+                                        <td class="align-middle" style="overflow: hidden; word-wrap: break-word; max-width: 38rem;" href="#modal_{{$questao_discursiva->qstid}}" data-toggle="modal" data-placement="bottom" rel="tooltip">
                                             {{ str_limit(preg_replace('/<[^>]*>|[&;]|nbsp/', '', preg_replace(array('/nbsp/','/<(.*?)>/'), ' ', $questao_discursiva->enunciado)), $limit = 80, $end = '...') }}
                                         </td>
-                                        <td class="align-middle">{{$questao_discursiva->dificuldade}}</td>
-                                        <td class="align-middle" id="disciplina">{{$questao_discursiva->nome}}</td>
+                                        <td class="align-middle" href="#modal_{{$questao_discursiva->qstid}}" data-toggle="modal" data-placement="bottom" rel="tooltip">{{$questao_discursiva->dificuldade}}</td>
+                                        <td class="align-middle" href="#modal_{{$questao_discursiva->qstid}}" data-toggle="modal" data-placement="bottom" rel="tooltip" id="disciplina">{{$questao_discursiva->nome}}</td>
+                                        
                                         <td class="align-middle">
                                             <a class="icons btn btn-info" href="#modal_{{$questao_discursiva->qstid}}" data-toggle="modal"
                                             data-placement="bottom" rel="tooltip" title="Visualizar"><i class="fa fa-eye"></i></a>
@@ -312,6 +317,7 @@
                         "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
                     }
                 });
+
             });
             $('[rel="tooltip"]').tooltip();
         </script>
