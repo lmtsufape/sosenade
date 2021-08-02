@@ -69,7 +69,7 @@ overflow: hidden; box-shadow: -1px 4px 17px -5px rgba(0,0,0,0.64);
                     </div>
                     <div class="form-group col-md-11">
                         <center>
-                            <a class=" btn-link" href="{{ route('password.request') }}">Esqueci minha senha</a>
+                            <a class=" btn-link" href="{{ route('redefinicao.senhas') }}">Esqueci minha senha</a>
                         </center>
                         <hr style="margin-top: 0">
                     </div>

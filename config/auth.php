@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'user',
-        'passwords' =>  'alunos'
+        'passwords' =>  'users'
     ],
 
     /*
@@ -121,16 +121,16 @@ return [
     */
 
     'passwords' => [
-        'users' => [
+        'user' => [
             'provider' => 'users',
             'table' => 'password_resets',
             'expire' => 60,
 
-        ], 'alunos' => [
+        ], 'aluno' => [
             'provider' => 'alunos',
             'table' => 'password_resets',
             'expire' => 60,
-        ], 'instituicoes' => [
+        ], 'instituicao' => [
             'provider' => 'instituicoes',
             'table' => 'password_resets',
             'expire' => 60,

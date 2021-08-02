@@ -27,8 +27,6 @@ class Aluno extends Authenticatable{
     }
 
 
-
-
     public static $rules = [
     	'nome'  => 'required|',
     	'cpf' => 'required|min:14',

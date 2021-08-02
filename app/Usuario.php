@@ -5,6 +5,8 @@ namespace SimuladoENADE;
 #use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use SimuladoENADE\Notifications\PasswordReset;
+
 class Usuario extends Authenticatable
 {
     Use Notifiable;
