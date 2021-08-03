@@ -81,7 +81,9 @@
                                 <div class="form-group col-md-2"
                                     style="background: #24509D; color: white; border-radius: 10px; padding: 5px">
                                     <h1>2º</h1>
-                                    Digite o enunciado da questão no campo ao lado.
+                                    Digite o enunciado da questão no campo ao lado.<br><br>
+                                    Sugestão: <br><small>Altere o <b>'ANO'</b>, <b>'DISCIPLINA'</b>, <b>'NUMERO'</b> e <b>'ENUNCIADO' pelas informações da questão.</b></small><br><br>
+                                    Exemplo: <br><small>[ENADE 2014 - PEDAGOGIA - QUESTÃO 16] Questão de pedagogia.</small>
                                 </div>
                                 <div class="form-group col-md-9">
                                     <div class="card my-3">
@@ -89,7 +91,7 @@
                                             <h5 class="card-title">Enunciado</h5>
                                         </div>
                                         <div class="card-body">
-                                            <textarea class="form-control summernote" name="enunciado" id="enunciado"></textarea>
+                                            <textarea class="form-control summernote" name="enunciado" id="enunciado">[ENADE 'ANO' - 'DISCIPLINA' - QUESTÃO 'NUMERO'] 'ENUNCIADO'</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -275,7 +277,9 @@
                                 <div class="form-group col-md-2"
                                     style="background: #24509D; color: white; border-radius: 10px; padding: 5px">
                                     <h1>2º</h1>
-                                    Digite o enunciado da questão no campo ao lado.
+                                    Digite o enunciado da questão no campo ao lado.<br><br>
+                                    Sugestão: <br><small>Altere o <b>'ANO'</b>, <b>'DISCIPLINA'</b>, <b>'NUMERO'</b> e <b>'ENUNCIADO' pelas informações da questão.</b></small><br><br>
+                                    Exemplo: <br><small>[ENADE 2014 - PEDAGOGIA - QUESTÃO 16] Questão de pedagogia.</small>
                                 </div>
                                 <div class="form-group col-md-9">
                                     <div class="card my-3">
@@ -283,7 +287,7 @@
                                             <h5 class="card-title">Enunciado</h5>
                                         </div>
                                         <div class="card-body">
-                                            <textarea class="form-control summernote_alt" name="enunciado" id="enunciado"></textarea>
+                                            <textarea class="form-control summernote_alt" name="enunciado" id="enunciado">[ENADE 'ANO' - 'DISCIPLINA' - QUESTÃO 'NUMERO'] 'ENUNCIADO'</textarea>
                                         </div>
                                     </div>
                                 </div>
