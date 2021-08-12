@@ -11,11 +11,6 @@
                     Simulados Realizados > Simulado
                 </p>
             </div>
-
-            <div class="col-sm" style="margin-top: 30px; margin-right: 20px">
-                <a class="btn btn-primary" href="{{route('new_simulado')}}" style="float: right;"> Cadastrar
-                    Simulado</a><br>
-            </div>
         </div>
 
 		<div class="col-md-12 text-center">
