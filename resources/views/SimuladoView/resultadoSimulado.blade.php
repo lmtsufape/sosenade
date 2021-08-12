@@ -8,7 +8,7 @@
                 <h1 style="margin-left: 15px; margin-top: 15px">Resultado</h1>
                 <p style="color: #9fcdff; margin-left: 15px; margin-top: -5px">
                     <a href="{{route('home')}}" style="color: inherit;">Início</a> >
-                    Simulados Realizados > Simulado
+                    Simulados Realizados > Resultado
                 </p>
             </div>
         </div>
