@@ -5,7 +5,13 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Esqueci Minha Senha') }}</div>
+                <div class="shadow p-3 bg-white" style="border-radius: 10px">
+                    <div class="row"
+                         style="background: #1B2E4F; margin-top: -15px; margin-bottom:  30px; border-radius: 10px 10px 0 0; color: white">
+                        <div class="col-sm">
+                            <h1 style="margin-left: 15px; margin-top: 15px">Redefinição de Senha</h1>
+                        </div>
+                    </div>
 
                 <div class="card-body">
                     @if (session('status'))

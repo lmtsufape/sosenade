@@ -3,6 +3,7 @@
 namespace SimuladoENADE\Http\Controllers;
 
 use Cookie;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
