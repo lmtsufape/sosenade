@@ -11,8 +11,6 @@ class AlunoSeeder extends Seeder
      */
     public function run()
     {
-        //for($i = 1; $i < 5; $i++){
-    		DB::table('alunos')->insert(['nome' => "Aluno", 'cpf' =>"12345678911", 'password' => \Hash::make('12345678'), 'email' =>  "estudante-teste@ufrpe.br", 'curso_id' => 1]);
-    	//}
+        DB::table('alunos')->where('reconhecido', false)->update(['reconhecido' => true]);
     }
 }
