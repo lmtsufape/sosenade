@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Storage;
 class AlunoController extends Controller{
 
 	public function home(){
-		
+
 		$user =  \Auth::guard('aluno')->user();
 		$curso = \SimuladoENADE\Curso::find($user->curso_id);
 		$unidade = \SimuladoENADE\UnidadeAcademica::find($curso->unidade_id)->nome;
@@ -57,13 +57,13 @@ class AlunoController extends Controller{
 		$dados_duplicados = '';
 		$count_line = count($data);
 
-		if(!$data || $count_line <= 1){ 
+		if(!$data || $count_line <= 1){
 			return redirect('cadastrar/aluno')->with('fail', \SimuladoENADE\FlashMessage::importAlunoFail());
 		} else {
 
 			$csv_data = array_slice($data, 1, count($data)); // Lista da segunda linha do array adiante
 			foreach ($csv_data as $input) {
-				
+
 				try {
 
 					if($input[0] and $input[1] and $input[2]){
@@ -77,7 +77,7 @@ class AlunoController extends Controller{
 						$aluno->curso_id = $curso_id;
 						$aluno->password = Hash::make($input[1]);
 						$aluno->save();
-		
+
 					}
 					else{
 						##Relatar uma view de erro para algum campo vazio
@@ -119,10 +119,13 @@ class AlunoController extends Controller{
 			return redirect()->back()->with('fail', true)->with('message','Senha incorreta! Alterações não efetuadas.')->with('senha', true);
 
 		$validator = Validator::make($request->all(), [
-			'password' => 'min:6|max:16|required_with:password_confirmation',
+			'password' => 'min:8|max:16|required_with:password_confirmation',
 			'password_confirmation' => 'required_with:password|same:password'
-			]);
-		
+			], [
+            'min' => 'A senha deve conter no mínimo 8 caracteres',
+            'same' => 'A nova senha e a confirmação da senha devem ser iguais'
+        ]);
+
 		if($validator->fails())
 			return redirect()->back()->withErrors($validator->errors())->withInput()->with('senha', true);;
 
@@ -135,7 +138,7 @@ class AlunoController extends Controller{
 	public function atualizar(Request $request){
 		try {
 			AlunoValidator::Validate($request->all());
-			$aluno = \SimuladoENADE\Aluno::find($request->id);    
+			$aluno = \SimuladoENADE\Aluno::find($request->id);
 			$aluno->fill($request->all());
 			$aluno->update();
 			return redirect()->back()->with('success', true)->with('message', \SimuladoENADE\FlashMessage::alteracoesSuccess());

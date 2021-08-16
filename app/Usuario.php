@@ -4,8 +4,12 @@ namespace SimuladoENADE;
 
 #use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use SimuladoENADE\Notifications\PasswordReset;
+
 class Usuario extends Authenticatable
 {
+    Use Notifiable;
 
 	protected $fillable = ['nome', 'cpf', 'email', 'password', 'tipousuario_id','curso_id'];
 
@@ -14,7 +18,7 @@ class Usuario extends Authenticatable
     public function tipousuario(){
         return $this->BelongsTo('\SimuladoENADE\Tipousuario');
     }
-    
+
     public function curso(){
         return $this->hasOne('\SimuladoENADE\Curso', 'id', 'curso_id');
     }
@@ -36,4 +40,9 @@ class Usuario extends Authenticatable
         'unique' => "O :attribute já esta cadastrado no sistema!!",
         'password.confirmed' => "As senhas devem ser identicas"
     ];
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new PasswordReset($token));
+    }
 }

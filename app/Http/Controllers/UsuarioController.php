@@ -2,6 +2,8 @@
 
 namespace SimuladoENADE\Http\Controllers;
 
+use Cookie;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
@@ -357,6 +359,17 @@ class Usuariocontroller extends Controller
     public function sobre()
     {
         return view('auth.sobre');
+    }
+
+    public function redefinicao()
+    {
+        return view('auth.passwords.redefinicao');
+    }
+
+    public function cookie(Request $request)
+    {
+        Cookie::queue(Cookie::make('CookieResetPassword', $request->tipo));
+        return redirect(route('password.request'));
     }
 
 }

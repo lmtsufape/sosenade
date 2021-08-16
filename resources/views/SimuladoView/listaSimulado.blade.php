@@ -54,6 +54,10 @@
                                 <span class="text-danger">
 										Expirado <br> {{$simulado->data_fim_simulado->format('d/m H:i')}}
 									</span>
+                            @elseif(\Carbon\Carbon::parse($simulado->data_inicio_simulado)->lessThan(\Carbon\Carbon::now()) && \Carbon\Carbon::now()->lessThan(\Carbon\Carbon::parse($simulado->data_fim_simulado)))
+                                <span style="color: #0056b3">
+										Ocorrendo <br> ({{$simulado->data_inicio_simulado->format('d/m H:i')}} - {{$simulado->data_fim_simulado->format('d/m H:i')}})
+									</span>
                             @else
                                 <span class="text-success">
 										Agendado<br> ({{$simulado->data_inicio_simulado->format('d/m H:i')}} - {{$simulado->data_fim_simulado->format('d/m H:i')}})
@@ -61,13 +65,24 @@
                             @endif
                         </td>
                         <td>
-                            <a href="{{route('set_simulado', ['id'=>$simulado->sim_id])}}" class="btn btn-secondary"
-                               data-placement="bottom" rel="tooltip" title="Montar"><i class="fa fa-gear"></i></a>
-                            <a href="{{route('edit_simulado', ['id'=>$simulado->sim_id])}}" class="btn btn-primary"
-                               data-placement="bottom" rel="tooltip" title="Editar"><i class="fa fa-pencil"></i></a>
-                            <a onclick="return confirm('Você tem certeza que deseja excluir?')"
-                               href="{{route('delete_simulado', ['id'=>$simulado->sim_id])}}" class="btn btn-danger"
-                               data-placement="bottom" rel="tooltip" title="Excluir"><i class="fa fa-trash"></i></a>
+                            @if(\Carbon\Carbon::parse($simulado->data_inicio_simulado)->lessThan(\Carbon\Carbon::now()) && \Carbon\Carbon::now()->lessThan(\Carbon\Carbon::parse($simulado->data_fim_simulado)))
+                                <a class="btn btn-secondary"
+                                   data-placement="bottom" rel="tooltip" title="Montar" onclick="simuladoOcorrendo()"><i
+                                        class="fa fa-gear"></i></a>
+                                <a class="btn btn-primary"
+                                   data-placement="bottom" rel="tooltip" title="Editar"><i class="fa fa-pencil" onclick="simuladoOcorrendo()"></i></a>
+                                <a class="btn btn-danger"
+                                   data-placement="bottom" rel="tooltip" title="Excluir"><i class="fa fa-trash" onclick="simuladoOcorrendo()"></i></a>
+                            @else
+                                <a href="{{route('set_simulado', ['id'=>$simulado->sim_id])}}" class="btn btn-secondary"
+                                   data-placement="bottom" rel="tooltip" title="Montar" disabled="disabled"><i
+                                        class="fa fa-gear"></i></a>
+                                <a href="{{route('edit_simulado', ['id'=>$simulado->sim_id])}}" class="btn btn-primary"
+                                   data-placement="bottom" rel="tooltip" title="Editar"><i class="fa fa-pencil"></i></a>
+                                <a onclick="return confirm('Você tem certeza que deseja excluir?')"
+                                   href="{{route('delete_simulado', ['id'=>$simulado->sim_id])}}" class="btn btn-danger"
+                                   data-placement="bottom" rel="tooltip" title="Excluir"><i class="fa fa-trash"></i></a>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
@@ -109,6 +124,13 @@
             });
         });
         $('[rel="tooltip"]').tooltip();
+    </script>
+
+    <script>
+        function simuladoOcorrendo()
+        {
+            alert("Simulado em andamento, não é possivel alterar um simulado enquanto ele ocorre.");
+        }
     </script>
 
 @stop

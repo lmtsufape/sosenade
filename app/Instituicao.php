@@ -4,15 +4,18 @@ namespace SimuladoENADE;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use SimuladoENADE\Notifications\PasswordReset;
 
 class Instituicao extends Authenticatable
 {
+    Use Notifiable;
     protected $table = 'instituicoes';
-    
+
     public $fillable = ['nome', 'cnpj', 'email', 'password', 'tipousuario_id'];
     protected $hidden = ['password', 'remember_token'];
 
-    public static $rules = 
+    public static $rules =
     [
         'nome'  => 'required',
     	'cnpj' => 'required|min:18',
@@ -29,5 +32,9 @@ class Instituicao extends Authenticatable
         'unique' => "O :attribute já esta cadastrado no sistema!!",
         'password.confirmed' => "As senhas devem ser identicas"
     ];
-    
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new PasswordReset($token));
+    }
 }

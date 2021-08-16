@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'user',
-        'passwords' => 'users',
+        'passwords' =>  'users'
     ],
 
     /*
@@ -40,7 +40,7 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        
+
 
         'aluno' =>[
             'driver' => 'session',
@@ -75,12 +75,12 @@ return [
     | Supported: "database", "eloquent"
     |
     */
- 
+
 
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => SimuladoENADE\Usuario::class, 
+            'model' => SimuladoENADE\Usuario::class,
             //'model' => App\Aluno::class,
         ],
 
@@ -94,7 +94,7 @@ return [
             'driver' => 'eloquent',
             'model' => SimuladoENADE\Instituicao::class,
         ],
-       
+
          //'users' => [
            //     'driver' => 'eloquent',
              //   'model' => App\Aluno::class,
@@ -103,7 +103,7 @@ return [
          //],
     ],
 
-    
+
 
     /*
     |--------------------------------------------------------------------------
@@ -121,11 +121,19 @@ return [
     */
 
     'passwords' => [
-        'users' => [
+        'user' => [
             'provider' => 'users',
             'table' => 'password_resets',
             'expire' => 60,
 
+        ], 'aluno' => [
+            'provider' => 'alunos',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ], 'instituicao' => [
+            'provider' => 'instituicoes',
+            'table' => 'password_resets',
+            'expire' => 60,
         ],
 
        // 'alunos' =>[
