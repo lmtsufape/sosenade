@@ -239,7 +239,7 @@ box-shadow: 0px 4px 10px -5px rgba(0,0,0,0.64);" role="navigation">
                     </li>
                 @endcan !-->
 
-                @if(Auth::guard('aluno')->check())
+                @if(Auth::guard('aluno')->check() and Auth::guard('aluno')->user()->reconhecido)
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -252,27 +252,44 @@ box-shadow: 0px 4px 10px -5px rgba(0,0,0,0.64);" role="navigation">
                 @endif
 
                 <li class="nav-item dropdown" style="list-style-type: none">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Olá, <b>
-                            @if (Auth::guard('aluno')->user())
-                                {{Auth::guard('aluno')->user()->nome}}
-                                (Aluno) {{-- - {{Auth::guard('aluno')->user()->curso->curso_nome}} --}}
-                            @elseif (Auth::guard('instituicao')->user())
-                                {{Auth::guard('instituicao')->user()->nome}} (Instituição)
-                            @elseif ((Auth::user()->tipousuario->id == 6))
-                                {{Auth::user()->nome}}
-                            @elseif ((Auth::user()->tipousuario->id == 5))
-                                {{Auth::user()->nome}} {{--({{Auth::user()->tipousuario->tipo}}) - {{Auth::user()->curso->unidade->nome}} --}}
-                            @elseif (Auth::user() && !(Auth::user()->tipousuario->id == 4))
-                                {{Auth::user()->nome}} {{--({{Auth::user()->tipousuario->tipo}}) - {{Auth::user()->curso->curso_nome}} --}}
 
-                            @else
-                                {{Auth::user()->nome}}
-                            @endif
-                        </b>
-                        <span class="caret"></span>
-                    </a>
+                    @if (Auth::guard('aluno')->user() and Auth::guard('aluno')->user()->reconhecido == false)
+                        <a href="">
+                        <b>
+                    @else
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Olá,
+                        <b>
+                    @endif
+                    
+
+                        @if (Auth::guard('aluno')->user() and Auth::guard('aluno')->user()->reconhecido == false)
+
+                        @elseif (Auth::guard('aluno')->user() and Auth::guard('aluno')->user()->reconhecido == true)
+                            {{Auth::guard('aluno')->user()->nome}}
+                            (Aluno) {{-- - {{Auth::guard('aluno')->user()->curso->curso_nome}} --}}
+
+                        @elseif (Auth::guard('instituicao')->user())
+                            {{Auth::guard('instituicao')->user()->nome}} (Instituição)
+
+                        @elseif ((Auth::user()->tipousuario->id == 6))
+                            {{Auth::user()->nome}}
+
+                        @elseif ((Auth::user()->tipousuario->id == 5))
+                            {{Auth::user()->nome}} {{--({{Auth::user()->tipousuario->tipo}}) - {{Auth::user()->curso->unidade->nome}} --}}
+                                
+                        @elseif (Auth::user() && !(Auth::user()->tipousuario->id == 4))
+                            {{Auth::user()->nome}} {{--({{Auth::user()->tipousuario->tipo}}) - {{Auth::user()->curso->curso_nome}} --}}
+
+                        @else
+                            {{Auth::user()->nome}}
+                        @endif
+
+                            </b>
+                            <span class="caret"></span>
+                        </a>
+
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
                         @if(Auth::guard('aluno')->user())
