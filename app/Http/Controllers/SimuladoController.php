@@ -170,6 +170,10 @@
 
 	    public function listaSimuladoAluno(Request $request){
 
+			if(!\Auth::guard('aluno')->user()->reconhecido) {
+				return redirect("/mudarSenhaAluno");
+			}
+
 		    $hoje = Carbon::now();
 		    $curso_id = \Auth::guard('aluno')->user()->curso_id;
 		    $simulados_curso = \SimuladoENADE\Simulado::where('curso_id', '=', $curso_id)
