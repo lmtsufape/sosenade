@@ -2,6 +2,7 @@
 
 namespace SimuladoENADE\Http\Controllers\Auth;
 
+use Cookie;
 use SimuladoENADE\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
@@ -32,8 +33,22 @@ class ResetPasswordController extends Controller
      *
      * @return void
      */
+
     public function __construct()
     {
         $this->middleware('guest');
     }
+
+
+    protected function guard()
+    {
+        $cookie = Cookie::get("CookieResetPassword");
+        return Auth::guard($cookie);
+    }
+    public function broker()
+    {
+        $cookie = Cookie::get("CookieResetPassword");
+        return Password::broker($cookie);
+    }
+
 }

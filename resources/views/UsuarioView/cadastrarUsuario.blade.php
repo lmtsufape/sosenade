@@ -90,7 +90,7 @@
                                 class="form-control{{ $errors->has('tipousuario_id') ? ' is-invalid' : '' }}" required
                                 autofocus>
                             @foreach ($tipos_usuario as $tipo_usuario)
-                                @if ($tipo_usuario->id != 1)
+                                @if ($tipo_usuario->id != 1 && $tipo_usuario->id != 5)
                                     <option
                                         value="{{$tipo_usuario->id}}" {{old('tipousuario') == $tipo_usuario->id ? 'selected' : '' }}>
                                         {{$tipo_usuario->tipo}}

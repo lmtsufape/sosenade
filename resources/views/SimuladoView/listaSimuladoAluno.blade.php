@@ -2,16 +2,17 @@
 @section('titulo','Simulados')
 @section('content')
 
-	<div class="shadow p-4 bg-white rounded container-fluid" style="overflow-x: auto;">
-
-		<h1 class="text-center"> Simulados </h1>
-		<h2 class="text-center">
-			@if (Auth::guard('aluno')->user())
-				{{Auth::guard('aluno')->user()->curso->curso_nome}}
-			@elseif (Auth::user())
-				{{Auth::user()->curso->curso_nome}}
-			@endif
-		</h2><br>
+    <div class="shadow p-3 bg-white" style="border-radius: 10px">
+        <div class="row"
+             style="background: #1B2E4F; margin-top: -15px; margin-bottom:  30px; border-radius: 10px 10px 0 0; color: white">
+            <div class="col-sm">
+                <h1 style="margin-left: 15px; margin-top: 15px">Simulados</h1>
+                <p style="color: #9fcdff; margin-left: 15px; margin-top: -5px">
+                    <a href="{{route('home_aluno')}}" style="color: inherit;">Início</a> >
+                    Simulados
+                </p>
+            </div>
+        </div>
 
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
 			<li class="nav-item">

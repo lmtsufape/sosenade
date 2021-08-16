@@ -10,7 +10,7 @@ overflow: hidden; box-shadow: -1px 4px 17px -5px rgba(0,0,0,0.64);
         <div class="row" style="padding: 0px">
             <div class="col-sm-6 " style="margin-right: 30px; margin-left: -15px; padding: 0px;">
                 <div style="width: 100%; height: 100%; overflow: hidden;">
-                    <img src="{{asset('images/bibliotecas.png')}}" alt="">
+                    <img src="{{asset('images/telaInicial.png')}}" alt="" width="780" height="580">
                 </div>
             </div>
             <div class="col-sm-6" style="margin-right: -100px">
@@ -69,7 +69,7 @@ overflow: hidden; box-shadow: -1px 4px 17px -5px rgba(0,0,0,0.64);
                     </div>
                     <div class="form-group col-md-11">
                         <center>
-                            <a class=" btn-link" href="{{ route('password.request') }}">Esqueci minha senha</a>
+                            <a class=" btn-link" href="{{ route('redefinicao.senhas') }}">Esqueci minha senha</a>
                         </center>
                         <hr style="margin-top: 0">
                     </div>

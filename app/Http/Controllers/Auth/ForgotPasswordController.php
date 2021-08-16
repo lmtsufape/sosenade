@@ -2,6 +2,8 @@
 
 namespace SimuladoENADE\Http\Controllers\Auth;
 
+use Cookie;
+use Illuminate\Support\Facades\Password;
 use SimuladoENADE\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
@@ -25,8 +27,16 @@ class ForgotPasswordController extends Controller
      *
      * @return void
      */
+
     public function __construct()
     {
         $this->middleware('guest');
     }
+
+    public function broker()
+    {
+        $cookie = Cookie::get("CookieResetPassword");
+        return Password::broker($cookie);
+    }
+
 }

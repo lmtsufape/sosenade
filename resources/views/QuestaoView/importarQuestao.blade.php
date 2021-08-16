@@ -2,6 +2,123 @@
 @section('titulo','Importar Questão')
 @section('content')
 
+    <style>
+        .toggle-check-input {
+            width: 1px;
+            height: 1px;
+            position: absolute;
+        }
+
+        .toggle-check-text {
+            display: inline-block;
+            position: relative;
+            text-transform: uppercase;
+            background: #CCC;
+            padding: 0.25em 0.5em 0.25em 2em;
+            border-radius: 1em;
+            min-width: 2em;
+            color: #FFF;
+            cursor: pointer;
+            transition: background-color 0.15s;
+        }
+
+        .toggle-check-text:after {
+            content: ' ';
+            display: block;
+            background: #FFF;
+            width: 1.1em;
+            height: 1.1em;
+            border-radius: 1em;
+            position: absolute;
+            left: 0.3em;
+            top: 0.25em;
+            transition: left 0.15s, margin-left 0.15s;
+        }
+
+        .toggle-check-text:before {
+            content: 'Nenhum';
+        }
+
+        .toggle-check-input:checked ~ .toggle-check-text {
+            background: #2196F3;
+            padding-left: 0.5em;
+            padding-right: 2em;
+        }
+
+        .toggle-check-input:checked ~ .toggle-check-text:before {
+            content: 'Todos';
+        }
+
+        .toggle-check-input:checked ~ .toggle-check-text:after {
+            left: 100%;
+            margin-left: -1.4em;
+        }
+    </style>
+    <style>
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        /* Hide default HTML checkbox */
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        /* The slider */
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+    </style>
+
     @if(Session::has('success'))
         <div class="alert alert-success">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
@@ -93,12 +210,30 @@
                             </tr>
                             </thead>
                             <tbody>
+                            <tr>
+                                <td class="align-middle">
+                                    <label class="toggle-check">
+                                        <input class="toggle-check-input checkbox" id="select-all" type="checkbox">
+                                        <span class="toggle-check-text"></span>
+                                    </label>
+
+                                </td>
+                                <td class="align-middle"
+                                    style="overflow: hidden; word-wrap: break-word; max-width: 38rem;">
+                                </td>
+                                <td class="align-middle"></td>
+                                <td class="text-center align-middle">
+                                </td>
+
+                            </tr>
                             @foreach($questaos as $qst)
                                 <tr>
                                     <td class="align-middle">
-                                        <input class="checkbox" name="qsts[]" type="checkbox" data-onstyle="success"
-                                               data-offstyle="outline-dark" data-on="Sim" data-off="Não"
-                                               data-toggle="toggle" value="{{$qst->id}}">
+                                        <label class="switch">
+                                            <input class="checkbox" name="qsts[]" type="checkbox" value="{{$qst->id}}">
+                                            <span class="slider round"></span>
+                                        </label>
+
                                     </td>
                                     <td class="align-middle"
                                         style="overflow: hidden; word-wrap: break-word; max-width: 38rem;">
@@ -199,6 +334,21 @@
         </div>
     </div>
 
+    <script>
+        //Funcionalidade de Selecionar Todos
+        $('#select-all').click(function (event) {
+            if (this.checked) {
+                $(':checkbox').each(function () {
+                    this.checked = true;
+                });
+            } else {
+                $(':checkbox').each(function () {
+                    this.checked = false;
+                });
+            }
+        });
+    </script>
+
     <script type="text/javascript">
         // Reference: https://jsfiddle.net/fwv18zo1/
         // Estabelece o comportamento de dependência entre os dois select boxes
@@ -206,7 +356,6 @@
             $select2 = $('#disciplina_id'),
             $select3 = $('#disciplina_dst_id'),
             $options = $select2.find('option');
-
         $select1.on('change', function () {
             $select2.html(
                 $options.filter('[rel="' + this.value + '"]')
@@ -225,13 +374,12 @@
             }
             ;
         }).trigger('change');
-
         $select3.html(
-            $options.filter('[rel="' + {{Auth::user()->curso->id}} +'"]')
+            $options.filter('[rel="' + {{Auth::user()->curso->id}} + '"]')
         );
-
         $(document).ready(function () {
             $('#tabela_dados').DataTable({
+                "paging":   false,
                 "order": [
                     [2, "asc"]
                 ],
@@ -242,15 +390,12 @@
                     "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
                 }
             });
-
             $(function () {
                 $('.checkbox').change(function () {
                     $('#btn_importar').prop('disabled', !$('.checkbox:checked').length);
                 });
             });
-
         });
-
         $('[rel="tooltip"]').tooltip();
     </script>
 @stop
