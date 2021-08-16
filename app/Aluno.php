@@ -23,9 +23,6 @@ class Aluno extends Authenticatable{
         return $this->hasMany('SimuladoENADE\Resposta');
     }
 
- 
-
-
     public static $rules = [
     	'nome'  => 'required|',
     	'cpf' => 'required|min:14',
@@ -34,12 +31,13 @@ class Aluno extends Authenticatable{
     	//'curso_id'  => 'required'
     ];
 
-     public static $messages = [
+    public static $messages = [
     	'required' => 'O campo :attribute deve ser preenchido na forma correta',
         'cpf.min' => 'O :attribute deve conter no minimo 14 caracteres',
         'password.min' => 'A senha deve ter no minimo 8 caracteres',
         'email.email' => "O email deve ser um email valido", 
         'unique' => "O :attribute já esta cadastrado no sistema!!",
-        'password.confirmed' => "As senhas devem ser identicas"
+        'password.confirmed' => "As senhas devem ser identicas",
+        'same' => "A nova senha e confimação de senha são diferentes"
     ];
 }
