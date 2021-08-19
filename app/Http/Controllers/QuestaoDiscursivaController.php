@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use SimuladoENADE\NotaQuestaoDiscursiva;
 use SimuladoENADE\Validator\ValidationException;
+use Illuminate\Database\QueryException;
 
 use SimuladoENADE\QuestaoDiscursiva;
 use SimuladoENADE\RespostaDiscursiva;
