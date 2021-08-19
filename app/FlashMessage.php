@@ -26,6 +26,10 @@ class FlashMessage extends Model
         return 'Aluno removido com sucesso!';
     }
 
+    public static function removeAlunoFail($aluno_nome) {
+        return 'O aluno(a): '.$aluno_nome.' não pode ser removido(a)! O aluno(a) contém dados de simulados vinculados a ele!';
+    }
+
     public static function removeProfessorSuccess() {
         return 'Professor removido com sucesso!';
     }
@@ -97,6 +101,7 @@ class FlashMessage extends Model
 
         \SimuladoENADE\FlashMessage::removeUsuarioSuccess()
         \SimuladoENADE\FlashMessage::removeAlunoSuccess()
+        \SimuladoENADE\FlashMessage::removeAlunoFail($aluno_nome)
         \SimuladoENADE\FlashMessage::removeProfessorSuccess()
 
         \SimuladoENADE\FlashMessage::removeInstituicaoSuccess($instituicao_nome)
