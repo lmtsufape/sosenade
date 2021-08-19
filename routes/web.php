@@ -88,6 +88,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/relatorio/relatorioSimulados', 'RelatorioController@relatorioSimulados')->name('relatorio_simulados');
         Route::get('/relatorio/relatorioDisciplina', 'RelatorioController@relatorioDisciplina')->name('relatorio_disciplinas');
 
+        Route::get('/downloadModelCSV', 'AlunoController@downloadModeloCSV')->name('csv_model_download');
     });
 
     Route::middleware('coordenadorGeral.auth')->group(function () {
