@@ -187,7 +187,7 @@ class AlunoController extends Controller{
 		$aluno = \SimuladoENADE\Aluno::find($request->id);
 
 		if (!(Hash::check($request->old_password, $aluno->password)))
-			return redirect()->back()->with('fail', true)->with('message','Senha incorreta! Alterações não efetuadas.')->with('senha', true);
+			return redirect()->back()->with('fail', true)->with('message','Senha atual incorreta! Verifique a senha e tente novamente!')->with('senha', true);
 
 		$validator = Validator::make($request->all(), [
 			'password' => 'required|min:8|required_with:password_confirmation',
