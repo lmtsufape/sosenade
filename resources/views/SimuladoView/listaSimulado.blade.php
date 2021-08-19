@@ -65,7 +65,7 @@
                             @endif
                         </td>
                         <td>
-                            @if(\Carbon\Carbon::parse($simulado->data_inicio_simulado)->lessThan(\Carbon\Carbon::now()) && \Carbon\Carbon::now()->lessThan(\Carbon\Carbon::parse($simulado->data_fim_simulado)))
+                            @if($simulado->data_inicio_simulado != null && $simulado->data_fim_simulado != null && \Carbon\Carbon::parse($simulado->data_inicio_simulado)->lessThan(\Carbon\Carbon::now()) && \Carbon\Carbon::now()->lessThan(\Carbon\Carbon::parse($simulado->data_fim_simulado)))
                                 <a class="btn btn-secondary"
                                    data-placement="bottom" rel="tooltip" title="Montar" onclick="simuladoOcorrendo()"><i
                                         class="fa fa-gear"></i></a>
