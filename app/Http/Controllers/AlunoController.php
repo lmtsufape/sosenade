@@ -160,8 +160,14 @@ class AlunoController extends Controller{
 
 	public function remover(Request $request){
 		$aluno = \SimuladoENADE\Aluno::find($request->id);
-		$aluno->delete();
-		return redirect('\listar\aluno')->with('success', \SimuladoENADE\FlashMessage::removeAlunoSuccess());
+		$aluno_nome = $aluno->nome;
+
+		try {
+			$aluno->delete();
+			return redirect('\listar\aluno')->with('success', \SimuladoENADE\FlashMessage::removeAlunoSuccess());
+		} catch(QueryException $ex) {
+			return redirect("\listar\aluno")->with('fail', \SimuladoENADE\FlashMessage::removeAlunoFail($aluno_nome));
+		}
 	}
 
 	public function downloadModeloCSV(Request $request) {
