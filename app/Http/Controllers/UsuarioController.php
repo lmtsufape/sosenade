@@ -235,7 +235,7 @@ class Usuariocontroller extends Controller
             return redirect()->back()->with('fail', true)->with('message', 'Senha incorreta! Alterações não efetuadas.')->with('senha', true);
 
         $validator = Validator::make($request->all(), [
-            'password' => 'min:6|max:16|required_with:password_confirmation',
+            'password' => 'min:8|max:16|required_with:password_confirmation',
             'password_confirmation' => 'required_with:password|same:password'
         ],
             [
