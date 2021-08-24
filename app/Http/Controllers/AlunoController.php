@@ -147,15 +147,23 @@ class AlunoController extends Controller{
 	}
 
 	public function atualizar(Request $request){
-		try {
-			AlunoValidator::Validate($request->all());
-			$aluno = \SimuladoENADE\Aluno::find($request->id);
-			$aluno->fill($request->all());
-			$aluno->update();
-			return redirect()->back()->with('success', true)->with('message', \SimuladoENADE\FlashMessage::alteracoesSuccess());
-		} catch(ValidationException $ex){
-			return redirect("editar/aluno/".$request->id)->withErrors($ex->getValidator())->withInput();
+
+		$validator = \Validator::make($request->all(),
+    							[    	
+    								'nome'  => 'required|',
+							    	'cpf' => 'required|min:14|unique:alunos,cpf,'.$request->id,
+							    	'email' => 'required|unique:alunos,email,'.$request->id,
+								], \SimuladoENADE\Aluno::$messages);
+        
+		if($validator->fails()) {
+			return redirect("editar/aluno/".$request->id)->withErrors($validator->errors())->withInput();
 		}
+		
+		$aluno = \SimuladoENADE\Aluno::find($request->id);
+		$aluno->fill($request->all());
+		$aluno->update();
+
+		return redirect()->back()->with('success', true)->with('message', \SimuladoENADE\FlashMessage::alteracoesSuccess());
 	}
 
 	public function remover(Request $request){
