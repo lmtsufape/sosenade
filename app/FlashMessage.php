@@ -18,6 +18,10 @@ class FlashMessage extends Model
         return 'Senha alterada com sucesso!';
     }
 
+    public static function senhaAlteradaFail() {
+        return 'Senha incorreta! Alterações não efetuadas.';
+    }
+
     public static function removeUsuarioSuccess() {
         return 'Usuário removido com sucesso!';
     }
@@ -98,6 +102,7 @@ class FlashMessage extends Model
         \SimuladoENADE\FlashMessage::alteracoesSuccess()
 
         \SimuladoENADE\FlashMessage::senhaAlteradaSuccess()
+        \SimuladoENADE\FlashMessage::senhaAlteradaFail()
 
         \SimuladoENADE\FlashMessage::removeUsuarioSuccess()
         \SimuladoENADE\FlashMessage::removeAlunoSuccess()
