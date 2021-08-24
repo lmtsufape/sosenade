@@ -227,15 +227,15 @@ class Usuariocontroller extends Controller
     }
 
     public function editarSenha(Request $request)
-    {
+    {   
 
         $usuario = \SimuladoENADE\Usuario::find($request->id);
 
         if (!(Hash::check($request->old_password, $usuario->password)))
-            return redirect()->back()->with('fail', true)->with('message', 'Senha incorreta! Alterações não efetuadas.')->with('senha', true);
+            return redirect()->back()->with('fail', \SimuladoENADE\FlashMessage::senhaAlteradaFail());
 
         $validator = Validator::make($request->all(), [
-            'password' => 'min:6|max:16|required_with:password_confirmation',
+            'password' => 'min:8|required_with:password_confirmation',
             'password_confirmation' => 'required_with:password|same:password'
         ],
             [
@@ -249,7 +249,7 @@ class Usuariocontroller extends Controller
         $usuario->password = Hash::make($request->password);
         $usuario->save();
 
-        return redirect()->back()->with('success', true)->with('message', 'Senha alterada com sucesso!');
+        return redirect()->back()->with('success', \SimuladoENADE\FlashMessage::senhaAlteradaSuccess());
     }
 
     public function atualizar(Request $request)
@@ -279,20 +279,23 @@ class Usuariocontroller extends Controller
 
             } elseif ($user == 2) { // Coordenação de Curso
 
-                $inf_array = $request->all();
-                $inf_array["curso_id"] = \Auth::user()->curso_id;
+                try {
+                    $inf_array = $request->all();
+                    $inf_array["curso_id"] = \Auth::user()->curso_id;
 
-                $usuario = \SimuladoENADE\Usuario::find($request->id);
-                $inf_array["password"] = $usuario->password;
-                $inf_array["password_confirmation"] = $usuario->password;
-                $inf_array["tipousuario_id"] = $usuario->tipousuario_id;
+                    $usuario = \SimuladoENADE\Usuario::find($request->id);
+                    $inf_array["password"] = $usuario->password;
+                    $inf_array["password_confirmation"] = $usuario->password;
+                    $inf_array["tipousuario_id"] = $usuario->tipousuario_id;
 
-                UsuarioValidator::Validate($inf_array);
+                    UsuarioValidator::Validate($inf_array);
 
-                $usuario->fill($inf_array);
-                $usuario->update();
-                return redirect("listar/professor")->with('success', \SimuladoENADE\FlashMessage::alteracoesSuccess());
-                // return redirect()->back()->with('success', true)->with('message','Alterações efetuadas.');
+                    $usuario->fill($inf_array);
+                    $usuario->update();
+                    return redirect()->back()->with('success', \SimuladoENADE\FlashMessage::alteracoesSuccess());
+                } catch(ValidationException $ex) {
+                    return redirect()->back()->withErrors($ex->getValidator())->withInput();
+                }
 
             } elseif ($user == 5) { // Coordenação Geral
 
