@@ -40,8 +40,8 @@ class Aluno extends Authenticatable{
         'password.min' => 'A senha deve conter no mínimo 8 caracteres',
         'email.email' => "O email deve ser um email valido",
         'unique' => "O :attribute já esta cadastrado no sistema!!",
-        'password.confirmed' => "A nova senha e a confirmação da senha devem ser iguais",
-        'same' => "A nova senha e a confirmação da senha devem ser iguais"
+        'password.confirmed' => "As senhas devem ser identicas",
+        'same' => "As senhas devem ser identicas"
     ];
 
     public function sendPasswordResetNotification($token)
