@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Questao extends Model {
     
     public function disciplina(){
-    	return $this->belongsTo('SimuladoENADE\Disciplina');
+    	return $this->belongsTo('SimuladoENADE\Disciplina', 'id');
     }
 
     public function questao_simulado(){
