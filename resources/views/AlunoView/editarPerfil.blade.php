@@ -89,7 +89,7 @@
                                         <label for="password" style="float: left;">Senha atual</label>
                                         <input type="password" id="password" name="old_password"
                                                placeholder="Digite a sua senha atual" class="form-control"
-                                               value="{{ old('password') }}" required autofocus>
+                                               value="{{ old('old_password') }}" required autofocus>
 
                                         <label for="password" style="float: left;">Nova senha</label>
                                         <input type="password" id="password" name="password"
