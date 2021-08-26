@@ -63,7 +63,6 @@
                                 @endif
                             </div>
 
-<<<<<<< HEAD
 					<input type="hidden" name="id" value="{{$aluno->id}}">
 					<input type="hidden" name="_token" value="{{csrf_token()}}">
 
@@ -110,30 +109,3 @@
 
 	</div>
 @stop
-=======
-                            <div class="form-group col-md-12">
-                                <label for="password_confirmation" style="float: left;">Confirme a nova
-                                    senha</label>
-                                <input type="password" id="password_confirmation" name="password_confirmation"
-                                       placeholder="Confirme sua nova senha"
-                                       class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}"
-                                       value="{{ old('password_confirmation') }}" required autofocus>
-                                @if ($errors->has('password_confirmation'))
-                                    <span class="invalid-feedback" role="alert">
-												{{$errors->first('password_confirmation')}}
-											</span>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                    <div class="justify-content-center row">
-                        <div class="text-center my-3" id="btn_alterar">
-                            <button type="submit" name="alterar" class="btn btn-primary">Salvar senha</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-@stop
->>>>>>> 8b7f2d3c6f231b34e83315afa3fffe54cc80fb49
