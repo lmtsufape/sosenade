@@ -50,12 +50,15 @@ class LoginController extends Controller
             return redirect ("/");
         } else {
 
-            if(Auth::guard('aluno')->attempt($cred))
+            if(Auth::guard('aluno')->attempt($cred) and !Auth::guard('aluno')->user()->reconhecido) {
+                return redirect ("/mudarSenhaAluno");
+            } else if(Auth::guard('aluno')->attempt($cred)) {
                 return redirect ("/alunohome");
-            else if(Auth::guard('instituicao')->attempt($cred))
+            } else if(Auth::guard('instituicao')->attempt($cred)) {
                 return redirect ("/instituicaohome");
-            else
+            } else {
                 return redirect("/login")->with('fail', true)->with('message','Não foi possível efetuar login, e-mail ou senha incorreta.');
+            }
         }
         
         exit(0);

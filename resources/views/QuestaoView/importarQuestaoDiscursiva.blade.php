@@ -227,7 +227,7 @@
                                 </td>
 
                             </tr>
-                            @foreach($questaos as $qst)
+                            @foreach($questoes_discursivas as $qst)
                                 <tr>
                                     <td class="align-middle">
                                         <label class="switch">

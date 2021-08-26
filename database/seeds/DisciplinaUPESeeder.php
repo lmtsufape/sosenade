@@ -313,6 +313,43 @@ class DisciplinaUPESeeder extends Seeder
             'LÍNGUA PORTUGUESA NA PRODUÇÃO DE CONHECIMENTOS'
         ];
         
+        $disciplinas_eng_computacao = [
+            "COMPILADORES",
+            "TEORIA DA COMPUTAÇÃO",
+            "ALGORITMOS E ESTRUTURAS DE DADOS",
+            "FUNDAMENTOS DE PROGRAMAÇÃO",
+            "PROGRAMAÇÃO IMPERATIVA",
+            "LINGUAGEM DE PROGRAMAÇÃO ORIENTADA OBJETOS",
+            "ENGENHARIA DE SOFTWARE",
+            "BANCO DE DADOS",
+            "INTELIGÊNCIA ARTIFICIAL E COMPUTACIONAL",
+            "APRENDIZAGEM DE MÁQUINA",
+            "SISTEMAS MULTIMÍDIA",
+            "PROCESSAMENTO DIGITAL DE IMAGENS",
+            "INTERFACE HUMANO-COMPUTADOR",
+            "INFORMÁTICA, ECONOMIA E SOCIEDADE",
+            "SISTEMAS OPERACIONAIS",
+            "ARQUITETURA DE COMPUTADORES",
+            "ORGANIZAÇÃO DE COMPUTADORES",
+            "LÓGICA",
+            "MATEMÁTICA DISCRETA",
+            "PROBABILIDADE E ESTATÍSTICA",
+            "TEORIA DOS GRAFOS",
+            "PESQUISA OPERACIONAL",
+            "ELETRÔNICA DIGITAL",
+            "CIRCUITOS ELÉTRICOS",
+            "ELETRÔNICA PARA COMPUTAÇÃO",
+            "MATERIAIS E DISPOSITIVOS SEMICONDUTORES",
+            "SISTEMAS EMBARCADOS",
+            "SINAIS E SISTEMAS",
+            "AUTOMAÇÃO INDUSTRIAL",
+            "CONTROLE DE PROCESSOS",
+            "REDES DE COMPUTADORES I",
+            "REDES DE COMPUTADORES II",
+            "SISTEMAS DE COMUNICAÇÃO",
+            "ELETROMAGNETISMO",
+        ];
+        
         foreach($disciplinas_matematica as $disciplina) {
             // DB::table('disciplinas')->insert(['nome' => strtoupper($disciplina), 'curso_id' => $matematica_garanhuns]);
         }

@@ -16,6 +16,10 @@ class AlunoController extends Controller{
 
 	public function home(){
 
+		if(!\Auth::guard('aluno')->user()->reconhecido) {
+			return redirect("/mudarSenhaAluno");
+		}
+
 		$user =  \Auth::guard('aluno')->user();
 		$curso = \SimuladoENADE\Curso::find($user->curso_id);
 		$unidade = \SimuladoENADE\UnidadeAcademica::find($curso->unidade_id)->nome;
@@ -34,6 +38,7 @@ class AlunoController extends Controller{
 			$aluno->fill($request->all());
 			$aluno->curso_id = $curso_id;
 			$aluno->password = Hash::make($request->password);
+			$aluno->reconhecido = false;
 			$aluno->save();
 			return redirect("listar/aluno")->with('success', \SimuladoENADE\FlashMessage::cadastroSuccess());
 
@@ -75,6 +80,7 @@ class AlunoController extends Controller{
 						$aluno->email = $input[2];
 
 						$aluno->curso_id = $curso_id;
+						$aluno->reconhecido = false;
 						$aluno->password = Hash::make($input[1]);
 						$aluno->save();
 
@@ -108,6 +114,11 @@ class AlunoController extends Controller{
 	}
 
 	public function editarPerfil(){
+
+		if(!\Auth::guard('aluno')->user()->reconhecido) {
+			return redirect("/mudarSenhaAluno");
+		}
+
 		$aluno = \Auth::guard('aluno')->user();
 		$curso = \SimuladoENADE\Curso::all();
 		return view('/AlunoView/editarPerfil', ['aluno' => $aluno], ['cursos' => $curso]);
@@ -136,24 +147,83 @@ class AlunoController extends Controller{
 	}
 
 	public function atualizar(Request $request){
-		try {
-			AlunoValidator::Validate($request->all());
-			$aluno = \SimuladoENADE\Aluno::find($request->id);
-			$aluno->fill($request->all());
-			$aluno->update();
-			return redirect()->back()->with('success', true)->with('message', \SimuladoENADE\FlashMessage::alteracoesSuccess());
-		} catch(ValidationException $ex){
-			return redirect("editar/aluno/".$request->id)->withErrors($ex->getValidator())->withInput();
+
+		$validator = \Validator::make($request->all(),
+    							[    	
+    								'nome'  => 'required|',
+							    	'cpf' => 'required|min:14|unique:alunos,cpf,'.$request->id,
+							    	'email' => 'required|unique:alunos,email,'.$request->id,
+								], \SimuladoENADE\Aluno::$messages);
+        
+		if($validator->fails()) {
+			return redirect("editar/aluno/".$request->id)->withErrors($validator->errors())->withInput();
 		}
+		
+		$aluno = \SimuladoENADE\Aluno::find($request->id);
+		$aluno->fill($request->all());
+		$aluno->update();
+
+		return redirect()->back()->with('success', true)->with('message', \SimuladoENADE\FlashMessage::alteracoesSuccess());
 	}
 
 	public function remover(Request $request){
 		$aluno = \SimuladoENADE\Aluno::find($request->id);
-		$aluno->delete();
-		return redirect('\listar\aluno')->with('success', \SimuladoENADE\FlashMessage::removeAlunoSuccess());
+		$aluno_nome = $aluno->nome;
+
+		try {
+			$aluno->delete();
+			return redirect('\listar\aluno')->with('success', \SimuladoENADE\FlashMessage::removeAlunoSuccess());
+		} catch(QueryException $ex) {
+			return redirect("\listar\aluno")->with('fail', \SimuladoENADE\FlashMessage::removeAlunoFail($aluno_nome));
+		}
 	}
 
 	public function downloadModeloCSV(Request $request) {
 		return Storage::download('public/import_alunos.csv');
 	}
+
+	public function mudarSenhaView(Request $request) {
+
+		if(\Auth::guard('aluno')->user()->reconhecido) {
+			return redirect("/alunoCadastrado");
+		}
+		
+		return view('AlunoView/mudarSenha', ['aluno' => \Auth::guard('aluno')->user()]);
+	}
+
+	public function mudarSenha(Request $request) {
+		$aluno = \SimuladoENADE\Aluno::find($request->id);
+
+		if (!(Hash::check($request->old_password, $aluno->password)))
+			return redirect()->back()->with('fail', true)->with('message','Senha atual incorreta! Verifique a senha e tente novamente!')->with('senha', true);
+
+		$validator = Validator::make($request->all(), [
+			'password' => 'required|min:8|required_with:password_confirmation',
+			'password_confirmation' => 'required_with:password|same:password'
+		], \SimuladoENADE\Aluno::$messages);
+
+		if($validator->fails()) {
+			return redirect()->back()->withErrors($validator->errors())->withInput()->with('senha', true);
+		}
+
+		$aluno->password = Hash::make($request->password);
+		$aluno->reconhecido = true;
+		$aluno->save();
+
+		return redirect()->back()->with('success', true);
+	}
+
+	public function alunoCadastrado(Request $request) {
+
+		if(!\Auth::guard('aluno')->user()->reconhecido) {
+			return redirect("/mudarSenhaAluno");
+		}
+
+		$user =  \Auth::guard('aluno')->user();
+		$curso = \SimuladoENADE\Curso::find($user->curso_id);
+		$unidade = \SimuladoENADE\UnidadeAcademica::find($curso->unidade_id)->nome;
+
+		return view('AlunoView/alunoVerificado', ['nome' => $user->nome, 'curso' => $curso->curso_nome, 'unidade' => $unidade, 'tipo' => 'Aluno']);
+	}
+
 }

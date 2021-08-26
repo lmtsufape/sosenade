@@ -18,12 +18,20 @@ class FlashMessage extends Model
         return 'Senha alterada com sucesso!';
     }
 
+    public static function senhaAlteradaFail() {
+        return 'Senha incorreta! Alterações não efetuadas.';
+    }
+
     public static function removeUsuarioSuccess() {
         return 'Usuário removido com sucesso!';
     }
 
     public static function removeAlunoSuccess() {
         return 'Aluno removido com sucesso!';
+    }
+
+    public static function removeAlunoFail($aluno_nome) {
+        return 'O aluno(a): '.$aluno_nome.' não pode ser removido(a)! O aluno(a) contém dados de simulados vinculados a ele!';
     }
 
     public static function removeProfessorSuccess() {
@@ -94,9 +102,11 @@ class FlashMessage extends Model
         \SimuladoENADE\FlashMessage::alteracoesSuccess()
 
         \SimuladoENADE\FlashMessage::senhaAlteradaSuccess()
+        \SimuladoENADE\FlashMessage::senhaAlteradaFail()
 
         \SimuladoENADE\FlashMessage::removeUsuarioSuccess()
         \SimuladoENADE\FlashMessage::removeAlunoSuccess()
+        \SimuladoENADE\FlashMessage::removeAlunoFail($aluno_nome)
         \SimuladoENADE\FlashMessage::removeProfessorSuccess()
 
         \SimuladoENADE\FlashMessage::removeInstituicaoSuccess($instituicao_nome)

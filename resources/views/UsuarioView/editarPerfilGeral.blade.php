@@ -2,7 +2,7 @@
 @section('titulo','Atualizar Perfil')
 @section('content')
 
-    @if(Session::has('success'))
+    <!-- @if(Session::has('success'))
         <div class="alert alert-success">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
             </button>{{ Session::get('message', '') }}
@@ -11,6 +11,16 @@
         <div class="alert alert-danger">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
             </button> {{ Session::get('message', '') }}
+        </div>
+    @endif -->
+
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @elseif (session('fail'))
+        <div class="alert alert-danger">
+            {{ session('fail') }}
         </div>
     @endif
 
@@ -81,7 +91,7 @@
                                 @if(!(\Illuminate\Support\Facades\Auth::user()->tipousuario_id == 6))
                                     <div class="form-group col-md-5">
                                         <label for="vinculo" style="float: left;">Vínculo</label>
-                                        <input type="text" id="vinculo" name="vinculo" placeholder="Vínculo"
+                                        <input type="text" id="vinculo" name="vinculo" placeholder="{{$user_vinculo->tipo}}"
                                                class="form-control{{ $errors->has('vinculo') ? ' is-invalid' : '' }} vinculo"
                                                value="" disabled>
                                         @if ($errors->has('vinculo'))
@@ -91,7 +101,7 @@
                                         @endif
 
                                         <label for="curso" style="float: left;">Curso</label>
-                                        <input type="text" id="curso" name="curso" placeholder="Curso"
+                                        <input type="text" id="curso" name="curso" placeholder="{{$user_curso->curso_nome}}"
                                                class="form-control{{ $errors->has('curso') ? ' is-invalid' : '' }} curso"
                                                value="" disabled>
                                         @if ($errors->has('curso'))
@@ -101,7 +111,7 @@
                                         @endif
 
                                         <label for="instituicao" style="float: left;">Instituição</label>
-                                        <input type="text" id="instituicao" name="instituicao" placeholder="Instituição"
+                                        <input type="text" id="instituicao" name="instituicao" placeholder="{{$user_instituicao->nome}}"
                                                class="form-control{{ $errors->has('instituicao') ? ' is-invalid' : '' }} instituicao"
                                                value="" disabled>
                                         @if ($errors->has('instituicao'))
@@ -132,7 +142,7 @@
                                         <label for="password" style="float: left;">Senha atual</label>
                                         <input type="password" id="password" name="old_password"
                                                placeholder="Digite a sua senha atual" class="form-control"
-                                               value="{{ old('password') }}" required autofocus>
+                                               value="" required autofocus>
 
                                         <label for="password" style="float: left;">Nova senha</label>
                                         <input type="password" id="password" name="password"
@@ -145,8 +155,7 @@
 											</span>
                                         @endif
 
-                                        <label for="password_confirmation" style="float: left;">Confirme a nova
-                                            senha</label>
+                                        <label for="password_confirmation" style="float: left;">Confirme a nova senha</label>
                                         <input type="password" id="password_confirmation" name="password_confirmation"
                                                placeholder="Confirme sua nova senha"
                                                class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}"

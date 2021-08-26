@@ -16,13 +16,15 @@ class AlunoMiddleware
 
     public function handle($request, Closure $next) {
 
-        $user = \Auth::guard('aluno')->user();
+        // $user = \Auth::guard('aluno')->user();
 
-        if ($user == 'aluno'){
+        // if ($user == 'aluno' and $user->reconhecido){
+        //     return redirect("/alunohome");
+        // }
 
-            return redirect("/alunohome");
-
-        }
+        // if ($user == 'aluno' and !$user->reconhecido){
+        //     return redirect("/mudarSenhaAluno");
+        // }
 
         return $next($request);
 

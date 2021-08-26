@@ -59,9 +59,8 @@
                                 <div class="form-row col-md-12 justify-content-center">
                                     <div class="form-group col-md-4">
                                         <label for="email">E-mail</label>
-                                        <input type="text" id="email" name="email" placeholder="exemplo@exemplo.com"
-                                               class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                               value="{{ old('email') }}" required autofocus>
+                                        <input type="text" id="email" name="email" placeholder="exemplo@exemplo.com" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" required autofocus>
+                                        <span style="color: #b8c2cc; font-size: 14px">E-mail utilizado para acessar o sistema.</span>
                                         @if ($errors->has('email'))
                                             <span class="invalid-feedback" role="alert">
 												{{$errors->first('email')}}

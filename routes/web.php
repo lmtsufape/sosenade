@@ -68,11 +68,11 @@ Route::middleware('auth')->group(function () {
         Route::get('/remover/simulado/{id}', 'SimuladoController@remover')->name('delete_simulado');
 
         Route::get('/montarSimulado/{id}', 'QuestaoSimuladoController@montar')->name('set_simulado');
-        Route::post('/cadastrarQuestaoSimulado/', 'QuestaoSimuladoController@cadastrarQuestao')->name('add_qst_simulado');
-        Route::post('/cadastrarQuestaoSimuladoManual/', 'QuestaoSimuladoController@cadastrarQuestaoManualmente')->name('add_qst_simulado_obj');
+        Route::get('/cadastrarQuestaoSimulado/', 'QuestaoSimuladoController@cadastrarQuestao')->name('add_qst_simulado');
+        Route::get('/cadastrarQuestaoSimuladoManual/', 'QuestaoSimuladoController@cadastrarQuestaoManualmente')->name('add_qst_simulado_obj');
 
-        Route::post('/cadastrarQuestaoDiscursivaSimulado/', 'QuestaoDiscursivaSimuladoController@cadastrarQuestao')->name('add_qst_disc_simulado_auto');
-        Route::post('/cadastrarQuestaoDiscursivaSimuladoManual/', 'QuestaoDiscursivaSimuladoController@cadastrarQuestaoManualmente')->name('add_qst_disc_simulado_manual');
+        Route::get('/cadastrarQuestaoDiscursivaSimulado/', 'QuestaoDiscursivaSimuladoController@cadastrarQuestao')->name('add_qst_disc_simulado_auto');
+        Route::get('/cadastrarQuestaoDiscursivaSimuladoManual/', 'QuestaoDiscursivaSimuladoController@cadastrarQuestaoManualmente')->name('add_qst_disc_simulado_manual');
 
         // Chamadas Assicronas - Jquery
         Route::get('/addQuestaoSimulado/Async/', 'QuestaoSimuladoController@addQuestaoAsync');
@@ -89,6 +89,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/relatorio/relatorioSimulados', 'RelatorioController@relatorioSimulados')->name('relatorio_simulados');
         Route::get('/relatorio/relatorioDisciplina', 'RelatorioController@relatorioDisciplina')->name('relatorio_disciplinas');
 
+        Route::get('/downloadModelCSV', 'AlunoController@downloadModeloCSV')->name('csv_model_download');
     });
 
     Route::middleware('coordenadorGeral.auth')->group(function () {
@@ -203,6 +204,10 @@ Route::middleware('aluno.auth')->group(function () {
     Route::get('/editarPerfil', 'AlunoController@editarPerfil')->name('edit_perfil_aluno');
     Route::post('/alterarSenhaAluno', 'AlunoController@editarSenha')->name('alterar_senha_aluno');
 
+	Route::get('/mudarSenhaAluno', 'AlunoController@mudarSenhaView')->name('mudar_senha_view');
+	Route::post('/mudarSenha', 'AlunoController@mudarSenha')->name('mudar_senha');
+
+	Route::get('/alunoCadastrado', 'AlunoController@alunoCadastrado')->name('aluno_cadastrado');
 });
 
 Route::middleware('admGeral.auth')->group(function () {
@@ -271,7 +276,7 @@ Auth::routes();
 // Route::get('/editar/resposta/{id}','RespostaController@editar')->name('edit_resposta');
 // Route::post('/atualizar/resposta','RespostaController@atualizar')->name('update_resposta');
 // Route::get('/remover/resposta/{id}','RespostaController@remover')->name('delete_resposta');
-    Auth::routes();
+    // Auth::routes();
 
     // Route::get('/home', 'HomeController@index')->name('home');
 
