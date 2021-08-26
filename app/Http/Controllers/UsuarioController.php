@@ -227,7 +227,7 @@ class Usuariocontroller extends Controller
     }
 
     public function editarSenha(Request $request)
-    {   
+    {
 
         $usuario = \SimuladoENADE\Usuario::find($request->id);
 
@@ -235,7 +235,7 @@ class Usuariocontroller extends Controller
             return redirect()->back()->with('fail', \SimuladoENADE\FlashMessage::senhaAlteradaFail());
 
         $validator = Validator::make($request->all(), [
-            'password' => 'min:8|required_with:password_confirmation',
+            'password' => 'min:8|max:16|required_with:password_confirmation',
             'password_confirmation' => 'required_with:password|same:password'
         ],
             [
@@ -332,7 +332,6 @@ class Usuariocontroller extends Controller
             }
 
         } catch (ValidationException $ex) {
-            dd($ex->getValidator());
             $usuario = \SimuladoENADE\Usuario::find($request->id);
             return redirect("editar/usuario/" . $usuario->id)->withErrors($ex->getValidator())->withInput();
         }
@@ -362,6 +361,11 @@ class Usuariocontroller extends Controller
     public function sobre()
     {
         return view('auth.sobre');
+    }
+
+    public function contato()
+    {
+        return view('auth.contato');
     }
 
     public function redefinicao()

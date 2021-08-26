@@ -87,15 +87,16 @@
                                 <div class="form-row col-md-12 justify-content-center">
                                     <div class="form-group col-md-5">
                                         <label for="password" style="float: left;">Senha atual</label>
-                                        <input type="password" id="password" name="old_password"
+                                        <input type="password" id="old_password" name="old_password"
                                                placeholder="Digite a sua senha atual" class="form-control"
-                                               value="{{ old('password') }}" required autofocus>
+                                               value="{{ old('old_password') }}" required autofocus>
 
                                         <label for="password" style="float: left;">Nova senha</label>
                                         <input type="password" id="password" name="password"
                                                placeholder="Digite a nova senha"
                                                class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
                                                value="{{ old('password') }}" required autofocus>
+                                        <span style="color: #7F7F7F; font-size: 12px">A senha deve possuir no minimo 8 caracteres.</span>
                                         @if ($errors->has('password'))
                                             <span class="invalid-feedback" role="alert">
 												{{$errors->first('password')}}

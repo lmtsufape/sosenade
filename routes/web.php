@@ -26,6 +26,7 @@ use Illuminate\Support\Facades\Auth;
  */
 
 Route::get('/sobre', 'UsuarioController@sobre')->name('sobre');
+Route::get('/contato', 'UsuarioController@contato')->name('contato');
 Route::get('/redefinicao', 'UsuarioController@redefinicao')->name('redefinicao.senhas');
 Route::post('/cookie', 'UsuarioController@cookie')->name('cookie.resetPassword');
 
