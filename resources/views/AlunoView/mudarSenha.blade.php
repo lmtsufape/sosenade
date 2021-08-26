@@ -7,11 +7,6 @@
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
             </button>{{ Session::get('message', '') }}
         </div>
-    @elseif(Session::has('fail'))
-        <div class="alert alert-danger">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
-            </button> {{ Session::get('message', '') }}
-        </div>
     @endif
 
     <div class="shadow p-3 bg-white text-center" style="border-radius: 10px">
@@ -42,8 +37,8 @@
                                        placeholder="Digite a sua senha atual" class="form-control"
                                        value="{{ old('old_password') }}" required autofocus>
                                 @if(Session::has('fail'))
-                                    <span class="invalid-feedback" role="alert">
-												{{ Session::get('message', '') }}
+                                    <span style="color: red; font-size: 14px;">
+												{{ Session::get('message', '')}}
 											</span>
                                 @endif
                             </div>
