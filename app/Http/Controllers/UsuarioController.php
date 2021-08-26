@@ -361,6 +361,11 @@ class Usuariocontroller extends Controller
         return view('auth.sobre');
     }
 
+    public function contato()
+    {
+        return view('auth.contato');
+    }
+
     public function redefinicao()
     {
         return view('auth.passwords.redefinicao');
