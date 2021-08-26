@@ -30,7 +30,7 @@
 						<div class="form-row col-md-12 justify-content-center">
 							<div class="form-group col-md-4">
 								<label for="old_password">Senha atual</label>
-								<input type="password" id="old_password" name="old_password" placeholder="Digite a sua senha atual" class="form-control" value="{{ old('password') }}" required autofocus>
+								<input type="password" id="old_password" name="old_password" placeholder="Digite a sua senha atual" class="form-control" value="{{ old('old_password') }}" required autofocus>
 								@if ($errors->has('old_password'))
 									<span class = "invalid-feedback" role="alert">
 										{{$errors->first('old_password')}}
