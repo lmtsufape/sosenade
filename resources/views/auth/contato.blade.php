@@ -16,13 +16,14 @@ overflow: hidden; box-shadow: -1px 4px 17px -5px rgba(0,0,0,0.64);
                             <span style="color: #b91d19; font-weight: bold; margin-bottom:5px">Universidade de Pernambuco (UPE)</span>
                             <p>
                                 R. Cap. Pedro Rodrigues, Bairro São José - CEP: 55294-902 - Garanhuns - PE<br>
-                                <b>Email: </b> <a href="mailto:engenhariadesoftware.multicampi@upe.br">engenhariadesoftware.multicampi@upe.br</a></p>
+                                <strong>Email: </strong> <a href="mailto:engenhariadesoftware.multicampi@upe.br">engenhariadesoftware.multicampi@upe.br</a>
+                            </p>
                             <span style="color: #1b4b72; font-weight: bold; margin-bottom:5px">Laboratório Multidisciplinar de Tecnologias
                                 Sociais (LMTS)</span>
-                            <p>Unidade Acadêmica de Garanhuns - UAG<br />
-                                Avenida Bom Pastor, s/n.º, Bairro Boa Vista - CEP: 55292-270 - Garanhuns - PE<br />
-                                Laboratório 23</p>
-                            <p><strong>E-mail:</strong> <a href="mailto:lmts@ufrpe.br">lmts@ufrpe.br</a></p>
+                            <p>Unidade Acadêmica de Garanhuns - UAG<br/>
+                                Avenida Bom Pastor, s/n.º, Bairro Boa Vista - CEP: 55292-270 - Garanhuns - PE<br/>
+                                Laboratório 23<br>
+                                <strong>E-mail:</strong> <a href="mailto:lmts@ufrpe.br">lmts@ufrpe.br</a></p>
 
                         </div>
                     </div>
