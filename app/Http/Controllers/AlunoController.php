@@ -152,11 +152,11 @@ class AlunoController extends Controller{
     							[    	
     								'nome'  => 'required|',
 							    	'cpf' => 'required|min:14|unique:alunos,cpf,'.$request->id,
-							    	'email' => 'required|unique:alunos,email,'.$request->id,
+							    	'email' => 'required|email|unique:alunos,email,'.$request->id,
 								], \SimuladoENADE\Aluno::$messages);
         
 		if($validator->fails()) {
-			return redirect("editar/aluno/".$request->id)->withErrors($validator->errors())->withInput();
+			return redirect()->back()->withErrors($validator->errors())->withInput();
 		}
 		
 		$aluno = \SimuladoENADE\Aluno::find($request->id);
