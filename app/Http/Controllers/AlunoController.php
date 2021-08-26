@@ -149,16 +149,16 @@ class AlunoController extends Controller{
 	public function atualizar(Request $request){
 
 		$validator = \Validator::make($request->all(),
-    							[    	
+    							[
     								'nome'  => 'required|',
 							    	'cpf' => 'required|min:14|unique:alunos,cpf,'.$request->id,
 							    	'email' => 'required|email|unique:alunos,email,'.$request->id,
 								], \SimuladoENADE\Aluno::$messages);
-        
+
 		if($validator->fails()) {
 			return redirect()->back()->withErrors($validator->errors())->withInput();
 		}
-		
+
 		$aluno = \SimuladoENADE\Aluno::find($request->id);
 		$aluno->fill($request->all());
 		$aluno->update();
@@ -187,7 +187,7 @@ class AlunoController extends Controller{
 		if(\Auth::guard('aluno')->user()->reconhecido) {
 			return redirect("/alunoCadastrado");
 		}
-		
+
 		return view('AlunoView/mudarSenha', ['aluno' => \Auth::guard('aluno')->user()]);
 	}
 
@@ -198,6 +198,7 @@ class AlunoController extends Controller{
 			return redirect()->back()->with('fail', true)->with('message','Senha atual incorreta! Verifique a senha e tente novamente!')->with('senha', true);
 
 		$validator = Validator::make($request->all(), [
+		    'old_password' => 'required',
 			'password' => 'required|min:8|required_with:password_confirmation',
 			'password_confirmation' => 'required_with:password|same:password'
 		], \SimuladoENADE\Aluno::$messages);
