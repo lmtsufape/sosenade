@@ -329,7 +329,6 @@ class Usuariocontroller extends Controller
             }
 
         } catch (ValidationException $ex) {
-            dd($ex->getValidator());
             $usuario = \SimuladoENADE\Usuario::find($request->id);
             return redirect("editar/usuario/" . $usuario->id)->withErrors($ex->getValidator())->withInput();
         }
