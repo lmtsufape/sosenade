@@ -255,6 +255,12 @@ box-shadow: 0px 4px 10px -5px rgba(0,0,0,0.64);" role="navigation">
 
                     @if (Auth::guard('aluno')->user() and Auth::guard('aluno')->user()->reconhecido == false)
                         <a href="">
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                {{ __('Sair') }}
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                         <b>
                     @else
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
