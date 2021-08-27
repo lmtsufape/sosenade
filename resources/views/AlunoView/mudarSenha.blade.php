@@ -26,7 +26,7 @@
         <div class="card">
             <div class="list-group list-group-flush">
                 <br>
-                <form method="POST" action="{{ route('alterar_senha_aluno') }}">
+                <form method="POST" action="{{ route('mudar_senha') }}">
                     <input type="hidden" name="id" value="{{$aluno->id}}">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                     <div class="form-group justify-content-center row">
