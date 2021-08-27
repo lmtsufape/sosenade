@@ -20,7 +20,7 @@ overflow: hidden; box-shadow: -1px 4px 17px -5px rgba(0,0,0,0.64);
                             </p>
                             <span style="color: #1b4b72; font-weight: bold; margin-bottom:5px">Laboratório Multidisciplinar de Tecnologias
                                 Sociais (LMTS)</span>
-                            <p>Unidade Acadêmica de Garanhuns - UAG<br/>
+                            <p>Universidade Federal do Agreste de Pernambuco - UFAPE<br/>
                                 Avenida Bom Pastor, s/n.º, Bairro Boa Vista - CEP: 55292-270 - Garanhuns - PE<br/>
                                 Laboratório 23<br>
                                 <strong>E-mail:</strong> <a href="mailto:lmts@ufrpe.br">lmts@ufrpe.br</a></p>
