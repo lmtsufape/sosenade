@@ -18,6 +18,7 @@
     use SimuladoENADE\Resposta;
     use SimuladoENADE\RespostaDiscursiva;
     use SimuladoENADE\Simulado;
+	use Illuminate\Database\QueryException;
 
     class SimuladoController extends Controller{
 
@@ -645,11 +646,15 @@
 	    }
 
 	    public function remover(Request $request){
+			$simulado = \SimuladoENADE\Simulado::find($request->id);
+			$simulado_nome = $simulado->descricao_simulado;
 
-		    $simulado = \SimuladoENADE\Simulado::find($request->id);
-		    $simulado->delete();
-		    return redirect('listar/simulado');
-
+			try {	
+				$simulado->delete();
+		    	return redirect('listar/simulado')->with('success', \SimuladoENADE\FlashMessage::removeSimuladoSuccess());
+			} catch(QueryException $ex) {
+				return redirect('listar/simulado')->with('fail', \SimuladoENADE\FlashMessage::removeSimuladoFail($simulado_nome));
+			}
 	    }
 
 
