@@ -97,6 +97,15 @@ class FlashMessage extends Model
     public static function updateRespostaSuccess() {
         return 'Resposta salva com sucesso!';
     }
+
+
+    public static function removeSimuladoSuccess() {
+        return 'Simulado removido com sucesso!';
+    }
+
+    public static function removeSimuladoFail($simulado_nome) {
+        return 'O Simulado '.$simulado_nome.' não pode ser removido! Existem respostas de questões vinculadas a esse simulado!';
+    }
     /*
         \SimuladoENADE\FlashMessage::cadastroSuccess()
         \SimuladoENADE\FlashMessage::alteracoesSuccess()
@@ -131,6 +140,9 @@ class FlashMessage extends Model
         \SimuladoENADE\FlashMessage::importAlunoFail()
 
         \SimuladoENADE\FlashMessage::updateRespostaSuccess()
+
+        \SimuladoENADE\FlashMessage::removeSimuladoSuccess()
+        \SimuladoENADE\FlashMessage::removeSimuladoFail($simulado_nome)
 
     */
 }
