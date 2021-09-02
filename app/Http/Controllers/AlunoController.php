@@ -73,15 +73,17 @@ class AlunoController extends Controller{
 
 					if($input[0] and $input[1] and $input[2]){
 
+						$cpf_clean = str_replace("\"", "", $input[1]);
+
 						$curso_id = \Auth::user()->curso_id;
 						$aluno = new \SimuladoENADE\Aluno();
 						$aluno->nome = $input[0];
-						$aluno->cpf = $input[1];
+						$aluno->cpf = $cpf_clean;
 						$aluno->email = $input[2];
 
 						$aluno->curso_id = $curso_id;
 						$aluno->reconhecido = false;
-						$aluno->password = Hash::make($input[1]);
+						$aluno->password = Hash::make($cpf_clean);
 						$aluno->save();
 
 					}
