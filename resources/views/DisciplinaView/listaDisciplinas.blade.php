@@ -43,7 +43,7 @@
                         <td style="">{{$disciplina->nome}}</td>
                         <td>
                             <a href="{{route('list_qst_disciplina', ['id'=>$disciplina->id])}}" class="btn btn-info"
-                               data-placement="bottom" rel="tooltip" title="Ver questões"><i class="fa fa-eye"></i></a>
+                               data-placement="bottom" rel="tooltip" title="Ver questões"><i class="fa fa-align-justify"></i></a>
                             <a href="{{route('edit_disciplina',['id'=>$disciplina->id])}}" class="btn btn-primary"
                                data-placement="bottom" rel="tooltip" title="Editar"><i class="fa fa-pencil"></i></a>
                             <a onclick="return confirm('Você tem certeza que deseja excluir?')"
@@ -62,7 +62,7 @@
 
         <p>Legenda:</p>
         <a class="icons btn btn-info"
-           data-placement="bottom" rel="tooltip" title="Visualizar" style="color: white"><i class="fa fa-eye"></i></a>
+           data-placement="bottom" rel="tooltip" title="Visualizar" style="color: white"><i class="fa fa-align-justify"></i></a>
         Abrir Disciplina
         <a class="btn btn-primary"
            data-placement="bottom" rel="tooltip" title="Editar" style="color: white; margin-left: 5px"><i
