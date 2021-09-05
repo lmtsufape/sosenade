@@ -67,6 +67,14 @@ class AlunoController extends Controller{
 		} else {
 
 			$csv_data = array_slice($data, 1, count($data)); // Lista da segunda linha do array adiante
+
+			// Validação de campos preenchidos. Verificação de QTDs de campos
+			foreach ($csv_data as $input) {
+				if(sizeof($input) < 3) {
+					return redirect('cadastrar/aluno')->with('fail', "Erro no preenchimento do arquivo! Verifique os dados e tente novamente!");
+				}
+			}
+
 			foreach ($csv_data as $input) {
 
 				try {
