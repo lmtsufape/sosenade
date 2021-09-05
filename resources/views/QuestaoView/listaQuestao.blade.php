@@ -35,7 +35,7 @@
                            aria-controls="listar_questao_objetiva" aria-selected="true">Questões Objetivas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="lisrtar-questao-discursiva-tab" data-toggle="tab" href="#listar_questao_discursiva" role="tab"
+                        <a class="nav-link" id="listar-questao-discursiva-tab" data-toggle="tab" href="#listar_questao_discursiva" role="tab"
                            aria-controls="listar_questao_discursiva" aria-selected="false">Questões Discursivas</a>
                     </li>
                 </ul>
