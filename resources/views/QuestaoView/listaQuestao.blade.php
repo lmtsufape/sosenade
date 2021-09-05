@@ -55,31 +55,7 @@
                                 <tr class="header" style="background: #1B2E4F; color: white">
                                     <th>Enunciado</th>
                                     <th>Nível</th>
-                                    <th>
-                                        <div class="dropdown show">
-                                            Disciplinas
-                                            <a style="color: inherit;" class="dropdown-toggle nounderline" href="#" role="button"
-                                            id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                @foreach($disciplinas as $disciplina)
-                                                    @if($disciplina->questaos->count())
-                                                        {!! Request::is('listar/questoes/disciplina/'.$disciplina->id) ? '('.$disciplina->nome.')' : '' !!}
-                                                    @endif
-                                                @endforeach
-                                            </a>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                <a class="dropdown-item {{Request::is('listar/questao') ? 'font-weight-bold' : ''}}"
-                                                href="{{route('list_qst')}}">
-                                                    Todas
-                                                </a>
-                                                @foreach($disciplinas as $disciplina)
-                                                    @if($disciplina->questaos->count())
-                                                        <a class="dropdown-item {{Request::is('listar/questoes/disciplina/'.$disciplina->id) ? 'font-weight-bold' : ''}}"
-                                                        href="{{route('list_qst_disciplina', ['id'=>$disciplina->id])}}"> {{$disciplina->nome}} </a>
-                                                    @endif
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                    </th>
+                                    <th>Disciplinas</th>
                                     <th style="width: 15%">Opções</th>
                                 </tr>
                                 </thead>
@@ -185,31 +161,7 @@
                                 <tr class="header" style="background: #1B2E4F; color: white">
                                     <th>Enunciado</th>
                                     <th>Nível</th>
-                                    <th>
-                                        <div class="dropdown show">
-                                            Disciplinas
-                                            <a style="color: inherit;" class="dropdown-toggle nounderline" href="#" role="button"
-                                            id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                @foreach($disciplinas as $disciplina)
-                                                    @if($disciplina->questao_discursivas->count())
-                                                        {!! Request::is('listar/questoesDiscursivas/disciplina/'.$disciplina->id) ? '('.$disciplina->nome.')' : '' !!}
-                                                    @endif
-                                                @endforeach
-                                            </a>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                <a class="dropdown-item {{Request::is('listar/questao') ? 'font-weight-bold' : ''}}"
-                                                href="{{route('list_qst')}}">
-                                                    Todas
-                                                </a>
-                                                <!-- @foreach($disciplinas as $disciplina)
-                                                    @if($disciplina->questao_discursivas->count())
-                                                        <a class="dropdown-item {{Request::is('listar/questoesDiscursivas/disciplina/'.$disciplina->id) ? 'font-weight-bold' : ''}}"
-                                                        href="{{route('list_qst_disc_disciplina', ['id'=>$disciplina->id])}}"> {{$disciplina->nome}} </a>
-                                                    @endif
-                                                @endforeach -->
-                                            </div>
-                                        </div>
-                                    </th>
+                                    <th>Disciplinas</th>
                                     <th style="width: 15%">Opções</th>
                                 </tr>
                                 </thead>
