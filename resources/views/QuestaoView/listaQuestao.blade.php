@@ -62,9 +62,8 @@
                                 <tbody>
                                 @foreach($questaos as $questao)
                                     <tr>
-                                        <td class="align-middle" style="overflow: hidden; word-wrap: break-word; max-width: 38rem;">
+                                        <td class="align-middle" style="overflow: hidden; word-wrap: break-word; max-width: 38rem;" href="#modal_{{$questao->qstid}}" data-toggle="modal" data-placement="bottom" rel="tooltip">
                                             {{ str_limit(preg_replace('/<[^>]*>|[&;]|nbsp/', '', preg_replace(array('/nbsp/','/<(.*?)>/'), ' ', $questao->enunciado)), $limit = 240, $end = '...') }}
-
                                         </td>
                                         <td class="align-middle" href="#modal_{{$questao->qstid}}" data-toggle="modal" data-placement="bottom" rel="tooltip">{{$questao->dificuldade}}</td>
                                         <td class="align-middle" href="#modal_{{$questao->qstid}}" data-toggle="modal" data-placement="bottom" rel="tooltip" id="disciplina">{{$questao->nome}}</td>
@@ -167,10 +166,9 @@
                                 </thead>
                                 <tbody>
                                 @foreach($questoes_discursivas as $questao_discursiva)
-                                    <tr style="cursor: pointer">
-
+                                    <tr>
                                         <td class="align-middle" style="overflow: hidden; word-wrap: break-word; max-width: 38rem;" href="#modal_{{$questao_discursiva->qstid}}" data-toggle="modal" data-placement="bottom" rel="tooltip">
-                                            {{ str_limit(preg_replace('/<[^>]*>|[&;]|nbsp/', '', preg_replace(array('/nbsp/','/<(.*?)>/'), ' ', $questao_discursiva->enunciado)), $limit = 80, $end = '...') }}
+                                            {{ str_limit(preg_replace('/<[^>]*>|[&;]|nbsp/', '', preg_replace(array('/nbsp/','/<(.*?)>/'), ' ', $questao_discursiva->enunciado)), $limit = 240, $end = '...') }}
                                         </td>
                                         <td class="align-middle" href="#modal_{{$questao_discursiva->qstid}}" data-toggle="modal" data-placement="bottom" rel="tooltip">{{$questao_discursiva->dificuldade}}</td>
                                         <td class="align-middle" href="#modal_{{$questao_discursiva->qstid}}" data-toggle="modal" data-placement="bottom" rel="tooltip" id="disciplina">{{$questao_discursiva->nome}}</td>
