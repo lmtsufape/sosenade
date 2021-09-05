@@ -23,8 +23,8 @@
                 <div class="form-group col-md-2"
                      style="background: #24509D; color: white; border-radius: 10px; padding: 5px">
                     <h1>1º</h1>
-                    <small>Selecione a disciplina/conteúdo abrangido na questão e o nível de dificuldade da
-                        mesma.</small>
+                    Selecione a disciplina/conteúdo abordado na questão e o nível de dificuldade da
+                        mesma.
                 </div>
                 <div class="form-group col-md-9">
                     <div class="card">
@@ -71,7 +71,9 @@
                 <div class="form-group col-md-2"
                      style="background: #24509D; color: white; border-radius: 10px; padding: 5px">
                     <h1>2º</h1>
-                    <small>Digite o enunciado da questão no campo ao lado.</small>
+                    Digite o enunciado da questão no campo ao lado.<br><br>
+                    Sugestão: <br><small>Altere o <b>'ANO'</b>, <b>'CURSO'</b>, <b>'NUMERO'</b> e <b>'ENUNCIADO' pelas informações da questão.</b></small><br><br>
+                    Exemplo: <br><small>[ENADE 2014 - PEDAGOGIA - QUESTÃO 16] Questão de pedagogia.</small>
                 </div>
                 <div class="form-group col-md-9">
                     <div class="card my-3">
@@ -89,8 +91,8 @@
                 <div class="form-group col-md-2"
                      style="background: #24509D; color: white; border-radius: 10px; padding: 5px">
                     <h1>3º</h1>
-                    <small>Preencha os campos ao lado com as alternativas correspondentes e marque a letra da
-                        alternativa correta</small>
+                    Preencha os campos ao lado com as alternativas correspondentes e marque a letra da
+                        alternativa correta
                 </div>
                 <div class="form-group col-md-9">
                     <div class="card">
