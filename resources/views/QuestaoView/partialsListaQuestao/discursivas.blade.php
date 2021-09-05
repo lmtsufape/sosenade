@@ -20,7 +20,7 @@
                 <td class="align-middle">
                     <a class="icons btn btn-info" href="#modal_{{$questao_discursiva->qstid}}" data-toggle="modal" data-placement="bottom" rel="tooltip" title="Visualizar"><i class="fa fa-eye"></i></a>
                     <a class="btn btn-primary" href="{{route('edit_qst_disc', ['id'=>$questao_discursiva->qstid])}}" data-placement="bottom" rel="tooltip" title="Editar"><i class="fa fa-pencil"></i></a> 
-                    <a class="btn btn-danger" href="{{route('edit_qst_disc', ['id'=>$questao_discursiva->qstid])}}" data-placement="bottom" rel="tooltip" title="Excluir" onclick="return confirm('Você tem certeza que deseja excluir?')"><i class="fa fa-trash"></i></a>
+                    <a class="btn btn-danger" href="{{route('delete_qst_disc', ['id'=>$questao_discursiva->qstid])}}" data-placement="bottom" rel="tooltip" title="Excluir" onclick="return confirm('Você tem certeza que deseja excluir?')"><i class="fa fa-trash"></i></a>
                     
                     <!-- Modal -->
                     <div class="modal fade" id="modal_{{$questao_discursiva->qstid}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
