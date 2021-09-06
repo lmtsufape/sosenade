@@ -86,7 +86,7 @@
                                 required autofocus>
                             @foreach ($cursos as $curso)
                                 <option value="{{$curso->id}}" {{$usuario->curso_id == $curso->id ? 'selected' : '' }}>
-                                    {{$curso->curso_nome}}
+                                    {{$curso->curso_nome}} ({{$curso->unidade->nome}})
                                 </option>
                             @endforeach
                         </select>
