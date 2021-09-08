@@ -27,7 +27,7 @@
                     <div class="form-group col-md-9">
                         <div class="card">
                             <div class="listaHeader card-header">
-                                <h5 class="card-title">Procurar Questões</h5>
+                                <h5 id="select_qst_objetivas" class="card-title">Adicionar Questões</h5>
                             </div>
                             
                             <!-- Simulado Manual -->
@@ -86,7 +86,7 @@
                                 <!--  -->
 
                                 <div class="col-md-12 row justify-content-center text-center" style="margin-bottom: 10px">
-                                    <input type="submit" value="Adicionar" name="nome" class="btn btn-success"/>
+                                    <input type="submit" value="Adicionar" id="btn_get_questoes_objetivas" name="nome" class="btn btn-success"/>
                                 </div>
 
                             </div>

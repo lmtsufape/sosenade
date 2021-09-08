@@ -80,6 +80,8 @@
                 $('#container_requisicao_montagem_automatica').show()
                 $('.remove_qst_obj_async').hide()
                 $('.excluir_qst_obj_async').show()
+                $('#select_qst_objetivas').text("Adicionar Questões")
+                $('#btn_get_questoes_objetivas').val('Adicionar')
                 $('#bool_simulado_montagem_automatica_objetiva').val(Number(isChecked))
             } else {
                 $('#form_qst_objetivas').attr('action', route_add_qst_obj_manual)
@@ -90,6 +92,8 @@
                 $('.remove_qst_obj_async').show()
                 $('.excluir_qst_obj_async').hide()
                 $('.btn_hide_on_ready').hide()
+                $('#select_qst_objetivas').text("Listar Questões")
+                $('#btn_get_questoes_objetivas').val('Listar')
                 $('#bool_simulado_montagem_automatica_objetiva').val(Number(isChecked))
             }
 
@@ -109,6 +113,8 @@
                 $('#container_requisicao_montagem_automatica_disc').show()
                 $('.remove_qst_disc_async').hide()
                 $('.excluir_qst_disc_async').show()
+                $('#select_qst_discursivas').text("Adicionar Questões")
+                $('#btn_get_questoes_discursivas').val('Adicionar')
                 $('#bool_simulado_montagem_automatica_discursiva').val(Number(isChecked))
             } else {
                 $('#form_qst_discursivas').attr('action', route_add_qst_disc_manual)
@@ -119,6 +125,8 @@
                 $('.remove_qst_disc_async').show()
                 $('.excluir_qst_disc_async').hide()
                 $('.btn_hide_on_ready_disc').hide()
+                $('#select_qst_discursivas').text("Listar Questões")
+                $('#btn_get_questoes_discursivas').val('Listar')
                 $('#bool_simulado_montagem_automatica_discursiva').val(Number(isChecked))
             }
             
@@ -172,6 +180,8 @@
             $('#cabecalho_03').text('2º')
             $('#container_requisicao_montagem_manual').show()
             $('#container_requisicao_montagem_automatica').show()
+            $('#select_qst_objetivas').text("Adicionar Questões")
+            $('#btn_get_questoes_objetivas').val('Adicionar')
         } else {
             $('#form_qst_objetivas').attr('action', route_add_qst_obj_manual)
             $('#tipo_montagem_objetiva').bootstrapToggle('off')
@@ -180,6 +190,8 @@
             $('.btn_hide_on_ready').hide()
             $('#container_requisicao_montagem_manual').show()
             $('#container_requisicao_montagem_automatica').hide()
+            $('#select_qst_objetivas').text("Listar Questões")
+            $('#btn_get_questoes_objetivas').val('Listar')
         }
 
         // ----- Montagem Simulado Dicursivo ----------
@@ -216,6 +228,8 @@
             $('#cabecalho_03_disc').text('2º')
             $('#container_requisicao_montagem_manual_disc').show()
             $('#container_requisicao_montagem_automatica_disc').show()
+            $('#select_qst_discursivas').text("Adicionar Questões")
+            $('#btn_get_questoes_discursivas').val('Adicionar')
         } else {
             $('#form_qst_discursivas').attr('action', route_add_qst_disc_manual)
             $('#tipo_montagem_discursiva').bootstrapToggle('off')
@@ -224,6 +238,8 @@
             $('.btn_hide_on_ready_disc').hide()
             $('#container_requisicao_montagem_manual_disc').show()
             $('#container_requisicao_montagem_automatica_disc').hide()
+            $('#select_qst_discursivas').text("Listar Questões")
+            $('#btn_get_questoes_discursivas').val('Listar')
         }
         // --------------------------------------------
     });
