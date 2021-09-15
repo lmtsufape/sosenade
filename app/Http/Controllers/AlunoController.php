@@ -189,7 +189,7 @@ class AlunoController extends Controller{
 	}
 
 	public function downloadModeloCSV(Request $request) {
-		return Storage::download('public/import_alunos.csv');
+		return Storage::download('public/import_alunos.xlsx');
 	}
 
 	public function mudarSenhaView(Request $request) {
