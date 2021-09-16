@@ -11,7 +11,6 @@
          */
         public function run()
         {
-            $this->call(QuestaoObjetivaSeeder::class);
-            $this->call(QuestaoDiscursivaSeeder::class);
+            
         }
     }
