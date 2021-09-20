@@ -76,10 +76,10 @@ Route::middleware('auth')->group(function () {
 
         // Chamadas Assicronas - Jquery
         Route::get('/addQuestaoSimulado/Async', 'QuestaoSimuladoController@addQuestaoAsync')->name('add_questao_objetiva_async');
-        Route::get('/removeQuestaoSimulado/Async/', 'QuestaoSimuladoController@removeQuestaoAsync')->name('remove_questao_objetiva_async');
+        Route::get('/removeQuestaoSimulado/Async', 'QuestaoSimuladoController@removeQuestaoAsync')->name('remove_questao_objetiva_async');
 
-        Route::get('/addQuestaoDiscursivaSimulado/Async/', 'QuestaoDiscursivaSimuladoController@addQuestaoAsync');
-        Route::get('/removeQuestaoDiscursivaSimulado/Async/', 'QuestaoDiscursivaSimuladoController@removeQuestaoAsync');
+        Route::get('/addQuestaoDiscursivaSimulado/Async', 'QuestaoDiscursivaSimuladoController@addQuestaoAsync')->name('add_questao_discursiva_async');
+        Route::get('/removeQuestaoDiscursivaSimulado/Async', 'QuestaoDiscursivaSimuladoController@removeQuestaoAsync')->name('remove_questao_discursiva_async');
         //
 
         Route::get('/removerQuestaoSimulado/{sim_qst_id}', 'QuestaoSimuladoController@removerQuestao')->name('remove_qst_simulado');
