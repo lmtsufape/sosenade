@@ -269,15 +269,15 @@
             if(isAdd) {
 
                 $.ajax({
-                    url: '/addQuestaoSimulado/Async/',
+                    url: "{{ route('add_questao_objetiva_async') }}",
                     data: {
                         questao_id: id,
                         simulado_id: $('#simulado_id').val()
                     },
-                    success: function(result) {
+                    success: function(response) {
                         $('#tipo_montagem_objetiva').prop('checked', false)
 
-                        if(result){
+                        if(response){
                             tr = tr.detach()
                             modal.modal('hide')
 
@@ -296,7 +296,7 @@
                             data_table_empty.detach()
                             tabela_simulado.append(tr)
 
-                            alert('Questão adicionada com sucesso!')
+                            alert('Questão adicionada com sucesso!');
                         }
 
                         if($('.questoes_externas_obj').length == 0) {
@@ -310,6 +310,7 @@
                         }
                     }
                 });
+
             }
         });
         
