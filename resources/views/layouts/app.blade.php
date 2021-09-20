@@ -66,7 +66,7 @@
                         <!-- Authentication Links -->
                         @guest
                             <div style="display: inline-block; margin-right: 30px">
-                                <a href="/" style="text-decoration: none; color:black;">Início</a>
+                                <a href="http://app.uag.ufrpe.br/sosenade/" style="text-decoration: none; color:black;">Início</a>
                             </div>
                             <div style="display: inline-block; margin-right: 30px">
                                 <a href="{{route('sobre')}}" style="text-decoration: none; color:black;">Sobre</a>
