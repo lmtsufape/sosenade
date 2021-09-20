@@ -332,13 +332,9 @@
             var tabela_simulado = $('#tbody_simulado_obj')
             var data_table_empty = $('.dataTables_empty')
 
-            
-            // $('.questoes_simulado_obj').length
-            // alert($('.questoes_externas_obj'))
-
             if(isRemove) {
                 $.ajax({
-                    url: '/removeQuestaoSimulado/Async/',
+                    url: "{{ route('remove_questao_objetiva_async') }}",
                     data: {
                         questao_id: id,
                         simulado_id: $('#simulado_id').val(),
@@ -398,7 +394,7 @@
             if(isDel) {
 
                 $.ajax({
-                    url: '/removeQuestaoSimulado/Async/',
+                    url: "{{ route('remove_questao_objetiva_async') }}",
                     data: {
                         questao_id: id,
                         simulado_id: $('#simulado_id').val(),
@@ -455,7 +451,7 @@
             if(isAdd) {
 
                 $.ajax({
-                    url: '/addQuestaoDiscursivaSimulado/Async/',
+                    url: "{{ route('add_questao_discursiva_async') }}",
                     data: {
                         questao_id: id,
                         simulado_id: $('#simulado_id').val()
@@ -519,7 +515,7 @@
 
             if(isRemove) {
                 $.ajax({
-                    url: '/removeQuestaoDiscursivaSimulado/Async/',
+                    url: "{{ route('remove_questao_discursiva_async') }}",
                     data: {
                         questao_id: id,
                         simulado_id: $('#simulado_id').val(),
@@ -579,7 +575,7 @@
             if(isDel) {
 
                 $.ajax({
-                    url: '/removeQuestaoDiscursivaSimulado/Async/',
+                    url: "{{ route('remove_questao_discursiva_async') }}",
                     data: {
                         questao_id: id,
                         simulado_id: $('#simulado_id').val(),
