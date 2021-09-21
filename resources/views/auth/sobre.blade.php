@@ -34,18 +34,25 @@ overflow: hidden; box-shadow: -1px 4px 17px -5px rgba(0,0,0,0.64);
                             <p><a href="http://app.uag.ufrpe.br/sosenade" target="_blank">S.O.S Enade</a></p>
                             <h2><strong>Equipe:</strong></h2>
                             <!-- /.block --><p><strong>Docentes:</strong></p>
-                            <p>Dr. <a href="http://lattes.cnpq.br/9517716593738845">Anderson Fernandes de Alencar</a><br />
-                                Dr. <a href="http://lattes.cnpq.br/7448139435512224 ">Igor Medeiros Vanderlei</a><br />
-                                Dr. <a href="http://lattes.cnpq.br/4654692334430085">Rodrigo Gusmão de Carvalho Rocha</a></p>
+                            <p>
+                                Dr. <a href="http://lattes.cnpq.br/9517716593738845">Anderson Fernandes de Alencar</a><br/>
+                                Dr. <a href="http://lattes.cnpq.br/5674391087077141">Cleyton Mário de Oliveira Rodrigues</a></br>
+                                Dr. <a href="http://lattes.cnpq.br/7448139435512224 ">Igor Medeiros Vanderlei</a><br/>
+                                Dr. <a href="http://lattes.cnpq.br/4654692334430085">Rodrigo Gusmão de Carvalho Rocha</a>
+                            </p>
                             <p><strong>Desenvolvedores:</strong></p>
-                            <p>Alvanir Tadeu Lopes Junior (discente)<br />
+                            <p>
+                                Alvanir Tadeu Lopes Junior (discente)<br />
                                 Alisson de Lima Albuquerque (discente)<br>
                                 Djeymisson Rennan de Souza Moraes (discente)<br>
                                 Edgar Vinicius Carvalho Vital (discente)<br>
                             </p>
                             <p><strong>Colaboradores:</strong></p>
-                            <p>Andrei Lima Alves dos Santos (discente)<br />
-                                Cézar Rômulo Cordeiro de Araújo Filho (discente)<br/>
+                            <p>
+                                Andrei Lima Alves dos Santos (discente)<br />
+                                Anna Victoria Feliciana da Silva (discente)<br/>
+                                Cézar Rômulo Cordeiro de Araújo Filho (discente)<br/> 
+                            </p>
 
         </div>
     </div>
