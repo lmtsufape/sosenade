@@ -185,6 +185,7 @@ class QuestaoDiscursivaController extends Controller
         }
 
         $resposta = RespostaDiscursiva::find($resposta_id);
+
         return view('ProfessorView/avaliar_questao_discursivas', ["resposta" => $resposta, "simulado_id" => $simulado_id]);
     }
 
