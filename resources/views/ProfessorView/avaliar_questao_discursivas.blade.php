@@ -57,7 +57,7 @@
                                         <h5 class="card-title">Enunciado</h5>
                                     </div>
                                     <div class="card-body">
-                                        <p>{{$resposta->questao_discursiva->enunciado}}</p>
+                                        <textarea class="form-control summernote summernote_disable">{{$resposta->questao_discursiva->enunciado}}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -77,7 +77,7 @@
                                         <h5 class="card-title">Resposta</h5>
                                     </div>
                                     <div class="card-body">
-                                        <p>{{$resposta->resposta_discursiva}}</p>
+                                        <textarea class="form-control summernote summernote_disabled">{{$resposta->resposta_discursiva}}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -97,7 +97,7 @@
                                         <h5 class="card-title">Nota</h5>
                                     </div>
                                     <div class="card-body">
-                                        <input type="number" step="0.01" name="nota" min="0" value="{{old('nota', ($resposta->nota->nota ?? ''))}}">
+                                        <input class="form-control" type="number" step="0.01" name="nota" min="0" value="{{old('nota', ($resposta->nota->nota ?? ''))}}">
                                     </div>
                                 </div>
                             </div>
@@ -135,6 +135,12 @@
     </div>
 
     <script type="text/javascript">
+        $(document).ready(function() {
+            $('.summernote').summernote({ airMode: true });
+            $('.summernote_disable').summernote('disable');
+            $('.summernote_disabled').summernote('disable');
+        });
+
         $(document).ready(function () {
             $('#tabela_dados').DataTable({
                 "order": [
