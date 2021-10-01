@@ -41,7 +41,7 @@
                                 </td>
                                 <td class="align-middle">
                                     <a class="icons btn btn-info" href="{{route('ver_respostas_discursivas_simulado', $simulado->id)}}" data-placement="bottom" rel="tooltip" title="Visualizar">
-                                        <i class="fa fa-eye"></i>
+                                        <i class="fa fa-align-justify"></i>
                                     </a>
                                 </td>
                             </tr>
@@ -55,7 +55,7 @@
             <div id="legenda">
                 <p>Legenda:</p>
                 <a class="icons btn btn-info" data-placement="bottom" rel="tooltip" title="Visualizar" style="color: white">
-                    <i class="fa fa-eye"></i>
+                    <i class="fa fa-align-justify"></i>
                 </a>
                 Ver respostas discursivas do simulado
             </div>
