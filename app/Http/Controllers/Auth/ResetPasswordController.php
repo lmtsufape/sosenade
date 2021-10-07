@@ -3,6 +3,7 @@
 namespace SimuladoENADE\Http\Controllers\Auth;
 
 use Cookie;
+use Illuminate\Support\Facades\Password;
 use SimuladoENADE\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
