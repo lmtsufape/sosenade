@@ -190,11 +190,18 @@ class QuestaoDiscursivaController extends Controller
     }
 
     public function avaliarRespostaDiscursiva(Request $request) {
-        $request->validate([
-            "nota" => "required",
-            "comentario" => "required",
-            "resposta_discursiva_id" => "required|exists:resposta_discursivas,id",
-        ]);
+        // dd('Validacao');
+        $request->validate(
+            [   
+                "nota" => "required",
+                "comentario" => "required",
+                "resposta_discursiva_id" => "required|exists:resposta_discursivas,id",
+            ],
+            [
+                "required" => "O campo :attribute precisa ser preenchido",
+                "resposta_discursiva_id.exists" => ""
+            ]
+        );
 
         $resposta = RespostaDiscursiva::find($request->resposta_discursiva_id);
 
