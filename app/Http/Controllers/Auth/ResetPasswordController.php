@@ -6,6 +6,7 @@ use Cookie;
 use Illuminate\Support\Facades\Password;
 use SimuladoENADE\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Support\Facades\Auth;
 
 class ResetPasswordController extends Controller
 {
