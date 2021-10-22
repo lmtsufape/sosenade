@@ -3,6 +3,7 @@
 namespace SimuladoENADE\Http\Controllers\Auth;
 
 use Cookie;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use SimuladoENADE\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
@@ -44,13 +45,18 @@ class ResetPasswordController extends Controller
 
     protected function guard()
     {
-        $cookie = Cookie::get("CookieResetPassword");
-        return Auth::guard($cookie);
+        return Auth::guard(request()->get('tipo_usuario'));
     }
     public function broker()
     {
-        $cookie = Cookie::get("CookieResetPassword");
-        return Password::broker($cookie);
+        return Password::broker(request()->get('tipo_usuario'));
+    }
+
+    public function showResetForm(Request $request, $token = null)
+    {
+        return view('auth.passwords.reset')->with(
+            ['token' => $token, 'email' => $request->email, 'tipo_usuario' => $request->tipo_usuario]
+        );
     }
 
 }

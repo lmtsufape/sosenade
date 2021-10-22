@@ -35,8 +35,12 @@ class ForgotPasswordController extends Controller
 
     public function broker()
     {
-        $cookie = Cookie::get("CookieResetPassword");
-        return Password::broker($cookie);
+        return Password::broker(request()->tipo_usuario);
+    }
+
+    public function showLinkRequestForm()
+    {
+        return view('auth.passwords.email')->with('tipo_usuario', request()->tipo_usuario);
     }
 
 }

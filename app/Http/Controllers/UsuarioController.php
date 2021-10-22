@@ -375,8 +375,7 @@ class Usuariocontroller extends Controller
 
     public function cookie(Request $request)
     {
-        Cookie::queue(Cookie::make('CookieResetPassword', $request->tipo));
-        return redirect(route('password.request'));
+        return redirect(route('password.request', ['tipo_usuario' => $request->tipo]));
     }
 
 }
