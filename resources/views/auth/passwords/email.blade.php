@@ -22,7 +22,7 @@
 
                     <form method="POST" action="{{ route('password.email') }}" aria-label="{{ __('Reset Password') }}">
                         @csrf
-
+                        <input type="hidden" name="tipo_usuario" value="{{ app('request')->input('tipo_usuario') }}">
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Endereço de E-Mail') }}</label>
 

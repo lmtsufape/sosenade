@@ -11,6 +11,8 @@
                     <form method="POST" action="{{ route('password.request') }}" aria-label="{{ __('Redefinir Senha') }}">
                         @csrf
 
+                        <input type="hidden" name="tipo_usuario" value="{{$tipo_usuario}}">
+
                         <input type="hidden" name="token" value="{{ $token }}">
 
                         <div class="form-group row">

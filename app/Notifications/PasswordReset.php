@@ -43,8 +43,8 @@ class PasswordReset extends Notification
     {
         return (new MailMessage)
             ->subject(Lang::getFromJson('Redefinição de Senha'))
-            ->line(Lang::getFromJson('Você está recebendo este e-mail porque recebemos uma solicitação de redefinição de senha para sua conta.'))
-            ->action(Lang::getFromJson('Redefinir Senha'), url(config('app.url').route('password.reset', $this->token, false)))
+            ->line(Lang::getFromJson('Você está recebendo este e-mail porque recebemos uma solicitação de redefinição de senha para sua contaaaa.'))
+            ->action(Lang::getFromJson('Redefinir Senha'), url(config('app.url').route('password.reset', ['token' => $this->token, 'tipo_usuario' => request()->get('tipo_usuario')], false)))
             ->line(Lang::getFromJson('Este link de redefinição de senha irá expirar em :count minutes.', ['count' => config('auth.passwords.users.expire')]))
             ->line(Lang::getFromJson('Se você não solicitou uma redefinição de senha, nenhuma ação adicional será necessária.'));
     }
