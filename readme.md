@@ -19,7 +19,7 @@ Principais funcionalidades:
 ---
 ## Recuperação de Senha
 
-Regras e Mensagens de para validation de recuperação de senha (Tradução)
+Regras e Mensagens para validation de recuperação de senha (Tradução)
 
 ```php
 // Substituir regras e mensagens de erro na dependencia desse caminho
