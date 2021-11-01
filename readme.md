@@ -15,3 +15,39 @@ Principais funcionalidades:
 - Cadastro de questões
 - Resolução de simulados
 - Acompanhamento de desempenho
+
+---
+## Recuperação de Senha
+
+Regras e Mensagens de para validation de recuperação de senha (Tradução)
+
+```php
+// Substituir regras e mensagens de erro na dependencia desse caminho
+
+./sosenade/vendor/laravel/framework/src/Illuminate/Foundation/Auth/ResetsPasswords.php
+```
+
+```php
+// Regras e Mensagens
+
+protected function rules()
+{
+    return [
+        'token' => 'required',
+        'email' => 'required|email',
+        'password' => 'required|min:8',
+        'password_confirmation' => 'same:password',
+    ];
+}
+
+protected function validationErrorMessages()
+{
+    return [
+        'required' => 'O campo :attribute deve ser preenchido na forma correta',
+        'email.email' => "O email deve ser um email valido",
+        'password.min' => 'A senha deve ter no mínimo 8 caracteres',
+        'same' => "As senhas devem ser identicas",
+    ];
+}
+
+```
