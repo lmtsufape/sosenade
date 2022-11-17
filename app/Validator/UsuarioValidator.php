@@ -13,7 +13,7 @@ class UsuarioValidator
     	$validator = \Validator::make($dados,
     								 [
                                         'nome'  => 'required',
-                                        'cpf' => ['required', 'min:14', new CPFUnicoPorPerfil($dados['id'])],
+                                        'cpf' => ['required', 'min:14'],
                                         'password' => 'required|min:8|confirmed',
                                         'email' => 'required|email|unique:usuarios,email,'.$dados['id'],
                                         'tipousuario_id' => 'required',
