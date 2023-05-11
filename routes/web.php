@@ -40,6 +40,9 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('coordenador.auth')->group(function () {
 
+        Route::get('/listar/simulados-expirados', 'SimuladoController@listarExpirados')->name('list_simulado_expirados');
+        Route::get('/listar/simulado/{id}/questoes', 'QuestaoSimuladoController@listarQuestoeSimulado')->name('questoes_simulado');
+
         Route::get('/listar/disciplina', 'DisciplinaController@listar')->name('list_disciplina');
         Route::get('/cadastrar/disciplina', 'DisciplinaController@cadastrar')->name('new_disciplina');
         Route::post('/adicionar/disciplina', 'DisciplinaController@adicionar')->name('add_disciplina');

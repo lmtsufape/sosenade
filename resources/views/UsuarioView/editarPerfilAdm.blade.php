@@ -66,8 +66,7 @@
                                 autofocus>
                             @foreach ($tipos_usuario as $tipo_usuario)
                                 @if ($tipo_usuario->id != 1)
-                                    <option
-                                        value="{{$tipo_usuario->id}}" {{old('tipousuario') == $tipo_usuario->id ? 'selected' : '' }}>
+                                    <option @if(old('tipousuario_id') == $tipo_usuario->id || $tipo_usuario->id == $usuario->tipousuario_id) selected @endif  value="{{$tipo_usuario->id}}">
                                         {{$tipo_usuario->tipo}}
                                     </option>
                                 @endif
@@ -75,8 +74,8 @@
                         </select>
                         @if ($errors->has('tipousuario_id'))
                             <span class="invalid-feedback" role="alert">
-						{{$errors->first('tipousuario_id')}}
-					</span>
+                                {{$errors->first('tipousuario_id')}}
+                            </span>
                         @endif
                     </div>
 

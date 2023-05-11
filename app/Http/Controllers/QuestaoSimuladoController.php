@@ -5,6 +5,9 @@ namespace SimuladoENADE\Http\Controllers;
 use SimuladoENADE\Validator\MontarSimuladoValidator;
 use SimuladoENADE\Validator\ValidationException;
 use Illuminate\Http\Request;
+use SimuladoENADE\Questao;
+use SimuladoENADE\QuestaoDiscursivaSimulado;
+use SimuladoENADE\QuestaoSimulado;
 
 class QuestaoSimuladoController extends Controller{
 
@@ -162,4 +165,20 @@ class QuestaoSimuladoController extends Controller{
         return redirect()->route('set_simulado', ['id' => $simulado_id]);
     }
 
+    public function listarQuestoeSimulado($simuladoId) {
+    
+        $questoes = \SimuladoENADE\Questao::with("disciplina")->select('questaos.*', \DB::raw('questaos.id as qstid'))
+            ->join('questao_simulados', 'questaos.id', '=', 'questao_simulados.questao_id')
+            ->where('questao_simulados.simulado_id', $simuladoId)
+            ->orderBy('questaos.dificuldade')
+            ->get();
+
+        $questoesDiscursivas = \SimuladoENADE\QuestaoDiscursiva::with("disciplina")->select('*', \DB::raw('questao_discursivas.id as qsdtid'))
+            ->join('questao_discursiva_simulados', 'questao_discursivas.id', '=', 'questao_discursiva_simulados.questao_discursiva_id')
+            ->where('questao_discursiva_simulados.simulado_id', $simuladoId) 
+            ->orderBy('questao_discursivas.dificuldade')
+            ->get();
+
+        return view('/SimuladoView/listaQuestoes', ['questaos' => $questoes, 'questoes_discursivas' => $questoesDiscursivas]);
+    }
 }
