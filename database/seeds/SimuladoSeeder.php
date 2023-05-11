@@ -13,7 +13,7 @@ class SimuladoSeeder extends Seeder
     {
         //
         for($i = 0; $i < 6; $i++){
-        	DB::table('simulados')->insert(['descricao_simulado'=> str_random(10)]);	
+        	DB::table('simulados')->insert(['descricao_simulado'=> str_random(10), 'simulado_hora_aluno' => false]);	
         }
     }
 }

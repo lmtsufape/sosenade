@@ -12,9 +12,8 @@ class QuestaoSimuladoSeeder extends Seeder
     public function run()
     {
         //
-           for($i = 0; $i < 5; $i++){
+           for($i = 1; $i < 6; $i++){
         	DB::table('questao_simulados')->insert(['questao_id'=> $i, 'simulado_id' => $i]);	
         }
-    }
     }
 }

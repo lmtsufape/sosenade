@@ -270,7 +270,6 @@ class Usuariocontroller extends Controller
                 $usuario = \SimuladoENADE\Usuario::find($request->id);
                 $inf_array["password"] = $usuario->password;
                 $inf_array["password_confirmation"] = $usuario->password;
-                $inf_array["tipousuario_id"] = $usuario->tipousuario_id;
 
                 UsuarioValidator::Validate($inf_array);
 

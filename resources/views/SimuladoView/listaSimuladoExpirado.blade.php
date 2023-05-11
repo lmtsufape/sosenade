@@ -1,15 +1,15 @@
 @extends('layouts.app')
-@section('titulo','Simulados Cadastrado')
+@section('titulo','Simulados Expirados')
 @section('content')
 
     <div class="shadow p-3 bg-white" style="border-radius: 10px">
         <div class="row"
              style="background: #1B2E4F; margin-top: -15px; margin-bottom:  30px; border-radius: 10px 10px 0 0; color: white">
             <div class="col-sm">
-                <h1 style="margin-left: 15px; margin-top: 15px">Simulados Cadastrados</h1>
+                <h1 style="margin-left: 15px; margin-top: 15px">Simulados Expirados</h1>
                 <p style="color: #9fcdff; margin-left: 15px; margin-top: -5px">
                     <a href="{{route('home')}}" style="color: inherit;">Início</a> >
-                    Simulados Cadastrados
+                    Simulados Expirados
                 </p>
             </div>
 
@@ -36,7 +36,7 @@
                     <th>Descrição (Nº de Questôes)</th>
                     <th>Criado por</th>
                     <th class="text-center">Status</th>
-                    <th class="text-center" style="width: 20%">Opções</th>
+                    <th class="text-center" style="width: 15%">Opções</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -74,29 +74,8 @@
 									</span>
                             @endif
                         </td>
-                        <td>
-                            @if($simulado->data_inicio_simulado != null && $simulado->data_fim_simulado != null && \Carbon\Carbon::parse($simulado->data_inicio_simulado)->lessThan(\Carbon\Carbon::now()) && \Carbon\Carbon::now()->lessThan(\Carbon\Carbon::parse($simulado->data_fim_simulado)))
-                                <a class="btn btn-secondary"
-                                   data-placement="bottom" rel="tooltip" title="Montar" onclick="simuladoOcorrendo()"><i
-                                        class="fa fa-gear"></i></a>
-                                <a class="btn btn-primary"
-                                   data-placement="bottom" rel="tooltip" title="Editar"><i class="fa fa-pencil" onclick="simuladoOcorrendo()"></i></a>
-                                <a class="btn btn-danger"
-                                   data-placement="bottom" rel="tooltip" title="Excluir"><i class="fa fa-trash" onclick="simuladoOcorrendo()"></i></a>
-                                <a href="{{route('questoes_simulado', ['id'=>$simulado->sim_id])}}" class="btn btn-info"
-                                   data-placement="bottom" rel="tooltip" title="Questões"><i class="fa fa-file"></i></a>
-                            @else
-                                <a href="{{route('set_simulado', ['id'=>$simulado->sim_id])}}" class="btn btn-secondary"
-                                   data-placement="bottom" rel="tooltip" title="Montar" disabled="disabled"><i
-                                        class="fa fa-gear"></i></a>
-                                <a href="{{route('edit_simulado', ['id'=>$simulado->sim_id])}}" class="btn btn-primary"
-                                   data-placement="bottom" rel="tooltip" title="Editar"><i class="fa fa-pencil"></i></a>
-                                <a onclick="return confirm('Você tem certeza que deseja excluir?')"
-                                   href="{{route('delete_simulado', ['id'=>$simulado->sim_id])}}" class="btn btn-danger"
-                                   data-placement="bottom" rel="tooltip" title="Excluir"><i class="fa fa-trash"></i></a>
-                                <a href="{{route('questoes_simulado', ['id'=>$simulado->sim_id])}}" class="btn btn-info"
-                                   data-placement="bottom" rel="tooltip" title="Questões"><i class="fa fa-file"></i></a>
-                            @endif
+                        <td class="text-center">
+                            <a href="{{route('questoes_simulado', ['id'=>$simulado->sim_id])}}" class="btn btn-info" data-placement="bottom" rel="tooltip" title="Questões"><i class="fa fa-file"></i></a>
                         </td>
                     </tr>
                 @endforeach
@@ -108,17 +87,6 @@
 
         <hr>
         <p>Legenda:</p>
-        <a class="btn btn-secondary"
-           data-placement="bottom" rel="tooltip" title="Montar" style="color: white"><i class="fa fa-gear"></i></a>
-        Montar Simulado
-        <a class="btn btn-primary"
-           data-placement="bottom" rel="tooltip" title="Editar" style="color: white; margin-left: 5px"><i
-                class="fa fa-pencil"></i></a>
-        Editar Simulado
-        <a class="btn btn-danger"
-           data-placement="bottom" rel="tooltip" title="Excluir" style="color: white; margin-left: 5px"><i
-                class="fa fa-trash"></i></a>
-        Deletar Simulado
         <a class="btn btn-info"
            data-placement="bottom" rel="tooltip" title="Questões" style="color: white; margin-left: 5px"><i
                 class="fa fa-file"></i></a>

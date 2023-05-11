@@ -176,6 +176,7 @@ box-shadow: 0px 4px 10px -5px rgba(0,0,0,0.64);" role="navigation">
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{route('new_simulado')}}">Cadastrar</a>
                             <a class="dropdown-item" href="{{route('list_simulado')}}">Listar</a>
+                            <a class="dropdown-item" href="{{route('list_simulado_expirados')}}">Expirados</a>
                         </div>
                     </li>
 
