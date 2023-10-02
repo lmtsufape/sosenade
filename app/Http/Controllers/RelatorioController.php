@@ -18,12 +18,14 @@ class RelatorioController extends Controller {
 
 		$date = date('d/m/Y');
 		$view = \View::make($view, compact('disciplinas','date'))->render();
-		$pdf = \App::make('dompdf.wrapper');
-		$pdf->loadHTML($view)->setPaper('a4', 'landscape');
+		$pdf = new Dompdf();
+		$pdf->loadHtml($view);
+		$pdf->setPaper('a4', 'landscape');
+		$pdf->render();
 
-		$filename = 'QuestoesPorDisciplina_'.$date;
+		$filename = $date . '_QuestõesPorDisciplina';
 
-		return $pdf->stream($filename.'.pdf');
+		return $pdf->stream($filename);
 	}
 
 	public function desempenhoAlunos(){
@@ -69,12 +71,14 @@ class RelatorioController extends Controller {
 
 		$date = date('d/m/Y');
 		$view = \View::make($view, compact('resum_aluno','date', 'total_alunos'))->render();
-		$pdf = \App::make('dompdf.wrapper');
-		$pdf->loadHTML($view)->setPaper('a4', 'landscape');
+		$pdf = new Dompdf();
+		$pdf->loadHtml($view);
+		$pdf->setPaper('a4', 'landscape');
+		$pdf->render();
 
-		$filename = 'DesempenhoPorAluno_'.$date;
+		$filename = $date . '_DesempenhoPorAluno';
 
-		return $pdf->stream($filename.'.pdf');
+		return $pdf->stream($filename);
 	}
 	
 	public function relatorioGeralCursos(){ // Corrigido
@@ -116,13 +120,14 @@ class RelatorioController extends Controller {
 
 		$date = date('d/m/Y');
 		$view = \View::make($view, compact('simulados', 'date'))->render();
-		$pdf = \App::make('dompdf.wrapper');
-		$pdf->loadHTML($view)->setPaper('a4', 'landscape');
+		$pdf = new Dompdf();
+		$pdf->loadHtml($view);
+		$pdf->setPaper('a4', 'landscape');
+		$pdf->render();
 
-		$filename = 'DesempenhoPorSimulado_'.$date;
+		$filename = $date . '_DesempenhoPorSimulado';
 
-		return $pdf->stream($filename.'.pdf');
-
+		return $pdf->stream($filename);
 	}
 
 	public function relatorioDisciplina(){
@@ -154,11 +159,13 @@ class RelatorioController extends Controller {
 
 		$date = date('d/m/Y');
 		$view = \View::make($view, compact('cont_respostas', 'medias', 'disciplinas', 'date'))->render();
-		$pdf = \App::make('dompdf.wrapper');
-		$pdf->loadHTML($view)->setPaper('a4', 'landscape');
+		$pdf = new Dompdf();
+		$pdf->loadHtml($view);
+		$pdf->setPaper('a4', 'landscape');
+		$pdf->render();
 
-		$filename = 'DesempenhoPorDisciplina_'.$date;
+		$filename = $date . '_DesempenhoPorDisciplina';
 
-		return $pdf->stream($filename.'.pdf');
+		return $pdf->stream($filename);
 	}
 }
