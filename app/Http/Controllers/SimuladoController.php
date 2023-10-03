@@ -104,8 +104,6 @@
 
 		    $simulados = \SimuladoENADE\Simulado::join('usuarios', 'simulados.usuario_id', '=', 'usuarios.id')
 			                                    ->where('simulados.curso_id', '=', $curso_id)
-												->where("simulados.data_inicio_simulado", "<=", Carbon::now())
-												->where("simulados.data_fim_simulado", ">", Carbon::now())
 			                                    ->orderBy('descricao_simulado')
                                                 ->select('simulados.id as sim_id', 'usuarios.nome as nome', 'simulados.*')
                                                 ->withCount('questaos')
