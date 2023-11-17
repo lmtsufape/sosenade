@@ -52,7 +52,7 @@
 							@foreach($disciplina->questaos_medio as $questao_medio)
 								<tr>
 									<td>
-										{{ str_limit(preg_replace('/<[^>]*>|[&;]|nbsp/', '', preg_replace('/nbsp|<br>/', ' ', $questao_facil->enunciado)), $limit = 50, $end = '...') }}
+										{{ str_limit(preg_replace('/<[^>]*>|[&;]|nbsp/', '', preg_replace('/nbsp|<br>/', ' ', $questao_medio->enunciado)), $limit = 50, $end = '...') }}
 									</td>
 									<td>
 										@if($questao_medio->respostas->count())
@@ -81,7 +81,7 @@
 							@foreach($disciplina->questaos_dificil as $questao_dificil)
 								<tr>
 									<td>
-										{{ str_limit(preg_replace('/<[^>]*>|[&;]|nbsp/', '', preg_replace('/nbsp|<br>/', ' ', $questao_facil->enunciado)), $limit = 50, $end = '...') }}
+										{{ str_limit(preg_replace('/<[^>]*>|[&;]|nbsp/', '', preg_replace('/nbsp|<br>/', ' ', $questao_dificil->enunciado)), $limit = 50, $end = '...') }}
 									</td>
 									<td>
 										@if($questao_dificil->respostas->count())
